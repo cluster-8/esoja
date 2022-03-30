@@ -61,7 +61,7 @@ Na imagem abaixo é possível acompanhar os itens distribuídos de acordo com o 
 | ---------------- | ---------------- | -------------------------------------------------------------- | ----------------------------------------------------- |
 |__Elias Ferreira__  | *Scrum Master*  | [![](https://bit.ly/3f9Xo0P)](https://github.com/elias31072002)| [![](https://bit.ly/2P1ZogM)](https://bit.ly/2QwcT8R) |
 |__Hariel Thums__  | *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/HarielThums)  | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3f9bjUH) |
-|__Ana Paula__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)]() | [![](https://bit.ly/2P1ZogM)]() |
+|__Ana Paula__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/AnaPaulaSOliveira) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/ana-paula-santos-de-oliveira-237a401ab) |
 |__Pedro Sousa Lopes__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/PedroSousaLopes) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/pedro-sousa-62bb641a8/) |
 |__Bruno Freire__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/brunofreire2001) | [![](https://bit.ly/2P1ZogM)]() |
 |__Vinícius Oliveira__| *Product Owner*| [![](https://bit.ly/3f9Xo0P)](https://github.com/vinicius-hso) | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3fdl0BE) |
