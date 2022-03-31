@@ -54,7 +54,7 @@ Na imagem abaixo é possível acompanhar os itens distribuídos de acordo com o 
 #### **Wireframe** 
 --
 
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 👨‍💻 Equipe
 
 | Aluno(a)         | Função           | GitHub                                                         | LinkedIn                                              |
