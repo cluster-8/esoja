@@ -8,6 +8,7 @@ import { AuthRoutesParams } from "../data/routes/auth";
 
 import { SignIn } from "../screens/SignIn";
 import { SignUp } from "../screens/SignUp";
+import { Weather } from "../screens/Weather";
 /* import { Splash } from '../pages/Splash';
  */
 const Stack = createNativeStackNavigator<AuthRoutesParams>();
@@ -16,7 +17,7 @@ export const AuthRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
   return (
     <BaseNavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>
-        {/* <Stack.Screen name="Splash" component={Splash} /> */}
+        <Stack.Screen name="Weather" component={Weather} />
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
       </Stack.Navigator>

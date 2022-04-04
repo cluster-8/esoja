@@ -1,21 +1,21 @@
-import React from 'react';
-import { Keyboard, Platform } from 'react-native';
-import { FontAwesome5 } from '@expo/vector-icons';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import React from "react";
+import { Keyboard, Platform } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { getBottomSpace } from "react-native-iphone-x-helper";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from "../../hooks/useAuth";
 
-import { SignInScreenRouteProps } from '../../data/routes/auth';
-import { translate } from '../../data/I18n';
+import { SignInScreenRouteProps } from "../../data/routes/auth";
+import { translate } from "../../data/I18n";
 
-import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
+import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
 
-import { SafeAreaView } from '../../components/atoms/SafeAreaView';
-import { TextInput } from '../../components/atoms/TextInput';
-import { Button } from '../../components/atoms/Button';
+import { SafeAreaView } from "../../components/SafeAreaView";
+import { TextInput } from "../../components/TextInput";
+import { Button } from "../../components/Button";
 
 import {
   TouchableWithoutFeedback,
@@ -35,14 +35,14 @@ import {
   SignUpHelpText,
   SignUpButton,
   SignUpButtonText,
-} from './styles';
+} from "./styles";
 
 const userLogin = yup.object().shape({
   email: yup
     .string()
-    .required('signIn.errors.email.required')
-    .email('signIn.errors.email.format'),
-  password: yup.string().min(6, 'signIn.errors.password.length'),
+    .required("signIn.errors.email.required")
+    .email("signIn.errors.email.format"),
+  password: yup.string().min(6, "signIn.errors.password.length"),
 });
 
 export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
@@ -69,21 +69,21 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
             style={{
               paddingHorizontal: RFHeight(24),
               paddingBottom: getBottomSpace() + RFHeight(24),
-              justifyContent: 'center',
-              alignItems: 'center',
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
             <LogoImage />
 
-            <WelcomeText>{translate('signIn.welcome')}</WelcomeText>
+            <WelcomeText>{translate("signIn.welcome")}</WelcomeText>
 
             <WelcomeCaptionText>
-              {translate('signIn.signInMessage')}
+              {translate("signIn.signInMessage")}
             </WelcomeCaptionText>
 
             <FormContainer>
               <TextInput
-                placeholder={translate('signIn.emailPlaceholder')}
+                placeholder={translate("signIn.emailPlaceholder")}
                 icon="mail"
                 keyboardType="email-address"
                 autoCapitalize="none"
@@ -93,7 +93,7 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
               />
 
               <TextInput
-                placeholder={translate('signIn.passwordPlaceholder')}
+                placeholder={translate("signIn.passwordPlaceholder")}
                 icon="lock"
                 secureTextEntry
                 name="password"
@@ -103,19 +103,19 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
 
               <ForgotPasswordButton>
                 <ForgotPasswordButtonText>
-                  {translate('signIn.forgotPassword')}
+                  {translate("signIn.forgotPassword")}
                 </ForgotPasswordButtonText>
               </ForgotPasswordButton>
 
               <Button
-                title={translate('signIn.signIn')}
+                title={translate("signIn.signIn")}
                 onPress={handleSubmit(signInWithPassword)}
                 showLoadingIndicator={isLoading}
               />
             </FormContainer>
 
             <SocialSignInText>
-              {translate('signIn.socialSignIn')}
+              {translate("signIn.socialSignIn")}
             </SocialSignInText>
 
             <SocialSignInButtonsContainer>
@@ -145,7 +145,7 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
                 </SocialSignInButtonText>
               </SocialSignInButton>
 
-              {Platform.OS === 'ios' && (
+              {Platform.OS === "ios" && (
                 <SocialSignInButton
                   network="apple"
                   style={{ marginLeft: RFWidth(8) }}
@@ -165,12 +165,12 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
 
             <SignUpButtonContainer>
               <SignUpHelpText>
-                {translate('signIn.signUpMessage')}
+                {translate("signIn.signUpMessage")}
               </SignUpHelpText>
 
-              <SignUpButton onPress={() => navigation.navigate('SignUp')}>
+              <SignUpButton onPress={() => navigation.navigate("SignUp")}>
                 <SignUpButtonText>
-                  {translate('signIn.signUp')}
+                  {translate("signIn.signUp")}
                 </SignUpButtonText>
               </SignUpButton>
             </SignUpButtonContainer>

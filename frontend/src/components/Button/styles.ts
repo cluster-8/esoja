@@ -1,14 +1,10 @@
-import styled, { css } from 'styled-components/native';
-import { RectButton as RectButtonRNGH } from 'react-native-gesture-handler';
+import styled, { css } from "styled-components/native";
+import { RectButton as RectButtonRNGH } from "react-native-gesture-handler";
 
-import {
-  RFFontSize,
-  RFHeight,
-  RFWidth,
-} from '../../../utils/getResponsiveSizes';
+import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
 
 interface TypeProps {
-  type: 'primary' | 'secondary' | 'tertiary';
+  type: "primary" | "secondary" | "tertiary";
 }
 
 export const RectButton = styled(RectButtonRNGH)`
@@ -28,7 +24,7 @@ export const TouchableOpacity = styled.TouchableOpacity<TypeProps>`
   align-items: center;
 
   ${(props) =>
-    props.type === 'secondary' &&
+    props.type === "secondary" &&
     css`
       border-width: ${RFWidth(2)}px;
       border-color: ${({ theme }) => theme.colors.primary};
@@ -40,13 +36,13 @@ export const ButtonText = styled.Text<TypeProps>`
   font-size: ${RFFontSize(18)}px;
 
   ${(props) =>
-    props.type === 'primary' &&
+    props.type === "primary" &&
     css`
       color: #ffffff;
     `}
 
   ${(props) =>
-    (props.type === 'secondary' || props.type === 'tertiary') &&
+    (props.type === "secondary" || props.type === "tertiary") &&
     css`
       color: ${({ theme }) => theme.colors.primary};
     `}
