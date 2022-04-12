@@ -2,11 +2,11 @@
   "expo": {
     "name": "esoja-mobile",
     "slug": "esoja-mobile",
-    "scheme": "com.esoja",
+    "scheme": "esoja-mobile",
     "version": "1.0.0",
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "bundleIdentifier": "com.esoja",
+      "bundleIdentifier": "esoja-mobile",
       "usesAppleSignIncomo": true
     }
   },

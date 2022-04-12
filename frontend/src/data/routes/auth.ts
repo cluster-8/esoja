@@ -5,6 +5,7 @@ export type AuthRoutesParams = {
   SignIn: undefined;
   SignUp: undefined;
   Weather: undefined;
+  Home: undefined;
 };
 
 export type SplashScreenRouteProps = NativeStackScreenProps<
@@ -24,4 +25,9 @@ export type SignUpScreenRouteProps = NativeStackScreenProps<
 export type WeatherScreenRouteProps = NativeStackScreenProps<
   AuthRoutesParams,
   "Weather"
+>;
+
+export type HomeScreenRouteProps = NativeStackScreenProps<
+  AuthRoutesParams,
+  "Home"
 >;
