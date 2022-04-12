@@ -21,15 +21,11 @@ import {
   WeekDayCardContainer,
 } from "./styles";
 
-import rain from "../../assets/images/weather-rain.png";
-import thunderstorm from "../../assets/images/weather-thunder-storm.png";
-import clear from "../../assets/images/weather-sun.png";
-import clouds from "../../assets/images/weather-cloudy.png";
-import few_clouds from "../../assets/images/weather-partly-cloudy.png";
 import { WeatherInfoCard } from "../../components/WeatherInfoCard";
 import axios from "axios";
 import { formatHour } from "../../utils/formatter";
 import { RFFontSize } from "../../utils/getResponsiveSizes";
+import { getWeatherImage } from "../../utils/getWeatherImage";
 
 interface WeatherResponseProps {
   dt: number;
@@ -86,32 +82,6 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
     }
   };
 
-  const getImage = () => {
-    if (data?.weather) {
-      switch (data.weather[0]?.main) {
-        case "Rain":
-          return rain;
-        case "Thunderstorm":
-          return thunderstorm;
-        case "Clear":
-          return clear;
-        case "Clouds":
-          if (
-            data.weather[0]?.description === "few clouds" ||
-            data.weather[0]?.description === "scattered clouds"
-          ) {
-            return few_clouds;
-          } else {
-            return clouds;
-          }
-        default:
-          return few_clouds;
-      }
-    } else {
-      return few_clouds;
-    }
-  };
-
   useEffect(() => {
     const getData = async () => {
       try {
@@ -152,7 +122,10 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
           </WeekDayCardContainer>
 
           <WeatherMainContainer>
-            <WeatherImage source={getImage()} resizeMode="contain" />
+            <WeatherImage
+              source={getWeatherImage(data?.weather[0]?.icon)}
+              resizeMode="contain"
+            />
             <WeatherTemp>{data?.temp?.day.toFixed(0)}º</WeatherTemp>
             <WeatherStatus>
               {data?.weather[0]?.description.toUpperCase()}
