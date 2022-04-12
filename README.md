@@ -5,10 +5,14 @@
 README EM DESENVOLVIMENTO!
 <br>
 
-<h2 align="justify">
+
 ## 📌 Desafio
+
+<h2 align="justify">
 O desafio do projeto é criar um aplicativo colaborativo para produtores rurais e através desse aplicativo os usuários poderão incluir informações do dia a dia sobre sua plantação. Essas informações consistem em dados alfa-numéricos e fotos georreferenciadas pelo GPS do próprio celular. Com os dados de vários usuários, o aplicativo irá fornecer informações estatísticas sobre sua produção, podendo assim comparar com dados históricos de outros usuários.
 </h2>
+
+
 
 <br>
 ## 🏁 Projeto
