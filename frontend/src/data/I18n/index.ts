@@ -1,6 +1,7 @@
 import i18n from "i18n-js";
 import * as Localization from "expo-localization";
 import signIn from "./signIn";
+import home from "./home";
 
 interface LanguageProps {
   [key: string]: {
@@ -14,9 +15,11 @@ export const i18nConfig = () => {
   const languages: LanguageProps = {
     "pt-BR": {
       ...signIn.pt,
+      ...home.pt,
     },
     "en-US": {
       ...signIn.en,
+      ...home.en,
     },
   };
   i18n.translations = {

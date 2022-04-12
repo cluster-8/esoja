@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components/native';
-import { Feather } from '@expo/vector-icons';
+import styled, { css } from "styled-components/native";
+import { Feather } from "@expo/vector-icons";
 
 import {
   RFFontSize,
   RFHeight,
   RFWidth,
-} from '../../../utils/getResponsiveSizes';
+} from "../../../utils/getResponsiveSizes";
 
 interface ContainerProps {
   isFocused: boolean;
