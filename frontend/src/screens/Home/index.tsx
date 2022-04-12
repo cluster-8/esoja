@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MenuCard } from "../../components/MenuCard";
-
 import { UserCard } from "../../components/UserCard";
+
 import { translate } from "../../data/I18n";
 import { HomeScreenRouteProps } from "../../data/routes/auth";
 import { Quotation, useHome, WeatherResponseProps } from "../../hooks/useHome";

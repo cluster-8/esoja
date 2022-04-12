@@ -17,6 +17,7 @@ export default {
       details: "#BBBBBB",
       attention: "#CC3333",
       yellow: "#FCA600",
+      white: "#FFFFFF",
     },
     images: {
       esoja_logo: esojaLogoLightImg,
@@ -34,6 +35,7 @@ export default {
       details: "#606060",
       attention: "#F85149",
       yellow: "#FCA600",
+      white: "#FFFFFF",
     },
     images: {
       esoja_logo: esojaLogoDarkImg,

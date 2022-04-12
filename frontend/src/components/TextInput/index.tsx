@@ -1,10 +1,10 @@
-import React, { useState, useCallback, useRef } from 'react';
-import { Control, useController } from 'react-hook-form';
-import { TextInputProps as RNTextInputProps } from 'react-native';
-import { useTheme } from 'styled-components';
-import { translate } from '../../../data/I18n';
+import React, { useState, useCallback, useRef } from "react";
+import { Control, useController } from "react-hook-form";
+import { TextInputProps as RNTextInputProps } from "react-native";
+import { useTheme } from "styled-components";
+import { translate } from "../../data/I18n";
 
-import { RFFontSize } from '../../../utils/getResponsiveSizes';
+import { RFFontSize } from "../../utils/getResponsiveSizes";
 
 import {
   InnerContainer,
@@ -12,7 +12,7 @@ import {
   FeatherIcon,
   ErrorMessage,
   Container,
-} from './styles';
+} from "./styles";
 
 interface TextInputProps extends RNTextInputProps {
   icon?: string;
@@ -41,7 +41,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   const { field } = useController({
     name,
     control,
-    defaultValue: '',
+    defaultValue: "",
   });
 
   const handleInputFocus = useCallback(() => {

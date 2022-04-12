@@ -31,7 +31,7 @@ export const Routes: React.FC = () => {
     return <AppLoading />;
   }
 
-  return !authUser.id ? (
+  return authUser.id ? (
     <AuthRoutes screenOptions={screenOptions} />
   ) : (
     <AppRoutes screenOptions={screenOptions} />

@@ -16,7 +16,6 @@ export const AuthRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
   return (
     <BaseNavigationContainer>
       <Stack.Navigator screenOptions={screenOptions}>
-        {/* <Stack.Screen name="Splash" component={Splash} /> */}
         <Stack.Screen name="SignIn" component={SignIn} />
         <Stack.Screen name="SignUp" component={SignUp} />
       </Stack.Navigator>
