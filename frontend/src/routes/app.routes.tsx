@@ -11,6 +11,9 @@ import {
 import { NavigatorProps } from ".";
 
 import { Home } from "../screens/Home";
+import { Properties } from "../screens/Properties";
+import { NewProperty } from "../screens/NewProperty";
+import { Cultives } from "../screens/Cultives";
 import { Weather } from "../screens/Weather";
 import { useTheme } from "styled-components";
 
@@ -45,7 +48,26 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         }}
         initialRouteName="Home"
       >
-        <Stack.Screen name="Home" component={Home} options={options} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={options}
+        />
+        <Stack.Screen
+          name="Properties"
+          component={Properties}
+          options={options}
+        />
+        <Stack.Screen
+          name="NewProperty"
+          component={NewProperty}
+          options={options}
+        />
+        <Stack.Screen
+          name="Cultives"
+          component={Cultives}
+          options={options}
+        />
         <Stack.Screen
           name="Weather"
           component={Weather}

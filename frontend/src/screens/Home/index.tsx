@@ -102,7 +102,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
             <MenuCard
               title={translate("home.plots")}
               icon="seed-outline"
-              onPress={() => handlerCardMenuClick("Spots")}
+              onPress={() => handlerCardMenuClick("Cultives")}
             />
           </MenuCardContainer>
           <MenuCardContainer>

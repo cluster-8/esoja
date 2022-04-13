@@ -5,6 +5,9 @@ export type AuthRoutesParams = {
   SignIn: undefined;
   SignUp: undefined;
   Home: undefined;
+  Properties: undefined;
+  NewProperty: undefined;
+  Cultives: undefined;
   Weather: undefined;
 };
 
@@ -25,6 +28,21 @@ export type SignUpScreenRouteProps = NativeStackScreenProps<
 export type HomeScreenRouteProps = NativeStackScreenProps<
   AuthRoutesParams,
   "Home"
+>;
+
+export type PropertiesScreenRouteProps = NativeStackScreenProps<
+  AuthRoutesParams,
+  "Properties"
+>;
+
+export type NewPropertyScreenRouteProps = NativeStackScreenProps<
+  AuthRoutesParams,
+  "NewProperty"
+>;
+
+export type CultivesScreenRouteProps = NativeStackScreenProps<
+  AuthRoutesParams,
+  "Cultives"
 >;
 
 export type WeatherScreenRouteProps = NativeStackScreenProps<
