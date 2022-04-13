@@ -21,6 +21,7 @@ import {
   WeekDayCardContainer,
 } from "./styles";
 
+import { translate } from "../../data/I18n";
 import { WeatherInfoCard } from "../../components/WeatherInfoCard";
 import { formatHour } from "../../utils/formatter";
 import { RFFontSize } from "../../utils/getResponsiveSizes";
@@ -98,22 +99,22 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
             </WeatherMaxAndMin>
             <WeatherDetailsContainer>
               <WeatherInfoCard
-                title="Umidade"
+                title={translate("weather.humidity")}
                 value={`${data?.humidity}%`}
                 icon="droplet"
               />
               <WeatherInfoCard
-                title="Vento"
+                title={translate("weather.wind")}
                 value={`${data?.speed}m/s`}
                 icon="wind"
               />
               <WeatherInfoCard
-                title="Chuva"
+                title={translate("weather.rain")}
                 value={`${data?.pop * 100}%`}
                 icon="umbrella"
               />
               <WeatherInfoCard
-                title="Volume"
+                title={translate("weather.precipitation")}
                 value={`${data?.rain || 0}mm`}
                 icon="cloud-drizzle"
               />
@@ -122,19 +123,25 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
           <WeatherDayPeriodContainer>
             <WeatherDayContent>
               <WeatherPeriodCard>
-                <WeatherPeriodTitle>Manhã</WeatherPeriodTitle>
+                <WeatherPeriodTitle>
+                  {translate("weather.morning")}
+                </WeatherPeriodTitle>
                 <WeatherPeriodTemp>
                   {data?.temp?.morn.toFixed(0)}º
                 </WeatherPeriodTemp>
               </WeatherPeriodCard>
               <WeatherPeriodCard>
-                <WeatherPeriodTitle>Tarde</WeatherPeriodTitle>
+                <WeatherPeriodTitle>
+                  {translate("weather.afternoon")}
+                </WeatherPeriodTitle>
                 <WeatherPeriodTemp>
                   {data?.temp?.eve.toFixed(0)}º
                 </WeatherPeriodTemp>
               </WeatherPeriodCard>
               <WeatherPeriodCard>
-                <WeatherPeriodTitle>Noite</WeatherPeriodTitle>
+                <WeatherPeriodTitle>
+                  {translate("weather.evening")}
+                </WeatherPeriodTitle>
                 <WeatherPeriodTemp>
                   {data?.temp?.night.toFixed(0)}º
                 </WeatherPeriodTemp>
@@ -144,7 +151,9 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
               <WeatherSunsetIconContainer>
                 <WeatherSunsetIcon name="sunrise" size={RFFontSize(32)} />
                 <WeatherPeriodCard>
-                  <WeatherPeriodTitle>Sunrise</WeatherPeriodTitle>
+                  <WeatherPeriodTitle>
+                    {translate("weather.sunrise")}
+                  </WeatherPeriodTitle>
                   <WeatherPeriodTemp>
                     {formatHour(data?.sunrise)}
                   </WeatherPeriodTemp>
@@ -153,7 +162,9 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
               <WeatherSunsetIconContainer>
                 <WeatherSunsetIcon name="sunset" size={RFFontSize(32)} />
                 <WeatherPeriodCard>
-                  <WeatherPeriodTitle>Sunset</WeatherPeriodTitle>
+                  <WeatherPeriodTitle>
+                    {translate("weather.sunset")}
+                  </WeatherPeriodTitle>
                   <WeatherPeriodTemp>
                     {formatHour(data?.sunset)}
                   </WeatherPeriodTemp>
