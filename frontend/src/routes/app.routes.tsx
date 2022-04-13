@@ -22,6 +22,7 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
     () => ({
       headerTitleAlign: "center",
       headerStyle: { backgroundColor: theme.colors.primary },
+
       headerTitle: () => (
         <Image
           style={{
@@ -45,7 +46,17 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         initialRouteName="Home"
       >
         <Stack.Screen name="Home" component={Home} options={options} />
-        <Stack.Screen name="Weather" component={Weather} options={options} />
+        <Stack.Screen
+          name="Weather"
+          component={Weather}
+          options={{
+            ...options,
+            headerStyle: { backgroundColor: "transparent" },
+            headerShadowVisible: false,
+            headerTransparent: true,
+            headerTintColor: theme.colors.white,
+          }}
+        />
       </Stack.Navigator>
     </BaseNavigationContainer>
   );

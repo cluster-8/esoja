@@ -53,9 +53,9 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
   const getZipcode = async (): Promise<string> => {
     let coordinates = await getCoordinates();
     if (coordinates?.latitude) {
-      const endereco = await Location.reverseGeocodeAsync(coordinates);
-      if (endereco.length > 0) {
-        return endereco[0].postalCode || "";
+      const local = await Location.reverseGeocodeAsync(coordinates);
+      if (local.length > 0) {
+        return local[0].postalCode || "";
       }
     }
     return "";

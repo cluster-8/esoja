@@ -20,7 +20,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   const [seedQuote, setSeedQuote] = useState<Quotation | null>(null);
   const [availableQuote, setAvailableQuote] = useState<Quotation | null>(null);
   const { getWeatherCurrentDay, getQuotation } = useHome();
-  const { getCoordinates } = useLocation();
+  const { getCoordinates, getZipcode } = useLocation();
 
   const handlerCardMenuClick = (route: any) => {
     navigation.navigate(route);
@@ -28,6 +28,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
 
   const getData = async () => {
     const location = await getCoordinates();
+    const teste = await getZipcode();
     const weatherData = await getWeatherCurrentDay(location);
     if (weatherData) {
       setWeather(weatherData);
@@ -55,7 +56,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
             onPress={() => handlerCardMenuClick("Quotation")}
             widget
             title="Semente"
-            value={`R$ ${seedQuote?.Valor}`}
+            value={`R$ ${seedQuote?.Valor || 0}`}
             variation={seedQuote?.Variacao}
             icon={
               seedQuote && seedQuote?.Variacao >= 0
@@ -67,7 +68,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
             onPress={() => handlerCardMenuClick("Quotation")}
             widget
             title="Disponivel"
-            value={`R$ ${availableQuote?.Valor}`}
+            value={`R$ ${availableQuote?.Valor || 0}`}
             variation={availableQuote?.Variacao}
             icon={
               availableQuote && availableQuote?.Variacao >= 0
