@@ -20,7 +20,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   const [seedQuote, setSeedQuote] = useState<Quotation | null>(null);
   const [availableQuote, setAvailableQuote] = useState<Quotation | null>(null);
   const { getWeatherCurrentDay, getQuotation } = useHome();
-  const { getCoordinates, getZipcode } = useLocation();
+  const { getCoordinates } = useLocation();
 
   const handlerCardMenuClick = (route: any) => {
     navigation.navigate(route);
@@ -28,8 +28,14 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
 
   const getData = async () => {
     const location = await getCoordinates();
-    const teste = await getZipcode();
+
     const weatherData = await getWeatherCurrentDay(location);
+
+    // const weatherData = await getWeatherCurrentDay({
+    //   latitude: 45,
+    //   longitude: 23,
+    // });
+
     if (weatherData) {
       setWeather(weatherData);
     }
@@ -55,7 +61,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <MenuCard
             onPress={() => handlerCardMenuClick("Quotation")}
             widget
-            title="Semente"
+            title={translate("home.seeds")}
             value={`R$ ${seedQuote?.Valor || 0}`}
             variation={seedQuote?.Variacao}
             icon={
@@ -67,7 +73,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <MenuCard
             onPress={() => handlerCardMenuClick("Quotation")}
             widget
-            title="Disponivel"
+            title={translate("home.soybeanPrice")}
             value={`R$ ${availableQuote?.Valor || 0}`}
             variation={availableQuote?.Variacao}
             icon={
@@ -79,7 +85,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <MenuCard
             onPress={() => handlerCardMenuClick("Weather")}
             widget
-            title="Clima"
+            title={translate("home.weather")}
             value={`${weather?.main.temp.toFixed(0) || "0"}º`}
             picture={getWeatherImage(weather?.weather[0].icon || "")}
           />
@@ -94,7 +100,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           </MenuCardContainer>
           <MenuCardContainer>
             <MenuCard
-              title="Talhões"
+              title={translate("home.plots")}
               icon="seed-outline"
               onPress={() => handlerCardMenuClick("Spots")}
             />
@@ -102,7 +108,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <MenuCardContainer>
             <MenuCard
               onPress={() => handlerCardMenuClick("Statistics")}
-              title="Estatisticas"
+              title={translate("home.statistics")}
               icon="chart-line"
             />
           </MenuCardContainer>
