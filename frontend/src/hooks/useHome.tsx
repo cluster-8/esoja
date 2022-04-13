@@ -1,6 +1,12 @@
 import React, { createContext, ReactNode, useContext, useMemo } from "react";
+import { getWeatherDay } from "../data/services/weather.services";
 
 import axios from "axios";
+
+interface Coordinates {
+  latitude: number;
+  longitude: number;
+}
 
 export interface WeatherResponseProps {
   main: {
@@ -29,7 +35,9 @@ export interface Quotation {
 }
 
 interface HomeContextData {
-  getWeatherCurrentDay: () => Promise<WeatherResponseProps | undefined>;
+  getWeatherCurrentDay: (
+    coordinates: Coordinates
+  ) => Promise<WeatherResponseProps | undefined>;
   getQuotation: () => Promise<Quotation[] | undefined>;
 }
 
@@ -40,21 +48,14 @@ type HomeContextProps = {
 const HomeContext = createContext({} as HomeContextData);
 
 const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
-  const getWeatherCurrentDay = async () => {
-    try {
-      const { data } = await axios.get<WeatherResponseProps>(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${-23.24}&lon=${-45.89}&appid=9e4568d2f08dd1b31425e87801aa303d&units=metric`
-      );
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
+  const getWeatherCurrentDay = async (coordinates: Coordinates) => {
+    return await getWeatherDay(coordinates);
   };
 
   const getQuotation = async () => {
     try {
       const { data } = await axios.get<Quotation[]>(
-        `https://api1.imea.com.br/api/v2/mobile/cadeias/4/cotacoes`
+        `${process.env.IMEA_ROUTE}`
       );
       const availableQuote = data.filter(
         (quotation) =>

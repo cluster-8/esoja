@@ -7,7 +7,6 @@ export const WeatherContainer = styled.View`
   align-items: center;
   background-color: #03d7fc;
   padding: 8px;
-  padding-top: 72px;
 `;
 
 export const WeekDayCardContainer = styled.View`
@@ -25,24 +24,24 @@ export const WeatherMainContainer = styled.View`
 `;
 
 export const WeatherImage = styled.Image`
-  width: 200px;
-  height: 200px;
-  margin-right: ${RFWidth(80)}px;
+  width: 160px;
+  height: 160px;
+  margin-right: ${RFWidth(120)}px;
 `;
 
 export const WeatherTemp = styled.Text`
   font-size: ${RFFontSize(80)}px;
   color: ${({ theme }) => theme.colors.white};
   position: absolute;
-  right: ${RFWidth(28)}px;
-  top: ${RFHeight(160)}px;
+  right: ${RFWidth(48)}px;
+  top: ${RFHeight(88)}px;
 `;
 
 export const WeatherStatus = styled.Text`
   font-size: ${RFFontSize(16)}px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text};
-  margin-top: ${RFHeight(54)}px;
+  margin-top: ${RFHeight(24)}px;
 `;
 
 export const WeatherMaxAndMin = styled.Text`

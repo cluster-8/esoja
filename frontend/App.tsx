@@ -14,6 +14,7 @@ import theme from "./src/global/styles/theme";
 
 import { Routes } from "./src/routes";
 import { HomeProvider } from "./src/hooks/useHome";
+import { LocationProvider } from "./src/hooks/useLocation";
 
 export const App: React.FC = () => {
   const { handleChageTheme, getStoredTheme, fontsLoaded, selectedTheme } =
@@ -31,20 +32,22 @@ export const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme[selectedTheme]}>
       <AuthProvider>
-        <HomeProvider>
-          <StatusBar
-            barStyle={
-              selectedTheme === "dark" ? "light-content" : "dark-content"
-            }
-            backgroundColor={theme[selectedTheme].colors.background}
-            translucent
-          />
-          <GestureHandlerRootView style={{ flex: 1 }}>
-            <SafeAreaProvider>
-              <Routes />
-            </SafeAreaProvider>
-          </GestureHandlerRootView>
-        </HomeProvider>
+        <LocationProvider>
+          <HomeProvider>
+            <StatusBar
+              barStyle={
+                selectedTheme === "dark" ? "light-content" : "dark-content"
+              }
+              backgroundColor={theme[selectedTheme].colors.background}
+              translucent
+            />
+            <GestureHandlerRootView style={{ flex: 1 }}>
+              <SafeAreaProvider>
+                <Routes />
+              </SafeAreaProvider>
+            </GestureHandlerRootView>
+          </HomeProvider>
+        </LocationProvider>
       </AuthProvider>
     </ThemeProvider>
   );

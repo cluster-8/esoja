@@ -22,57 +22,24 @@ import {
 } from "./styles";
 
 import { WeatherInfoCard } from "../../components/WeatherInfoCard";
-import axios from "axios";
 import { formatHour } from "../../utils/formatter";
 import { RFFontSize } from "../../utils/getResponsiveSizes";
 import { getWeatherImage } from "../../utils/getWeatherImage";
-
-interface WeatherResponseProps {
-  dt: number;
-  sunrise: number;
-  sunset: number;
-
-  temp: {
-    day: number;
-    min: number;
-    max: number;
-    night: number;
-    eve: number;
-    morn: number;
-  };
-
-  feels_like: {
-    day: number;
-    night: number;
-    eve: number;
-    morn: number;
-  };
-  pressure: number;
-  humidity: number;
-
-  weather: [
-    {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    }
-  ];
-  speed: number;
-  deg: number;
-  gust: number;
-  clouds: number;
-  pop: number;
-  rain: number;
-}
+import { useLocation } from "../../hooks/useLocation";
+import {
+  getWeatherForecast,
+  WeatherForecastProps,
+} from "../../data/services/weather.services";
 
 export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
-  const [list, setList] = useState<WeatherResponseProps[]>([]);
+  const [list, setList] = useState<WeatherForecastProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedDate, setSelectedDate] = useState<number | Date>(0);
-  const [data, setData] = useState<WeatherResponseProps>(
-    {} as WeatherResponseProps
+  const [data, setData] = useState<WeatherForecastProps>(
+    {} as WeatherForecastProps
   );
+
+  const { getCoordinates } = useLocation();
 
   const handleSelectDate = (date: number) => {
     setSelectedDate(date);
@@ -84,18 +51,13 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
 
   useEffect(() => {
     const getData = async () => {
-      try {
-        const {
-          data: { list },
-        } = await axios.get<{ list: WeatherResponseProps[] }>(
-          `http://pro.openweathermap.org/data/2.5/forecast/daily?lat=23.24&lon=45.89&appid=9e4568d2f08dd1b31425e87801aa303d&units=metric&cnt=7`
-        );
-        setList(list);
-        handleSelectDate(list[0].dt);
-        setData(list[0]);
+      const coordinates = await getCoordinates();
+      const weather = await getWeatherForecast(coordinates, "pt_br");
+      if (weather) {
+        setList(weather);
+        handleSelectDate(weather[0].dt);
+        setData(weather[0]);
         setLoading(false);
-      } catch (err) {
-        console.log(err);
       }
     };
     if (!list?.length) {
@@ -152,7 +114,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
               />
               <WeatherInfoCard
                 title="Volume"
-                value={`${data?.rain}mm`}
+                value={`${data?.rain || 0}mm`}
                 icon="cloud-drizzle"
               />
             </WeatherDetailsContainer>

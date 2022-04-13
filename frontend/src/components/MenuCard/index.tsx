@@ -63,7 +63,7 @@ export const MenuCard: React.FC<MenuCardProps> = ({
 
   return (
     <MenuCardContainer onPress={onPress}>
-      {icon && <MenuCardIcon name={icon} size={RFFontSize(72)} />}
+      {icon && <MenuCardIcon name={icon} size={RFFontSize(56)} />}
       <MenuCardTitle>{title}</MenuCardTitle>
     </MenuCardContainer>
   );

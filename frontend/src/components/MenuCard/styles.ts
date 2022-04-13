@@ -6,8 +6,7 @@ export const MenuCardContainer = styled.TouchableOpacity`
   width: 100%;
   align-items: center;
   justify-content: center;
-  height: ${RFHeight(160)}px;
-
+  padding: ${RFHeight(24)}px 0;
   background-color: ${({ theme }) => theme.colors.background_over};
   border-radius: ${RFHeight(8)}px;
 `;
@@ -27,8 +26,8 @@ export const MenuCardValueContainer = styled.View`
 `;
 
 export const MenuCardImage = styled.Image`
-  height: ${RFHeight(24)}px;
-  width: ${RFWidth(24)}px;
+  height: ${RFHeight(32)}px;
+  width: ${RFWidth(60)}px;
   margin: ${RFHeight(8)}px 0;
 `;
 

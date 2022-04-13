@@ -5,6 +5,7 @@ import { UserCard } from "../../components/UserCard";
 import { translate } from "../../data/I18n";
 import { HomeScreenRouteProps } from "../../data/routes/auth";
 import { Quotation, useHome, WeatherResponseProps } from "../../hooks/useHome";
+import { useLocation } from "../../hooks/useLocation";
 import { getWeatherImage } from "../../utils/getWeatherImage";
 import {
   HomeContainer,
@@ -19,13 +20,15 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   const [seedQuote, setSeedQuote] = useState<Quotation | null>(null);
   const [availableQuote, setAvailableQuote] = useState<Quotation | null>(null);
   const { getWeatherCurrentDay, getQuotation } = useHome();
+  const { getCoordinates } = useLocation();
 
   const handlerCardMenuClick = (route: any) => {
     navigation.navigate(route);
   };
 
   const getData = async () => {
-    const weatherData = await getWeatherCurrentDay();
+    const location = await getCoordinates();
+    const weatherData = await getWeatherCurrentDay(location);
     if (weatherData) {
       setWeather(weatherData);
     }

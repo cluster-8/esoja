@@ -22,7 +22,6 @@ export const Routes: React.FC = () => {
       headerShown: false,
       contentStyle: { backgroundColor: theme.colors.background },
       animation: "slide_from_right",
-      initialRouteName: "Splash",
     }),
     [theme]
   );

@@ -7,7 +7,6 @@ export const HomeContainer = styled.View`
   justify-content: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.primary};
-  padding-top: 48px;
 `;
 
 export const HomeMenuContainer = styled.View`
