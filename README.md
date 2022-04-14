@@ -58,7 +58,7 @@ Para a construção do projeto, estão sendo usadas as seguintes ferramentas:
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 #### **Front-end** 
-<img src= "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+<img src= "https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 O React Native é um framework baseado no já aclamado React, desenvolvido pela equipe do Facebook, que possibilita o desenvolvimento de aplicações mobile, tanto para Android, como para iOS, utilizando apenas Javascript.
   
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
