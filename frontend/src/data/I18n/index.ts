@@ -3,6 +3,8 @@ import * as Localization from "expo-localization";
 import signIn from "./signIn";
 import home from "./home";
 import weather from "./weather";
+import properties from "./properties";
+import plots from "./plots";
 
 interface LanguageProps {
   [key: string]: {
@@ -18,11 +20,15 @@ export const i18nConfig = () => {
       ...signIn.pt,
       ...home.pt,
       ...weather.pt,
+      ...properties.pt,
+      ...plots.pt,
     },
     "en-US": {
       ...signIn.en,
       ...home.en,
       ...weather.en,
+      ...properties.en,
+      ...plots.en
     },
   };
   i18n.translations = {

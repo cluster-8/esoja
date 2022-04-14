@@ -25,6 +25,7 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
     () => ({
       headerTitleAlign: "center",
       headerStyle: { backgroundColor: theme.colors.primary },
+      headerTintColor: theme.colors.white,
 
       headerTitle: () => (
         <Image
@@ -75,8 +76,7 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
             ...options,
             headerStyle: { backgroundColor: "transparent" },
             headerShadowVisible: false,
-            headerTransparent: true,
-            headerTintColor: theme.colors.white,
+            headerTransparent: true
           }}
         />
       </Stack.Navigator>

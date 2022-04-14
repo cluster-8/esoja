@@ -2,7 +2,7 @@ export default {
   pt: {
     home: {
       seeds: "Sementes",
-      soybeanPrice: "Soja (R$/Sc)",
+      soybeanPrice: "Disponivel",
       weather: "Clima",
       properties: "Propriedades",
       plots: "Talhões",
@@ -12,7 +12,7 @@ export default {
   en: {
     home: {
       seeds: "Seeds",
-      soybeanPrice: "Soybeans (R$/Sc)",
+      soybeanPrice: "Available",
       weather: "Weather",
       properties: "Properties",
       plots: "Plots",

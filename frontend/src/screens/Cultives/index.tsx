@@ -13,6 +13,7 @@ import {
 } from './styles';
 
 import { CultiveCard, CultiveCardProps } from '../../components/CultiveCard';
+import { translate } from "../../data/I18n";
 
 export interface DataListProps extends CultiveCardProps {
   id: string;
@@ -57,9 +58,9 @@ export const Cultives: React.FC<CultivesScreenRouteProps> = ({ navigation }) => 
   return (
     <Container>
       <Header>
-        <Title>Talhões</Title>
+        <Title>{translate('plots.plots')}</Title>
 
-        <SubTitle>Visualize todos seus cultivos registrados.</SubTitle>
+        <SubTitle>{translate('plots.SeeAllYourPlots')}</SubTitle>
       </Header>
 
       <CultiveList

@@ -13,6 +13,7 @@ import {
 } from './styles';
 
 import { PropertyCard, PropertyCardProps } from '../../components/PropertyCard';
+import { translate } from "../../data/I18n";
 
 export interface DataListProps extends PropertyCardProps {
   id: string;
@@ -61,9 +62,8 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({ navigation })
   return (
     <Container>
       <Header>
-        <Title>Propriedades</Title>
-
-        <SubTitle>Visualize todas suas propriedades registradas.</SubTitle>
+        <Title>{translate('properties.properties')}</Title>
+        <SubTitle>{translate('properties.SeAllYourProperties')}</SubTitle>
       </Header>
 
       <PropertyList
