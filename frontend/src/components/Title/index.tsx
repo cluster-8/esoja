@@ -1,5 +1,5 @@
-import React from "react";
-import { TitleContainer, TitleStyled, SubtitleStyled } from "./styles";
+import React from 'react';
+import { TitleContainer, TitleStyled, SubtitleStyled } from './styles';
 
 export interface TitleProps {
   title: string;

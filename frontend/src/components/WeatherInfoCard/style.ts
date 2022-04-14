@@ -1,6 +1,6 @@
-import styled from "styled-components/native";
-import { Feather } from "@expo/vector-icons";
-import { RFFontSize, RFWidth, RFHeight } from "../../utils/getResponsiveSizes";
+import styled from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
+import { RFFontSize, RFWidth, RFHeight } from '../../utils/getResponsiveSizes';
 
 export const WeatherInfoCardContainer = styled.View`
   align-items: center;

@@ -1,12 +1,12 @@
-import * as React from "react";
-import { useTheme } from "styled-components";
-import { NativeStackNavigationOptions } from "@react-navigation/native-stack";
-import AppLoading from "expo-app-loading";
+import * as React from 'react';
+import { useTheme } from 'styled-components';
+import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
+import AppLoading from 'expo-app-loading';
 
-import { AuthRoutes } from "./auth.routes";
-import { AppRoutes } from "./app.routes";
+import { AuthRoutes } from './auth.routes';
+import { AppRoutes } from './app.routes';
 
-import { useAuth } from "../hooks/useAuth";
+import { useAuth } from '../hooks/useAuth';
 
 export interface NavigatorProps {
   screenOptions: NativeStackNavigationOptions;
@@ -21,7 +21,7 @@ export const Routes: React.FC = () => {
     () => ({
       headerShown: false,
       contentStyle: { backgroundColor: theme.colors.background },
-      animation: "slide_from_right",
+      animation: 'slide_from_right'
     }),
     [theme]
   );
@@ -30,9 +30,5 @@ export const Routes: React.FC = () => {
     return <AppLoading />;
   }
 
-  return authUser.id ? (
-    <AuthRoutes screenOptions={screenOptions} />
-  ) : (
-    <AppRoutes screenOptions={screenOptions} />
-  );
+  return authUser.id ? <AuthRoutes screenOptions={screenOptions} /> : <AppRoutes screenOptions={screenOptions} />;
 };

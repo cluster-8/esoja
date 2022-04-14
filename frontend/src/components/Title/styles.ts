@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { RFFontSize } from "../../utils/getResponsiveSizes";
+import styled from 'styled-components/native';
+import { RFFontSize } from '../../utils/getResponsiveSizes';
 
 export const TitleContainer = styled.View``;
 

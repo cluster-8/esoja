@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Step from "react-native-step-indicator";
-import { useTheme } from "styled-components";
-import { Container } from "./styles";
+import React, { useEffect, useState } from 'react';
+import { Text } from 'react-native';
+import Step from 'react-native-step-indicator';
+import { useTheme } from 'styled-components';
+import { Container } from './styles';
 
 interface StepProps {
   step: number;
+  indicator?: number;
 }
-export const StepIndicator: React.FC<StepProps> = ({ step }) => {
+
+export const StepIndicator: React.FC<StepProps> = ({ step, indicator = 1 }) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const theme = useTheme();
 
@@ -30,9 +33,9 @@ export const StepIndicator: React.FC<StepProps> = ({ step }) => {
     stepIndicatorCurrentColor: theme.colors.primary,
     stepIndicatorLabelFontSize: 13,
     currentStepIndicatorLabelFontSize: 13,
-    stepIndicatorLabelCurrentColor: "#fff",
+    stepIndicatorLabelCurrentColor: '#fff',
     stepIndicatorLabelFinishedColor: theme.colors.primary,
-    stepIndicatorLabelUnFinishedColor: theme.colors.text_secondary,
+    stepIndicatorLabelUnFinishedColor: theme.colors.text_secondary
   };
 
   return (
@@ -41,6 +44,7 @@ export const StepIndicator: React.FC<StepProps> = ({ step }) => {
         customStyles={customStyles}
         currentPosition={currentPosition}
         stepCount={3}
+        renderStepIndicator={item => <Text>{item.position + indicator}</Text>}
       />
     </Container>
   );

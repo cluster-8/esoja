@@ -1,12 +1,12 @@
-import styled, { css } from "styled-components/native";
-import { Platform } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
+import styled, { css } from 'styled-components/native';
+import { Platform } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 
-import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
-import theme from "../../global/styles/theme";
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
+import theme from '../../global/styles/theme';
 
 interface SocialSignProps {
-  network: "google" | "facebook" | "apple";
+  network: 'google' | 'facebook' | 'apple';
 }
 
 export const TouchableWithoutFeedback = styled.TouchableWithoutFeedback`
@@ -14,14 +14,14 @@ export const TouchableWithoutFeedback = styled.TouchableWithoutFeedback`
 `;
 
 export const KeyboardAvoidingView = styled.KeyboardAvoidingView.attrs({
-  behavior: Platform.OS === "ios" ? "padding" : undefined,
-  enabled: true,
+  behavior: Platform.OS === 'ios' ? 'padding' : undefined,
+  enabled: true
 })`
   flex: 1;
 `;
 
 export const Container = styled.ImageBackground.attrs(({ theme }) => ({
-  source: theme.images.background,
+  source: theme.images.background
 }))`
   flex: 1;
 `;
@@ -29,7 +29,7 @@ export const Container = styled.ImageBackground.attrs(({ theme }) => ({
 const logoImageSize = RFWidth(160);
 
 export const LogoImage = styled.Image.attrs(({ theme }) => ({
-  source: theme.images.esoja_logo,
+  source: theme.images.esoja_logo
 }))`
   width: ${logoImageSize}px;
   height: ${logoImageSize}px;
@@ -86,20 +86,20 @@ export const SocialSignInButton = styled(RectButton)<SocialSignProps>`
   justify-content: center;
   align-items: center;
 
-  ${(props) =>
-    props.network === "google" &&
+  ${props =>
+    props.network === 'google' &&
     css`
       background-color: #de5246;
     `}
 
-  ${(props) =>
-    props.network === "facebook" &&
+  ${props =>
+    props.network === 'facebook' &&
     css`
       background-color: #1877f2;
     `}
 
-${(props) =>
-    props.network === "apple" &&
+${props =>
+    props.network === 'apple' &&
     css`
       background-color: #ffffff;
     `}
@@ -110,14 +110,14 @@ export const SocialSignInButtonText = styled.Text<SocialSignProps>`
   font-size: ${RFFontSize(13)}px;
   margin-left: ${RFWidth(8)}px;
 
-  ${(props) =>
-    (props.network === "google" || props.network === "facebook") &&
+  ${props =>
+    (props.network === 'google' || props.network === 'facebook') &&
     css`
       color: #ffffff;
     `}
 
-  ${(props) =>
-    props.network === "apple" &&
+  ${props =>
+    props.network === 'apple' &&
     css`
       color: #000000;
     `}

@@ -1,11 +1,5 @@
-import React, {
-  createContext,
-  ReactNode,
-  useContext,
-  useMemo,
-  useState,
-} from "react";
-import * as Location from "expo-location";
+import React, { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import * as Location from 'expo-location';
 
 interface Coordinates {
   latitude: number;
@@ -29,7 +23,7 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
   const getPermission = async (): Promise<boolean> => {
     try {
       const { status } = await Location.requestForegroundPermissionsAsync();
-      return status === "granted";
+      return status === 'granted';
     } catch (error) {
       return false;
     }
@@ -42,7 +36,7 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
     const permited = await getPermission();
     if (permited) {
       const geolocation = await Location.getCurrentPositionAsync({
-        accuracy: Location.Accuracy.Highest,
+        accuracy: Location.Accuracy.Highest
       });
       setCoords(geolocation.coords);
       return geolocation.coords;
@@ -55,31 +49,27 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
     if (coordinates?.latitude) {
       const local = await Location.reverseGeocodeAsync(coordinates);
       if (local.length > 0) {
-        return local[0].postalCode || "";
+        return local[0].postalCode || '';
       }
     }
-    return "";
+    return '';
   };
 
   const providerValue = useMemo(
     () => ({
       getCoordinates,
-      getZipcode,
+      getZipcode
     }),
     [getCoordinates, getZipcode]
   );
-  return (
-    <LocationContext.Provider value={providerValue}>
-      {children}
-    </LocationContext.Provider>
-  );
+  return <LocationContext.Provider value={providerValue}>{children}</LocationContext.Provider>;
 };
 
 const useLocation = () => {
   const context = useContext(LocationContext);
 
   if (!context) {
-    throw new Error("useLocation must be used within an LocationProvider");
+    throw new Error('useLocation must be used within an LocationProvider');
   }
 
   return context;

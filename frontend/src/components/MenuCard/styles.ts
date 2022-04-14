@@ -1,6 +1,6 @@
-import { Feather, MaterialCommunityIcons } from "@expo/vector-icons";
-import styled from "styled-components/native";
-import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
+import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
+import styled from 'styled-components/native';
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 export const MenuCardContainer = styled.TouchableOpacity`
   width: 100%;

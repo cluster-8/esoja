@@ -1,11 +1,11 @@
-import styled from "styled-components/native";
-import { FlatList, FlatListProps } from "react-native";
-import { RectButton } from "react-native-gesture-handler";
-import { getBottomSpace } from "react-native-iphone-x-helper";
-import { Feather } from "@expo/vector-icons";
+import styled from 'styled-components/native';
+import { FlatList, FlatListProps } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
+import { Feather } from '@expo/vector-icons';
 
-import { DataListProps } from ".";
-import { RFFontSize, RFHeight } from "../../utils/getResponsiveSizes";
+import { DataListProps } from '.';
+import { RFFontSize, RFHeight } from '../../utils/getResponsiveSizes';
 
 export const Container = styled.View`
   flex: 1%;
@@ -34,15 +34,11 @@ export const SubTitle = styled.Text`
   margin-bottom: 16px;
 `;
 
-export const PropertyList = styled(
-  FlatList as new (
-    props: FlatListProps<DataListProps>
-  ) => FlatList<DataListProps>
-).attrs({
+export const PropertyList = styled(FlatList as new (props: FlatListProps<DataListProps>) => FlatList<DataListProps>).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
-    paddingBottom: getBottomSpace(),
-  },
+    paddingBottom: getBottomSpace()
+  }
 })``;
 
 export const AddButton = styled(RectButton)`

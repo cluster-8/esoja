@@ -1,5 +1,5 @@
-import axios from "axios";
-import { WeatherResponseProps } from "../../hooks/useHome";
+import axios from 'axios';
+import { WeatherResponseProps } from '../../hooks/useHome';
 
 interface Coordinates {
   latitude: number;
@@ -31,13 +31,10 @@ export interface WeatherForecastProps {
   rain: number;
 }
 
-export const getWeatherForecast = async (
-  coordinates: Coordinates,
-  lang: string
-) => {
+export const getWeatherForecast = async (coordinates: Coordinates, lang: string) => {
   try {
     const {
-      data: { list },
+      data: { list }
     } = await axios.get<{ list: WeatherForecastProps[] }>(
       `http://pro.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric&cnt=7`
     );

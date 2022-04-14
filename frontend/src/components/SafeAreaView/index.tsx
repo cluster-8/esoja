@@ -5,10 +5,7 @@ import { AndroidSafeAreaView, IOSSafeAreaView } from './styles';
 
 type SafeAreaViewProps = ViewProps;
 
-export const SafeAreaView: React.FC<SafeAreaViewProps> = ({
-  children,
-  ...rest
-}) => {
+export const SafeAreaView: React.FC<SafeAreaViewProps> = ({ children, ...rest }) => {
   if (Platform.OS === 'android') {
     return <AndroidSafeAreaView {...rest}>{children}</AndroidSafeAreaView>;
   }

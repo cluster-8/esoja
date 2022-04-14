@@ -1,7 +1,7 @@
-import styled from "styled-components/native";
-import { RectButton } from "react-native-gesture-handler";
-import { Feather } from "@expo/vector-icons";
-import { RFFontSize } from "../../utils/getResponsiveSizes";
+import styled from 'styled-components/native';
+import { RectButton } from 'react-native-gesture-handler';
+import { Feather } from '@expo/vector-icons';
+import { RFFontSize } from '../../utils/getResponsiveSizes';
 
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.background};

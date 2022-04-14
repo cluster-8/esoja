@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
+import styled from 'styled-components/native';
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 export const TouchableWithoutFeedback = styled.TouchableWithoutFeedback`
   flex: 1;

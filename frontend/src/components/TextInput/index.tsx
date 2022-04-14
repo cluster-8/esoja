@@ -1,18 +1,11 @@
-import React, { useState, useCallback, useRef, useEffect } from "react";
-import { Control, useController } from "react-hook-form";
-import { TextInputProps as RNTextInputProps } from "react-native";
-import { useTheme } from "styled-components";
-import { translate } from "../../data/I18n";
-import { RFFontSize } from "../../utils/getResponsiveSizes";
+import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { Control, useController } from 'react-hook-form';
+import { TextInputProps as RNTextInputProps } from 'react-native';
+import { useTheme } from 'styled-components';
+import { translate } from '../../data/I18n';
+import { RFFontSize } from '../../utils/getResponsiveSizes';
 
-import {
-  InnerContainer,
-  RNTextInput,
-  FeatherIcon,
-  ErrorMessage,
-  Container,
-  InputLabel,
-} from "./styles";
+import { InnerContainer, RNTextInput, FeatherIcon, ErrorMessage, Container, InputLabel } from './styles';
 
 interface TextInputProps extends RNTextInputProps {
   icon?: string;
@@ -34,8 +27,6 @@ export const TextInput: React.FC<TextInputProps> = ({
   ...rest
 }) => {
   const theme = useTheme();
-  console.log(errorMessage);
-
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const inputElementRef = useRef<any>(null);
 
@@ -45,7 +36,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   const { field } = useController({
     name,
     control,
-    defaultValue,
+    defaultValue
   });
 
   const handleInputFocus = useCallback(() => {
@@ -66,19 +57,8 @@ export const TextInput: React.FC<TextInputProps> = ({
   return (
     <Container>
       {label && <InputLabel>{translate(label)}</InputLabel>}
-      <InnerContainer
-        style={containerStyle}
-        isFocused={isFocused}
-        isErrored={!!errorMessage}
-      >
-        {!!icon && (
-          <FeatherIcon
-            name={icon}
-            size={RFFontSize(20)}
-            isFocusedOrFilled={isFocused || isFilled}
-            isErrored={!!errorMessage}
-          />
-        )}
+      <InnerContainer style={containerStyle} isFocused={isFocused} isErrored={!!errorMessage}>
+        {!!icon && <FeatherIcon name={icon} size={RFFontSize(20)} isFocusedOrFilled={isFocused || isFilled} isErrored={!!errorMessage} />}
 
         <RNTextInput
           {...rest}

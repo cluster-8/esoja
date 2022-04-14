@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   MenuCardContainer,
   MenuCardValueContainer,
@@ -8,10 +8,10 @@ import {
   MenuCardIcon,
   MenuCardWidgetContainer,
   MenuCardTitleWidget,
-  MenuCardWidgetIcon,
-} from "./styles";
-import { RFFontSize } from "../../utils/getResponsiveSizes";
-import { useTheme } from "styled-components";
+  MenuCardWidgetIcon
+} from './styles';
+import { RFFontSize } from '../../utils/getResponsiveSizes';
+import { useTheme } from 'styled-components';
 
 export interface MenuCardProps {
   title: string;
@@ -23,15 +23,7 @@ export interface MenuCardProps {
   onPress: () => void;
 }
 
-export const MenuCard: React.FC<MenuCardProps> = ({
-  title,
-  picture,
-  icon,
-  value,
-  variation,
-  onPress,
-  widget = false,
-}) => {
+export const MenuCard: React.FC<MenuCardProps> = ({ title, picture, icon, value, variation, onPress, widget = false }) => {
   const theme = useTheme();
   if (widget) {
     return (
@@ -42,19 +34,11 @@ export const MenuCard: React.FC<MenuCardProps> = ({
             <MenuCardWidgetIcon
               name={icon}
               size={RFFontSize(24)}
-              color={
-                icon === "trending-down"
-                  ? theme.colors.attention
-                  : theme.colors.primary
-              }
+              color={icon === 'trending-down' ? theme.colors.attention : theme.colors.primary}
             />
           )}
           {picture && <MenuCardImage source={picture} resizeMode="contain" />}
-          {variation && (
-            <MenuCardValue>
-              {variation >= 0 ? `+ ${variation}` : variation}
-            </MenuCardValue>
-          )}
+          {variation && <MenuCardValue>{variation >= 0 ? `+ ${variation}` : variation}</MenuCardValue>}
           <MenuCardValue>{value}</MenuCardValue>
         </MenuCardValueContainer>
       </MenuCardWidgetContainer>

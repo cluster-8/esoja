@@ -1,13 +1,13 @@
-import React from "react";
-import { RFFontSize } from "../../utils/getResponsiveSizes";
+import React from 'react';
+import { RFFontSize } from '../../utils/getResponsiveSizes';
 import {
   CardPropertButton,
   CardPropertContainer,
   CardPropertDate,
   CardPropertIcon,
   CardPropertName,
-  CardPropertNameContainer,
-} from "./style";
+  CardPropertNameContainer
+} from './style';
 
 export const WeatherPropertCard: React.FC = () => {
   const onPress = () => {};
