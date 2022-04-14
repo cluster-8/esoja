@@ -9,14 +9,16 @@ import { TextInput } from '../../components/TextInput';
 import { Button } from '../../components/Button';
 import { PictureInput } from '../../components/PictureInput';
 import Title from '../../components/Title';
+import { translate } from '../../data/I18n';
+import validators from '../../data/I18n/validators';
 
 const schema = Yup.object().shape({
-  name: Yup.string().required('Nome é obrigatório'),
+  name: Yup.string().required('validators.nameRequired'),
   cep: Yup.string()
-    .matches(/^[0-9]+$/, 'O CEP precisa conter apenas números.')
-    .min(8, 'O CEP precisa precisa possuir 8 dígitos.')
-    .max(8, 'O CEP precisa precisa possuir 8 dígitos.')
-    .required('O valor é obrigatório.')
+    .matches(/^[0-9]+$/, 'validators.cep')
+    .min(8, 'validators.cepLength')
+    .max(8, 'validators.cepLength')
+    .required('validators.required')
 });
 
 export const NewProperty: React.FC = () => {
@@ -49,7 +51,7 @@ export const NewProperty: React.FC = () => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
         <Header>
-          <Title title="Nova propriedade" subtitle="Informe o nome e o CEP da propriedade." />
+          <Title title={translate('newProperty.newProperty')} subtitle={translate('newProperty.newPropertySubtitle')} />
         </Header>
 
         <MenuContainer>
@@ -58,11 +60,11 @@ export const NewProperty: React.FC = () => {
               <PictureInput placeholder="" updatePictureLabel="" onPress={() => console.log('apertou')} />
             </AvatarField>
             <TextInput
-              label="Nome"
+              label={translate('newProperty.propertyNameLabel')}
               name="name"
               control={control}
               icon="home"
-              placeholder="Digite o nome da propriedade"
+              placeholder={translate('newProperty.propertyNamePlaceholder')}
               autoCapitalize="sentences"
               autoCorrect={false}
               errorMessage={errors.name && errors.name.message}
