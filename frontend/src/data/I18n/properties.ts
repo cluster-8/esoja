@@ -9,7 +9,6 @@ export default {
     properties: {
       properties: 'Properties',
       SeAllYourProperties: 'See all your registered properties'
-
     },
   },
 };

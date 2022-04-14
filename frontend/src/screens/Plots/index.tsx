@@ -6,6 +6,7 @@ import { Container, Header, CultiveList, AddButton, Icon } from "./styles";
 
 import { CultiveCard, CultiveCardProps } from "../../components/PlotCard";
 import Title from "../../components/Title";
+import { translate } from "../../data/I18n";
 
 export interface DataListProps extends CultiveCardProps {
   id: string;
@@ -51,8 +52,8 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
     <Container>
       <Header>
         <Title
-          title="Talhões"
-          subtitle="Visualize todos seus talhões registrados."
+          title={translate('plots.plots')}
+          subtitle={translate('plots.SeeAllYourPlots')}
         />
       </Header>
 

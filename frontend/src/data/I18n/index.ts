@@ -5,6 +5,8 @@ import home from "./home";
 import weather from "./weather";
 import properties from "./properties";
 import plots from "./plots";
+import validators from "./validators";
+import newProperties from "./newProperties";
 
 interface LanguageProps {
   [key: string]: {
@@ -22,13 +24,17 @@ export const i18nConfig = () => {
       ...weather.pt,
       ...properties.pt,
       ...plots.pt,
+      ...validators.pt,
+      ...newProperties.pt
     },
     "en-US": {
       ...signIn.en,
       ...home.en,
       ...weather.en,
       ...properties.en,
-      ...plots.en
+      ...plots.en,
+      ...validators.en,
+      ...newProperties.en
     },
   };
   i18n.translations = {
