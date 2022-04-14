@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components/native";
-import { RFFontSize, RFWidth } from "../../utils/getResponsiveSizes";
+import styled, { css } from 'styled-components/native';
+import { RFFontSize, RFWidth } from '../../utils/getResponsiveSizes';
 
 interface WeekDayItemProps {
   selectedDate: boolean;

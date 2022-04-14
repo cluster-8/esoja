@@ -1,6 +1,6 @@
-import { Feather } from "@expo/vector-icons";
-import styled from "styled-components/native";
-import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
+import { Feather } from '@expo/vector-icons';
+import styled from 'styled-components/native';
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 export const WeatherContainer = styled.View`
   flex: 1;

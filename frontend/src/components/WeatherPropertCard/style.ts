@@ -1,8 +1,8 @@
-import styled from "styled-components/native";
-import { Feather } from "@expo/vector-icons";
+import styled from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
 
-import { RFFontSize, RFWidth } from "../../utils/getResponsiveSizes";
-import { TouchableOpacity } from "react-native";
+import { RFFontSize, RFWidth } from '../../utils/getResponsiveSizes';
+import { TouchableOpacity } from 'react-native';
 
 export const CardPropertContainer = styled.View`
   flex-direction: row;

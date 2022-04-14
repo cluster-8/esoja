@@ -1,5 +1,5 @@
-import styled from "styled-components/native";
-import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
+import styled from 'styled-components/native';
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 const logoImageSize = RFWidth(160);
 
@@ -19,7 +19,7 @@ export const BrandText = styled.Text`
 `;
 
 export const LogoImage = styled.Image.attrs(({ theme }) => ({
-  source: theme.images.esoja_logo,
+  source: theme.images.esoja_logo
 }))`
   width: ${logoImageSize}px;
   height: ${logoImageSize}px;

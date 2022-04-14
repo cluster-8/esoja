@@ -1,12 +1,12 @@
-import i18n from "i18n-js";
-import * as Localization from "expo-localization";
-import signIn from "./signIn";
-import home from "./home";
-import weather from "./weather";
-import properties from "./properties";
-import plots from "./plots";
-import validators from "./validators";
-import newProperties from "./newProperties";
+import i18n from 'i18n-js';
+import * as Localization from 'expo-localization';
+import signIn from './signIn';
+import home from './home';
+import weather from './weather';
+import properties from './properties';
+import plots from './plots';
+import validators from './validators';
+import newProperties from './newProperties';
 
 interface LanguageProps {
   [key: string]: {
@@ -18,7 +18,7 @@ interface LanguageProps {
 
 export const i18nConfig = () => {
   const languages: LanguageProps = {
-    "pt-BR": {
+    'pt-BR': {
       ...signIn.pt,
       ...home.pt,
       ...weather.pt,
@@ -27,7 +27,7 @@ export const i18nConfig = () => {
       ...validators.pt,
       ...newProperties.pt
     },
-    "en-US": {
+    'en-US': {
       ...signIn.en,
       ...home.en,
       ...weather.en,
@@ -35,15 +35,15 @@ export const i18nConfig = () => {
       ...plots.en,
       ...validators.en,
       ...newProperties.en
-    },
+    }
   };
   i18n.translations = {
-    pt: languages["pt-BR"],
-    en: languages["en-US"],
+    pt: languages['pt-BR'],
+    en: languages['en-US']
   };
 
-  i18n.defaultLocale = "pt-BR";
-  i18n.locale = languages[Localization.locale] ? Localization.locale : "pt-BR";
+  i18n.defaultLocale = 'pt-BR';
+  i18n.locale = languages[Localization.locale] ? Localization.locale : 'pt-BR';
   i18n.fallbacks = true;
 };
 

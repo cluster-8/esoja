@@ -1,14 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import {
-  Container,
-  Header,
-  Title,
-  ExcludeButton,
-  Icon,
-  Footer,
-  InfoText,
-} from "./styles";
+import { Container, Header, Title, ExcludeButton, Icon, Footer, InfoText } from './styles';
 
 export interface CultiveCardProps {
   id: string;
@@ -33,15 +25,11 @@ export function CultiveCard({ data }: Props) {
       <Footer>
         <InfoText>{`Área - ${data.area} Hectares`}</InfoText>
 
-        <InfoText>
-          {`Distancia entre as linhas de cultivo - ${data.distancia} cm`}
-        </InfoText>
+        <InfoText>{`Distancia entre as linhas de cultivo - ${data.distancia} cm`}</InfoText>
 
         <InfoText>{`Média de grãos por planta: ${data.media} grãos`}</InfoText>
 
-        <InfoText>
-          {`Estimativa de produtividade - ${data.produtividade} sc/hc`}
-        </InfoText>
+        <InfoText>{`Estimativa de produtividade - ${data.produtividade} sc/hc`}</InfoText>
       </Footer>
     </Container>
   );

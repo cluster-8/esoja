@@ -1,21 +1,21 @@
-import React from "react";
-import { Keyboard, Platform } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { getBottomSpace } from "react-native-iphone-x-helper";
-import { useForm } from "react-hook-form";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
+import React from 'react';
+import { Keyboard, Platform } from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
+import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
-import { useAuth } from "../../hooks/useAuth";
+import { useAuth } from '../../hooks/useAuth';
 
-import { SignInScreenRouteProps } from "../../data/routes/auth";
-import { translate } from "../../data/I18n";
+import { SignInScreenRouteProps } from '../../data/routes/auth';
+import { translate } from '../../data/I18n';
 
-import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
-import { SafeAreaView } from "../../components/SafeAreaView";
-import { TextInput } from "../../components/TextInput";
-import { Button } from "../../components/Button";
+import { SafeAreaView } from '../../components/SafeAreaView';
+import { TextInput } from '../../components/TextInput';
+import { Button } from '../../components/Button';
 
 import {
   TouchableWithoutFeedback,
@@ -34,32 +34,23 @@ import {
   SignUpButtonContainer,
   SignUpHelpText,
   SignUpButton,
-  SignUpButtonText,
-} from "./styles";
+  SignUpButtonText
+} from './styles';
 
 const userLogin = yup.object().shape({
-  email: yup
-    .string()
-    .required("signIn.errors.email.required")
-    .email("signIn.errors.email.format"),
-  password: yup.string().min(6, "signIn.errors.password.length"),
+  email: yup.string().required('signIn.errors.email.required').email('signIn.errors.email.format'),
+  password: yup.string().min(6, 'signIn.errors.password.length')
 });
 
 export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
-    formState: { errors },
+    formState: { errors }
   } = useForm({
-    resolver: yupResolver(userLogin),
+    resolver: yupResolver(userLogin)
   });
-  const {
-    isLoading,
-    signInWithPassword,
-    signInWithGoogle,
-    siginWithFacebook,
-    siginWithApple,
-  } = useAuth();
+  const { isLoading, signInWithPassword, signInWithGoogle, siginWithFacebook, siginWithApple } = useAuth();
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -69,21 +60,19 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
             style={{
               paddingHorizontal: RFHeight(24),
               paddingBottom: getBottomSpace() + RFHeight(24),
-              justifyContent: "center",
-              alignItems: "center",
+              justifyContent: 'center',
+              alignItems: 'center'
             }}
           >
             <LogoImage />
 
-            <WelcomeText>{translate("signIn.welcome")}</WelcomeText>
+            <WelcomeText>{translate('signIn.welcome')}</WelcomeText>
 
-            <WelcomeCaptionText>
-              {translate("signIn.signInMessage")}
-            </WelcomeCaptionText>
+            <WelcomeCaptionText>{translate('signIn.signInMessage')}</WelcomeCaptionText>
 
             <FormContainer>
               <TextInput
-                placeholder={translate("signIn.emailPlaceholder")}
+                placeholder={translate('signIn.emailPlaceholder')}
                 icon="mail"
                 keyboardType="email-address"
                 autoCapitalize="none"
@@ -93,7 +82,7 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
               />
 
               <TextInput
-                placeholder={translate("signIn.passwordPlaceholder")}
+                placeholder={translate('signIn.passwordPlaceholder')}
                 icon="lock"
                 secureTextEntry
                 name="password"
@@ -102,76 +91,38 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
               />
 
               <ForgotPasswordButton>
-                <ForgotPasswordButtonText>
-                  {translate("signIn.forgotPassword")}
-                </ForgotPasswordButtonText>
+                <ForgotPasswordButtonText>{translate('signIn.forgotPassword')}</ForgotPasswordButtonText>
               </ForgotPasswordButton>
 
-              <Button
-                title={translate("signIn.signIn")}
-                onPress={handleSubmit(signInWithPassword)}
-                showLoadingIndicator={isLoading}
-              />
+              <Button title={translate('signIn.signIn')} onPress={handleSubmit(signInWithPassword)} showLoadingIndicator={isLoading} />
             </FormContainer>
 
-            <SocialSignInText>
-              {translate("signIn.socialSignIn")}
-            </SocialSignInText>
+            <SocialSignInText>{translate('signIn.socialSignIn')}</SocialSignInText>
 
             <SocialSignInButtonsContainer>
               <SocialSignInButton network="google" onPress={signInWithGoogle}>
-                <FontAwesome5
-                  name="google"
-                  size={RFFontSize(16)}
-                  color="#FFFFFF"
-                />
-                <SocialSignInButtonText network="google">
-                  Google
-                </SocialSignInButtonText>
+                <FontAwesome5 name="google" size={RFFontSize(16)} color="#FFFFFF" />
+                <SocialSignInButtonText network="google">Google</SocialSignInButtonText>
               </SocialSignInButton>
 
-              <SocialSignInButton
-                network="facebook"
-                style={{ marginLeft: RFWidth(8) }}
-                onPress={siginWithFacebook}
-              >
-                <FontAwesome5
-                  name="facebook-f"
-                  size={RFFontSize(16)}
-                  color="#FFFFFF"
-                />
-                <SocialSignInButtonText network="facebook">
-                  Facebook
-                </SocialSignInButtonText>
+              <SocialSignInButton network="facebook" style={{ marginLeft: RFWidth(8) }} onPress={siginWithFacebook}>
+                <FontAwesome5 name="facebook-f" size={RFFontSize(16)} color="#FFFFFF" />
+                <SocialSignInButtonText network="facebook">Facebook</SocialSignInButtonText>
               </SocialSignInButton>
 
-              {Platform.OS === "ios" && (
-                <SocialSignInButton
-                  network="apple"
-                  style={{ marginLeft: RFWidth(8) }}
-                  onPress={siginWithApple}
-                >
-                  <FontAwesome5
-                    name="apple"
-                    size={RFFontSize(16)}
-                    color="#000000"
-                  />
-                  <SocialSignInButtonText network="apple">
-                    Apple
-                  </SocialSignInButtonText>
+              {Platform.OS === 'ios' && (
+                <SocialSignInButton network="apple" style={{ marginLeft: RFWidth(8) }} onPress={siginWithApple}>
+                  <FontAwesome5 name="apple" size={RFFontSize(16)} color="#000000" />
+                  <SocialSignInButtonText network="apple">Apple</SocialSignInButtonText>
                 </SocialSignInButton>
               )}
             </SocialSignInButtonsContainer>
 
             <SignUpButtonContainer>
-              <SignUpHelpText>
-                {translate("signIn.signUpMessage")}
-              </SignUpHelpText>
+              <SignUpHelpText>{translate('signIn.signUpMessage')}</SignUpHelpText>
 
-              <SignUpButton onPress={() => navigation.navigate("SignUp")}>
-                <SignUpButtonText>
-                  {translate("signIn.signUp")}
-                </SignUpButtonText>
+              <SignUpButton onPress={() => navigation.navigate('SignUp')}>
+                <SignUpButtonText>{translate('signIn.signUp')}</SignUpButtonText>
               </SignUpButton>
             </SignUpButtonContainer>
           </SafeAreaView>

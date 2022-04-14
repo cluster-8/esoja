@@ -1,10 +1,6 @@
-import React from "react";
-import { Avatar } from "react-native-paper";
-import {
-  UserCardContainer,
-  InformationContainer,
-  UserCardName,
-} from "./styles";
+import React from 'react';
+import { Avatar } from 'react-native-paper';
+import { UserCardContainer, InformationContainer, UserCardName } from './styles';
 
 export interface UserCardProps {
   picture: string;

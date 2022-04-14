@@ -1,13 +1,6 @@
 import React from 'react';
 import { translate } from '../../data/I18n';
-import {
-  PictureStyled,
-  Placeholder,
-  PlaceholderText,
-  PlaceholderIcon,
-  UpdateImageButton,
-  UpdateImageText,
-} from './styles';
+import { PictureStyled, Placeholder, PlaceholderText, PlaceholderIcon, UpdateImageButton, UpdateImageText } from './styles';
 
 interface PictureInputProps {
   uri?: string | null;
@@ -15,12 +8,7 @@ interface PictureInputProps {
   updatePictureLabel: string;
   onPress: () => void;
 }
-export const PictureInput: React.FC<PictureInputProps> = ({
-  uri,
-  placeholder,
-  updatePictureLabel,
-  onPress,
-}) => {
+export const PictureInput: React.FC<PictureInputProps> = ({ uri, placeholder, updatePictureLabel, onPress }) => {
   if (uri) {
     return (
       <>

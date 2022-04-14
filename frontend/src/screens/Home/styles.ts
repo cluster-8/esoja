@@ -1,6 +1,6 @@
-import styled from "styled-components/native";
-import { MenuCard } from "../../components/MenuCard";
-import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
+import styled from 'styled-components/native';
+import { MenuCard } from '../../components/MenuCard';
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 export const HomeContainer = styled.View`
   flex: 1;

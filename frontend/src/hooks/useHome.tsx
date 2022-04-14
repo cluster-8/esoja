@@ -1,7 +1,7 @@
-import React, { createContext, ReactNode, useContext, useMemo } from "react";
-import { getWeatherDay } from "../data/services/weather.services";
+import React, { createContext, ReactNode, useContext, useMemo } from 'react';
+import { getWeatherDay } from '../data/services/weather.services';
 
-import axios from "axios";
+import axios from 'axios';
 
 interface Coordinates {
   latitude: number;
@@ -35,9 +35,7 @@ export interface Quotation {
 }
 
 interface HomeContextData {
-  getWeatherCurrentDay: (
-    coordinates: Coordinates
-  ) => Promise<WeatherResponseProps | undefined>;
+  getWeatherCurrentDay: (coordinates: Coordinates) => Promise<WeatherResponseProps | undefined>;
   getQuotation: () => Promise<Quotation[] | undefined>;
 }
 
@@ -54,19 +52,11 @@ const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
 
   const getQuotation = async () => {
     try {
-      const { data } = await axios.get<Quotation[]>(
-        `${process.env.IMEA_ROUTE}`
-      );
+      const { data } = await axios.get<Quotation[]>(`${process.env.IMEA_ROUTE}`);
       const availableQuote = data.filter(
-        (quotation) =>
-          quotation.IndicadorFinalId === "708192508838936580" &&
-          quotation.Localidade === "Mato Grosso"
+        quotation => quotation.IndicadorFinalId === '708192508838936580' && quotation.Localidade === 'Mato Grosso'
       );
-      const seedQuote = data.filter(
-        (quotation) =>
-          quotation.Localidade === "Convencional" &&
-          quotation.UnidadeSigla === "R$/sc"
-      );
+      const seedQuote = data.filter(quotation => quotation.Localidade === 'Convencional' && quotation.UnidadeSigla === 'R$/sc');
       return [availableQuote[0], seedQuote[0]];
     } catch (err) {
       console.log(err);
@@ -76,22 +66,18 @@ const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
   const providerValue = useMemo(
     () => ({
       getWeatherCurrentDay,
-      getQuotation,
+      getQuotation
     }),
     [getWeatherCurrentDay, getQuotation]
   );
-  return (
-    <HomeContext.Provider value={providerValue}>
-      {children}
-    </HomeContext.Provider>
-  );
+  return <HomeContext.Provider value={providerValue}>{children}</HomeContext.Provider>;
 };
 
 const useHome = () => {
   const context = useContext(HomeContext);
 
   if (!context) {
-    throw new Error("useHome must be used within an HomeProvider");
+    throw new Error('useHome must be used within an HomeProvider');
   }
 
   return context;

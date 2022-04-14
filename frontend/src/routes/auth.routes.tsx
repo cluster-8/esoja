@@ -1,13 +1,13 @@
-import * as React from "react";
-import { BaseNavigationContainer } from "@react-navigation/core";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import * as React from 'react';
+import { BaseNavigationContainer } from '@react-navigation/core';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { NavigatorProps } from ".";
+import { NavigatorProps } from '.';
 
-import { AuthRoutesParams } from "../data/routes/auth";
+import { AuthRoutesParams } from '../data/routes/auth';
 
-import { SignIn } from "../screens/SignIn";
-import { SignUp } from "../screens/SignUp";
+import { SignIn } from '../screens/SignIn';
+import { SignUp } from '../screens/SignUp';
 /* import { Splash } from '../pages/Splash';
  */
 const Stack = createNativeStackNavigator<AuthRoutesParams>();

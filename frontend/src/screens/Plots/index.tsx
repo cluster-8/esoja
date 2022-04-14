@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import { PlotsScreenRouteProps } from "../../data/routes/app";
+import { PlotsScreenRouteProps } from '../../data/routes/app';
 
-import { Container, Header, CultiveList, AddButton, Icon } from "./styles";
+import { Container, Header, CultiveList, AddButton, Icon } from './styles';
 
-import { CultiveCard, CultiveCardProps } from "../../components/PlotCard";
-import Title from "../../components/Title";
-import { translate } from "../../data/I18n";
+import { CultiveCard, CultiveCardProps } from '../../components/PlotCard';
+import Title from '../../components/Title';
+import { translate } from '../../data/I18n';
 
 export interface DataListProps extends CultiveCardProps {
   id: string;
@@ -15,56 +15,49 @@ export interface DataListProps extends CultiveCardProps {
 export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
   const data = [
     {
-      id: "1",
-      name: "Teste 1",
+      id: '1',
+      name: 'Teste 1',
       area: 40,
       distancia: 10,
       media: 65,
-      produtividade: 50,
+      produtividade: 50
     },
     {
-      id: "2",
-      name: "Teste 2",
+      id: '2',
+      name: 'Teste 2',
       area: 40,
       distancia: 10,
       media: 65,
-      produtividade: 50,
+      produtividade: 50
     },
     {
-      id: "3",
-      name: "Teste 3",
+      id: '3',
+      name: 'Teste 3',
       area: 40,
       distancia: 10,
       media: 65,
-      produtividade: 50,
+      produtividade: 50
     },
     {
-      id: "4",
-      name: "Teste 4",
+      id: '4',
+      name: 'Teste 4',
       area: 40,
       distancia: 10,
       media: 65,
-      produtividade: 50,
-    },
+      produtividade: 50
+    }
   ];
 
   return (
     <Container>
       <Header>
-        <Title
-          title={translate('plots.plots')}
-          subtitle={translate('plots.SeeAllYourPlots')}
-        />
+        <Title title={translate('plots.plots')} subtitle={translate('plots.SeeAllYourPlots')} />
       </Header>
 
-      <CultiveList
-        data={data}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <CultiveCard data={item} />}
-      />
+      <CultiveList data={data} keyExtractor={item => item.id} renderItem={({ item }) => <CultiveCard data={item} />} />
 
-      <AddButton onPress={() => navigation.navigate("CreatePlotStepOne")}>
-        <Icon name={"plus"} />
+      <AddButton onPress={() => navigation.navigate('CreatePlotStepOne')}>
+        <Icon name={'plus'} />
       </AddButton>
     </Container>
   );
