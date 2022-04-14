@@ -35,9 +35,9 @@ Entre no link e acesse a branch referente a sprint:
 
 ### 💻 Wireframe 
 
-> ![Light Mode]()
+> [Light Mode]()
   
-> ![Dark Mode]()
+> [Dark Mode]()
 
 ### 📃 Código - Ambiente de Desenvolvimento 
 --
