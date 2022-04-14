@@ -4,15 +4,15 @@ import {
   FormContainer,
   HelperImageContainer,
   NextStepButton,
-  StepTwoHelperImage,
+  StepThreeHelperImage,
 } from "./styles";
 import * as yup from "yup";
 
-import StepTwo from "../../../assets/plot-steps-images/StepTwo.png";
+import StepThree from "../../../assets/plot-steps-images/StepThree.png";
 
 import Title from "../../../components/Title";
 import { StepIndicator } from "../../../components/StepIndicator";
-import { CreatePlotStepTwoScreenRouteProps } from "../../../data/routes/app";
+import { CreatePlotStepThreeScreenRouteProps } from "../../../data/routes/app";
 import { TextInput } from "../../../components/TextInput";
 import { FieldValues, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -20,12 +20,12 @@ import { Button } from "../../../components/Button";
 import { ScrollView } from "react-native";
 
 const userLogin = yup.object().shape({
-  name: yup.string().required("Nome é obrigatório"),
+  lineDistance: yup.string().required("Distancia é obrigatória"),
 });
 
-export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
-  navigation,
-}) => {
+export const CreatePlotStepThree: React.FC<
+  CreatePlotStepThreeScreenRouteProps
+> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
@@ -34,8 +34,8 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     resolver: yupResolver(userLogin),
   });
 
-  const handleSubmitStepTwo = (data: FieldValues) => {
-    navigation.navigate("CreatePlotStepThree");
+  const handleSubmitStepThree = (data: FieldValues) => {
+    navigation.navigate("CreatePlotStepFour");
   };
 
   return (
@@ -45,31 +45,24 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
           title={"Identitifique o talhão"}
           subtitle={"Insira um nome e uma descrição para o seu novo talhão"}
         />
-        <StepIndicator step={1} />
+        <StepIndicator step={2} />
         <FormContainer>
           <HelperImageContainer>
-            <StepTwoHelperImage source={StepTwo} resizeMode="contain" />
+            <StepThreeHelperImage source={StepThree} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Nome"
-            placeholder="Digite um nome para o talhão"
-            icon="check-square"
-            name="name"
-            control={control}
-            errorMessage={errors?.name?.message}
-          />
-          <TextInput
-            label="Descrição"
-            placeholder="Digite uma descrição"
+            label="Distancia entre linhas"
+            placeholder="Digite a distancia em cm"
             icon="check-square"
             secureTextEntry
-            name="description"
+            name="lineDistance"
             control={control}
+            errorMessage={errors?.lineDistance?.message}
           />
           <NextStepButton>
             <Button
               title={"Continuar"}
-              onPress={handleSubmit(handleSubmitStepTwo)}
+              onPress={handleSubmit(handleSubmitStepThree)}
             />
           </NextStepButton>
         </FormContainer>

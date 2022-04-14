@@ -68,7 +68,7 @@ export const FeatherIcon = styled(Feather)<FeatherIconProps>`
 `;
 
 export const InputLabel = styled.Text`
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.text_secondary};
   font-size: ${RFFontSize(14)}px;
   margin-top: ${RFHeight(12)}px;
   margin-bottom: ${RFHeight(8)}px;

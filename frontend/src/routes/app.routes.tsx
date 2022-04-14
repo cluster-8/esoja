@@ -19,6 +19,7 @@ import { AppRoutesParams } from "../data/routes/app";
 import { CreatePlotStepOne } from "../screens/CreatePlot/CreatePlotStepOne";
 import { CreatePlotStepTwo } from "../screens/CreatePlot/CreatePlotStepTwo";
 import { Plots } from "../screens/Plots";
+import { CreatePlotStepThree } from "../screens/CreatePlot/CreatePlotStepThree";
 
 const Stack = createNativeStackNavigator<AppRoutesParams>();
 
@@ -63,6 +64,11 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         <Stack.Screen
           name="CreatePlotStepTwo"
           component={CreatePlotStepTwo}
+          options={options}
+        />
+        <Stack.Screen
+          name="CreatePlotStepThree"
+          component={CreatePlotStepThree}
           options={options}
         />
         <Stack.Screen
