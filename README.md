@@ -33,8 +33,8 @@ Acesse os documentos clicando nos links abaixo:
 
 Acesse o link para visualizar:
 
-> * [Light Mode](https://www.figma.com/file/PYFdyiNREKJQAKNE1LZrrd/eSoja---Light?node-id=0%3A1)
-> * [Dark Mode](https://www.figma.com/file/b2Gh6gM3HXw3016X4Dmkem/eSoja---Dark?node-id=0%3A1)
+> * [Light Mode](https://www.figma.com/proto/PYFdyiNREKJQAKNE1LZrrd/eSoja---Light?node-id=2%3A864&scaling=min-zoom&page-id=0%3A1)
+> * [Dark Mode](https://www.figma.com/proto/b2Gh6gM3HXw3016X4Dmkem/eSoja---Dark?node-id=2%3A318&scaling=min-zoom&page-id=0%3A1)
 
 ## 🎲 Modelagem do Banco de Dados
 
