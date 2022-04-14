@@ -34,7 +34,7 @@ export const SubTitle = styled.Text`
   margin-bottom: 16px;
 `;
 
-export const CultiveList = styled(
+export const PropertyList = styled(
   FlatList as new (
     props: FlatListProps<DataListProps>
   ) => FlatList<DataListProps>

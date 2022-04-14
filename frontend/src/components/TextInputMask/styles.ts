@@ -1,12 +1,8 @@
-import styled, { css } from 'styled-components/native';
-import { Feather } from '@expo/vector-icons';
-import { TextInputMask } from 'react-native-masked-text';
+import styled, { css } from "styled-components/native";
+import { Feather } from "@expo/vector-icons";
+import { TextInputMask } from "react-native-masked-text";
 
-import {
-  RFFontSize,
-  RFHeight,
-  RFWidth,
-} from '../../../../utils/getResponsiveSizes';
+import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
 
 interface ContainerProps {
   isFocused: boolean;

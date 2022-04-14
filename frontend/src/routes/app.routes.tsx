@@ -11,13 +11,14 @@ import {
 import { NavigatorProps } from ".";
 
 import { Home } from "../screens/Home";
+import { Properties } from "../screens/Properties";
+import { NewProperty } from "../screens/NewProperty";
 import { Weather } from "../screens/Weather";
 import { useTheme } from "styled-components";
 import { AppRoutesParams } from "../data/routes/app";
-import { Plots } from "../screens/Plots";
-//import { CreatePlot } from "../screens/CreatePlot";
 import { CreatePlotStepOne } from "../screens/CreatePlot/CreatePlotStepOne";
 import { CreatePlotStepTwo } from "../screens/CreatePlot/CreatePlotStepTwo";
+import { Plots } from "../screens/Plots";
 
 const Stack = createNativeStackNavigator<AppRoutesParams>();
 
@@ -64,12 +65,16 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
           component={CreatePlotStepTwo}
           options={options}
         />
-        {/*         <Stack.Screen
-          name="CreatePlot"
-          component={CreatePlot}
+        <Stack.Screen
+          name="Properties"
+          component={Properties}
           options={options}
         />
- */}
+        <Stack.Screen
+          name="NewProperty"
+          component={NewProperty}
+          options={options}
+        />
         <Stack.Screen
           name="Weather"
           component={Weather}

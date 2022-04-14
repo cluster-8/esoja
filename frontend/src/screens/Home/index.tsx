@@ -3,7 +3,7 @@ import { MenuCard } from "../../components/MenuCard";
 import { UserCard } from "../../components/UserCard";
 
 import { translate } from "../../data/I18n";
-import { HomeScreenRouteProps } from "../../data/routes/auth";
+import { HomeScreenRouteProps } from "../../data/routes/app";
 import { Quotation, useHome, WeatherResponseProps } from "../../hooks/useHome";
 import { useLocation } from "../../hooks/useLocation";
 import { getWeatherImage } from "../../utils/getWeatherImage";
@@ -54,7 +54,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <MenuCard
             onPress={() => handlerCardMenuClick("Quotation")}
             widget
-            title="Semente"
+            title={translate("home.seeds")}
             value={`R$ ${seedQuote?.Valor || 0}`}
             variation={seedQuote?.Variacao}
             icon={
@@ -66,7 +66,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <MenuCard
             onPress={() => handlerCardMenuClick("Quotation")}
             widget
-            title="Disponivel"
+            title={translate("home.soybeanPrice")}
             value={`R$ ${availableQuote?.Valor || 0}`}
             variation={availableQuote?.Variacao}
             icon={
@@ -78,7 +78,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <MenuCard
             onPress={() => handlerCardMenuClick("Weather")}
             widget
-            title="Clima"
+            title={translate("home.weather")}
             value={`${weather?.main.temp.toFixed(0) || "0"}º`}
             picture={getWeatherImage(weather?.weather[0].icon || "")}
           />
@@ -93,7 +93,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           </MenuCardContainer>
           <MenuCardContainer>
             <MenuCard
-              title="Talhões"
+              title={translate("home.plots")}
               icon="seed-outline"
               onPress={() => handlerCardMenuClick("Plots")}
             />
@@ -101,7 +101,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <MenuCardContainer>
             <MenuCard
               onPress={() => handlerCardMenuClick("Statistics")}
-              title="Estatisticas"
+              title={translate("home.statistics")}
               icon="chart-line"
             />
           </MenuCardContainer>
