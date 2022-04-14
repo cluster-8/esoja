@@ -3,7 +3,7 @@
 </h1>
 
 README EM DESENVOLVIMENTO!
-<br>
+
 
 
 ## 📌 Desafio
@@ -12,10 +12,8 @@ README EM DESENVOLVIMENTO!
 O desafio do projeto é criar um aplicativo colaborativo para produtores rurais e através desse aplicativo os usuários poderão incluir informações do dia a dia sobre sua plantação. Essas informações consistem em dados alfa-numéricos e fotos georreferenciadas pelo GPS do próprio celular. Com os dados de vários usuários, o aplicativo irá fornecer informações estatísticas sobre sua produção, podendo assim comparar com dados históricos de outros usuários.
 <p>
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-<br>
-  
 ## 🏁 Projeto
 
 eSoja é o nome do aplicativo proposto pela equipe para solucionar o desafio, esse aplicativo ele deve entregar as seguintes funcionalidades:
@@ -30,7 +28,8 @@ eSoja é o nome do aplicativo proposto pela equipe para solucionar o desafio, es
 * Custos de produção;
 * Comparação Estatística por Região.
   
-
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
 ### 💹 Planejamento
 Entre no link e acesse a branch referente a sprint:
 
@@ -42,11 +41,14 @@ Entre no link e acesse a branch referente a sprint:
 | `Sprint 3` | Custos de Produção e Comparação Estatística por Região | 18/10/2021 a 07/11/2021 | Em espera |
 | `Apresentação Final` | Apresentação da última Sprint | ??? a ??? | Em espera |
 | `Feira de Soluções` | Apresentação dos vídeos criados pelas equipes | 15/06/2022 | Em espera |
+  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### 📃 Product Backlog
 
 > [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### 💻 Wireframe 
 
@@ -55,8 +57,12 @@ Acesse o link para visualizar:
 > * [Light Mode](https://www.figma.com/proto/PYFdyiNREKJQAKNE1LZrrd/eSoja---Light?node-id=2%3A864&scaling=min-zoom&page-id=0%3A1)
 > * [Dark Mode](https://www.figma.com/proto/b2Gh6gM3HXw3016X4Dmkem/eSoja---Dark?node-id=2%3A318&scaling=min-zoom&page-id=0%3A1)
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 ### 📃 Código - Ambiente de Desenvolvimento 
 --
+  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## 🎲 Modelagem do Banco de Dados
 
