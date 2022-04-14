@@ -75,7 +75,7 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
   );
 };
 
-const useLocation = () => {
+const useLocation = () => {  
   const context = useContext(LocationContext);
 
   if (!context) {

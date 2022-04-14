@@ -49,7 +49,7 @@ const HomeContext = createContext({} as HomeContextData);
 
 const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
   const getWeatherCurrentDay = async (coordinates: Coordinates) => {
-    return await getWeatherDay(coordinates);
+    return getWeatherDay(coordinates);
   };
 
   const getQuotation = async () => {

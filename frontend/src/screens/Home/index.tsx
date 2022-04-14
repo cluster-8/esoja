@@ -26,19 +26,22 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
     navigation.navigate(route);
   };
 
-  const getData = async () => {
+  const getData = async () => {    
     const location = await getCoordinates();
     const weatherData = await getWeatherCurrentDay(location);
+    
     if (weatherData) {
       setWeather(weatherData);
     }
+
     const quoteData = await getQuotation();
+    
     if (quoteData) {
       setAvailableQuote(quoteData[0]);
       setSeedQuote(quoteData[1]);
     }
   };
-
+  
   useEffect(() => {
     getData();
   }, []);
