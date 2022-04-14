@@ -18,16 +18,16 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 ### - Sprint Backlog
 
-A imagem abaixo mostra os itens do [__Product Backlog__]() em ordem de prioridade referentes a Sprint 1:
+A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) em ordem de prioridade referentes a Sprint 1:
 
 <p align="center">
-  <img src="#"/></p>
+  <img src="https://github.com/cluster-8/esoja-mobile/blob/main/Docs/sprint-1-backlog.png"/></p>
 
 ## 📂 Documentação do Projeto
 
 Acesse os documentos clicando nos links abaixo:
 
-* [__Product Backlog__]()
+> * [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf)
 
 ## 🖥️ Wireframe 
 
@@ -40,7 +40,9 @@ Acesse o link para visualizar:
 
 Acesse o link para visualizar:
 
-> * [Modelo Entidade Relacionamento]()
+> * [Dicionário de Dados](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Diciona%CC%81rio-de-dados-eSoja.xlsx)
+> * [Modelo Lógico](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/modelo-logico.png)
+> ![Modelo Lógico](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/modelo-logico.png)
 
 ## 📃 Código - Ambiente de Desenvolvimento 
 
