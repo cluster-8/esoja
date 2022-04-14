@@ -1,5 +1,5 @@
 <h1 align="center"> 
-Sprint 1 🏁
+🏁 Sprint 1 
 </h1>
 
 Abaixo encontram-se todos os itens produzidos durante a Sprint 1 conforme estabelecido previamente por meio do planejamento: 
@@ -33,8 +33,8 @@ Acesse os documentos clicando nos links abaixo:
 
 Acesse o link para visualizar:
 
-> * [Light Mode]()
-> * [Dark Mode]()
+> * [Light Mode](https://www.figma.com/file/PYFdyiNREKJQAKNE1LZrrd/eSoja---Light?node-id=0%3A1)
+> * [Dark Mode](https://www.figma.com/file/b2Gh6gM3HXw3016X4Dmkem/eSoja---Dark?node-id=0%3A1)
 
 ## 🎲 Modelagem do Banco de Dados
 
