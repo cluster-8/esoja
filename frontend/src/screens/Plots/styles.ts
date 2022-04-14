@@ -1,11 +1,11 @@
-import styled from 'styled-components/native';
-import { FlatList, FlatListProps } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
-import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
-import { Feather } from '@expo/vector-icons';
+import styled from "styled-components/native";
+import { FlatList, FlatListProps } from "react-native";
+import { RectButton } from "react-native-gesture-handler";
+import { getBottomSpace } from "react-native-iphone-x-helper";
+import { Feather } from "@expo/vector-icons";
 
-import { DataListProps } from '.';
+import { DataListProps } from ".";
+import { RFFontSize, RFHeight } from "../../utils/getResponsiveSizes";
 
 export const Container = styled.View`
   flex: 1%;
@@ -14,33 +14,35 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
-  margin-top: ${RFPercentage(6)}px;
+  margin: ${RFHeight(16)}px 0;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
 `;
 
 export const Title = styled.Text`
-  font-size: ${RFValue(18)}px;
+  font-size: ${RFFontSize(18)}px;
   font-family: ${({ theme }) => theme.fonts.bold};
 
   margin-bottom: 8px;
 `;
 
 export const SubTitle = styled.Text`
-  font-size: ${RFValue(16)}px;
+  font-size: ${RFFontSize(16)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
 
   margin-bottom: 16px;
 `;
 
 export const CultiveList = styled(
-  FlatList as new (props: FlatListProps<DataListProps>) => FlatList<DataListProps>
+  FlatList as new (
+    props: FlatListProps<DataListProps>
+  ) => FlatList<DataListProps>
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
     paddingBottom: getBottomSpace(),
-  }
+  },
 })``;
 
 export const AddButton = styled(RectButton)`
@@ -55,9 +57,7 @@ export const AddButton = styled(RectButton)`
 `;
 
 export const Icon = styled(Feather)`
-  font-size: ${RFValue(35)}px;
+  font-size: ${RFFontSize(35)}px;
 
-  color: ${({ theme }) =>
-    theme.colors.background_over
-  };
+  color: ${({ theme }) => theme.colors.background_over};
 `;

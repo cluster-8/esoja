@@ -3,7 +3,7 @@ import { MenuCard } from "../../components/MenuCard";
 import { UserCard } from "../../components/UserCard";
 
 import { translate } from "../../data/I18n";
-import { HomeScreenRouteProps } from "../../data/routes/auth";
+import { HomeScreenRouteProps } from "../../data/routes/app";
 import { Quotation, useHome, WeatherResponseProps } from "../../hooks/useHome";
 import { useLocation } from "../../hooks/useLocation";
 import { getWeatherImage } from "../../utils/getWeatherImage";
@@ -28,14 +28,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
 
   const getData = async () => {
     const location = await getCoordinates();
-
     const weatherData = await getWeatherCurrentDay(location);
-
-    // const weatherData = await getWeatherCurrentDay({
-    //   latitude: 45,
-    //   longitude: 23,
-    // });
-
     if (weatherData) {
       setWeather(weatherData);
     }
@@ -102,7 +95,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
             <MenuCard
               title={translate("home.plots")}
               icon="seed-outline"
-              onPress={() => handlerCardMenuClick("Cultives")}
+              onPress={() => handlerCardMenuClick("Plots")}
             />
           </MenuCardContainer>
           <MenuCardContainer>

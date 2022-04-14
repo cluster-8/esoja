@@ -1,7 +1,7 @@
-import styled from 'styled-components/native';
-import { RFValue } from 'react-native-responsive-fontsize';
-import { RectButton } from 'react-native-gesture-handler';
-import { Feather } from '@expo/vector-icons';
+import styled from "styled-components/native";
+import { RectButton } from "react-native-gesture-handler";
+import { Feather } from "@expo/vector-icons";
+import { RFFontSize } from "../../utils/getResponsiveSizes";
 
 export const Container = styled.View`
   background-color: ${({ theme }) => theme.colors.background};
@@ -19,7 +19,7 @@ export const Header = styled.View`
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFValue(18)}px;
+  font-size: ${RFFontSize(18)}px;
 `;
 
 export const ExcludeButton = styled(RectButton)`
@@ -30,11 +30,9 @@ export const ExcludeButton = styled(RectButton)`
 `;
 
 export const Icon = styled(Feather)`
-  font-size: ${RFValue(20)}px;
+  font-size: ${RFFontSize(20)}px;
 
-  color: ${({ theme }) =>
-    theme.colors.background_over
-  };
+  color: ${({ theme }) => theme.colors.background_over};
 `;
 
 export const Footer = styled.View`
@@ -45,6 +43,6 @@ export const Footer = styled.View`
 `;
 
 export const InfoText = styled.Text`
-  font-size: ${RFValue(14)}px;
+  font-size: ${RFFontSize(14)}px;
   color: ${({ theme }) => theme.colors.text_secondary};
 `;

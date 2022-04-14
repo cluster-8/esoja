@@ -1,25 +1,25 @@
-import React from 'react';
-import { ActivityIndicator } from 'react-native';
-import { useTheme } from 'styled-components';
+import React from "react";
+import { ActivityIndicator } from "react-native";
+import { useTheme } from "styled-components";
 
-import { RectButton, TouchableOpacity, ButtonText } from './styles';
+import { RectButton, TouchableOpacity, ButtonText } from "./styles";
 
 interface ButtonProps {
   title: string;
-  type?: 'primary' | 'secondary' | 'tertiary';
+  type?: "primary" | "secondary" | "tertiary";
   showLoadingIndicator?: boolean;
   onPress: () => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   title,
-  type = 'primary',
+  type = "primary",
   showLoadingIndicator,
   onPress,
 }) => {
   const theme = useTheme();
 
-  if (type === 'primary') {
+  if (type === "primary") {
     return (
       <RectButton onPress={onPress}>
         {showLoadingIndicator ? (

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { WeatherPropertCard } from "../../components/WeatherPropertCard";
 import { WeekDayCard } from "../../components/WeekDayCard";
-import { WeatherScreenRouteProps } from "../../data/routes/auth";
+import { WeatherScreenRouteProps } from "../../data/routes/app";
 import {
   WeatherContainer,
   WeatherDayContent,

@@ -13,11 +13,14 @@ import { NavigatorProps } from ".";
 import { Home } from "../screens/Home";
 import { Properties } from "../screens/Properties";
 import { NewProperty } from "../screens/NewProperty";
-import { Cultives } from "../screens/Cultives";
 import { Weather } from "../screens/Weather";
 import { useTheme } from "styled-components";
+import { AppRoutesParams } from "../data/routes/app";
+import { CreatePlotStepOne } from "../screens/CreatePlot/CreatePlotStepOne";
+import { CreatePlotStepTwo } from "../screens/CreatePlot/CreatePlotStepTwo";
+import { Plots } from "../screens/Plots";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<AppRoutesParams>();
 
 export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
   const theme = useTheme();
@@ -26,6 +29,7 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
       headerTitleAlign: "center",
       headerStyle: { backgroundColor: theme.colors.primary },
       headerTintColor: theme.colors.white,
+      headerShadowVisible: false,
 
       headerTitle: () => (
         <Image
@@ -46,12 +50,20 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         screenOptions={{
           ...screenOptions,
           headerShown: true,
+          headerTintColor: theme.colors.white,
         }}
         initialRouteName="Home"
       >
+        <Stack.Screen name="Home" component={Home} options={options} />
+        <Stack.Screen name="Plots" component={Plots} options={options} />
         <Stack.Screen
-          name="Home"
-          component={Home}
+          name="CreatePlotStepOne"
+          component={CreatePlotStepOne}
+          options={options}
+        />
+        <Stack.Screen
+          name="CreatePlotStepTwo"
+          component={CreatePlotStepTwo}
           options={options}
         />
         <Stack.Screen
@@ -62,11 +74,6 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         <Stack.Screen
           name="NewProperty"
           component={NewProperty}
-          options={options}
-        />
-        <Stack.Screen
-          name="Cultives"
-          component={Cultives}
           options={options}
         />
         <Stack.Screen
