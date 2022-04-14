@@ -1,78 +1,68 @@
-<h2 align="center"> 
-  Aprendizado por Projeto Integrador
-</h2>
+<h1 align="center"> 
+Sprint 1 🏁
+</h1>
 
-README EM DESENVOLVIMENTO!
-<br>
+Abaixo encontram-se todos os itens produzidos durante a Sprint 1 conforme estabelecido previamente por meio do planejamento: 
 
+## 💹 Planejamento da Sprint
 
-## 📌 Desafio
+### - User Stories
 
-<p>
-O desafio do projeto é criar um aplicativo colaborativo para produtores rurais e através desse aplicativo os usuários poderão incluir informações do dia a dia sobre sua plantação. Essas informações consistem em dados alfa-numéricos e fotos georreferenciadas pelo GPS do próprio celular. Com os dados de vários usuários, o aplicativo irá fornecer informações estatísticas sobre sua produção, podendo assim comparar com dados históricos de outros usuários.
-<p>
+A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem desenvolvidas durante a Sprint 1:
 
+| ID     | Prioridade | User Story                       | Funcionalidades                      |
+| -------| ---------- | -------------------------------- | ------------------------------------ |
+| US_01  | Essencial  | Eu como usuário gostaria de cadastrar informações de meu cultivo/plantio de soja. | 1. Cadastro de propriedade; 2. Cadastro de área de cultivo (talhão); 3. Cadastro de amostras;  | 
+| US_02  | Importante  | Eu como usuário gostaria de visualizar informações do clima em tempo real.  | 1. Temperatura atual; 2. Humidade relativa atual; 3. Precipitação de chuvas arual; |
+| US_03  | Importante | Eu como usuário gostaria de visualizar a previsão do tempo para os próximos 7 dias. | 1. Temperatura atual; 2. Humidade relativa atual; 3. Precipitação de chuvas arual; |
 
+### - Sprint Backlog
 
-<br>
-## 🏁 Projeto
---
+A imagem abaixo mostra os itens do [__Product Backlog__]() em ordem de prioridade referentes a Sprint 1:
 
-### 💹 Planejamento
-Entre no link e acesse a branch referente a sprint:
+<p align="center">
+  <img src="#"/></p>
 
-* [x] __Kick-off__ - 14/03/2022 a 18/03/2022 - ✅
-* [x] [__Sprint 1__] ----- - 25/03/2022 a 14/04/2022 - :date:
-* [x] [__Sprint 2__] ----- - 25/04/2022 a 15/05/2022 - :date:
-* [x] [__Sprint 3__] ----- - 16/05/2022 a 05/06/2022 - :date:
-* [x] __Apresentação Final__ - ????? - :date:
-* [x] __Feira de Soluções__ - 15/06/2022 - :date:
+## 📂 Documentação do Projeto
 
-### 📃 Product Backlog
+Acesse os documentos clicando nos links abaixo:
 
-Na imagem abaixo é possível acompanhar os itens distribuídos de acordo com o nível de prioridade:
-***LINK***
+* [__Product Backlog__]()
 
+## 🖥️ Wireframe 
 
-### 💻 Wireframe 
---
+Acesse o link para visualizar:
 
-### 📃 Código - Ambiente de Desenvolvimento 
---
-
-## 📃 Código - Ambiente de Produção 
---
+> * [Light Mode]()
+> * [Dark Mode]()
 
 ## 🎲 Modelagem do Banco de Dados
---
 
-### 🛠 Tecnologias
---
+Acesse o link para visualizar:
 
-#### **Front-end** 
---
+> * [Modelo Entidade Relacionamento]()
 
-#### **Back-end**  
---
+## 📃 Código - Ambiente de Desenvolvimento 
 
-#### **Data-base** 
---
+Acesse o link para visualizar:
 
+> * [Código]()
 
-#### **Wireframe** 
---
+## 💫 Funcionalidades implementadas
+ 
+### 🏠 Home
 
---------------------------------------------------------------------------------------------------------------------------------------------------------------
-### 👨‍💻 Equipe
+![]()
 
-| Aluno(a)         | Função           | GitHub                                                         | LinkedIn                                              |
-| ---------------- | ---------------- | -------------------------------------------------------------- | ----------------------------------------------------- |
-|__Elias Ferreira__  | *Scrum Master*  | [![](https://bit.ly/3f9Xo0P)](https://github.com/elias31072002)| [![](https://bit.ly/2P1ZogM)](https://bit.ly/2QwcT8R) |
-|__Hariel Thums__  | *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/HarielThums)  | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3f9bjUH) |
-|__Ana Paula__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/AnaPaulaSOliveira) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/ana-paula-santos-de-oliveira-237a401ab) |
-|__Pedro Sousa Lopes__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/PedroSousaLopes) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/pedro-sousa-62bb641a8/) |
-|__Bruno Freire__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/brunofreire2001) | [![](https://bit.ly/2P1ZogM)]() |
-|__Vinícius Oliveira__| *Product Owner*| [![](https://bit.ly/3f9Xo0P)](https://github.com/vinicius-hso) | [![](https://bit.ly/2P1ZogM)](https://bit.ly/3fdl0BE) |
-|__Willian Rodrigues__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/Willian-Rodrigues) | [![](https://bit.ly/2P1ZogM)](https://www.linkedin.com/in/willianrsilva/)| 
-|__Luis Verola__| *Developer Team* | [![](https://bit.ly/3f9Xo0P)](https://github.com/LVerola) | [![](https://bit.ly/2P1ZogM)](http://www.linkedin.com/in/LVerola)| 
+### 🚜 Propriedades
+
+![]()
+
+### 🌱 Talhões
+
+![]()
+
+### 🌤️ Clima Hoje e Previsão
+
+![]()
 
