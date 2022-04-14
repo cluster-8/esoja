@@ -21,10 +21,6 @@ export function PropertyCard({ data }: Props) {
     <Container>
       <Header>
         <Title>{data.name}</Title>
-
-        <ExcludeButton onPress={() => console.log('Excluir')}>
-          <Icon name={'trash-2'} />
-        </ExcludeButton>
       </Header>
 
       <Footer>
