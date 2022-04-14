@@ -49,29 +49,36 @@ Entre no link e acesse a branch referente a sprint:
 > * [Dicionário de Dados](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Diciona%CC%81rio-de-dados-eSoja.xlsx)
 > * [Modelo Lógico](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/modelo-logico.png)
 > ![Modelo Lógico](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/modelo-logico.png)
+  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### 🛠 Tecnologias
 Para a construção do projeto, estão sendo usadas as seguintes ferramentas:
+  
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 #### **Front-end** 
 <img src= "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
 O React Native é um framework baseado no já aclamado React, desenvolvido pela equipe do Facebook, que possibilita o desenvolvimento de aplicações mobile, tanto para Android, como para iOS, utilizando apenas Javascript.
+  
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 #### **Back-end**  
 <img src= "https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
 Nest.js é um framework node.js progressivo feito para criar aplicações de backend eficientes, escaláveis e confiáveis.
+  
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 #### **Data-base** 
 <img src= "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white">
 O MySQL é um sistema gerenciador de banco de dados relacional de código aberto usado na maioria das aplicações gratuitas para gerir suas bases de dados.
+  
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 #### **Wireframe** 
 <img src= "https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
 Figma é um editor gráfico de vetor e prototipagem de projetos de design baseado principalmente no navegador web, com ferramentas offline adicionais para aplicações desktop para GNU/Linux, macOS e Windows.
+  
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 ### 👨‍💻 Equipe
