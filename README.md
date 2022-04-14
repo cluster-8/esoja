@@ -21,12 +21,14 @@ O desafio do projeto é criar um aplicativo colaborativo para produtores rurais 
 ### 💹 Planejamento
 Entre no link e acesse a branch referente a sprint:
 
-* [x] __Kick-off__ - 14/03/2022 a 18/03/2022 - :date: - ✅
-* [x] [__Sprint 1__](https://github.com/cluster-8/esoja-mobile/blob/Sprint-1/README.md) - 25/03/2022 a 14/04/2022 - :date:
-* [ ] [__Sprint 2__]() - 25/04/2022 a 15/05/2022 - :date:
-* [ ] [__Sprint 3__]() - 16/05/2022 a 05/06/2022 - :date:
-* [ ] __Apresentação Final__ - --/--/-- - :date:
-* [ ] __Feira de Soluções__ - 15/06/2022 - :date:
+| Sprints/Entregas do Projeto | Deliverables | Data | Concluído |
+| :---: | :---: | :---: | :---: |
+| `Kik-off`  | Apresentação do projeto | 14/03/2022 a 18/03/2022 | ✅ |
+| [`Sprint 1`](https://github.com/cluster-8/esoja-mobile/blob/Sprint-1/README.md) | Meu Cultivo/Plantio e Previsão do Tempo | 30/08/2021 a 19/09/2021 | ✅ |
+| `Sprint 2` | Estatísticas sobre o plantio, Login e Informações do Mercado | 20/09/2021 a 10/10/2021 | Em espera |
+| `Sprint 3` | Custos de Produção e Comparação Estatística por Região | 18/10/2021 a 07/11/2021 | Em espera |
+| `Apresentação Final` | Apresentação da última Sprint | ??? a ??? | Em espera |
+| `Feira de Soluções` | Apresentação dos vídeos criados pelas equipes | 15/06/2022 | Em espera |
 
 ### 📃 Product Backlog
 
@@ -49,20 +51,23 @@ Entre no link e acesse a branch referente a sprint:
 > ![Modelo Lógico](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/modelo-logico.png)
 
 ### 🛠 Tecnologias
---
+Para a construção do projeto, estão sendo usadas as seguintes ferramentas:
 
 #### **Front-end** 
---
+<img src= "https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB">
+O React Native é um framework baseado no já aclamado React, desenvolvido pela equipe do Facebook, que possibilita o desenvolvimento de aplicações mobile, tanto para Android, como para iOS, utilizando apenas Javascript.
 
 #### **Back-end**  
---
+<img src= "https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white">
+Nest.js é um framework node.js progressivo feito para criar aplicações de backend eficientes, escaláveis e confiáveis.
 
 #### **Data-base** 
---
-
+<img src= "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white">
+O MySQL é um sistema gerenciador de banco de dados relacional de código aberto usado na maioria das aplicações gratuitas para gerir suas bases de dados.
 
 #### **Wireframe** 
---
+<img src= "https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white">
+Figma é um editor gráfico de vetor e prototipagem de projetos de design baseado principalmente no navegador web, com ferramentas offline adicionais para aplicações desktop para GNU/Linux, macOS e Windows.
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### 👨‍💻 Equipe
