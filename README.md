@@ -54,11 +54,11 @@ Acesse o link para visualizar:
  
 ### 🏠 Home
 
-![]()
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/home.gif)
 
 ### 🚜 Propriedades
 
-![]()
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/properties-page.gif)
 
 ### 🌱 Talhões
 
@@ -66,5 +66,5 @@ Acesse o link para visualizar:
 
 ### 🌤️ Clima Hoje e Previsão
 
-![]()
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/weather-page.gif)
 
