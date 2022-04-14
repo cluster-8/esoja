@@ -15,8 +15,21 @@ O desafio do projeto é criar um aplicativo colaborativo para produtores rurais 
 
 
 <br>
+  
 ## 🏁 Projeto
---
+
+eSoja é o nome do aplicativo proposto pela equipe para solucionar o desafio, esse aplicativo ele deve entregar as seguintes funcionalidades:
+
+* Cadastro de propriedade;
+* Cadastro da área de cultivo;
+* Cadastro de amostras;
+* Previsão do Tempo;
+* Estatísticas do Plantio do usuário
+* Login normal ou através do google, apple ou facebook;
+* Informações sobre o mercado;
+* Custos de produção;
+* Comparação Estatística por Região.
+  
 
 ### 💹 Planejamento
 Entre no link e acesse a branch referente a sprint:
@@ -71,8 +84,8 @@ Nest.js é um framework node.js progressivo feito para criar aplicações de bac
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
   
 #### **Data-base** 
-<img src= "https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white">
-O MySQL é um sistema gerenciador de banco de dados relacional de código aberto usado na maioria das aplicações gratuitas para gerir suas bases de dados.
+<img src= "https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white">
+PostgreSQL é um sistema gerenciador de banco de dados objeto relacional, desenvolvido como projeto de código aberto.
   
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
   
