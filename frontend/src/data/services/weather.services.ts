@@ -38,6 +38,7 @@ export const getWeatherForecast = async (coordinates: Coordinates, lang: string)
     } = await axios.get<{ list: WeatherForecastProps[] }>(
       `http://pro.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric&cnt=7`
     );
+
     return list;
   } catch (err) {}
 };
@@ -47,6 +48,9 @@ export const getWeatherDay = async (coordinates: Coordinates) => {
     const { data } = await axios.get<WeatherResponseProps>(
       `https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric`
     );
+
     return data;
-  } catch (err) {}
+  } catch (err) {
+    console.log('err getWeatherDay: ', err);
+  }
 };
