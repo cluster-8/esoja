@@ -37,9 +37,10 @@ Entre no link e acesse a branch referente a sprint:
 
 ### 💻 Wireframe 
 
-> [Light Mode]()
-  
-> [Dark Mode]()
+Acesse o link para visualizar:
+
+> * [Light Mode](https://www.figma.com/proto/PYFdyiNREKJQAKNE1LZrrd/eSoja---Light?node-id=2%3A864&scaling=min-zoom&page-id=0%3A1)
+> * [Dark Mode](https://www.figma.com/proto/b2Gh6gM3HXw3016X4Dmkem/eSoja---Dark?node-id=2%3A318&scaling=min-zoom&page-id=0%3A1)
 
 ### 📃 Código - Ambiente de Desenvolvimento 
 --
