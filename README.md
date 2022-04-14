@@ -30,7 +30,7 @@ Entre no link e acesse a branch referente a sprint:
 
 ### 📃 Product Backlog
 
-> ![__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) 
+> [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) 
 
 
 ### 💻 Wireframe 
