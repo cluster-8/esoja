@@ -1,6 +1,6 @@
-<h2 align="center"> 
+<h1 align="center"> 
   Aprendizado por Projeto Integrador
-</h2>
+</h1>
 
 README EM DESENVOLVIMENTO!
 <br>
@@ -21,30 +21,32 @@ O desafio do projeto é criar um aplicativo colaborativo para produtores rurais 
 ### 💹 Planejamento
 Entre no link e acesse a branch referente a sprint:
 
-* [x] __Kick-off__ - 14/03/2022 a 18/03/2022 - ✅
-* [x] [__Sprint 1__] ----- - 25/03/2022 a 14/04/2022 - :date:
-* [x] [__Sprint 2__] ----- - 25/04/2022 a 15/05/2022 - :date:
-* [x] [__Sprint 3__] ----- - 16/05/2022 a 05/06/2022 - :date:
-* [x] __Apresentação Final__ - ????? - :date:
-* [x] __Feira de Soluções__ - 15/06/2022 - :date:
+* [x] __Kick-off__ - 14/03/2022 a 18/03/2022 - :date: - ✅
+* [x] [__Sprint 1__](https://github.com/cluster-8/esoja-mobile/blob/Sprint-1/README.md) - 25/03/2022 a 14/04/2022 - :date:
+* [ ] [__Sprint 2__]() - 25/04/2022 a 15/05/2022 - :date:
+* [ ] [__Sprint 3__]() - 16/05/2022 a 05/06/2022 - :date:
+* [ ] __Apresentação Final__ - --/--/-- - :date:
+* [ ] __Feira de Soluções__ - 15/06/2022 - :date:
 
 ### 📃 Product Backlog
 
-Na imagem abaixo é possível acompanhar os itens distribuídos de acordo com o nível de prioridade:
-***LINK***
+> ![__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) 
 
 
 ### 💻 Wireframe 
---
+
+> ![Light Mode]()
+  
+> ![Dark Mode]()
 
 ### 📃 Código - Ambiente de Desenvolvimento 
 --
 
-## 📃 Código - Ambiente de Produção 
---
-
 ## 🎲 Modelagem do Banco de Dados
---
+
+> * [Dicionário de Dados](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Diciona%CC%81rio-de-dados-eSoja.xlsx)
+> * [Modelo Lógico](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/modelo-logico.png)
+> ![Modelo Lógico](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/modelo-logico.png)
 
 ### 🛠 Tecnologias
 --
