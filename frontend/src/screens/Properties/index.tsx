@@ -1,8 +1,9 @@
 import React from 'react';
 import { PropertyCard, PropertyCardProps } from '../../components/PropertyCard';
+import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
 import { PropertiesScreenRouteProps } from '../../data/routes/app';
-import { AddButton, Container, Header, Icon, PropertyList, SubTitle, Title } from './styles';
+import { AddButton, Container, Header, Icon, PropertyList, SubTitle } from './styles';
 
 export interface DataListProps extends PropertyCardProps {
   id: string;
@@ -51,8 +52,7 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({ navigation })
   return (
     <Container>
       <Header>
-        <Title>{translate('properties.properties')}</Title>
-        <SubTitle>{translate('properties.SeAllYourProperties')}</SubTitle>
+        <Title title={translate('properties.properties')} subtitle={translate('properties.SeAllYourProperties')} />
       </Header>
 
       <PropertyList data={data} keyExtractor={item => item.id} renderItem={({ item }) => <PropertyCard data={item} />} />
