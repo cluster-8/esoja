@@ -20,7 +20,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   const [seedQuote, setSeedQuote] = useState<Quotation | null>(null);
   const [availableQuote, setAvailableQuote] = useState<Quotation | null>(null);
   const { getWeatherCurrentDay, getQuotation } = useHome();
-  const { getCoordinates, getZipcode } = useLocation();
+  const { getCoordinates } = useLocation();
 
   const handlerCardMenuClick = (route: any) => {
     navigation.navigate(route);
@@ -28,7 +28,6 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
 
   const getData = async () => {
     const location = await getCoordinates();
-    const teste = await getZipcode();
     const weatherData = await getWeatherCurrentDay(location);
     if (weatherData) {
       setWeather(weatherData);
@@ -96,7 +95,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
             <MenuCard
               title="Talhões"
               icon="seed-outline"
-              onPress={() => handlerCardMenuClick("Spots")}
+              onPress={() => handlerCardMenuClick("Plots")}
             />
           </MenuCardContainer>
           <MenuCardContainer>

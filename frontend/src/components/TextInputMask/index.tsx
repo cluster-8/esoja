@@ -7,11 +7,11 @@ import { RFFontSize } from "../../utils/getResponsiveSizes";
 
 import {
   InnerContainer,
-  RNTextInput,
   FeatherIcon,
   ErrorMessage,
   Container,
   InputLabel,
+  RNTextInput,
 } from "./styles";
 
 interface TextInputProps extends RNTextInputProps {
@@ -21,14 +21,16 @@ interface TextInputProps extends RNTextInputProps {
   label?: string;
   control?: Control;
   errorMessage?: string;
+  mask: string;
 }
 
-export const TextInput: React.FC<TextInputProps> = ({
+export const TextInputMask: React.FC<TextInputProps> = ({
   icon,
   containerStyle = {},
   name,
   label,
   control,
+  mask,
   errorMessage,
   defaultValue,
   ...rest
@@ -81,7 +83,9 @@ export const TextInput: React.FC<TextInputProps> = ({
 
         <RNTextInput
           {...rest}
+          type="custom"
           value={field.value}
+          options={{ mask }}
           ref={inputElementRef}
           keyboardAppearance="dark"
           placeholderTextColor={theme.colors.details}

@@ -9,7 +9,7 @@ import backgroundLight from "../../assets/images/background-esoja-light.png";
 export default {
   light: {
     colors: {
-      primary: "#007A3D",
+      primary: "#ffdd66",
       text: "#3F3E40",
       text_secondary: "#777777",
       background: "#F6F6F6",
@@ -27,7 +27,7 @@ export default {
   },
   dark: {
     colors: {
-      primary: "#00CC66",
+      primary: "#ffdd66",
       text: "#EBEBEB",
       text_secondary: "#AFAFAF",
       background: "#2D282A",

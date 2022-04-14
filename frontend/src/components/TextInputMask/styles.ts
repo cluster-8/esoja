@@ -1,7 +1,12 @@
-import styled, { css } from "styled-components/native";
-import { Feather } from "@expo/vector-icons";
+import styled, { css } from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
+import { TextInputMask } from 'react-native-masked-text';
 
-import { RFFontSize, RFHeight, RFWidth } from "../../utils/getResponsiveSizes";
+import {
+  RFFontSize,
+  RFHeight,
+  RFWidth,
+} from '../../../../utils/getResponsiveSizes';
 
 interface ContainerProps {
   isFocused: boolean;
@@ -22,7 +27,7 @@ export const InnerContainer = styled.View<ContainerProps>`
   width: 100%;
   min-height: ${RFHeight(56)}px;
   padding: 0 ${RFWidth(16)}px;
-  background: ${({ theme }) => theme.colors.background_over};
+  background: ${({ theme }) => theme.colors.background};
   border-radius: ${RFHeight(8)}px;
   border-width: ${RFWidth(2)}px;
   border-color: ${({ theme }) => theme.colors.details};
@@ -41,7 +46,7 @@ export const InnerContainer = styled.View<ContainerProps>`
         `}
 `;
 
-export const RNTextInput = styled.TextInput`
+export const RNTextInput = styled(TextInputMask)`
   flex: 1;
   color: ${({ theme }) => theme.colors.text};
   font-size: ${RFFontSize(16)}px;

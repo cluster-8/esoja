@@ -13,8 +13,13 @@ import { NavigatorProps } from ".";
 import { Home } from "../screens/Home";
 import { Weather } from "../screens/Weather";
 import { useTheme } from "styled-components";
+import { AppRoutesParams } from "../data/routes/app";
+import { Plots } from "../screens/Plots";
+//import { CreatePlot } from "../screens/CreatePlot";
+import { CreatePlotStepOne } from "../screens/CreatePlot/CreatePlotStepOne";
+import { CreatePlotStepTwo } from "../screens/CreatePlot/CreatePlotStepTwo";
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<AppRoutesParams>();
 
 export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
   const theme = useTheme();
@@ -22,6 +27,7 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
     () => ({
       headerTitleAlign: "center",
       headerStyle: { backgroundColor: theme.colors.primary },
+      headerShadowVisible: false,
 
       headerTitle: () => (
         <Image
@@ -42,17 +48,34 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         screenOptions={{
           ...screenOptions,
           headerShown: true,
+          headerTintColor: theme.colors.white,
         }}
         initialRouteName="Home"
       >
         <Stack.Screen name="Home" component={Home} options={options} />
+        <Stack.Screen name="Plots" component={Plots} options={options} />
+        <Stack.Screen
+          name="CreatePlotStepOne"
+          component={CreatePlotStepOne}
+          options={options}
+        />
+        <Stack.Screen
+          name="CreatePlotStepTwo"
+          component={CreatePlotStepTwo}
+          options={options}
+        />
+        {/*         <Stack.Screen
+          name="CreatePlot"
+          component={CreatePlot}
+          options={options}
+        />
+ */}
         <Stack.Screen
           name="Weather"
           component={Weather}
           options={{
             ...options,
             headerStyle: { backgroundColor: "transparent" },
-            headerShadowVisible: false,
             headerTransparent: true,
             headerTintColor: theme.colors.white,
           }}
