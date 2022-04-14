@@ -6,6 +6,7 @@ import Title from "../../../components/Title";
 import { StepIndicator } from "../../../components/StepIndicator";
 import { CreatePlotStepOneScreenRouteProps } from "../../../data/routes/app";
 import { Button } from "../../../components/Button";
+import { ScrollView } from "react-native";
 
 interface Coordinates {
   latitude: number;
@@ -22,17 +23,19 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
   };
 
   return (
-    <Container>
-      <Title
-        title={"Coordenadas do talhão"}
-        subtitle={"Desenhe no mapa a area correspondente ao talhão"}
-      />
-      <StepIndicator step={0} />
-      <FormContainer>
-        <NextStepButton>
-          <Button title={"Continuar"} onPress={handleSubmitStepOne} />
-        </NextStepButton>
-      </FormContainer>
-    </Container>
+    <ScrollView>
+      <Container>
+        <Title
+          title={"Coordenadas do talhão"}
+          subtitle={"Desenhe no mapa a area correspondente ao talhão"}
+        />
+        <StepIndicator step={0} />
+        <FormContainer>
+          <NextStepButton>
+            <Button title={"Continuar"} onPress={handleSubmitStepOne} />
+          </NextStepButton>
+        </FormContainer>
+      </Container>
+    </ScrollView>
   );
 };

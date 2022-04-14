@@ -34,6 +34,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   ...rest
 }) => {
   const theme = useTheme();
+  console.log(errorMessage);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const inputElementRef = useRef<any>(null);
