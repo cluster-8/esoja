@@ -69,27 +69,27 @@ export const NewProperty: React.FC = () => {
           <FormContainer>
             <AvatarField>
               <PictureInput
-                placeholder=""
-                updatePictureLabel=""
+                placeholder="newProperty.propertyPictureLabel"
+                updatePictureLabel="newProperty.propertyUpdatePictureLabel"
                 onPress={() => console.log('apertou')}
               />
             </AvatarField>
             <TextInput
-              label={translate('newProperty.propertyNameLabel')}
+              label="newProperty.propertyNameLabel"
               name="name"
               control={control}
               icon="home"
-              placeholder={translate('newProperty.propertyNamePlaceholder')}
+              placeholder="newProperty.propertyNamePlaceholder"
               autoCapitalize="sentences"
               autoCorrect={false}
               errorMessage={errors.name && errors.name.message}
             />
             <TextInput
-              label="Nome"
+              label="newProperty.propertyCepLabel"
               name="cep"
               control={control}
               icon="map-pin"
-              placeholder="Digite o CEP da propriedade"
+              placeholder="newProperty.propertyCepPlaceholder"
               keyboardType="numeric"
               errorMessage={errors.cep && errors.cep.message}
             />
