@@ -58,7 +58,7 @@ Acesse o link para visualizar:
 
 ### 🚜 Propriedades
 
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/properties-page.gif)
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/PropertyScreen.gif)
 
 ### 🌱 Talhões
 
