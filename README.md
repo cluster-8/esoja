@@ -2,10 +2,6 @@
   Aprendizado por Projeto Integrador
 </h1>
 
-README EM DESENVOLVIMENTO!
-
-
-
 ## 📌 Desafio
 
 <p>
