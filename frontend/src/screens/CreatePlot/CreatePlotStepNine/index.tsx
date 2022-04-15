@@ -1,5 +1,10 @@
 import React from 'react';
-import { Container, FormContainer, HelperImageContainer, NextStepButton } from './styles';
+import {
+  Container,
+  FormContainer,
+  HelperImageContainer,
+  NextStepButton
+} from './styles';
 import * as yup from 'yup';
 
 import Title from '../../../components/Title';
@@ -16,7 +21,9 @@ const userLogin = yup.object().shape({
   sampleB: yup.string().required('Quantidade é obrigatória')
 });
 
-export const CreatePlotStepNine: React.FC<CreatePlotStepNineScreenRouteProps> = ({ navigation }) => {
+export const CreatePlotStepNine: React.FC<
+  CreatePlotStepNineScreenRouteProps
+> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
@@ -32,12 +39,18 @@ export const CreatePlotStepNine: React.FC<CreatePlotStepNineScreenRouteProps> = 
   return (
     <ScrollView>
       <Container>
-        <Title title={'Imagem das amostras'} subtitle={'Tire uma foto de todas as plantas usadas nas amostras'} />
+        <Title
+          title={'Imagem das amostras'}
+          subtitle={'Tire uma foto de todas as plantas usadas nas amostras'}
+        />
         <StepIndicator step={2} indicator={7} />
         <FormContainer>
           <HelperImageContainer></HelperImageContainer>
           <NextStepButton>
-            <Button title={'Finalizar'} onPress={handleSubmit(handleSubmitStepNine)} />
+            <Button
+              title={'Finalizar'}
+              onPress={handleSubmit(handleSubmitStepNine)}
+            />
           </NextStepButton>
         </FormContainer>
       </Container>

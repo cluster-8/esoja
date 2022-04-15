@@ -3,13 +3,22 @@ import { PropertyCard, PropertyCardProps } from '../../components/PropertyCard';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
 import { PropertiesScreenRouteProps } from '../../data/routes/app';
-import { AddButton, Container, Header, Icon, PropertyList, SubTitle } from './styles';
+import {
+  AddButton,
+  Container,
+  Header,
+  Icon,
+  PropertyList,
+  SubTitle
+} from './styles';
 
 export interface DataListProps extends PropertyCardProps {
   id: string;
 }
 
-export const Properties: React.FC<PropertiesScreenRouteProps> = ({ navigation }) => {
+export const Properties: React.FC<PropertiesScreenRouteProps> = ({
+  navigation
+}) => {
   const data = [
     {
       id: '1',
@@ -52,10 +61,17 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({ navigation })
   return (
     <Container>
       <Header>
-        <Title title={translate('properties.properties')} subtitle={translate('properties.SeAllYourProperties')} />
+        <Title
+          title={translate('properties.properties')}
+          subtitle={translate('properties.SeAllYourProperties')}
+        />
       </Header>
 
-      <PropertyList data={data} keyExtractor={item => item.id} renderItem={({ item }) => <PropertyCard data={item} />} />
+      <PropertyList
+        data={data}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <PropertyCard data={item} />}
+      />
 
       <AddButton onPress={() => navigation.navigate('NewProperty')}>
         <Icon name={'plus'} />

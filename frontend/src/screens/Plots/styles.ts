@@ -34,7 +34,11 @@ export const SubTitle = styled.Text`
   margin-bottom: 16px;
 `;
 
-export const CultiveList = styled(FlatList as new (props: FlatListProps<DataListProps>) => FlatList<DataListProps>).attrs({
+export const CultiveList = styled(
+  FlatList as new (
+    props: FlatListProps<DataListProps>
+  ) => FlatList<DataListProps>
+).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
     paddingBottom: getBottomSpace()

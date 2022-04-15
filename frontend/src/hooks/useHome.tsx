@@ -35,7 +35,9 @@ export interface Quotation {
 }
 
 interface HomeContextData {
-  getWeatherCurrentDay: (coordinates: Coordinates) => Promise<WeatherResponseProps | undefined>;
+  getWeatherCurrentDay: (
+    coordinates: Coordinates
+  ) => Promise<WeatherResponseProps | undefined>;
   getQuotation: () => Promise<Quotation[] | undefined>;
 }
 
@@ -52,11 +54,19 @@ const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
 
   const getQuotation = async () => {
     try {
-      const { data } = await axios.get<Quotation[]>(`${process.env.IMEA_ROUTE}`);
-      const availableQuote = data.filter(
-        quotation => quotation.IndicadorFinalId === '708192508838936580' && quotation.Localidade === 'Mato Grosso'
+      const { data } = await axios.get<Quotation[]>(
+        `${process.env.IMEA_ROUTE}`
       );
-      const seedQuote = data.filter(quotation => quotation.Localidade === 'Convencional' && quotation.UnidadeSigla === 'R$/sc');
+      const availableQuote = data.filter(
+        quotation =>
+          quotation.IndicadorFinalId === '708192508838936580' &&
+          quotation.Localidade === 'Mato Grosso'
+      );
+      const seedQuote = data.filter(
+        quotation =>
+          quotation.Localidade === 'Convencional' &&
+          quotation.UnidadeSigla === 'R$/sc'
+      );
       return [availableQuote[0], seedQuote[0]];
     } catch (err) {
       console.log(err);
@@ -70,7 +80,11 @@ const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
     }),
     [getWeatherCurrentDay, getQuotation]
   );
-  return <HomeContext.Provider value={providerValue}>{children}</HomeContext.Provider>;
+  return (
+    <HomeContext.Provider value={providerValue}>
+      {children}
+    </HomeContext.Provider>
+  );
 };
 
 const useHome = () => {

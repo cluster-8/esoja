@@ -17,7 +17,8 @@ import { HomeProvider } from './src/hooks/useHome';
 import { LocationProvider } from './src/hooks/useLocation';
 
 export const App: React.FC = () => {
-  const { handleChageTheme, getStoredTheme, fontsLoaded, selectedTheme } = useApp();
+  const { handleChageTheme, getStoredTheme, fontsLoaded, selectedTheme } =
+    useApp();
 
   useEffect(() => {
     i18nConfig();
@@ -34,7 +35,9 @@ export const App: React.FC = () => {
         <LocationProvider>
           <HomeProvider>
             <StatusBar
-              barStyle={selectedTheme === 'dark' ? 'light-content' : 'dark-content'}
+              barStyle={
+                selectedTheme === 'dark' ? 'light-content' : 'dark-content'
+              }
               backgroundColor={theme[selectedTheme].colors.background}
               translucent
             />

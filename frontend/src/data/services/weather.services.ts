@@ -31,7 +31,10 @@ export interface WeatherForecastProps {
   rain: number;
 }
 
-export const getWeatherForecast = async (coordinates: Coordinates, lang: string) => {
+export const getWeatherForecast = async (
+  coordinates: Coordinates,
+  lang: string
+) => {
   try {
     const {
       data: { list }

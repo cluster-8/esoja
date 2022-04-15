@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useContext, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useMemo,
+  useState
+} from 'react';
 import * as Location from 'expo-location';
 
 interface Coordinates {
@@ -62,10 +68,14 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
     }),
     [getCoordinates, getZipcode]
   );
-  return <LocationContext.Provider value={providerValue}>{children}</LocationContext.Provider>;
+  return (
+    <LocationContext.Provider value={providerValue}>
+      {children}
+    </LocationContext.Provider>
+  );
 };
 
-const useLocation = () => {  
+const useLocation = () => {
   const context = useContext(LocationContext);
 
   if (!context) {

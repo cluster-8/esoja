@@ -13,7 +13,9 @@ interface Coordinates {
   longitude: number;
 }
 
-export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({ navigation }) => {
+export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
+  navigation
+}) => {
   const [poligon, setPoligon] = useState<Coordinates[]>([]);
 
   const handleSubmitStepOne = () => {
@@ -23,7 +25,10 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
   return (
     <ScrollView>
       <Container>
-        <Title title={'Coordenadas do talhão'} subtitle={'Desenhe no mapa a area correspondente ao talhão'} />
+        <Title
+          title={'Coordenadas do talhão'}
+          subtitle={'Desenhe no mapa a area correspondente ao talhão'}
+        />
         <StepIndicator step={0} />
         <FormContainer>
           <NextStepButton>

@@ -1,4 +1,7 @@
-import { widthPercentageToDP, heightPercentageToDP } from 'react-native-responsive-screen';
+import {
+  widthPercentageToDP,
+  heightPercentageToDP
+} from 'react-native-responsive-screen';
 
 /**
  * Converts width passed dimension into a responsive dimension.

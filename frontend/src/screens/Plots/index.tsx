@@ -51,10 +51,17 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
   return (
     <Container>
       <Header>
-        <Title title={translate('plots.plots')} subtitle={translate('plots.SeeAllYourPlots')} />
+        <Title
+          title={translate('plots.plots')}
+          subtitle={translate('plots.SeeAllYourPlots')}
+        />
       </Header>
 
-      <CultiveList data={data} keyExtractor={item => item.id} renderItem={({ item }) => <CultiveCard data={item} />} />
+      <CultiveList
+        data={data}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <CultiveCard data={item} />}
+      />
 
       <AddButton onPress={() => navigation.navigate('CreatePlotStepOne')}>
         <Icon name={'plus'} />

@@ -1,5 +1,11 @@
 import React from 'react';
-import { WeatherInfoCardContainer, WeatherInfoIcon, WeatherInfoIconConatiner, WeatherInfoTitle, WeatherInfoValue } from './style';
+import {
+  WeatherInfoCardContainer,
+  WeatherInfoIcon,
+  WeatherInfoIconConatiner,
+  WeatherInfoTitle,
+  WeatherInfoValue
+} from './style';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
 
 interface WeekDayCardProps {
@@ -8,7 +14,11 @@ interface WeekDayCardProps {
   icon: string;
 }
 
-export const WeatherInfoCard: React.FC<WeekDayCardProps> = ({ title, value, icon }) => {
+export const WeatherInfoCard: React.FC<WeekDayCardProps> = ({
+  title,
+  value,
+  icon
+}) => {
   return (
     <WeatherInfoCardContainer>
       <WeatherInfoIconConatiner>

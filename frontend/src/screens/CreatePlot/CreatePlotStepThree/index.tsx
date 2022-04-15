@@ -1,5 +1,11 @@
 import React from 'react';
-import { Container, FormContainer, HelperImageContainer, NextStepButton, StepThreeHelperImage } from './styles';
+import {
+  Container,
+  FormContainer,
+  HelperImageContainer,
+  NextStepButton,
+  StepThreeHelperImage
+} from './styles';
 import * as yup from 'yup';
 
 import StepThree from '../../../assets/plot-steps-images/StepThree.png';
@@ -17,7 +23,9 @@ const userLogin = yup.object().shape({
   lineDistance: yup.string().required('Distancia é obrigatória')
 });
 
-export const CreatePlotStepThree: React.FC<CreatePlotStepThreeScreenRouteProps> = ({ navigation }) => {
+export const CreatePlotStepThree: React.FC<
+  CreatePlotStepThreeScreenRouteProps
+> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
@@ -33,7 +41,12 @@ export const CreatePlotStepThree: React.FC<CreatePlotStepThreeScreenRouteProps> 
   return (
     <ScrollView>
       <Container>
-        <Title title={'Distancia linhas de plantio'} subtitle={'Informe a distância entre as linhas de plantio em centímetros'} />
+        <Title
+          title={'Distancia linhas de plantio'}
+          subtitle={
+            'Informe a distância entre as linhas de plantio em centímetros'
+          }
+        />
         <StepIndicator step={1} indicator={2} />
         <FormContainer>
           <HelperImageContainer>
@@ -49,7 +62,10 @@ export const CreatePlotStepThree: React.FC<CreatePlotStepThreeScreenRouteProps> 
             errorMessage={errors?.lineDistance?.message}
           />
           <NextStepButton>
-            <Button title={'Continuar'} onPress={handleSubmit(handleSubmitStepThree)} />
+            <Button
+              title={'Continuar'}
+              onPress={handleSubmit(handleSubmitStepThree)}
+            />
           </NextStepButton>
         </FormContainer>
       </Container>

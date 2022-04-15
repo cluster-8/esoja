@@ -1,6 +1,14 @@
 import React from 'react';
 
-import { Container, Header, Title, ExcludeButton, Icon, Footer, InfoText } from './styles';
+import {
+  Container,
+  Header,
+  Title,
+  ExcludeButton,
+  Icon,
+  Footer,
+  InfoText
+} from './styles';
 
 export interface PropertyCardProps {
   id: string;

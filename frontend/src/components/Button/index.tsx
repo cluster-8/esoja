@@ -11,13 +11,22 @@ interface ButtonProps {
   onPress: () => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ title, type = 'primary', showLoadingIndicator, onPress }) => {
+export const Button: React.FC<ButtonProps> = ({
+  title,
+  type = 'primary',
+  showLoadingIndicator,
+  onPress
+}) => {
   const theme = useTheme();
 
   if (type === 'primary') {
     return (
       <RectButton onPress={onPress}>
-        {showLoadingIndicator ? <ActivityIndicator size="large" color={theme.colors.text} /> : <ButtonText type={type}>{title}</ButtonText>}
+        {showLoadingIndicator ? (
+          <ActivityIndicator size="large" color={theme.colors.text} />
+        ) : (
+          <ButtonText type={type}>{title}</ButtonText>
+        )}
       </RectButton>
     );
   }

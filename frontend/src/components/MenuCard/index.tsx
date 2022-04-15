@@ -23,7 +23,15 @@ export interface MenuCardProps {
   onPress: () => void;
 }
 
-export const MenuCard: React.FC<MenuCardProps> = ({ title, picture, icon, value, variation, onPress, widget = false }) => {
+export const MenuCard: React.FC<MenuCardProps> = ({
+  title,
+  picture,
+  icon,
+  value,
+  variation,
+  onPress,
+  widget = false
+}) => {
   const theme = useTheme();
   if (widget) {
     return (
@@ -34,11 +42,19 @@ export const MenuCard: React.FC<MenuCardProps> = ({ title, picture, icon, value,
             <MenuCardWidgetIcon
               name={icon}
               size={RFFontSize(24)}
-              color={icon === 'trending-down' ? theme.colors.attention : theme.colors.primary}
+              color={
+                icon === 'trending-down'
+                  ? theme.colors.attention
+                  : theme.colors.primary
+              }
             />
           )}
           {picture && <MenuCardImage source={picture} resizeMode="contain" />}
-          {variation && <MenuCardValue>{variation >= 0 ? `+ ${variation}` : variation}</MenuCardValue>}
+          {variation && (
+            <MenuCardValue>
+              {variation >= 0 ? `+ ${variation}` : variation}
+            </MenuCardValue>
+          )}
           <MenuCardValue>{value}</MenuCardValue>
         </MenuCardValueContainer>
       </MenuCardWidgetContainer>

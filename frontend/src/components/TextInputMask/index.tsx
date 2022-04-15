@@ -5,7 +5,14 @@ import { useTheme } from 'styled-components';
 import { translate } from '../../data/I18n';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
 
-import { InnerContainer, FeatherIcon, ErrorMessage, Container, InputLabel, RNTextInput } from './styles';
+import {
+  InnerContainer,
+  FeatherIcon,
+  ErrorMessage,
+  Container,
+  InputLabel,
+  RNTextInput
+} from './styles';
 
 interface TextInputProps extends RNTextInputProps {
   icon?: string;
@@ -60,8 +67,19 @@ export const TextInputMask: React.FC<TextInputProps> = ({
   return (
     <Container>
       {label && <InputLabel>{translate(label)}</InputLabel>}
-      <InnerContainer style={containerStyle} isFocused={isFocused} isErrored={!!errorMessage}>
-        {!!icon && <FeatherIcon name={icon} size={RFFontSize(20)} isFocusedOrFilled={isFocused || isFilled} isErrored={!!errorMessage} />}
+      <InnerContainer
+        style={containerStyle}
+        isFocused={isFocused}
+        isErrored={!!errorMessage}
+      >
+        {!!icon && (
+          <FeatherIcon
+            name={icon}
+            size={RFFontSize(20)}
+            isFocusedOrFilled={isFocused || isFilled}
+            isErrored={!!errorMessage}
+          />
+        )}
 
         <RNTextInput
           {...rest}

@@ -1,6 +1,13 @@
 import React, { useCallback, useEffect } from 'react';
 
-import Animated, { useAnimatedStyle, useSharedValue, withTiming, interpolate, Extrapolate, runOnJS } from 'react-native-reanimated';
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+  interpolate,
+  Extrapolate,
+  runOnJS
+} from 'react-native-reanimated';
 import { BrandText, Container, LogoImage } from './styles';
 import { SplashScreenRouteProps } from '../../data/routes/auth';
 
@@ -18,7 +25,12 @@ export const Splash: React.FC<SplashScreenRouteProps> = ({ navigation }) => {
       opacity: interpolate(splashAnimation.value, [0, 25, 50], [0, 0.3, 1]),
       transform: [
         {
-          translateX: interpolate(splashAnimation.value, [0, 50], [-50, 0], Extrapolate.CLAMP)
+          translateX: interpolate(
+            splashAnimation.value,
+            [0, 50],
+            [-50, 0],
+            Extrapolate.CLAMP
+          )
         }
       ]
     };

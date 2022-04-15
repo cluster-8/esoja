@@ -1,4 +1,12 @@
-import React, { createContext, ReactNode, useContext, useState, useMemo, useCallback, useEffect } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+  useMemo,
+  useCallback,
+  useEffect
+} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 
@@ -65,7 +73,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
 
       await storeUser(user, token);
     } catch (error) {
-      Alert.alert('Erro', 'Não foi possivel fazer o login, tente novamente mais tarde');
+      Alert.alert(
+        'Erro',
+        'Não foi possivel fazer o login, tente novamente mais tarde'
+      );
     } finally {
       setLoading(false);
     }
@@ -93,7 +104,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
           });
           await storeUser(user, token);
         } catch (err) {
-          Alert.alert('Erro', 'Não foi possivel fazer o login, tente novamente mais tarde');
+          Alert.alert(
+            'Erro',
+            'Não foi possivel fazer o login, tente novamente mais tarde'
+          );
         } finally {
           setLoading(false);
         }
@@ -101,7 +115,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
         throw new Error('rejected signin');
       }
     } catch (err) {
-      Alert.alert('Erro', 'Não foi possivel fazer o login, tente novamente mais tarde');
+      Alert.alert(
+        'Erro',
+        'Não foi possivel fazer o login, tente novamente mais tarde'
+      );
     }
   }, []);
 
@@ -125,7 +142,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
           });
           await storeUser(user, token);
         } catch (err) {
-          Alert.alert('Erro', 'Não foi possivel fazer o login, tente novamente mais tarde');
+          Alert.alert(
+            'Erro',
+            'Não foi possivel fazer o login, tente novamente mais tarde'
+          );
         } finally {
           setLoading(false);
         }
@@ -133,7 +153,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
         throw new Error('rejected signin');
       }
     } catch (err) {
-      Alert.alert('Erro', 'Não foi possivel fazer o login, tente novamente mais tarde');
+      Alert.alert(
+        'Erro',
+        'Não foi possivel fazer o login, tente novamente mais tarde'
+      );
     }
   }, []);
 
@@ -142,7 +165,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
 
     try {
       const credential = await AppleAuth.signInAsync({
-        requestedScopes: [AppleAuth.AppleAuthenticationScope.EMAIL, AppleAuth.AppleAuthenticationScope.FULL_NAME]
+        requestedScopes: [
+          AppleAuth.AppleAuthenticationScope.EMAIL,
+          AppleAuth.AppleAuthenticationScope.FULL_NAME
+        ]
       });
 
       if (credential) {
@@ -157,7 +183,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
           } = await api.post<SignInRequestProps>('/authenticate', appleUser);
           await storeUser(user, token);
         } catch (err) {
-          Alert.alert('Erro', 'Não foi possivel fazer o login, tente novamente mais tarde');
+          Alert.alert(
+            'Erro',
+            'Não foi possivel fazer o login, tente novamente mais tarde'
+          );
         } finally {
           setLoading(false);
         }
@@ -165,7 +194,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
         throw new Error('rejected signin');
       }
     } catch (err) {
-      Alert.alert('Erro', 'Não foi possivel fazer o login, tente novamente mais tarde');
+      Alert.alert(
+        'Erro',
+        'Não foi possivel fazer o login, tente novamente mais tarde'
+      );
     }
   }, []);
 
@@ -179,7 +211,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
 
   useEffect(() => {
     const loadStoragedData = async (): Promise<void> => {
-      const [token, user] = await AsyncStorage.multiGet(['@esoja:token', '@esoja:user']);
+      const [token, user] = await AsyncStorage.multiGet([
+        '@esoja:token',
+        '@esoja:user'
+      ]);
 
       if (token[1] && user[1]) {
         api.defaults.headers.common.Authorization = `Bearer ${token[1]}`;
@@ -201,9 +236,21 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
       siginWithFacebook,
       siginWithApple
     }),
-    [signInWithPassword, signOut, authUser, isLoading, signInWithGoogle, siginWithFacebook, siginWithApple]
+    [
+      signInWithPassword,
+      signOut,
+      authUser,
+      isLoading,
+      signInWithGoogle,
+      siginWithFacebook,
+      siginWithApple
+    ]
   );
-  return <AuthContext.Provider value={providerValue}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={providerValue}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 const useAuth = () => {

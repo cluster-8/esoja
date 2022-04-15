@@ -10,10 +10,19 @@ interface WeekDayCardProps {
   onPress: () => void;
 }
 
-export const WeekDayCard: React.FC<WeekDayCardProps> = ({ selectedDate, date, onPress }) => {
+export const WeekDayCard: React.FC<WeekDayCardProps> = ({
+  selectedDate,
+  date,
+  onPress
+}) => {
   return (
     <WeekDayCardContainer onPress={onPress}>
-      <WeekDayItem selectedDate={isSameDay(fromUnixTime(date as number), fromUnixTime(selectedDate as number))}>
+      <WeekDayItem
+        selectedDate={isSameDay(
+          fromUnixTime(date as number),
+          fromUnixTime(selectedDate as number)
+        )}
+      >
         {isToday(date) ? 'HOJE' : formatWeekDay(date).toUpperCase()}
       </WeekDayItem>
     </WeekDayCardContainer>

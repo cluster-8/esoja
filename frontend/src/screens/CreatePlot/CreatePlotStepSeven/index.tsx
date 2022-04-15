@@ -1,5 +1,11 @@
 import React from 'react';
-import { Container, FormContainer, HelperImageContainer, NextStepButton, StepSevenHelperImage } from './styles';
+import {
+  Container,
+  FormContainer,
+  HelperImageContainer,
+  NextStepButton,
+  StepSevenHelperImage
+} from './styles';
 import * as yup from 'yup';
 
 import StepSeven from '../../../assets/plot-steps-images/StepSample.png';
@@ -18,7 +24,9 @@ const userLogin = yup.object().shape({
   sampleB: yup.string().required('Quantidade é obrigatória')
 });
 
-export const CreatePlotStepSeven: React.FC<CreatePlotStepSevenScreenRouteProps> = ({ navigation }) => {
+export const CreatePlotStepSeven: React.FC<
+  CreatePlotStepSevenScreenRouteProps
+> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
@@ -34,7 +42,10 @@ export const CreatePlotStepSeven: React.FC<CreatePlotStepSevenScreenRouteProps> 
   return (
     <ScrollView>
       <Container>
-        <Title title={'Amostra 2'} subtitle={'Repita o passo anterior, em outro ponto do talhão'} />
+        <Title
+          title={'Amostra 2'}
+          subtitle={'Repita o passo anterior, em outro ponto do talhão'}
+        />
         <StepIndicator step={1} indicator={6} />
         <FormContainer>
           <HelperImageContainer>
@@ -64,7 +75,10 @@ export const CreatePlotStepSeven: React.FC<CreatePlotStepSevenScreenRouteProps> 
             control={control}
           />
           <NextStepButton>
-            <Button title={'Continuar'} onPress={handleSubmit(handleSubmitStepSeven)} />
+            <Button
+              title={'Continuar'}
+              onPress={handleSubmit(handleSubmitStepSeven)}
+            />
           </NextStepButton>
         </FormContainer>
       </Container>

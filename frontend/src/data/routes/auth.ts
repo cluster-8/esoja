@@ -6,7 +6,16 @@ export type AuthRoutesParams = {
   SignUp: undefined;
 };
 
-export type SplashScreenRouteProps = NativeStackScreenProps<AuthRoutesParams, 'Splash'>;
-export type SignInScreenRouteProps = NativeStackScreenProps<AuthRoutesParams, 'SignIn'>;
+export type SplashScreenRouteProps = NativeStackScreenProps<
+  AuthRoutesParams,
+  'Splash'
+>;
+export type SignInScreenRouteProps = NativeStackScreenProps<
+  AuthRoutesParams,
+  'SignIn'
+>;
 
-export type SignUpScreenRouteProps = NativeStackScreenProps<AuthRoutesParams, 'SignUp'>;
+export type SignUpScreenRouteProps = NativeStackScreenProps<
+  AuthRoutesParams,
+  'SignUp'
+>;

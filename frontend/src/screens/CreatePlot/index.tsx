@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Dimensions, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  TouchableOpacity
+} from 'react-native';
 
 import MapView, { MAP_TYPES, Polygon } from 'react-native-maps';
 
@@ -38,10 +44,16 @@ export const PolygonCreator: React.FC = () => {
         onPress={() => {}}
       ></MapView>
       <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => {}} style={[styles.bubble, styles.button]}>
+        <TouchableOpacity
+          onPress={() => {}}
+          style={[styles.bubble, styles.button]}
+        >
           <Text>Create Hole</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => {}} style={[styles.bubble, styles.button]}>
+        <TouchableOpacity
+          onPress={() => {}}
+          style={[styles.bubble, styles.button]}
+        >
           <Text>Finish</Text>
         </TouchableOpacity>
       </View>

@@ -1,5 +1,11 @@
 import React from 'react';
-import { Container, FormContainer, HelperImageContainer, NextStepButton, StepEightHelperImage } from './styles';
+import {
+  Container,
+  FormContainer,
+  HelperImageContainer,
+  NextStepButton,
+  StepEightHelperImage
+} from './styles';
 import * as yup from 'yup';
 
 import StepEight from '../../../assets/plot-steps-images/StepSample.png';
@@ -18,7 +24,9 @@ const userLogin = yup.object().shape({
   sampleB: yup.string().required('Quantidade é obrigatória')
 });
 
-export const CreatePlotStepEight: React.FC<CreatePlotStepEightScreenRouteProps> = ({ navigation }) => {
+export const CreatePlotStepEight: React.FC<
+  CreatePlotStepEightScreenRouteProps
+> = ({ navigation }) => {
   const {
     control,
     handleSubmit,
@@ -34,7 +42,10 @@ export const CreatePlotStepEight: React.FC<CreatePlotStepEightScreenRouteProps> 
   return (
     <ScrollView>
       <Container>
-        <Title title={'Amostra 3'} subtitle={'Repita o passo anterior, essa sera a ultima amostra'} />
+        <Title
+          title={'Amostra 3'}
+          subtitle={'Repita o passo anterior, essa sera a ultima amostra'}
+        />
         <StepIndicator step={1} indicator={7} />
         <FormContainer>
           <HelperImageContainer>
@@ -64,7 +75,10 @@ export const CreatePlotStepEight: React.FC<CreatePlotStepEightScreenRouteProps> 
             control={control}
           />
           <NextStepButton>
-            <Button title={'Continuar'} onPress={handleSubmit(handleSubmitStepEight)} />
+            <Button
+              title={'Continuar'}
+              onPress={handleSubmit(handleSubmitStepEight)}
+            />
           </NextStepButton>
         </FormContainer>
       </Container>
