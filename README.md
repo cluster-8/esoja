@@ -54,7 +54,7 @@ Acesse o link para visualizar:
  
 ### 🏠 Home
 
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/home.gif)
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/HomeScreen.gif)
 
 ### 🚜 Propriedades
 
@@ -66,5 +66,5 @@ Acesse o link para visualizar:
 
 ### 🌤️ Clima Hoje e Previsão
 
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/weather-page.gif)
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/WeatherScreen.gif)
 
