@@ -48,7 +48,8 @@ Acesse o link para visualizar:
 
 Acesse o link para visualizar:
 
-> * [Código]()
+> * [Código Frontend](https://github.com/cluster-8/esoja-mobile/tree/mobile/frontend)
+> * [Código Backend](https://github.com/cluster-8/esoja-mobile/tree/backend/backend)
 
 ## 💫 Funcionalidades implementadas
  
@@ -62,7 +63,7 @@ Acesse o link para visualizar:
 
 ### 🌱 Talhões
 
-![]()
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/PlotScreen.gif)
 
 ### 🌤️ Clima Hoje e Previsão
 
