@@ -1,4 +1,5 @@
 import React from 'react';
+import { ScrollView } from 'react-native';
 import { PropertyCard, PropertyCardProps } from '../../components/PropertyCard';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';

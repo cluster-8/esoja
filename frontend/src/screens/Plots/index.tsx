@@ -7,6 +7,7 @@ import { Container, Header, CultiveList, AddButton, Icon } from './styles';
 import { CultiveCard, CultiveCardProps } from '../../components/PlotCard';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
+import { ScrollView } from 'react-native';
 
 export interface DataListProps extends CultiveCardProps {
   id: string;

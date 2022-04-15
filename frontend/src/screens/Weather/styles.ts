@@ -8,6 +8,7 @@ export const WeatherContainer = styled.View`
   background-color: #03d7fc;
   padding: 8px;
   padding-top: 120px;
+  padding-bottom: 60px;
 `;
 
 export const WeekDayCardContainer = styled.View`

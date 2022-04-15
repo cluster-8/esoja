@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Keyboard, Alert } from 'react-native';
+import { Keyboard, Alert, ScrollView } from 'react-native';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -56,53 +56,55 @@ export const NewProperty: React.FC = () => {
   }
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <Container>
-        <Header>
-          <Title
-            title={translate('newProperty.newProperty')}
-            subtitle={translate('newProperty.newPropertySubtitle')}
-          />
-        </Header>
+    <ScrollView>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <Container>
+          <Header>
+            <Title
+              title={translate('newProperty.newProperty')}
+              subtitle={translate('newProperty.newPropertySubtitle')}
+            />
+          </Header>
 
-        <MenuContainer>
-          <FormContainer>
-            <AvatarField>
-              <PictureInput
-                placeholder=""
-                updatePictureLabel=""
-                onPress={() => console.log('apertou')}
+          <MenuContainer>
+            <FormContainer>
+              <AvatarField>
+                <PictureInput
+                  placeholder=""
+                  updatePictureLabel=""
+                  onPress={() => console.log('apertou')}
+                />
+              </AvatarField>
+              <TextInput
+                label={'newProperty.propertyNameLabel'}
+                name="name"
+                control={control}
+                icon="home"
+                placeholder={translate('newProperty.propertyNamePlaceholder')}
+                autoCapitalize="sentences"
+                autoCorrect={false}
+                errorMessage={errors.name && errors.name.message}
               />
-            </AvatarField>
-            <TextInput
-              label={translate('newProperty.propertyNameLabel')}
-              name="name"
-              control={control}
-              icon="home"
-              placeholder={translate('newProperty.propertyNamePlaceholder')}
-              autoCapitalize="sentences"
-              autoCorrect={false}
-              errorMessage={errors.name && errors.name.message}
-            />
-            <TextInput
-              label="Nome"
-              name="cep"
-              control={control}
-              icon="map-pin"
-              placeholder="Digite o CEP da propriedade"
-              keyboardType="numeric"
-              errorMessage={errors.cep && errors.cep.message}
-            />
-            <ButtonContainer>
-              <Button
-                title="Enviar"
-                onPress={handleSubmit(handleRegister)}
-                showLoadingIndicator={loading}
+              <TextInput
+                label="Nome"
+                name="cep"
+                control={control}
+                icon="map-pin"
+                placeholder="Digite o CEP da propriedade"
+                keyboardType="numeric"
+                errorMessage={errors.cep && errors.cep.message}
               />
-            </ButtonContainer>
-          </FormContainer>
-        </MenuContainer>
-      </Container>
-    </TouchableWithoutFeedback>
+              <ButtonContainer>
+                <Button
+                  title="Enviar"
+                  onPress={handleSubmit(handleRegister)}
+                  showLoadingIndicator={loading}
+                />
+              </ButtonContainer>
+            </FormContainer>
+          </MenuContainer>
+        </Container>
+      </TouchableWithoutFeedback>
+    </ScrollView>
   );
 };

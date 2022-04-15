@@ -80,6 +80,7 @@ export const TextInput: React.FC<TextInputProps> = ({
 
         <RNTextInput
           {...rest}
+          placeholder={translate(rest.placeholder as string)}
           value={field.value}
           ref={inputElementRef}
           keyboardAppearance="dark"

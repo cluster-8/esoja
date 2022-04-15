@@ -31,6 +31,7 @@ import {
   getWeatherForecast,
   WeatherForecastProps
 } from '../../data/services/weather.services';
+import { ScrollView } from 'react-native';
 
 export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
   const [list, setList] = useState<WeatherForecastProps[]>([]);
@@ -67,113 +68,115 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
   });
 
   return (
-    <WeatherContainer>
-      {loading ? (
-        <WeatherContainer />
-      ) : (
-        <>
-          <WeatherPropertCard />
-          <WeekDayCardContainer>
-            {list.map(date => (
-              <WeekDayCard
-                key={date.dt}
-                date={date.dt}
-                onPress={() => handleSelectDate(date.dt)}
-                selectedDate={selectedDate}
-              />
-            ))}
-          </WeekDayCardContainer>
+    <ScrollView>
+      <WeatherContainer>
+        {loading ? (
+          <WeatherContainer />
+        ) : (
+          <>
+            <WeatherPropertCard />
+            <WeekDayCardContainer>
+              {list.map(date => (
+                <WeekDayCard
+                  key={date.dt}
+                  date={date.dt}
+                  onPress={() => handleSelectDate(date.dt)}
+                  selectedDate={selectedDate}
+                />
+              ))}
+            </WeekDayCardContainer>
 
-          <WeatherMainContainer>
-            <WeatherImage
-              source={getWeatherImage(data?.weather[0]?.icon)}
-              resizeMode="contain"
-            />
-            <WeatherTemp>{data?.temp?.day.toFixed(0)}º</WeatherTemp>
-            <WeatherStatus>
-              {data?.weather[0]?.description.toUpperCase()}
-            </WeatherStatus>
-            <WeatherMaxAndMin>
-              max {data?.temp?.max.toFixed(0)}º - min{' '}
-              {data?.temp?.min.toFixed(0)}º
-            </WeatherMaxAndMin>
-            <WeatherDetailsContainer>
-              <WeatherInfoCard
-                title={translate('weather.humidity')}
-                value={`${data?.humidity}%`}
-                icon="droplet"
+            <WeatherMainContainer>
+              <WeatherImage
+                source={getWeatherImage(data?.weather[0]?.icon)}
+                resizeMode="contain"
               />
-              <WeatherInfoCard
-                title={translate('weather.wind')}
-                value={`${data?.speed}m/s`}
-                icon="wind"
-              />
-              <WeatherInfoCard
-                title={translate('weather.rain')}
-                value={`${data?.pop * 100}%`}
-                icon="umbrella"
-              />
-              <WeatherInfoCard
-                title={translate('weather.precipitation')}
-                value={`${data?.rain || 0}mm`}
-                icon="cloud-drizzle"
-              />
-            </WeatherDetailsContainer>
-          </WeatherMainContainer>
-          <WeatherDayPeriodContainer>
-            <WeatherDayContent>
-              <WeatherPeriodCard>
-                <WeatherPeriodTitle>
-                  {translate('weather.morning')}
-                </WeatherPeriodTitle>
-                <WeatherPeriodTemp>
-                  {data?.temp?.morn.toFixed(0)}º
-                </WeatherPeriodTemp>
-              </WeatherPeriodCard>
-              <WeatherPeriodCard>
-                <WeatherPeriodTitle>
-                  {translate('weather.afternoon')}
-                </WeatherPeriodTitle>
-                <WeatherPeriodTemp>
-                  {data?.temp?.eve.toFixed(0)}º
-                </WeatherPeriodTemp>
-              </WeatherPeriodCard>
-              <WeatherPeriodCard>
-                <WeatherPeriodTitle>
-                  {translate('weather.evening')}
-                </WeatherPeriodTitle>
-                <WeatherPeriodTemp>
-                  {data?.temp?.night.toFixed(0)}º
-                </WeatherPeriodTemp>
-              </WeatherPeriodCard>
-            </WeatherDayContent>
-            <WeatherDayContent>
-              <WeatherSunsetIconContainer>
-                <WeatherSunsetIcon name="sunrise" size={RFFontSize(32)} />
+              <WeatherTemp>{data?.temp?.day.toFixed(0)}º</WeatherTemp>
+              <WeatherStatus>
+                {data?.weather[0]?.description.toUpperCase()}
+              </WeatherStatus>
+              <WeatherMaxAndMin>
+                max {data?.temp?.max.toFixed(0)}º - min{' '}
+                {data?.temp?.min.toFixed(0)}º
+              </WeatherMaxAndMin>
+              <WeatherDetailsContainer>
+                <WeatherInfoCard
+                  title={translate('weather.humidity')}
+                  value={`${data?.humidity}%`}
+                  icon="droplet"
+                />
+                <WeatherInfoCard
+                  title={translate('weather.wind')}
+                  value={`${data?.speed}m/s`}
+                  icon="wind"
+                />
+                <WeatherInfoCard
+                  title={translate('weather.rain')}
+                  value={`${data?.pop * 100}%`}
+                  icon="umbrella"
+                />
+                <WeatherInfoCard
+                  title={translate('weather.precipitation')}
+                  value={`${data?.rain || 0}mm`}
+                  icon="cloud-drizzle"
+                />
+              </WeatherDetailsContainer>
+            </WeatherMainContainer>
+            <WeatherDayPeriodContainer>
+              <WeatherDayContent>
                 <WeatherPeriodCard>
                   <WeatherPeriodTitle>
-                    {translate('weather.sunrise')}
+                    {translate('weather.morning')}
                   </WeatherPeriodTitle>
                   <WeatherPeriodTemp>
-                    {formatHour(data?.sunrise)}
+                    {data?.temp?.morn.toFixed(0)}º
                   </WeatherPeriodTemp>
                 </WeatherPeriodCard>
-              </WeatherSunsetIconContainer>
-              <WeatherSunsetIconContainer>
-                <WeatherSunsetIcon name="sunset" size={RFFontSize(32)} />
                 <WeatherPeriodCard>
                   <WeatherPeriodTitle>
-                    {translate('weather.sunset')}
+                    {translate('weather.afternoon')}
                   </WeatherPeriodTitle>
                   <WeatherPeriodTemp>
-                    {formatHour(data?.sunset)}
+                    {data?.temp?.eve.toFixed(0)}º
                   </WeatherPeriodTemp>
                 </WeatherPeriodCard>
-              </WeatherSunsetIconContainer>
-            </WeatherDayContent>
-          </WeatherDayPeriodContainer>
-        </>
-      )}
-    </WeatherContainer>
+                <WeatherPeriodCard>
+                  <WeatherPeriodTitle>
+                    {translate('weather.evening')}
+                  </WeatherPeriodTitle>
+                  <WeatherPeriodTemp>
+                    {data?.temp?.night.toFixed(0)}º
+                  </WeatherPeriodTemp>
+                </WeatherPeriodCard>
+              </WeatherDayContent>
+              <WeatherDayContent>
+                <WeatherSunsetIconContainer>
+                  <WeatherSunsetIcon name="sunrise" size={RFFontSize(32)} />
+                  <WeatherPeriodCard>
+                    <WeatherPeriodTitle>
+                      {translate('weather.sunrise')}
+                    </WeatherPeriodTitle>
+                    <WeatherPeriodTemp>
+                      {formatHour(data?.sunrise)}
+                    </WeatherPeriodTemp>
+                  </WeatherPeriodCard>
+                </WeatherSunsetIconContainer>
+                <WeatherSunsetIconContainer>
+                  <WeatherSunsetIcon name="sunset" size={RFFontSize(32)} />
+                  <WeatherPeriodCard>
+                    <WeatherPeriodTitle>
+                      {translate('weather.sunset')}
+                    </WeatherPeriodTitle>
+                    <WeatherPeriodTemp>
+                      {formatHour(data?.sunset)}
+                    </WeatherPeriodTemp>
+                  </WeatherPeriodCard>
+                </WeatherSunsetIconContainer>
+              </WeatherDayContent>
+            </WeatherDayPeriodContainer>
+          </>
+        )}
+      </WeatherContainer>
+    </ScrollView>
   );
 };
