@@ -1,12 +1,12 @@
 import React, { useMemo } from 'react';
 import { Image } from 'react-native';
-import Logo from '../assets/images/logo-dark.png';
-
 import { BaseNavigationContainer } from '@react-navigation/core';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions
 } from '@react-navigation/native-stack';
+import { useTheme } from 'styled-components';
+import Logo from '../assets/images/logo-dark.png';
 
 import { NavigatorProps } from '.';
 
@@ -14,7 +14,6 @@ import { Home } from '../screens/Home';
 import { Properties } from '../screens/Properties';
 import { NewProperty } from '../screens/NewProperty';
 import { Weather } from '../screens/Weather';
-import { useTheme } from 'styled-components';
 import { AppRoutesParams } from '../data/routes/app';
 import { CreatePlotStepOne } from '../screens/CreatePlot/CreatePlotStepOne';
 import { CreatePlotStepTwo } from '../screens/CreatePlot/CreatePlotStepTwo';

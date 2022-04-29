@@ -1,7 +1,12 @@
-import React, { createContext, ReactNode, useContext, useMemo } from 'react';
-import { getWeatherDay } from '../data/services/weather.services';
-
+import React, {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useMemo
+} from 'react';
 import axios from 'axios';
+import { getWeatherDay } from '../data/services/weather.services';
 
 interface Coordinates {
   latitude: number;
@@ -48,11 +53,11 @@ type HomeContextProps = {
 const HomeContext = createContext({} as HomeContextData);
 
 const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
-  const getWeatherCurrentDay = async (coordinates: Coordinates) => {
+  const getWeatherCurrentDay = useCallback(async (coordinates: Coordinates) => {
     return getWeatherDay(coordinates);
-  };
+  }, []);
 
-  const getQuotation = async () => {
+  const getQuotation = useCallback(async () => {
     try {
       const { data } = await axios.get<Quotation[]>(
         `${process.env.IMEA_ROUTE}`
@@ -70,8 +75,9 @@ const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
       return [availableQuote[0], seedQuote[0]];
     } catch (err) {
       console.log(err);
+      return undefined;
     }
-  };
+  }, []);
 
   const providerValue = useMemo(
     () => ({

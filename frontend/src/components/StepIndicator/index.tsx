@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
 import Step from 'react-native-step-indicator';
 import { useTheme } from 'styled-components';
-import { Container } from './styles';
+import { Container, Indicator } from './styles';
 
 interface StepProps {
   step: number;
@@ -44,7 +43,15 @@ export const StepIndicator: React.FC<StepProps> = ({ step, indicator = 1 }) => {
         customStyles={customStyles}
         currentPosition={currentPosition}
         stepCount={3}
-        renderStepIndicator={item => <Text>{item.position + indicator}</Text>}
+        renderStepIndicator={({ position, stepStatus }) => (
+          <Indicator
+            status={stepStatus}
+            position={position}
+            currentPosition={currentPosition}
+          >
+            {position + indicator}
+          </Indicator>
+        )}
       />
     </Container>
   );

@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import * as yup from 'yup';
+import { FieldValues, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { ScrollView } from 'react-native';
 import {
   Container,
   FormContainer,
@@ -6,7 +10,6 @@ import {
   NextStepButton,
   StepFourHelperImage
 } from './styles';
-import * as yup from 'yup';
 
 import StepFour from '../../../assets/plot-steps-images/StepFour.png';
 
@@ -14,27 +17,40 @@ import Title from '../../../components/Title';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { CreatePlotStepFourScreenRouteProps } from '../../../data/routes/app';
 import { TextInput } from '../../../components/TextInput';
-import { FieldValues, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '../../../components/Button';
-import { ScrollView } from 'react-native';
+import { useSample } from '../../../hooks/useSample';
 
-const userLogin = yup.object().shape({
-  lineDistance: yup.string().required('Distancia é obrigatória')
+const stepFour = yup.object().shape({
+  plantsPerMeter: yup
+    .number()
+    .required('Quantidade é obrigatória')
+    .min(1, 'Quantidade deve ser maior que "ZERO"')
 });
 
 export const CreatePlotStepFour: React.FC<
   CreatePlotStepFourScreenRouteProps
 > = ({ navigation }) => {
+  const { saveStep, getPersistedData } = useSample();
+
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(userLogin)
+    resolver: yupResolver(stepFour)
   });
 
+  useEffect(() => {
+    getPersistedData().then(data => {
+      if (data) {
+        setValue('plantsPerMeter', data?.plantsPerMeter?.toString() || '');
+      }
+    });
+  }, [getPersistedData, setValue]);
+
   const handleSubmitStepFour = (data: FieldValues) => {
+    saveStep(data);
     navigation.navigate('CreatePlotStepFive');
   };
 
@@ -42,7 +58,7 @@ export const CreatePlotStepFour: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title={'Quantidade de plantas'}
+          title="Quantidade de plantas"
           subtitle={'Informe a quantidade de plantas em "2 metros" lineares'}
         />
         <StepIndicator step={1} indicator={3} />
@@ -51,17 +67,17 @@ export const CreatePlotStepFour: React.FC<
             <StepFourHelperImage source={StepFour} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Distancia entre linhas"
-            placeholder="Digite a distancia em cm"
+            label="Platas em 2 metros"
+            placeholder="Digite a quantidade de plantas"
             icon="check-square"
-            secureTextEntry
-            name="lineDistance"
+            keyboardType="numeric"
+            name="plantsPerMeter"
             control={control}
-            errorMessage={errors?.lineDistance?.message}
+            errorMessage={errors?.plantsPerMeter?.message}
           />
           <NextStepButton>
             <Button
-              title={'Continuar'}
+              title="Continuar"
               onPress={handleSubmit(handleSubmitStepFour)}
             />
           </NextStepButton>

@@ -1,21 +1,60 @@
 import { Feather } from '@expo/vector-icons';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 import { RFFontSize, RFHeight } from '../../utils/getResponsiveSizes';
 
-export const PictureStyled = styled.Image`
-  width: 160px;
-  height: 160px;
-  border-radius: 80px;
+interface Model {
+  model: 'RETANGLE' | 'SQUARE' | 'CIRCLE';
+}
+export const PictureStyled = styled.Image<Model>`
+  ${({ model }) => {
+    if (model === 'RETANGLE') {
+      return css`
+        width: 320px;
+        height: 240px;
+      `;
+    }
+
+    if (model === 'SQUARE') {
+      return css`
+        width: 320px;
+        height: 320px;
+      `;
+    }
+
+    return css`
+      width: 160px;
+      height: 160px;
+      border-radius: 80px;
+    `;
+  }}
 `;
 
-export const Placeholder = styled.TouchableOpacity`
-  width: 160px;
-  height: 160px;
-  border-radius: 80px;
+export const Placeholder = styled.TouchableOpacity<Model>`
+  ${({ model }) => {
+    if (model === 'RETANGLE') {
+      return css`
+        width: 320px;
+        height: 240px;
+      `;
+    }
+
+    if (model === 'SQUARE') {
+      return css`
+        width: 320px;
+        height: 320px;
+      `;
+    }
+
+    return css`
+      width: 160px;
+      height: 160px;
+      border-radius: 80px;
+    `;
+  }}
   justify-content: center;
   align-items: center;
   border: 1px dashed ${({ theme }) => theme.colors.details};
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background_over};
 `;
 
 export const PlaceholderIcon = styled(Feather)`

@@ -3,7 +3,6 @@ import { Platform } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 
 import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
-import theme from '../../global/styles/theme';
 
 interface SocialSignProps {
   network: 'google' | 'facebook' | 'apple';

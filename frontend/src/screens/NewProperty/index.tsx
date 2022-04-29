@@ -76,7 +76,7 @@ export const NewProperty: React.FC = () => {
                 />
               </AvatarField>
               <TextInput
-                label={'newProperty.propertyNameLabel'}
+                label="newProperty.propertyNameLabel"
                 name="name"
                 control={control}
                 icon="home"

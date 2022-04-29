@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import * as yup from 'yup';
+import { FieldValues, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { ScrollView } from 'react-native';
 import {
   Container,
   FormContainer,
@@ -6,7 +10,6 @@ import {
   NextStepButton,
   StepTwoHelperImage
 } from './styles';
-import * as yup from 'yup';
 
 import StepTwo from '../../../assets/plot-steps-images/StepTwo.png';
 
@@ -14,27 +17,37 @@ import Title from '../../../components/Title';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
 import { TextInput } from '../../../components/TextInput';
-import { FieldValues, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '../../../components/Button';
-import { ScrollView } from 'react-native';
+import { useSample } from '../../../hooks/useSample';
 
-const userLogin = yup.object().shape({
+const stepTwo = yup.object().shape({
   name: yup.string().required('Nome é obrigatório')
 });
 
 export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
   navigation
 }) => {
+  const { saveStep, getPersistedData } = useSample();
   const {
     control,
     handleSubmit,
+    setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(userLogin)
+    resolver: yupResolver(stepTwo)
   });
 
+  useEffect(() => {
+    getPersistedData().then(data => {
+      if (data) {
+        setValue('name', data?.name || '');
+        setValue('description', data?.description || '');
+      }
+    });
+  }, [getPersistedData, setValue]);
+
   const handleSubmitStepTwo = (data: FieldValues) => {
+    saveStep(data);
     navigation.navigate('CreatePlotStepThree');
   };
 
@@ -42,8 +55,8 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title={'Identitifique o talhão'}
-          subtitle={'Insira um nome e uma descrição para o seu novo talhão'}
+          title="Identitifique o talhão"
+          subtitle="Insira um nome e uma descrição para o seu novo talhão"
         />
         <StepIndicator step={1} />
         <FormContainer>
@@ -62,13 +75,12 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             label="Descrição"
             placeholder="Digite uma descrição"
             icon="check-square"
-            secureTextEntry
             name="description"
             control={control}
           />
           <NextStepButton>
             <Button
-              title={'Continuar'}
+              title="Continuar"
               onPress={handleSubmit(handleSubmitStepTwo)}
             />
           </NextStepButton>

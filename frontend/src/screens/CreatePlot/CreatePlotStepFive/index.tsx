@@ -1,4 +1,5 @@
 import React from 'react';
+import { ScrollView } from 'react-native';
 import {
   Container,
   FormContainer,
@@ -13,7 +14,6 @@ import Title from '../../../components/Title';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { CreatePlotStepFiveScreenRouteProps } from '../../../data/routes/app';
 import { Button } from '../../../components/Button';
-import { ScrollView } from 'react-native';
 
 export const CreatePlotStepFive: React.FC<
   CreatePlotStepFiveScreenRouteProps
@@ -26,10 +26,8 @@ export const CreatePlotStepFive: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title={'Extração das amostras'}
-          subtitle={
-            'Nos proximos passos, vamos precisar de amostras do plantio, continue quando estiver proximo do talhão'
-          }
+          title="Extração das amostras"
+          subtitle="Nos proximos passos, vamos precisar de amostras do plantio, continue quando estiver proximo do talhão, os passos feitos ate aqui ja foram salvos e não serão perdidos"
         />
         <StepIndicator step={1} indicator={4} />
         <FormContainer>
@@ -37,7 +35,7 @@ export const CreatePlotStepFive: React.FC<
             <StepFiveHelperImage source={StepFive} resizeMode="contain" />
           </HelperImageContainer>
           <NextStepButton>
-            <Button title={'Continuar'} onPress={handleSubmitStepFive} />
+            <Button title="Continuar" onPress={handleSubmitStepFive} />
           </NextStepButton>
         </FormContainer>
       </Container>

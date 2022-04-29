@@ -1,9 +1,5 @@
 import styled from 'styled-components/native';
-import {
-  RFFontSize,
-  RFHeight,
-  RFWidth
-} from '../../../utils/getResponsiveSizes';
+import { RFHeight, RFWidth } from '../../../utils/getResponsiveSizes';
 
 export const Container = styled.View`
   flex: 1;
@@ -13,13 +9,10 @@ export const Container = styled.View`
   background: ${({ theme }) => theme.colors.background_over};
 `;
 
-export const HelperImageContainer = styled.View`
-  width: 200px;
-  height: 200px;
+export const PictureContainer = styled.View`
   align-items: center;
   justify-content: center;
   background: ${({ theme }) => theme.colors.background_over};
-  border-radius: 100px;
   margin: ${RFHeight(16)}px auto;
 `;
 
