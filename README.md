@@ -58,8 +58,9 @@ Entre no link e acesse a branch referente a sprint:
 
 Acesse o link para visualizar:
 
-> * [Light Mode](https://www.figma.com/file/tHWwoGru7N8AbAoRujX0ED/eSoja?node-id=838%3A72)
-> * [Dark Mode](https://www.figma.com/file/tHWwoGru7N8AbAoRujX0ED/eSoja?node-id=836%3A72)
+> * [Light Mode](https://www.figma.com/file/tHWwoGru7N8AbAoRujX0ED/eSoja?node-id=836%3A72)
+> * [Dark Mode](https://www.figma.com/file/tHWwoGru7N8AbAoRujX0ED/eSoja?node-id=838%3A72)
+  
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------
 
