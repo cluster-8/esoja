@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { translate } from '../../../data/I18n';
-import { Container, FormContainer, NextStepButton } from './styles';
-
-import Title from '../../../components/Title';
-import { StepIndicator } from '../../../components/StepIndicator';
-import { CreatePlotStepOneScreenRouteProps } from '../../../data/routes/app';
+import MapView from 'react-native-maps';
 import { Button } from '../../../components/Button';
+import { StepIndicator } from '../../../components/StepIndicator';
+import Title from '../../../components/Title';
+import { CreatePlotStepOneScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
+import { Container, FormContainer, NextStepButton } from './styles';
 
 interface Coordinates {
   latitude: number;
@@ -40,6 +39,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
         />
         <StepIndicator step={0} />
         <FormContainer>
+          <MapView style={{ flex: 1 }} />
           <NextStepButton>
             <Button title="Continuar" onPress={handleSubmitStepOne} />
           </NextStepButton>

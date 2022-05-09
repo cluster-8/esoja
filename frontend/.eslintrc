@@ -53,6 +53,7 @@
     "react/style-prop-object": "off",
     "import/prefer-default-export": "off",
     "@typescript-eslint/no-empty-interface": "off",
+    "no-param-reassign": ["error", { "props": false }],
     "camelcase": "off",
     "react/no-unstable-nested-components": "off",
     "react/jsx-props-no-spreading": "off",

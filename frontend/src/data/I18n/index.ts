@@ -1,12 +1,13 @@
-import i18n from 'i18n-js';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Localization from 'expo-localization';
-import signIn from './signIn';
+import i18n from 'i18n-js';
 import home from './home';
-import weather from './weather';
-import properties from './properties';
-import plots from './plots';
-import validators from './validators';
 import newProperties from './newProperties';
+import plots from './plots';
+import properties from './properties';
+import signIn from './signIn';
+import validators from './validators';
+import weather from './weather';
 
 interface LanguageProps {
   [key: string]: {

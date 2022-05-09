@@ -12,8 +12,7 @@ export const Container = styled.View`
 export const PictureContainer = styled.View`
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.background_over};
-  margin: ${RFHeight(16)}px auto;
+  margin: ${RFHeight(24)}px auto;
 `;
 
 export const FormContainer = styled.View`

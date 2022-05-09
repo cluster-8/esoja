@@ -1,40 +1,35 @@
-import React from 'react';
-import { Keyboard, Platform } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
-import { useForm } from 'react-hook-form';
-import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-import { useAuth } from '../../hooks/useAuth';
-
-import { SignInScreenRouteProps } from '../../data/routes/auth';
-import { translate } from '../../data/I18n';
-
-import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
-
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { Keyboard } from 'react-native';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
+import * as yup from 'yup';
+import { Button } from '../../components/Button';
 import { SafeAreaView } from '../../components/SafeAreaView';
 import { TextInput } from '../../components/TextInput';
-import { Button } from '../../components/Button';
-
+import { translate } from '../../data/I18n';
+import { SignInScreenRouteProps } from '../../data/routes/auth';
+import { useAuth } from '../../hooks/useAuth';
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 import {
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
   Container,
   ForgotPasswordButton,
   ForgotPasswordButtonText,
   FormContainer,
+  KeyboardAvoidingView,
   LogoImage,
-  WelcomeCaptionText,
-  WelcomeText,
-  SocialSignInText,
-  SocialSignInButtonsContainer,
-  SocialSignInButton,
-  SocialSignInButtonText,
-  SignUpButtonContainer,
-  SignUpHelpText,
   SignUpButton,
-  SignUpButtonText
+  SignUpButtonContainer,
+  SignUpButtonText,
+  SignUpHelpText,
+  SocialSignInButton,
+  SocialSignInButtonsContainer,
+  SocialSignInButtonText,
+  SocialSignInText,
+  TouchableWithoutFeedback,
+  WelcomeCaptionText,
+  WelcomeText
 } from './styles';
 
 const userLogin = yup.object().shape({
@@ -53,13 +48,8 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
   } = useForm({
     resolver: yupResolver(userLogin)
   });
-  const {
-    isLoading,
-    signInWithPassword,
-    signInWithGoogle,
-    siginWithFacebook,
-    siginWithApple
-  } = useAuth();
+  const { isLoading, signInWithPassword, signInWithGoogle, sigInWithFacebook } =
+    useAuth();
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -133,7 +123,7 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
               <SocialSignInButton
                 network="facebook"
                 style={{ marginLeft: RFWidth(8) }}
-                onPress={siginWithFacebook}
+                onPress={sigInWithFacebook}
               >
                 <FontAwesome5
                   name="facebook-f"
@@ -144,23 +134,6 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
                   Facebook
                 </SocialSignInButtonText>
               </SocialSignInButton>
-
-              {Platform.OS === 'ios' && (
-                <SocialSignInButton
-                  network="apple"
-                  style={{ marginLeft: RFWidth(8) }}
-                  onPress={siginWithApple}
-                >
-                  <FontAwesome5
-                    name="apple"
-                    size={RFFontSize(16)}
-                    color="#000000"
-                  />
-                  <SocialSignInButtonText network="apple">
-                    Apple
-                  </SocialSignInButtonText>
-                </SocialSignInButton>
-              )}
             </SocialSignInButtonsContainer>
 
             <SignUpButtonContainer>

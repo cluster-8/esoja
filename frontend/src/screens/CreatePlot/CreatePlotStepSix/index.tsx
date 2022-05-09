@@ -1,8 +1,15 @@
-import React, { useEffect } from 'react';
-import * as yup from 'yup';
-import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
+import * as yup from 'yup';
+import StepSix from '../../../assets/plot-steps-images/StepSample.png';
+import { Button } from '../../../components/Button';
+import { StepIndicator } from '../../../components/StepIndicator';
+import { TextInput } from '../../../components/TextInput';
+import Title from '../../../components/Title';
+import { CreatePlotStepSixScreenRouteProps } from '../../../data/routes/app';
+import { useSample } from '../../../hooks/useSample';
 import {
   Container,
   FormContainer,
@@ -10,15 +17,6 @@ import {
   NextStepButton,
   StepSixHelperImage
 } from './styles';
-
-import StepSix from '../../../assets/plot-steps-images/StepSample.png';
-
-import Title from '../../../components/Title';
-import { StepIndicator } from '../../../components/StepIndicator';
-import { CreatePlotStepSixScreenRouteProps } from '../../../data/routes/app';
-import { TextInput } from '../../../components/TextInput';
-import { Button } from '../../../components/Button';
-import { useSample } from '../../../hooks/useSample';
 
 const userLogin = yup.object().shape({
   grainsPlant1: yup
@@ -49,10 +47,7 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
     getPersistedData().then(data => {
       if (data) {
         setValue('grainsPlant1', data?.plantA?.grainsPlant1?.toString() || '');
-        setValue(
-          'metersBetweenPlants',
-          data?.plantA?.grainsPlant2?.toString() || ''
-        );
+        setValue('grainsPlant2', data?.plantA?.grainsPlant2?.toString() || '');
         setValue('metersBetweenPlants', data?.plantA?.description || '');
       }
     });

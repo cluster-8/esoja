@@ -1,8 +1,11 @@
-import React from 'react';
-import * as yup from 'yup';
-import { FieldValues, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
+import { Button } from '../../../components/Button';
+import { PictureInput } from '../../../components/PictureInput';
+import { StepIndicator } from '../../../components/StepIndicator';
+import Title from '../../../components/Title';
+import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
+import { useUpload } from '../../../hooks/useUpload';
 import {
   Container,
   FormContainer,
@@ -10,30 +13,23 @@ import {
   PictureContainer
 } from './styles';
 
-import Title from '../../../components/Title';
-import { StepIndicator } from '../../../components/StepIndicator';
-import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
-import { Button } from '../../../components/Button';
-import { PictureInput } from '../../../components/PictureInput';
-
-const userLogin = yup.object().shape({
-  sampleA: yup.string().required('Quantidade é obrigatória'),
-  sampleB: yup.string().required('Quantidade é obrigatória')
-});
-
 export const CreatePlotStepNine: React.FC<
   CreatePlotStepNineScreenRouteProps
 > = ({ navigation }) => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(userLogin)
-  });
+  const [image, setImage] = useState('');
 
-  const handleSubmitStepNine = (data: FieldValues) => {
-    navigation.navigate('CreatePlotStepNine');
+  const { pictureUpload, selectImage } = useUpload();
+
+  const handleSelectImage = async () => {
+    const uri = await selectImage();
+    setImage(uri);
+  };
+
+  const handleSubmitStepNine = async () => {
+    const url = await pictureUpload(image, 'sample');
+    console.log(url);
+
+    navigation.navigate('Home');
   };
 
   return (
@@ -50,14 +46,12 @@ export const CreatePlotStepNine: React.FC<
               model="RETANGLE"
               placeholder="Adicionar imagem"
               updatePictureLabel="Alterar imagem"
-              onPress={() => console.log('apertou')}
+              onPress={handleSelectImage}
+              uri={image}
             />
           </PictureContainer>
           <NextStepButton>
-            <Button
-              title="Finalizar"
-              onPress={handleSubmit(handleSubmitStepNine)}
-            />
+            <Button title="Finalizar" onPress={handleSubmitStepNine} />
           </NextStepButton>
         </FormContainer>
       </Container>

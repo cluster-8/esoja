@@ -1,8 +1,19 @@
 import React, { useEffect, useState } from 'react';
-
+import { ScrollView, StatusBar } from 'react-native';
+import { useTheme } from 'styled-components';
+import { WeatherInfoCard } from '../../components/WeatherInfoCard';
 import { WeatherPropertCard } from '../../components/WeatherPropertCard';
 import { WeekDayCard } from '../../components/WeekDayCard';
+import { translate } from '../../data/I18n';
 import { WeatherScreenRouteProps } from '../../data/routes/app';
+import {
+  getWeatherForecast,
+  WeatherForecastProps
+} from '../../data/services/weather.services';
+import { useLocation } from '../../hooks/useLocation';
+import { formatHour } from '../../utils/formatter';
+import { RFFontSize } from '../../utils/getResponsiveSizes';
+import { getWeatherImage } from '../../utils/getWeatherImage';
 import {
   WeatherContainer,
   WeatherDayContent,
@@ -15,23 +26,11 @@ import {
   WeatherPeriodTemp,
   WeatherPeriodTitle,
   WeatherStatus,
-  WeatherSunsetIconContainer,
   WeatherSunsetIcon,
+  WeatherSunsetIconContainer,
   WeatherTemp,
   WeekDayCardContainer
 } from './styles';
-
-import { translate } from '../../data/I18n';
-import { WeatherInfoCard } from '../../components/WeatherInfoCard';
-import { formatHour } from '../../utils/formatter';
-import { RFFontSize } from '../../utils/getResponsiveSizes';
-import { getWeatherImage } from '../../utils/getWeatherImage';
-import { useLocation } from '../../hooks/useLocation';
-import {
-  getWeatherForecast,
-  WeatherForecastProps
-} from '../../data/services/weather.services';
-import { ScrollView } from 'react-native';
 
 export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
   const [list, setList] = useState<WeatherForecastProps[]>([]);
@@ -41,13 +40,14 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
     {} as WeatherForecastProps
   );
 
+  const theme = useTheme();
   const { getCoordinates } = useLocation();
 
   const handleSelectDate = (date: number) => {
     setSelectedDate(date);
-    const data = list.find(item => item.dt === date);
-    if (data) {
-      setData(data);
+    const dataItem = list.find(item => item.dt === date);
+    if (dataItem) {
+      setData(dataItem);
     }
   };
 
@@ -69,6 +69,8 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
 
   return (
     <ScrollView>
+      <StatusBar backgroundColor="transparent" translucent />
+
       <WeatherContainer>
         {loading ? (
           <WeatherContainer />
@@ -112,7 +114,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
                 />
                 <WeatherInfoCard
                   title={translate('weather.rain')}
-                  value={`${data?.pop * 100}%`}
+                  value={`${data.pop * 100}%`}
                   icon="umbrella"
                 />
                 <WeatherInfoCard

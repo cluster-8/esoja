@@ -1,30 +1,28 @@
-import React, { useMemo } from 'react';
-import { Image } from 'react-native';
 import { BaseNavigationContainer } from '@react-navigation/core';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions
 } from '@react-navigation/native-stack';
+import React, { useMemo } from 'react';
+import { Image } from 'react-native';
 import { useTheme } from 'styled-components';
-import Logo from '../assets/images/logo-dark.png';
-
 import { NavigatorProps } from '.';
-
-import { Home } from '../screens/Home';
-import { Properties } from '../screens/Properties';
-import { NewProperty } from '../screens/NewProperty';
-import { Weather } from '../screens/Weather';
+import Logo from '../assets/images/logo-dark.png';
 import { AppRoutesParams } from '../data/routes/app';
-import { CreatePlotStepOne } from '../screens/CreatePlot/CreatePlotStepOne';
-import { CreatePlotStepTwo } from '../screens/CreatePlot/CreatePlotStepTwo';
-import { Plots } from '../screens/Plots';
-import { CreatePlotStepThree } from '../screens/CreatePlot/CreatePlotStepThree';
-import { CreatePlotStepFour } from '../screens/CreatePlot/CreatePlotStepFour';
-import { CreatePlotStepFive } from '../screens/CreatePlot/CreatePlotStepFive';
-import { CreatePlotStepSix } from '../screens/CreatePlot/CreatePlotStepSix';
-import { CreatePlotStepSeven } from '../screens/CreatePlot/CreatePlotStepSeven';
 import { CreatePlotStepEight } from '../screens/CreatePlot/CreatePlotStepEight';
+import { CreatePlotStepFive } from '../screens/CreatePlot/CreatePlotStepFive';
+import { CreatePlotStepFour } from '../screens/CreatePlot/CreatePlotStepFour';
 import { CreatePlotStepNine } from '../screens/CreatePlot/CreatePlotStepNine';
+import { CreatePlotStepOne } from '../screens/CreatePlot/CreatePlotStepOne';
+import { CreatePlotStepSeven } from '../screens/CreatePlot/CreatePlotStepSeven';
+import { CreatePlotStepSix } from '../screens/CreatePlot/CreatePlotStepSix';
+import { CreatePlotStepThree } from '../screens/CreatePlot/CreatePlotStepThree';
+import { CreatePlotStepTwo } from '../screens/CreatePlot/CreatePlotStepTwo';
+import { Home } from '../screens/Home';
+import { NewProperty } from '../screens/NewProperty';
+import { Plots } from '../screens/Plots';
+import { Properties } from '../screens/Properties';
+import { Weather } from '../screens/Weather';
 
 const Stack = createNativeStackNavigator<AppRoutesParams>();
 
@@ -60,7 +58,11 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         }}
         initialRouteName="Home"
       >
-        <Stack.Screen name="Home" component={Home} options={options} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Plots" component={Plots} options={options} />
         <Stack.Screen
           name="CreatePlotStepOne"

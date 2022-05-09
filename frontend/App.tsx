@@ -1,21 +1,18 @@
-import React, { useEffect } from 'react';
 import AppLoading from 'expo-app-loading';
-import { ThemeProvider } from 'styled-components';
+import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ThemeProvider } from 'styled-components';
+import { i18nConfig } from './src/data/I18n';
+import theme from './src/global/styles/theme';
 import { useApp } from './src/hooks/useApp';
 import { AuthProvider } from './src/hooks/useAuth';
-
-import { i18nConfig } from './src/data/I18n';
-
-import theme from './src/global/styles/theme';
-
-import { Routes } from './src/routes';
 import { HomeProvider } from './src/hooks/useHome';
 import { LocationProvider } from './src/hooks/useLocation';
 import { SampleProvider } from './src/hooks/useSample';
+import { UploadProvider } from './src/hooks/useUpload';
+import { Routes } from './src/routes';
 
 export const App: React.FC = () => {
   const { handleChageTheme, getStoredTheme, fontsLoaded, selectedTheme } =
@@ -36,18 +33,22 @@ export const App: React.FC = () => {
         <LocationProvider>
           <HomeProvider>
             <SampleProvider>
-              <StatusBar
-                barStyle={
-                  selectedTheme === 'dark' ? 'light-content' : 'dark-content'
-                }
-                backgroundColor={theme[selectedTheme].colors.background}
-                translucent
-              />
-              <GestureHandlerRootView style={{ flex: 1 }}>
-                <SafeAreaProvider>
-                  <Routes />
-                </SafeAreaProvider>
-              </GestureHandlerRootView>
+              <UploadProvider>
+                <GestureHandlerRootView style={{ flex: 1 }}>
+                  <SafeAreaProvider>
+                    <StatusBar
+                      barStyle={
+                        selectedTheme === 'dark'
+                          ? 'light-content'
+                          : 'dark-content'
+                      }
+                      backgroundColor="transparent"
+                      translucent
+                    />
+                    <Routes />
+                  </SafeAreaProvider>
+                </GestureHandlerRootView>
+              </UploadProvider>
             </SampleProvider>
           </HomeProvider>
         </LocationProvider>

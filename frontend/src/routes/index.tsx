@@ -1,12 +1,10 @@
-import * as React from 'react';
-import { useTheme } from 'styled-components';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
-import AppLoading from 'expo-app-loading';
-
-import { AuthRoutes } from './auth.routes';
-import { AppRoutes } from './app.routes';
-
+import * as React from 'react';
+import { StatusBar } from 'react-native';
+import { useTheme } from 'styled-components';
 import { useAuth } from '../hooks/useAuth';
+import { AppRoutes } from './app.routes';
+import { AuthRoutes } from './auth.routes';
 
 export interface NavigatorProps {
   screenOptions: NativeStackNavigationOptions;
@@ -15,7 +13,7 @@ export interface NavigatorProps {
 export const Routes: React.FC = () => {
   const theme = useTheme();
 
-  const { authUser, isLoading } = useAuth();
+  const { authUser } = useAuth();
 
   const screenOptions: NativeStackNavigationOptions = React.useMemo(
     () => ({
@@ -26,13 +24,12 @@ export const Routes: React.FC = () => {
     [theme]
   );
 
-  if (isLoading) {
-    return <AppLoading />;
-  }
-
-  return authUser.id ? (
+  return !authUser.id ? (
     <AuthRoutes screenOptions={screenOptions} />
   ) : (
-    <AppRoutes screenOptions={screenOptions} />
+    <>
+      <StatusBar backgroundColor={theme.colors.primary} translucent />
+      <AppRoutes screenOptions={screenOptions} />
+    </>
   );
 };

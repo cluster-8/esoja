@@ -1,27 +1,25 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as AuthSession from 'expo-auth-session';
+import * as WebBrowser from 'expo-web-browser';
 import React, {
   createContext,
   ReactNode,
-  useContext,
-  useState,
-  useMemo,
   useCallback,
-  useEffect
+  useContext,
+  useEffect,
+  useMemo,
+  useState
 } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { FieldValues } from 'react-hook-form';
 import { Alert } from 'react-native';
-
-import * as AuthSession from 'expo-auth-session';
-import * as WebBrowser from 'expo-web-browser';
-import * as AppleAuth from 'expo-apple-authentication';
-
 import { User } from '../data/@types/User';
 import { api } from '../data/services/api';
 
 interface AuthContextData {
-  signInWithPassword: (data: { [x: string]: string }) => void;
+  signInWithPassword: (data: FieldValues) => void;
+  signUp: (data: FieldValues) => void;
   signInWithGoogle: () => void;
-  siginWithFacebook: () => void;
-  siginWithApple: () => void;
+  sigInWithFacebook: () => void;
   signOut: () => void;
   authUser: User;
   isLoading: boolean;
@@ -33,6 +31,11 @@ type AuthContextProps = {
 
 type SignInRequestProps = {
   user: User;
+  token: string;
+};
+
+type SignUpRequestProps = {
+  id: string;
   token: string;
 };
 
@@ -60,27 +63,30 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
     ]);
   };
 
-  const signInWithPassword = useCallback(async ({ email, password }) => {
-    setLoading(true);
+  const signInWithPassword = useCallback(
+    async ({ email, password }: FieldValues) => {
+      setLoading(true);
 
-    try {
-      const {
-        data: { user, token }
-      } = await api.post<SignInRequestProps>('/auth/sign-in', {
-        email: email.toLowerCase(),
-        password
-      });
+      try {
+        const {
+          data: { user, token }
+        } = await api.post<SignInRequestProps>('/auth/sign-in', {
+          email: email.toLowerCase(),
+          password
+        });
 
-      await storeUser(user, token);
-    } catch (error) {
-      Alert.alert(
-        'Erro',
-        'Não foi possivel fazer o login, tente novamente mais tarde'
-      );
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+        await storeUser(user, token);
+      } catch (error) {
+        Alert.alert(
+          'Erro',
+          'Não foi possível fazer o login, tente novamente mais tarde'
+        );
+      } finally {
+        setLoading(false);
+      }
+    },
+    []
+  );
 
   const signInWithGoogle = useCallback(async () => {
     setLoading(true);
@@ -106,26 +112,26 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
         } catch (err) {
           Alert.alert(
             'Erro',
-            'Não foi possivel fazer o login, tente novamente mais tarde'
+            'Não foi possível fazer o login, tente novamente mais tarde'
           );
         } finally {
           setLoading(false);
         }
       } else {
-        throw new Error('rejected signin');
+        throw new Error('rejected signIn');
       }
     } catch (err) {
       Alert.alert(
         'Erro',
-        'Não foi possivel fazer o login, tente novamente mais tarde'
+        'Não foi possível fazer o login, tente novamente mais tarde'
       );
     }
   }, []);
 
-  const siginWithFacebook = useCallback(async () => {
+  const sigInWithFacebook = useCallback(async () => {
     setLoading(true);
 
-    const clientId = process.env.CLIENT_ID_FACEBOOK;
+    const clientId = Number(process.env.CLIENT_ID_FACEBOOK);
     const redirectUri = process.env.REDIRECT_URI;
     const authUrl = `https://www.facebook.com/v12.0/dialog/oauth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=email&response_type=token`;
 
@@ -144,59 +150,33 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
         } catch (err) {
           Alert.alert(
             'Erro',
-            'Não foi possivel fazer o login, tente novamente mais tarde'
+            'Não foi possível fazer o login, tente novamente mais tarde'
           );
         } finally {
           setLoading(false);
         }
       } else {
-        throw new Error('rejected signin');
+        throw new Error('rejected signIn');
       }
     } catch (err) {
       Alert.alert(
         'Erro',
-        'Não foi possivel fazer o login, tente novamente mais tarde'
+        'Não foi possível fazer o login, tente novamente mais tarde'
       );
     }
   }, []);
 
-  const siginWithApple = useCallback(async () => {
-    setLoading(true);
-
+  const signUp = useCallback(async (data: FieldValues) => {
     try {
-      const credential = await AppleAuth.signInAsync({
-        requestedScopes: [
-          AppleAuth.AppleAuthenticationScope.EMAIL,
-          AppleAuth.AppleAuthenticationScope.FULL_NAME
-        ]
-      });
-
-      if (credential) {
-        const appleUser = {
-          appleId: credential.user,
-          email: credential?.email,
-          name: `${credential.fullName?.givenName} ${credential.fullName?.familyName}`
-        };
-        try {
-          const {
-            data: { user, token }
-          } = await api.post<SignInRequestProps>('/authenticate', appleUser);
-          await storeUser(user, token);
-        } catch (err) {
-          Alert.alert(
-            'Erro',
-            'Não foi possivel fazer o login, tente novamente mais tarde'
-          );
-        } finally {
-          setLoading(false);
-        }
-      } else {
-        throw new Error('rejected signin');
-      }
+      const {
+        data: { id, token }
+      } = await api.post<SignUpRequestProps>('/user', data);
+      const user = { ...data, id } as User;
+      await storeUser(user, token);
     } catch (err) {
       Alert.alert(
         'Erro',
-        'Não foi possivel fazer o login, tente novamente mais tarde'
+        'Não foi possível fazer o login, tente novamente mais tarde'
       );
     }
   }, []);
@@ -233,8 +213,8 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
       authUser,
       isLoading,
       signInWithGoogle,
-      siginWithFacebook,
-      siginWithApple
+      sigInWithFacebook,
+      signUp
     }),
     [
       signInWithPassword,
@@ -242,8 +222,8 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
       authUser,
       isLoading,
       signInWithGoogle,
-      siginWithFacebook,
-      siginWithApple
+      sigInWithFacebook,
+      signUp
     ]
   );
   return (
