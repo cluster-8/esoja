@@ -1,3 +1,4 @@
+import MapView from 'react-native-maps';
 import styled from 'styled-components/native';
 import { RFHeight, RFWidth } from '../../../utils/getResponsiveSizes';
 
@@ -33,6 +34,22 @@ export const FormContainer = styled.View`
   border-top-left-radius: ${RFHeight(32)}px;
   border-top-right-radius: ${RFHeight(32)}px;
 `;
+
+export const MapContainer = styled.View`
+  flex: 1;
+  height: ${RFHeight(400)}px;
+  margin-top: 10px;
+`;
+
+export const ReactNativeMapView = styled(MapView)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+`;
+
+export const MapViewMarker = styled.View``;
 
 export const NextStepButton = styled.View`
   margin: ${RFHeight(24)}px 0;

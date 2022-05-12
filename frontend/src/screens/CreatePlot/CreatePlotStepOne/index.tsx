@@ -1,12 +1,21 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable array-callback-return */
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { Marker, Polygon } from 'react-native-maps';
 import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
 import { CreatePlotStepOneScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
-import { Container, FormContainer, NextStepButton } from './styles';
+import {
+  Container,
+  FormContainer,
+  MapContainer,
+  MapViewMarker,
+  NextStepButton,
+  ReactNativeMapView
+} from './styles';
 
 interface Coordinates {
   latitude: number;
@@ -16,8 +25,14 @@ interface Coordinates {
 export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
   navigation
 }) => {
+  const region = {
+    latitude: -23.25058,
+    longitude: -45.891289,
+    latitudeDelta: 0.005,
+    longitudeDelta: 0.005
+  };
   const { saveLocale, getPersistedData } = useSample();
-  const [poligon, setPoligon] = useState<Coordinates[]>([]);
+  const [polygon, setPolygon] = useState<Coordinates[]>([]);
 
   useEffect(() => {
     getPersistedData().then(data => {
@@ -26,7 +41,10 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
   }, [getPersistedData]);
 
   const handleSubmitStepOne = () => {
-    saveLocale(poligon);
+    if (polygon.length > 1) {
+      setPolygon([...polygon, polygon[0]]);
+    }
+    saveLocale(polygon);
     navigation.navigate('CreatePlotStepTwo');
   };
 
@@ -39,19 +57,40 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
         />
         <StepIndicator step={0} />
         <FormContainer>
-          <MapView
-            provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-            style={{ width: '100%', height: '100%' }}
-            region={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.015,
-              longitudeDelta: 0.0121
-            }}
-          />
-          <NextStepButton>
-            <Button title="Continuar" onPress={handleSubmitStepOne} />
-          </NextStepButton>
+          <MapContainer>
+            <ReactNativeMapView
+              initialRegion={region}
+              mapType="satellite"
+              onPress={e => {
+                setPolygon([...polygon, e.nativeEvent.coordinate]);
+              }}
+            >
+              {polygon.length === 1 && (
+                <MapViewMarker>
+                  <Marker coordinate={polygon[0]} />
+                </MapViewMarker>
+              )}
+              {polygon.length > 1 && (
+                <MapViewMarker>
+                  <Polygon
+                    strokeColor="#FF1111"
+                    fillColor="#FF555555"
+                    coordinates={polygon}
+                  />
+                </MapViewMarker>
+              )}
+            </ReactNativeMapView>
+          </MapContainer>
+          {polygon.length >= 1 && (
+            <>
+              <NextStepButton>
+                <Button title="Limpar" onPress={() => setPolygon([])} />
+              </NextStepButton>
+              <NextStepButton>
+                <Button title="Continuar" onPress={handleSubmitStepOne} />
+              </NextStepButton>
+            </>
+          )}
         </FormContainer>
       </Container>
     </ScrollView>
