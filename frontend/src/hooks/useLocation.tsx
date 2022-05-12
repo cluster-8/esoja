@@ -1,11 +1,12 @@
+import * as Location from 'expo-location';
 import React, {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useMemo,
   useState
 } from 'react';
-import * as Location from 'expo-location';
 
 interface Coordinates {
   latitude: number;
@@ -14,7 +15,8 @@ interface Coordinates {
 
 interface LocationContextData {
   getCoordinates: () => Promise<Coordinates>;
-  getZipcode: () => Promise<string>;
+  getZipcode: (coordinates: Coordinates) => Promise<string>;
+  getGeoCode: (cep: string) => Promise<Coordinates>;
 }
 
 type LocationContextProps = {
@@ -35,7 +37,7 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
     }
   };
 
-  const getCoordinates = async (): Promise<Coordinates> => {
+  const getCoordinates = useCallback(async (): Promise<Coordinates> => {
     if (coords?.latitude) {
       return coords;
     }
@@ -48,25 +50,39 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
       return geolocation.coords;
     }
     return { latitude: 47, longitude: 20 };
-  };
+  }, [coords]);
 
-  const getZipcode = async (): Promise<string> => {
-    let coordinates = await getCoordinates();
-    if (coordinates?.latitude) {
-      const local = await Location.reverseGeocodeAsync(coordinates);
-      if (local.length > 0) {
-        return local[0].postalCode || '';
+  const getZipcode = useCallback(
+    async (coordinates: Coordinates): Promise<string> => {
+      if (coordinates?.latitude) {
+        const local = await Location.reverseGeocodeAsync(coordinates);
+        if (local.length > 0) {
+          return local[0].postalCode || '';
+        }
       }
+      return '';
+    },
+    []
+  );
+
+  const getGeoCode = useCallback(async (cep: string) => {
+    const coordinates = await Location.geocodeAsync(cep);
+    if (coordinates?.length) {
+      return {
+        latitude: coordinates[0].latitude,
+        longitude: coordinates[0].longitude
+      };
     }
-    return '';
-  };
+    return { latitude: -23, longitude: -45 };
+  }, []);
 
   const providerValue = useMemo(
     () => ({
       getCoordinates,
-      getZipcode
+      getZipcode,
+      getGeoCode
     }),
-    [getCoordinates, getZipcode]
+    [getCoordinates, getZipcode, getGeoCode]
   );
   return (
     <LocationContext.Provider value={providerValue}>

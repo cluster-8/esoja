@@ -2,7 +2,7 @@
 /* eslint-disable array-callback-return */
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
-import { Polygon, Marker } from 'react-native-maps';
+import { Marker, Polygon } from 'react-native-maps';
 import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
@@ -11,10 +11,10 @@ import { useSample } from '../../../hooks/useSample';
 import {
   Container,
   FormContainer,
-  NextStepButton,
-  ReactNativeMapView,
   MapContainer,
-  MapViewMarker
+  MapViewMarker,
+  NextStepButton,
+  ReactNativeMapView
 } from './styles';
 
 interface Coordinates {

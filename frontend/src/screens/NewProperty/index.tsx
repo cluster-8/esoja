@@ -1,55 +1,84 @@
-import React, { useState } from 'react';
-import { Keyboard, Alert, ScrollView } from 'react-native';
-import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import {
-  TouchableWithoutFeedback,
-  Container,
-  Header,
-  MenuContainer,
-  FormContainer,
-  AvatarField,
-  ButtonContainer
-} from './styles';
-
-import { TextInput } from '../../components/TextInput';
+import { Alert, Keyboard, ScrollView } from 'react-native';
+import * as Yup from 'yup';
 import { Button } from '../../components/Button';
 import { PictureInput } from '../../components/PictureInput';
+import { TextInput } from '../../components/TextInput';
+import { TextInputMask } from '../../components/TextInputMask';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
-import validators from '../../data/I18n/validators';
+import { useAuth } from '../../hooks/useAuth';
+import { useLocation } from '../../hooks/useLocation';
+import { useProperty } from '../../hooks/useProperty';
+import { useUpload } from '../../hooks/useUpload';
+import {
+  AvatarField,
+  ButtonContainer,
+  Container,
+  FormContainer,
+  Header,
+  MenuContainer,
+  OrText,
+  TouchableWithoutFeedback,
+  ZipCodeContainer
+} from './styles';
 
 const schema = Yup.object().shape({
   name: Yup.string().required('validators.nameRequired'),
-  cep: Yup.string()
-    .matches(/^[0-9]+$/, 'validators.cep')
-    .min(8, 'validators.cepLength')
-    .max(8, 'validators.cepLength')
-    .required('validators.required')
+  zipcode: Yup.string().required('validators.required').min(9).max(9)
 });
 
 export const NewProperty: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [getPositionLoading, setGetPositionLoading] = useState(false);
+  const [image, setImage] = useState('');
+
+  const { pictureUpload, selectImage } = useUpload();
+  const { getCoordinates, getGeoCode, getZipcode } = useLocation();
+  const { createPorperty } = useProperty();
+  const { authUser } = useAuth();
 
   const {
     control,
     handleSubmit,
-    reset,
+    setValue,
     formState: { errors }
   } = useForm<FieldValues>({
     resolver: yupResolver(schema)
   });
 
-  async function handleRegister(data: { [x: string]: string }) {
+  const handleSelectImage = async () => {
+    const uri = await selectImage();
+    setImage(uri);
+  };
+
+  const handleGetCurrentPosition = async () => {
+    setGetPositionLoading(true);
+    const coords = await getCoordinates();
+    setValue('zipcode', await getZipcode(coords));
+    setValue('latitude', coords.latitude);
+    setValue('longitude', coords.longitude);
+    setGetPositionLoading(false);
+  };
+
+  async function handleRegister(data: FieldValues) {
     try {
       setLoading(true);
-      console.log(data);
-      reset();
-      Alert.alert('Cadastro efetuado com sucesso!');
+      if (image) {
+        const picture = await pictureUpload(image, 'properties');
+        data.picture = picture;
+      }
+      if (!data?.latitude) {
+        const { latitude, longitude } = await getGeoCode(data.zipcode);
+        data.latitude = latitude;
+        data.longitude = longitude;
+      }
+      data.userId = authUser?.id;
+      await createPorperty(data);
       setLoading(false);
     } catch (error) {
-      console.log(error);
       Alert.alert('Não foi possível salvar.');
       setLoading(false);
     }
@@ -70,9 +99,10 @@ export const NewProperty: React.FC = () => {
             <FormContainer>
               <AvatarField>
                 <PictureInput
-                  placeholder=""
-                  updatePictureLabel=""
-                  onPress={() => console.log('apertou')}
+                  placeholder="Adicionar imagem"
+                  updatePictureLabel="Alterar imagem"
+                  onPress={handleSelectImage}
+                  uri={image}
                 />
               </AvatarField>
               <TextInput
@@ -83,17 +113,27 @@ export const NewProperty: React.FC = () => {
                 placeholder={translate('newProperty.propertyNamePlaceholder')}
                 autoCapitalize="sentences"
                 autoCorrect={false}
-                errorMessage={errors.name && errors.name.message}
+                errorMessage={errors?.name?.message}
               />
-              <TextInput
-                label="Nome"
-                name="cep"
-                control={control}
-                icon="map-pin"
-                placeholder="Digite o CEP da propriedade"
-                keyboardType="numeric"
-                errorMessage={errors.cep && errors.cep.message}
-              />
+              <ZipCodeContainer>
+                <TextInputMask
+                  mask="99999-999"
+                  label="Nome"
+                  name="zipcode"
+                  control={control}
+                  icon="map-pin"
+                  placeholder="Digite o CEP da propriedade"
+                  keyboardType="numeric"
+                  errorMessage={errors?.zipcode?.message}
+                />
+                <OrText>Ou</OrText>
+                <Button
+                  type="secondary"
+                  title="Pegar minha posição atual"
+                  onPress={handleGetCurrentPosition}
+                  showLoadingIndicator={getPositionLoading}
+                />
+              </ZipCodeContainer>
               <ButtonContainer>
                 <Button
                   title="Enviar"

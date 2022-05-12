@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {
   createContext,
   ReactNode,
@@ -6,8 +7,9 @@ import React, {
   useMemo,
   useState
 } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FieldValues } from 'react-hook-form';
+import { Alert } from 'react-native';
+import { api } from '../data/services/api';
 
 interface Coordinates {
   latitude: number;
@@ -43,6 +45,7 @@ interface SampleContextData {
   saveStep: (data: FieldValues) => void;
   saveLocale: (data: Coordinates[]) => void;
   getPersistedData: () => Promise<Sample | null>;
+  getPlot: () => Promise<any[]>;
 }
 
 type SampleContextProps = {
@@ -86,13 +89,24 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     [sample]
   );
 
+  const getPlot = useCallback(async () => {
+    try {
+      const { data } = await api.get<any[]>('/cultive');
+      return data;
+    } catch (err) {
+      Alert.alert('erro');
+      return [];
+    }
+  }, []);
+
   const providerValue = useMemo(
     () => ({
       saveStep,
       getPersistedData,
-      saveLocale
+      saveLocale,
+      getPlot
     }),
-    [saveStep, getPersistedData, saveLocale]
+    [saveStep, getPersistedData, saveLocale, getPlot]
   );
   return (
     <SampleContext.Provider value={providerValue}>

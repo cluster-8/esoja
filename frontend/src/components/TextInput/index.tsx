@@ -1,17 +1,16 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Control, useController } from 'react-hook-form';
 import { TextInputProps as RNTextInputProps } from 'react-native';
 import { useTheme } from 'styled-components';
 import { translate } from '../../data/I18n';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
-
 import {
-  InnerContainer,
-  RNTextInput,
-  FeatherIcon,
-  ErrorMessage,
   Container,
-  InputLabel
+  ErrorMessage,
+  FeatherIcon,
+  InnerContainer,
+  InputLabel,
+  RNTextInput
 } from './styles';
 
 interface TextInputProps extends RNTextInputProps {
@@ -80,7 +79,7 @@ export const TextInput: React.FC<TextInputProps> = ({
 
         <RNTextInput
           {...rest}
-          placeholder={translate(String(rest.placeholder))}
+          placeholder={rest.placeholder}
           value={field.value}
           ref={inputElementRef}
           keyboardAppearance="dark"

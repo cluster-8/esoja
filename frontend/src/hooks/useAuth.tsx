@@ -16,11 +16,11 @@ import { User } from '../data/@types/User';
 import { api } from '../data/services/api';
 
 interface AuthContextData {
-  signInWithPassword: (data: FieldValues) => void;
-  signUp: (data: FieldValues) => void;
-  signInWithGoogle: () => void;
-  sigInWithFacebook: () => void;
-  signOut: () => void;
+  signInWithPassword: (data: FieldValues) => Promise<void>;
+  signUp: (data: FieldValues) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
+  sigInWithFacebook: () => Promise<void>;
+  signOut: () => Promise<void>;
   authUser: User;
   isLoading: boolean;
 }

@@ -1,5 +1,5 @@
-import styled from 'styled-components/native';
 import MapView from 'react-native-maps';
+import styled from 'styled-components/native';
 import { RFHeight, RFWidth } from '../../../utils/getResponsiveSizes';
 
 export const Container = styled.View`
