@@ -42,9 +42,11 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
 
   const handleSubmitSignUp = async (data: FieldValues) => {
     setLoading(true);
-    const url = await pictureUpload(image, 'sample');
-    data.picture = url;
-    signUp(data);
+    if (image) {
+      const url = await pictureUpload(image, 'user');
+      data.picture = url;
+    }
+    await signUp(data);
     setLoading(false);
   };
 

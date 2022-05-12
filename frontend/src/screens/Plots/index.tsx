@@ -1,13 +1,10 @@
-import React from 'react';
-
-import { PlotsScreenRouteProps } from '../../data/routes/app';
-
-import { Container, Header, CultiveList, AddButton, Icon } from './styles';
-
+import React, { useCallback, useEffect, useState } from 'react';
 import { CultiveCard, CultiveCardProps } from '../../components/PlotCard';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
-import { ScrollView } from 'react-native';
+import { PlotsScreenRouteProps } from '../../data/routes/app';
+import { useSample } from '../../hooks/useSample';
+import { AddButton, Container, CultiveList, Header, Icon } from './styles';
 
 export interface DataListProps extends CultiveCardProps {
   id: string;
@@ -48,6 +45,16 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
       produtividade: 50
     }
   ];
+  const [plots, setPlots] = useState<any[]>([]);
+  const { getPlot } = useSample();
+
+  const getData = useCallback(async () => {
+    setPlots(await getPlot());
+  }, [getPlot]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   return (
     <Container>
@@ -65,7 +72,7 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
       />
 
       <AddButton onPress={() => navigation.navigate('CreatePlotStepOne')}>
-        <Icon name={'plus'} />
+        <Icon name="plus" />
       </AddButton>
     </Container>
   );

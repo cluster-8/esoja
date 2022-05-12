@@ -22,6 +22,7 @@ import { Home } from '../screens/Home';
 import { NewProperty } from '../screens/NewProperty';
 import { Plots } from '../screens/Plots';
 import { Properties } from '../screens/Properties';
+import { Quotation } from '../screens/Quotation';
 import { Weather } from '../screens/Weather';
 
 const Stack = createNativeStackNavigator<AppRoutesParams>();
@@ -117,6 +118,11 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         <Stack.Screen
           name="NewProperty"
           component={NewProperty}
+          options={options}
+        />
+        <Stack.Screen
+          name="Quotation"
+          component={Quotation}
           options={options}
         />
         <Stack.Screen

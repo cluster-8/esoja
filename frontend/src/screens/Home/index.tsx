@@ -25,6 +25,8 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   const [seedQuote, setSeedQuote] = useState<Quotation | null>(null);
   const [availableQuote, setAvailableQuote] = useState<Quotation | null>(null);
 
+  const [loading, setLoading] = useState(false);
+
   const { authUser, signOut } = useAuth();
   const { getWeatherCurrentDay, getQuotation } = useHome();
   const { getCoordinates } = useLocation();
@@ -60,6 +62,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   };
 
   const getData = useCallback(async () => {
+    setLoading(true);
     const location = await getCoordinates();
     const weatherData = await getWeatherCurrentDay(location);
 
@@ -73,6 +76,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
       setAvailableQuote(quoteData[0]);
       setSeedQuote(quoteData[1]);
     }
+    setLoading(false);
   }, [getCoordinates, getQuotation, getWeatherCurrentDay]);
 
   useEffect(() => {
@@ -101,6 +105,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
               title={translate('home.seeds')}
               value={`R$ ${seedQuote?.Valor || 0}`}
               variation={seedQuote?.Variacao}
+              loadingIndicator={loading}
               icon={
                 seedQuote && seedQuote?.Variacao >= 0
                   ? 'trending-up'
@@ -113,6 +118,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
               title={translate('home.soybeanPrice')}
               value={`R$ ${availableQuote?.Valor || 0}`}
               variation={availableQuote?.Variacao}
+              loadingIndicator={loading}
               icon={
                 availableQuote && availableQuote?.Variacao >= 0
                   ? 'trending-up'
@@ -122,6 +128,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
             <MenuCard
               onPress={() => handlerCardMenuClick('Weather')}
               widget
+              loadingIndicator={loading}
               title={translate('home.weather')}
               value={`${weather?.main.temp.toFixed(0) || '0'}º`}
               picture={getWeatherImage(weather?.weather[0].icon || '')}

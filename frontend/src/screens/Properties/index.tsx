@@ -1,17 +1,10 @@
-import React from 'react';
-import { ScrollView } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
 import { PropertyCard, PropertyCardProps } from '../../components/PropertyCard';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
 import { PropertiesScreenRouteProps } from '../../data/routes/app';
-import {
-  AddButton,
-  Container,
-  Header,
-  Icon,
-  PropertyList,
-  SubTitle
-} from './styles';
+import { useProperty } from '../../hooks/useProperty';
+import { AddButton, Container, Header, Icon, PropertyList } from './styles';
 
 export interface DataListProps extends PropertyCardProps {
   id: string;
@@ -20,44 +13,16 @@ export interface DataListProps extends PropertyCardProps {
 export const Properties: React.FC<PropertiesScreenRouteProps> = ({
   navigation
 }) => {
-  const data = [
-    {
-      id: '1',
-      name: 'Teste 1',
-      area: 40,
-      total_tal: 10,
-      cep: '12236-487',
-      city: 'São José dos Campos',
-      state: 'SP'
-    },
-    {
-      id: '2',
-      name: 'Teste 2',
-      area: 40,
-      total_tal: 10,
-      cep: '12236-487',
-      city: 'São José dos Campos',
-      state: 'SP'
-    },
-    {
-      id: '3',
-      name: 'Teste 3',
-      area: 40,
-      total_tal: 10,
-      cep: '12236-487',
-      city: 'São José dos Campos',
-      state: 'SP'
-    },
-    {
-      id: '4',
-      name: 'Teste 4',
-      area: 40,
-      total_tal: 10,
-      cep: '12236-487',
-      city: 'São José dos Campos',
-      state: 'SP'
-    }
-  ];
+  const [properties, setProperties] = useState<any[]>([]);
+  const { getProperties } = useProperty();
+
+  const getData = useCallback(async () => {
+    setProperties(await getProperties());
+  }, [getProperties]);
+
+  useEffect(() => {
+    getData();
+  }, [getData]);
 
   return (
     <Container>
@@ -69,13 +34,13 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({
       </Header>
 
       <PropertyList
-        data={data}
+        data={properties}
         keyExtractor={item => item.id}
         renderItem={({ item }) => <PropertyCard data={item} />}
       />
 
       <AddButton onPress={() => navigation.navigate('NewProperty')}>
-        <Icon name={'plus'} />
+        <Icon name="plus" />
       </AddButton>
     </Container>
   );

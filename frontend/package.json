@@ -13,6 +13,7 @@
     "@expo/vector-icons": "^12.0.0",
     "@hookform/resolvers": "^2.8.8",
     "@react-native-async-storage/async-storage": "~1.15.0",
+    "@react-native-community/picker": "^1.8.1",
     "@react-native-firebase/app": "^14.9.1",
     "@react-native-firebase/storage": "^14.9.1",
     "@react-navigation/core": "^6.1.1",

@@ -1,14 +1,5 @@
 import React from 'react';
-
-import {
-  Container,
-  Header,
-  Title,
-  ExcludeButton,
-  Icon,
-  Footer,
-  InfoText
-} from './styles';
+import { Container, Footer, Header, InfoText, Title } from './styles';
 
 export interface CultiveCardProps {
   id: string;
@@ -23,7 +14,7 @@ interface Props {
   data: CultiveCardProps;
 }
 
-export function CultiveCard({ data }: Props) {
+export const CultiveCard = ({ data }: Props) => {
   return (
     <Container>
       <Header>
@@ -41,4 +32,4 @@ export function CultiveCard({ data }: Props) {
       </Footer>
     </Container>
   );
-}
+};

@@ -1,17 +1,18 @@
 import React from 'react';
+import { useTheme } from 'styled-components';
+import { RFFontSize } from '../../utils/getResponsiveSizes';
+import { LoadingIndicator } from '../LoadingIndicator';
 import {
   MenuCardContainer,
-  MenuCardValueContainer,
-  MenuCardTitle,
-  MenuCardValue,
-  MenuCardImage,
   MenuCardIcon,
-  MenuCardWidgetContainer,
+  MenuCardImage,
+  MenuCardTitle,
   MenuCardTitleWidget,
+  MenuCardValue,
+  MenuCardValueContainer,
+  MenuCardWidgetContainer,
   MenuCardWidgetIcon
 } from './styles';
-import { RFFontSize } from '../../utils/getResponsiveSizes';
-import { useTheme } from 'styled-components';
 
 export interface MenuCardProps {
   title: string;
@@ -21,6 +22,7 @@ export interface MenuCardProps {
   variation?: number;
   widget?: boolean;
   onPress: () => void;
+  loadingIndicator?: boolean;
 }
 
 export const MenuCard: React.FC<MenuCardProps> = ({
@@ -30,33 +32,40 @@ export const MenuCard: React.FC<MenuCardProps> = ({
   value,
   variation,
   onPress,
-  widget = false
+  widget = false,
+  loadingIndicator = false
 }) => {
   const theme = useTheme();
   if (widget) {
     return (
       <MenuCardWidgetContainer onPress={onPress}>
         <MenuCardTitleWidget>{title}</MenuCardTitleWidget>
-        <MenuCardValueContainer>
-          {icon && !picture && (
-            <MenuCardWidgetIcon
-              name={icon}
-              size={RFFontSize(24)}
-              color={
-                icon === 'trending-down'
-                  ? theme.colors.attention
-                  : theme.colors.primary
-              }
-            />
-          )}
-          {picture && <MenuCardImage source={picture} resizeMode="contain" />}
-          {variation && (
-            <MenuCardValue>
-              {variation >= 0 ? `+ ${variation}` : variation}
-            </MenuCardValue>
-          )}
-          <MenuCardValue>{value}</MenuCardValue>
-        </MenuCardValueContainer>
+        {loadingIndicator ? (
+          <MenuCardValueContainer>
+            <LoadingIndicator color={theme.colors.primary} />
+          </MenuCardValueContainer>
+        ) : (
+          <MenuCardValueContainer>
+            {icon && !picture && (
+              <MenuCardWidgetIcon
+                name={icon}
+                size={RFFontSize(24)}
+                color={
+                  icon === 'trending-down'
+                    ? theme.colors.attention
+                    : theme.colors.primary
+                }
+              />
+            )}
+            {picture && <MenuCardImage source={picture} resizeMode="contain" />}
+            {variation && (
+              <MenuCardValue>
+                {variation >= 0 ? `+ ${variation}` : variation}
+              </MenuCardValue>
+            )}
+            <MenuCardValue>{value}</MenuCardValue>
+          </MenuCardValueContainer>
+        )}
       </MenuCardWidgetContainer>
     );
   }

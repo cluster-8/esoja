@@ -60,9 +60,24 @@ export const Fields = styled.View`
 `;
 
 export const AvatarField = styled.View`
-  margin: ${RFHeight(32)}px auto;
+  align-items: center;
+  justify-content: center;
+  margin: ${RFHeight(32)}px 0;
 `;
 
 export const ButtonContainer = styled.View`
   margin: ${RFHeight(24)}px 0;
+`;
+
+export const ZipCodeContainer = styled.View`
+  border: 2px solid ${({ theme }) => theme.colors.details};
+  padding: ${RFHeight(8)}px;
+  border-radius: ${RFHeight(6)}px;
+`;
+export const OrText = styled.Text`
+  font-size: ${RFFontSize(16)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme }) => theme.colors.text};
+
+  margin: ${RFHeight(8)}px auto;
 `;
