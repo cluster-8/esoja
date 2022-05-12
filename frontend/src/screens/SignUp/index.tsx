@@ -13,7 +13,7 @@ import { useUpload } from '../../hooks/useUpload';
 import { PictureContainer } from '../CreatePlot/CreatePlotStepNine/styles';
 import { Container, FormContainer, NextStepButton } from './styles';
 
-const stepTwo = yup.object().shape({
+const signUpValidator = yup.object().shape({
   name: yup.string().required('Nome é obrigatório'),
   email: yup.string().required('Email é obrigatório').email('email invalido'),
   password: yup
@@ -37,7 +37,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
     handleSubmit,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(stepTwo)
+    resolver: yupResolver(signUpValidator)
   });
 
   const handleSubmitSignUp = async (data: FieldValues) => {
@@ -86,6 +86,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
             icon="mail"
             name="email"
             control={control}
+            errorMessage={errors?.email?.message}
           />
 
           <TextInput
@@ -95,6 +96,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
             secureTextEntry
             name="password"
             control={control}
+            errorMessage={errors?.password?.message}
           />
 
           <TextInput
@@ -104,6 +106,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
             icon="repeat"
             name="passwordConfirmation"
             control={control}
+            errorMessage={errors?.passwordConfirmation?.message}
           />
           <NextStepButton>
             <Button

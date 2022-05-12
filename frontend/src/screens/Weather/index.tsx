@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, StatusBar } from 'react-native';
-import { useTheme } from 'styled-components';
 import { WeatherInfoCard } from '../../components/WeatherInfoCard';
 import { WeatherPropertCard } from '../../components/WeatherPropertCard';
 import { WeekDayCard } from '../../components/WeekDayCard';
@@ -41,7 +40,6 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
   );
   const [weatherType, setWeatherType] = useState<string>('');
 
-  const theme = useTheme();
   const { getCoordinates } = useLocation();
 
   const handleSelectDate = (date: number) => {
@@ -83,12 +81,14 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
             <WeatherPropertCard />
             <WeekDayCardContainer>
               {list.map(date => (
-                <WeekDayCard
-                  key={date.dt}
-                  date={date.dt}
-                  onPress={() => handleSelectDate(date.dt)}
-                  selectedDate={selectedDate}
-                />
+                <ScrollView horizontal>
+                  <WeekDayCard
+                    key={date.dt}
+                    date={date.dt}
+                    onPress={() => handleSelectDate(date.dt)}
+                    selectedDate={selectedDate}
+                  />
+                </ScrollView>
               ))}
             </WeekDayCardContainer>
 
