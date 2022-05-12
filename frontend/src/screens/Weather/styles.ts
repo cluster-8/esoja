@@ -31,7 +31,7 @@ export const WeatherContainer = styled.View<WeatherContainerProps>`
   background-color: ${({ weatherType }) =>
     handleContainerColorType(weatherType)};
   padding: 8px;
-  padding-top: 100px;
+  padding-top: 120px;
 `;
 
 export const WeekDayCardContainer = styled.View`

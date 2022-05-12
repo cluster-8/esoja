@@ -1,4 +1,3 @@
-import { BaseNavigationContainer } from '@react-navigation/core';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions
@@ -26,21 +25,19 @@ export const AuthRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
   );
 
   return (
-    <BaseNavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          ...screenOptions,
-          headerShown: true,
-          headerTintColor: theme.colors.white
-        }}
-      >
-        <Stack.Screen
-          name="SignIn"
-          component={SignIn}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="SignUp" component={SignUp} options={options} />
-      </Stack.Navigator>
-    </BaseNavigationContainer>
+    <Stack.Navigator
+      screenOptions={{
+        ...screenOptions,
+        headerShown: true,
+        headerTintColor: theme.colors.white
+      }}
+    >
+      <Stack.Screen
+        name="SignIn"
+        component={SignIn}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="SignUp" component={SignUp} options={options} />
+    </Stack.Navigator>
   );
 };

@@ -1,10 +1,10 @@
-import { BaseNavigationContainer } from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import {
   createNativeStackNavigator,
   NativeStackNavigationOptions
 } from '@react-navigation/native-stack';
-import React, { useMemo } from 'react';
-import { Image } from 'react-native';
+import React, { useEffect, useMemo } from 'react';
+import { BackHandler, Image } from 'react-native';
 import { useTheme } from 'styled-components';
 import { NavigatorProps } from '.';
 import Logo from '../assets/images/logo-dark.png';
@@ -29,6 +29,24 @@ const Stack = createNativeStackNavigator<AppRoutesParams>();
 
 export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
   const theme = useTheme();
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const handleBackAction = () => {
+      if (navigation.canGoBack()) {
+        navigation.goBack();
+      } else {
+        BackHandler.exitApp();
+      }
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      handleBackAction
+    );
+    return () => backHandler.remove();
+  }, [navigation]);
+
   const options = useMemo<NativeStackNavigationOptions>(
     () => ({
       headerTitleAlign: 'center',
@@ -50,92 +68,86 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
     [theme]
   );
   return (
-    <BaseNavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          ...screenOptions,
-          headerShown: true,
-          headerTintColor: theme.colors.white
+    <Stack.Navigator
+      screenOptions={{
+        ...screenOptions,
+        headerShown: true,
+        headerTintColor: theme.colors.white
+      }}
+      initialRouteName="Home"
+    >
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Plots" component={Plots} options={options} />
+      <Stack.Screen
+        name="CreatePlotStepOne"
+        component={CreatePlotStepOne}
+        options={options}
+      />
+      <Stack.Screen
+        name="CreatePlotStepTwo"
+        component={CreatePlotStepTwo}
+        options={options}
+      />
+      <Stack.Screen
+        name="CreatePlotStepThree"
+        component={CreatePlotStepThree}
+        options={options}
+      />
+      <Stack.Screen
+        name="CreatePlotStepFour"
+        component={CreatePlotStepFour}
+        options={options}
+      />
+      <Stack.Screen
+        name="CreatePlotStepFive"
+        component={CreatePlotStepFive}
+        options={options}
+      />
+      <Stack.Screen
+        name="CreatePlotStepSix"
+        component={CreatePlotStepSix}
+        options={options}
+      />
+      <Stack.Screen
+        name="CreatePlotStepSeven"
+        component={CreatePlotStepSeven}
+        options={options}
+      />
+      <Stack.Screen
+        name="CreatePlotStepEight"
+        component={CreatePlotStepEight}
+        options={options}
+      />
+      <Stack.Screen
+        name="CreatePlotStepNine"
+        component={CreatePlotStepNine}
+        options={options}
+      />
+      <Stack.Screen
+        name="Properties"
+        component={Properties}
+        options={options}
+      />
+      <Stack.Screen
+        name="NewProperty"
+        component={NewProperty}
+        options={options}
+      />
+      <Stack.Screen name="Quotation" component={Quotation} options={options} />
+      <Stack.Screen
+        name="Weather"
+        component={Weather}
+        options={{
+          ...options,
+          headerStyle: { backgroundColor: 'transparent' },
+          headerShadowVisible: true,
+          headerTransparent: true
         }}
-        initialRouteName="Home"
-      >
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Plots" component={Plots} options={options} />
-        <Stack.Screen
-          name="CreatePlotStepOne"
-          component={CreatePlotStepOne}
-          options={options}
-        />
-        <Stack.Screen
-          name="CreatePlotStepTwo"
-          component={CreatePlotStepTwo}
-          options={options}
-        />
-        <Stack.Screen
-          name="CreatePlotStepThree"
-          component={CreatePlotStepThree}
-          options={options}
-        />
-        <Stack.Screen
-          name="CreatePlotStepFour"
-          component={CreatePlotStepFour}
-          options={options}
-        />
-        <Stack.Screen
-          name="CreatePlotStepFive"
-          component={CreatePlotStepFive}
-          options={options}
-        />
-        <Stack.Screen
-          name="CreatePlotStepSix"
-          component={CreatePlotStepSix}
-          options={options}
-        />
-        <Stack.Screen
-          name="CreatePlotStepSeven"
-          component={CreatePlotStepSeven}
-          options={options}
-        />
-        <Stack.Screen
-          name="CreatePlotStepEight"
-          component={CreatePlotStepEight}
-          options={options}
-        />
-        <Stack.Screen
-          name="CreatePlotStepNine"
-          component={CreatePlotStepNine}
-          options={options}
-        />
-        <Stack.Screen
-          name="Properties"
-          component={Properties}
-          options={options}
-        />
-        <Stack.Screen
-          name="NewProperty"
-          component={NewProperty}
-          options={options}
-        />
-        <Stack.Screen
-          name="Quotation"
-          component={Quotation}
-          options={options}
-        />
-        <Stack.Screen
-          name="Weather"
-          component={Weather}
-          options={{
-            ...options,
-            headerStyle: { backgroundColor: 'transparent' },
-            headerShadowVisible: false,
-            headerTransparent: true
-          }}
-        />
-      </Stack.Navigator>
-    </BaseNavigationContainer>
+      />
+    </Stack.Navigator>
   );
 };

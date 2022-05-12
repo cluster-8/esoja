@@ -1,3 +1,4 @@
+import { BaseNavigationContainer } from '@react-navigation/core';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import * as React from 'react';
 import { StatusBar } from 'react-native';
@@ -24,12 +25,16 @@ export const Routes: React.FC = () => {
     [theme]
   );
 
-  return !authUser.id ? (
-    <AuthRoutes screenOptions={screenOptions} />
-  ) : (
-    <>
-      <StatusBar backgroundColor={theme.colors.primary} translucent />
-      <AppRoutes screenOptions={screenOptions} />
-    </>
+  return (
+    <BaseNavigationContainer>
+      {!authUser.id ? (
+        <AuthRoutes screenOptions={screenOptions} />
+      ) : (
+        <>
+          <StatusBar backgroundColor={theme.colors.primary} translucent />
+          <AppRoutes screenOptions={screenOptions} />
+        </>
+      )}
+    </BaseNavigationContainer>
   );
 };
