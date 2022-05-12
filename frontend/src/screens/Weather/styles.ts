@@ -3,12 +3,33 @@ import styled from 'styled-components/native';
 import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 interface WeatherContainerProps {
-  clima: '';
+  weatherType: string;
 }
-export const WeatherContainer = styled.View`
+
+const handleContainerColorType = (weatherType: string) => {
+  switch (weatherType) {
+    case 'Thunderstorm':
+      return '#2d2994';
+    case 'Drizzle':
+      return '#d0d2d1';
+    case 'Rain':
+      return '#92bad2';
+    case 'Snow':
+      return '#b0d6f2';
+    case 'Clear':
+      return '#03d7fc';
+    case 'Clouds':
+      return '#949494';
+    default:
+      return '#379634';
+  }
+};
+
+export const WeatherContainer = styled.View<WeatherContainerProps>`
   flex: 1;
   align-items: center;
-  background-color: #03d7fc;
+  background-color: ${({ weatherType }) =>
+    handleContainerColorType(weatherType)};
   padding: 8px;
   padding-top: 120px;
   padding-bottom: 60px;

@@ -24,6 +24,7 @@ export interface WeatherForecastProps {
     {
       description: string;
       icon: string;
+      main: string;
     }
   ];
   speed: number;
@@ -43,7 +44,9 @@ export const getWeatherForecast = async (
     );
 
     return list;
-  } catch (err) {}
+  } catch (err) {
+    return console.error(err);
+  }
 };
 
 export const getWeatherDay = async (coordinates: Coordinates) => {
@@ -54,6 +57,6 @@ export const getWeatherDay = async (coordinates: Coordinates) => {
 
     return data;
   } catch (err) {
-    console.log('err getWeatherDay: ', err);
+    return console.log('err getWeatherDay: ', err);
   }
 };

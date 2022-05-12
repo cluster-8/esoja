@@ -39,6 +39,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
   const [data, setData] = useState<WeatherForecastProps>(
     {} as WeatherForecastProps
   );
+  const [weatherType, setWeatherType] = useState<string>('');
 
   const theme = useTheme();
   const { getCoordinates } = useLocation();
@@ -54,11 +55,14 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
   useEffect(() => {
     const getData = async () => {
       const coordinates = await getCoordinates();
+
       const weather = await getWeatherForecast(coordinates, 'pt_br');
+
       if (weather) {
         setList(weather);
         handleSelectDate(weather[0].dt);
         setData(weather[0]);
+        setWeatherType(weather[0].weather[0].main);
         setLoading(false);
       }
     };
@@ -71,9 +75,9 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
     <ScrollView>
       <StatusBar backgroundColor="transparent" translucent />
 
-      <WeatherContainer>
+      <WeatherContainer weatherType={weatherType}>
         {loading ? (
-          <WeatherContainer />
+          <WeatherContainer weatherType={weatherType} />
         ) : (
           <>
             <WeatherPropertCard />
@@ -114,7 +118,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
                 />
                 <WeatherInfoCard
                   title={translate('weather.rain')}
-                  value={`${data.pop * 100}%`}
+                  value={`${(data.pop * 100).toFixed(0)}%`}
                   icon="umbrella"
                 />
                 <WeatherInfoCard
