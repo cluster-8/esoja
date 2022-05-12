@@ -31,8 +31,7 @@ export const WeatherContainer = styled.View<WeatherContainerProps>`
   background-color: ${({ weatherType }) =>
     handleContainerColorType(weatherType)};
   padding: 8px;
-  padding-top: 120px;
-  padding-bottom: 60px;
+  padding-top: 100px;
 `;
 
 export const WeekDayCardContainer = styled.View`
@@ -92,6 +91,7 @@ export const WeatherDayPeriodContainer = styled.View`
   padding: ${RFHeight(16)}px;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: ${RFHeight(8)}px;
+  margin-bottom: 30px;
 `;
 
 export const WeatherDayContent = styled.View`
@@ -102,6 +102,7 @@ export const WeatherDayContent = styled.View`
   padding: ${RFHeight(4)}px 0;
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: ${RFHeight(8)}px;
+  margin: ${RFHeight(8)}px;
 `;
 
 export const WeatherSunsetIcon = styled(Feather)`
@@ -132,4 +133,8 @@ export const WeatherPeriodTemp = styled.Text`
   font-size: ${RFFontSize(24)}px;
   font-weight: bold;
   color: ${({ theme }) => theme.colors.text};
+`;
+export const LoadingContainer = styled.View`
+  flex: 1;
+  height: 100%;
 `;
