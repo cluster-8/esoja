@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import { FieldValues, useForm } from 'react-hook-form';
+import { translate } from '../../../data/I18n';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ScrollView } from 'react-native';
 import {
@@ -23,8 +24,8 @@ import { useSample } from '../../../hooks/useSample';
 const stepFour = yup.object().shape({
   plantsPerMeter: yup
     .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade deve ser maior que "ZERO"')
+    .required('CreatePlotStepFour.errors.plantsPerMeter.required')
+    .min(1, 'CreatePlotStepFour.errors.plantsPerMeter.min')
 });
 
 export const CreatePlotStepFour: React.FC<
@@ -58,8 +59,8 @@ export const CreatePlotStepFour: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Quantidade de plantas"
-          subtitle={'Informe a quantidade de plantas em "2 metros" lineares'}
+          title={translate('CreatePlotStepFour.title')}
+          subtitle={translate('CreatePlotStepFour.subtitle')}
         />
         <StepIndicator step={1} indicator={3} />
         <FormContainer>
@@ -67,8 +68,8 @@ export const CreatePlotStepFour: React.FC<
             <StepFourHelperImage source={StepFour} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Platas em 2 metros"
-            placeholder="Digite a quantidade de plantas"
+            label='CreatePlotStepFour.plantsNumber'
+            placeholder={translate('CreatePlotStepFour.plantsNumberPlaceholder')}
             icon="check-square"
             keyboardType="numeric"
             name="plantsPerMeter"
@@ -77,7 +78,7 @@ export const CreatePlotStepFour: React.FC<
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepFour.continueButton')}
               onPress={handleSubmit(handleSubmitStepFour)}
             />
           </NextStepButton>

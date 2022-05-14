@@ -5,6 +5,7 @@ import { QuotationCard } from '../../components/QuotationCard';
 import { Select } from '../../components/Select';
 import Title from '../../components/Title';
 import { QuotationScreenRouteProps } from '../../data/routes/app';
+import { translate } from 'i18n-js';
 import { useSample } from '../../hooks/useSample';
 import { AddButton, Container, Header, Icon, QuotationList } from './styles';
 
@@ -76,8 +77,8 @@ export const Quotation: React.FC<QuotationScreenRouteProps> = ({
     <Container>
       <Header>
         <Title
-          title="Cotações"
-          subtitle="Selecione uma cidade e fique por dentro das últimas atualizaçôes do custo da soja "
+          title={translate('quotation.title')}
+          subtitle={translate('quotation.subtitle')}
         />
       </Header>
 

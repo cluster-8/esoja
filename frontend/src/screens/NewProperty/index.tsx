@@ -79,7 +79,7 @@ export const NewProperty: React.FC = () => {
       await createPorperty(data);
       setLoading(false);
     } catch (error) {
-      Alert.alert('Não foi possível salvar.');
+      Alert.alert('newProperty.newPropertyAlert');
       setLoading(false);
     }
   }
@@ -99,8 +99,8 @@ export const NewProperty: React.FC = () => {
             <FormContainer>
               <AvatarField>
                 <PictureInput
-                  placeholder="Adicionar imagem"
-                  updatePictureLabel="Alterar imagem"
+                  placeholder={translate('newProperty.propertyPictureLabel')}
+                  updatePictureLabel='newProperty.propertyUpdatePictureLabel'
                   onPress={handleSelectImage}
                   uri={image}
                 />
@@ -118,25 +118,25 @@ export const NewProperty: React.FC = () => {
               <ZipCodeContainer>
                 <TextInputMask
                   mask="99999-999"
-                  label="Nome"
+                  label="newProperty.propertyNameLabel"
                   name="zipcode"
                   control={control}
                   icon="map-pin"
-                  placeholder="Digite o CEP da propriedade"
+                  placeholder={translate('newProperty.propertyCepPlaceholder')}
                   keyboardType="numeric"
                   errorMessage={errors?.zipcode?.message}
                 />
                 <OrText>Ou</OrText>
                 <Button
                   type="secondary"
-                  title="Pegar minha posição atual"
+                  title={translate('newProperty.propertyPositionTitle')}
                   onPress={handleGetCurrentPosition}
                   showLoadingIndicator={getPositionLoading}
                 />
               </ZipCodeContainer>
               <ButtonContainer>
                 <Button
-                  title="Enviar"
+                  title={translate('newProperty.propertyButtonTitle')}
                   onPress={handleSubmit(handleRegister)}
                   showLoadingIndicator={loading}
                 />

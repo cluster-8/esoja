@@ -1,3 +1,4 @@
+import { translate } from 'i18n-js';
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
@@ -36,22 +37,22 @@ export const CreatePlotStepNine: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Imagem das amostras"
-          subtitle="Tire uma foto de todas as plantas usadas nas amostras"
+          title={translate('CreatePlotStepNine.title')}
+          subtitle={translate('CreatePlotStepNine.subtitle')}
         />
         <StepIndicator step={2} indicator={7} />
         <FormContainer>
           <PictureContainer>
             <PictureInput
               model="RETANGLE"
-              placeholder="Adicionar imagem"
-              updatePictureLabel="Alterar imagem"
+              placeholder={translate('CreatePlotStepNine.imagePlaceholder')}
+              updatePictureLabel='CreatePlotStepNine.imageUpdatePictureLabel'
               onPress={handleSelectImage}
               uri={image}
             />
           </PictureContainer>
           <NextStepButton>
-            <Button title="Finalizar" onPress={handleSubmitStepNine} />
+            <Button title={translate('CreatePlotStepNine.finishButton')} onPress={handleSubmitStepNine} />
           </NextStepButton>
         </FormContainer>
       </Container>

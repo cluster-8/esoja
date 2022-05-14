@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from 'react-native';
 import { Marker, Polygon } from 'react-native-maps';
+import { translate } from 'i18n-js';
 import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
@@ -52,8 +53,8 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Coordenadas do talhão"
-          subtitle="Desenhe no mapa a area correspondente ao talhão"
+          title={translate('CreatePlotStepOne.title')}
+          subtitle={translate('CreatePlotStepOne.subtitle')}
         />
         <StepIndicator step={0} />
         <FormContainer>
@@ -84,10 +85,10 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
           {polygon.length >= 1 && (
             <>
               <NextStepButton>
-                <Button title="Limpar" onPress={() => setPolygon([])} />
+              <Button title={translate('CreatePlotStepOne.ClearButton')} onPress={() => setPolygon([])} />
               </NextStepButton>
               <NextStepButton>
-                <Button title="Continuar" onPress={handleSubmitStepOne} />
+              <Button title={translate('CreatePlotStepOne.ContinueButton')} onPress={handleSubmitStepOne} />
               </NextStepButton>
             </>
           )}

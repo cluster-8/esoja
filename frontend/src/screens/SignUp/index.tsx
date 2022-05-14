@@ -9,21 +9,22 @@ import { TextInput } from '../../components/TextInput';
 import Title from '../../components/Title';
 import { SignUpScreenRouteProps } from '../../data/routes/auth';
 import { useAuth } from '../../hooks/useAuth';
+import { translate } from '../../data/I18n';
 import { useUpload } from '../../hooks/useUpload';
 import { PictureContainer } from '../CreatePlot/CreatePlotStepNine/styles';
 import { Container, FormContainer, NextStepButton } from './styles';
 
 const signUpValidator = yup.object().shape({
-  name: yup.string().required('Nome é obrigatório'),
-  email: yup.string().required('Email é obrigatório').email('email invalido'),
+  name: yup.string().required('signUp.errors.nameValidator.required'),
+  email: yup.string().required('signUp.errors.email.required').email('signUp.errors.email.format'),
   password: yup
     .string()
-    .required('Senha é obrigatório')
-    .min(6, 'Senha deve ter no mínimo 6 caracteres'),
+    .required('signUp.errors.password.required')
+    .min(6, 'signUp.errors.password.min'),
   passwordConfirmation: yup
     .string()
-    .required('Confirmação de senha é obrigatória')
-    .oneOf([yup.ref('password'), null], 'As senhas não correspondem')
+    .required('signUp.errors.passwordConfirmation.required')
+    .oneOf([yup.ref('password'), null], 'signUp.errors.passwordConfirmation.oneOf')
 });
 
 export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
@@ -59,30 +60,30 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
     <ScrollView>
       <Container>
         <Title
-          title="Vamos começar"
-          subtitle="Crie uma conta no eSoja para ter acesso á todas as funcionalidades"
+          title={translate('signUp.title')}
+          subtitle={translate('signUp.subtitle')}
         />
         <FormContainer>
           <PictureContainer>
             <PictureInput
-              placeholder="Adicionar imagem"
-              updatePictureLabel="Alterar imagem"
+              placeholder='signUp.imagePlaceholder'
+              updatePictureLabel='signUp.imageUpdatePictureLabel'
               onPress={handleSelectImage}
               uri={image}
             />
           </PictureContainer>
 
           <TextInput
-            label="Nome"
-            placeholder="Digite um nome para o talhão"
+            label='signUp.signUpName'
+            placeholder={translate('signUp.namePlaceholder')}
             icon="user"
             name="name"
             control={control}
             errorMessage={errors?.name?.message}
           />
           <TextInput
-            label="Email"
-            placeholder="Digite seu email"
+            label='signUp.email'
+            placeholder={translate('signUp.emailPlaceholder')}
             icon="mail"
             name="email"
             control={control}
@@ -90,8 +91,8 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
           />
 
           <TextInput
-            label="Senha"
-            placeholder="Digite uma senha segura"
+            label='signUp.signUpPassword'
+            placeholder={translate('signUp.passwordPlaceholder')}
             icon="lock"
             secureTextEntry
             name="password"
@@ -100,8 +101,8 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
           />
 
           <TextInput
-            label="Confirme a senha"
-            placeholder="Repita sua senha"
+            label='signUp.passwordConfirmation'
+            placeholder={translate('signUp.passwordRepeatPlaceholder')}
             secureTextEntry
             icon="repeat"
             name="passwordConfirmation"
@@ -110,7 +111,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('signUp.signUp')}
               onPress={handleSubmit(handleSubmitSignUp)}
               showLoadingIndicator={loading}
             />

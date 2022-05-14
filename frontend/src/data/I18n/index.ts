@@ -8,6 +8,19 @@ import properties from './properties';
 import signIn from './signIn';
 import validators from './validators';
 import weather from './weather';
+import signUp from './signUp';
+import CreatePlotStepEight from './CreatePlotStepEight';
+import CreatePlotStepOne from './CreatePlotStepOne';
+import CreatePlotStepTwo from './CreatePlotStepTwo';
+import CreatePlotStepThree from './CreatePlotStepThree';
+import CreatePlotStepFour from './CreatePlotStepFour';
+import CreatePlotStepFive from './CreatePlotStepFive';
+import CreatePlotStepSix from './CreatePlotStepSix';
+import CreatePlotStepSeven from './CreatePlotStepSeven';
+import CreatePlotStepNine from './CreatePlotStepNine';
+import quotation from './quotation';
+
+
 
 interface LanguageProps {
   [key: string]: {
@@ -26,7 +39,18 @@ export const i18nConfig = () => {
       ...properties.pt,
       ...plots.pt,
       ...validators.pt,
-      ...newProperties.pt
+      ...newProperties.pt,
+      ...signUp.pt,
+      ...CreatePlotStepEight.pt,
+      ...CreatePlotStepOne.pt,
+      ...CreatePlotStepTwo.pt,
+      ...CreatePlotStepThree.pt,
+      ...CreatePlotStepFour.pt,
+      ...CreatePlotStepFive.pt,
+      ...CreatePlotStepSix.pt,
+      ...CreatePlotStepSeven.pt,
+      ...CreatePlotStepNine.pt,
+      ...quotation.pt,
     },
     'en-US': {
       ...signIn.en,
@@ -35,7 +59,18 @@ export const i18nConfig = () => {
       ...properties.en,
       ...plots.en,
       ...validators.en,
-      ...newProperties.en
+      ...newProperties.en,
+      ...signUp.en,
+      ...CreatePlotStepEight.en,
+      ...CreatePlotStepOne.en,
+      ...CreatePlotStepOne.en,
+      ...CreatePlotStepThree.en,
+      ...CreatePlotStepFour.en,
+      ...CreatePlotStepFive.en,
+      ...CreatePlotStepSix.en,
+      ...CreatePlotStepSeven.en,
+      ...CreatePlotStepNine.en,
+      ...quotation.en,
     }
   };
   i18n.translations = {

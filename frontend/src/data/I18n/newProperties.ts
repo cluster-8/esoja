@@ -8,7 +8,10 @@ export default {
       propertyCepPlaceholder: 'Digite o cep',
       propertyCepLabel: 'Cep',
       propertyUpdatePictureLabel: 'Selecione uma nova foto',
-      propertyPictureLabel: 'Selecione uma foto'
+      propertyPictureLabel: 'Selecione uma foto',
+      propertyPositionTitle: 'Pegar minha posição atual',
+      propertyButtonTitle: 'Enviar',
+      newPropertyAlert: 'Não foi possível salvar.',
     }
   },
   en: {
@@ -20,7 +23,10 @@ export default {
       propertyCepPlaceholder: 'Type the property zip code',
       propertyCepLabel: 'Zip code',
       propertyUpdatePictureLabel: 'Select a new picture',
-      propertyPictureLabel: 'Select a picture'
+      propertyPictureLabel: 'Select a picture',
+      propertyPositionTitle: 'Get my current position',
+      propertyButtonTitle: 'Send',
+      newPropertyAlert: 'Could not save.',
     }
   }
 };

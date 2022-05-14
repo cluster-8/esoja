@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import * as yup from 'yup';
 import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { translate } from 'i18n-js';
 import { ScrollView } from 'react-native';
 import {
   Container,
@@ -21,7 +22,7 @@ import { Button } from '../../../components/Button';
 import { useSample } from '../../../hooks/useSample';
 
 const stepTwo = yup.object().shape({
-  name: yup.string().required('Nome é obrigatório')
+  name: yup.string().required('CreatePlotStepTwo.errors.stepTwoName.required')
 });
 
 export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
@@ -55,8 +56,8 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Identitifique o talhão"
-          subtitle="Insira um nome e uma descrição para o seu novo talhão"
+          title={translate('CreatePlotStepTwo.title')}
+          subtitle={translate('CreatePlotStepTwo.subtitle')}
         />
         <StepIndicator step={1} />
         <FormContainer>
@@ -64,23 +65,23 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             <StepTwoHelperImage source={StepTwo} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Nome"
-            placeholder="Digite um nome para o talhão"
+            label='CreatePlotStepTwo.fieldName'
+            placeholder={translate('CreatePlotStepTwo.fieldNamePlaceholder')}
             icon="check-square"
             name="name"
             control={control}
             errorMessage={errors?.name?.message}
           />
           <TextInput
-            label="Descrição"
-            placeholder="Digite uma descrição"
+            label='CreatePlotStepTwo.fieldDescription'
+            placeholder={translate('CreatePlotStepTwo.fieldDescriptionPlaceholder')}
             icon="check-square"
             name="description"
             control={control}
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepTwo.continueButton')}
               onPress={handleSubmit(handleSubmitStepTwo)}
             />
           </NextStepButton>

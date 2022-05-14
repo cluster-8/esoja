@@ -37,15 +37,15 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
 
   const handlerClickSignOut = () => {
     Alert.alert(
-      'Sair',
-      'Ao sair da aplicação todos os dados não sincronizados serão perdidos, você confirma esta ação',
+      'home.homeLeaveAlert',
+      'home.homeLeaveAlertDescription',
       [
         {
           text: 'Cancel',
           onPress: () =>
             Alert.alert(
-              'Ação cancelada',
-              'Ação canelada com sucesso, seus dados não sincronizados continuam salvos'
+              'home.homeCancelAlert',
+              'home.homeCancelAlertDescription'
             ),
           style: 'cancel'
         },
@@ -58,7 +58,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   };
 
   const handlerClickSync = () => {
-    Alert.alert('Sincronizou', 'Sincronizou');
+    Alert.alert('home.homeHandlerClickSyncAlert', 'home.homeHandlerClickSyncAlert');
   };
 
   const getData = useCallback(async () => {

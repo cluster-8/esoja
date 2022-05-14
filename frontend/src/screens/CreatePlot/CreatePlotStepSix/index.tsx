@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useEffect } from 'react';
+import { translate } from 'i18n-js';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
 import * as yup from 'yup';
@@ -21,12 +22,12 @@ import {
 const userLogin = yup.object().shape({
   grainsPlant1: yup
     .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade de grãos não pode ser "ZERO"'),
+    .required('CreatePlotStepSix.errors.grainsPlant.required')
+    .min(1, 'CreatePlotStepSix.errors.grainsPlant.min'),
   grainsPlant2: yup
     .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade de grãos não pode ser "ZERO"')
+    .required('CreatePlotStepSix.errors.grainsPlant.required')
+    .min(1, 'CreatePlotStepSix.errors.grainsPlant.min')
 });
 
 export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
@@ -69,10 +70,8 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Amostra 1"
-          subtitle={
-            'Colete duas plantas de um ponto aleatorio do talhão \n (guarde as plantas para o ultimo passo)'
-          }
+          title={translate('CreatePlotStepSix.title')}
+          subtitle={translate('CreatePlotStepSix.subtitle')}
         />
         <StepIndicator step={1} indicator={5} />
         <FormContainer>
@@ -80,31 +79,31 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
             <StepSixHelperImage source={StepSix} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Quantidade total de grãos na planta A"
-            placeholder="Digite a quantidade de grãos"
+            label='CreatePlotStepSix.sampleA'
+            placeholder={translate('CreatePlotStepSix.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant1"
             control={control}
             errorMessage={errors?.grainsPlant1?.message}
           />
           <TextInput
-            label="Quantidade total de grãos na planta B"
-            placeholder="Digite a quantidade de grãos"
+            label='CreatePlotStepSix.sampleB'
+            placeholder={translate('CreatePlotStepSix.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant2"
             control={control}
             errorMessage={errors?.grainsPlant2?.message}
           />
           <TextInput
-            label="Descrição (opicional)"
-            placeholder="Descreva aqui..."
+            label='CreatePlotStepSix.sampleDescription'
+            placeholder={translate('CreatePlotStepSix.sampleDescriptionPlaceholder')}
             icon="check-square"
             name="description"
             control={control}
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepSix.buttonTitle')}
               onPress={handleSubmit(handleSubmitStepSix)}
             />
           </NextStepButton>

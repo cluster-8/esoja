@@ -1212,7 +1212,7 @@
     slugify "^1.3.4"
     sucrase "^3.20.0"
 
-"@expo/config@6.0.16", "@expo/config@^6.0.6":
+"@expo/config@6.0.16":
   version "6.0.16"
   resolved "https://registry.npmjs.org/@expo/config/-/config-6.0.16.tgz"
   integrity sha512-4UgBiEtj03zI9X0iUNClnY3Y7uUGSvmMNAfPTSpKOsYsb0S+mSN+B66fuB+H+12SUldqxDH695g5lpeIrkCiJA==
@@ -3362,12 +3362,13 @@ expo-app-loading@~1.2.1:
   dependencies:
     expo-splash-screen "~0.13.3"
 
-expo-apple-authentication@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.npmjs.org/expo-apple-authentication/-/expo-apple-authentication-4.1.0.tgz"
-  integrity sha512-HSAM3picVMaqKOf3pf69TD/I+k+RY3C2HiRzt9b/zla3VsyN8lLDIVeA/vbq5MQkqQ6JwBG9EKECmBWJ3mSvug==
+expo-apple-authentication@~4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/expo-apple-authentication/-/expo-apple-authentication-4.0.3.tgz#b73b30c45e3ac1c57d5cf767f0dea891dd4d3ac8"
+  integrity sha512-7jMqlggVWLWawv5KWEPkCX8vuMGjsH6rdiQ1QPTnBTfKvStn3kd3i4lmFw/jMQpo4UKKSgl0RFKHEO5uQpd2pQ==
   dependencies:
     "@expo/config-plugins" "^4.0.2"
+    expo-modules-core "~0.4.4"
 
 expo-application@~4.0.0:
   version "4.0.1"
@@ -3385,19 +3386,19 @@ expo-asset@~8.4.3:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-auth-session@^3.5.0:
-  version "3.5.0"
-  resolved "https://registry.npmjs.org/expo-auth-session/-/expo-auth-session-3.5.0.tgz"
-  integrity sha512-Cia1NvIu1CcKuQNbhRsSmJz1YG76wDKU0NY+FHoD/0KItKd2+//oZyjrmlJXOk4m4gVohOIGWbFzt8Xe/ReZYg==
+expo-auth-session@~3.4.2:
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/expo-auth-session/-/expo-auth-session-3.4.2.tgz#284adc187f78a704b8ed404a29fcf9aec318caf6"
+  integrity sha512-CZ+3AW6uK9EFj80F1yLXHeorSbgVgYRZ3KispDn3QbZzJd6ZQo71GBIPaMAvpHX/1ZbLsZOsP6Kj3XbkBRHKsQ==
   dependencies:
-    expo-constants "~13.0.0"
-    expo-crypto "~10.1.0"
-    expo-linking "~3.0.0"
-    expo-web-browser "~10.1.0"
+    expo-constants "~12.1.1"
+    expo-crypto "~10.0.2"
+    expo-linking "~2.4.2"
+    expo-web-browser "~10.0.2"
     invariant "^2.2.4"
     qs "6.9.1"
 
-expo-constants@~12.1.3:
+expo-constants@~12.1.1, expo-constants@~12.1.3:
   version "12.1.3"
   resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-12.1.3.tgz"
   integrity sha512-HXlMTPn9pnJdMju3WcwX4oEB7EOECOTzdIPaG3JEluygqzafwKLMR8BE82+64jgAxlGIWZsYl+3Ni9wuTFQeYw==
@@ -3406,18 +3407,12 @@ expo-constants@~12.1.3:
     expo-modules-core "~0.4.4"
     uuid "^3.3.2"
 
-expo-constants@~13.0.0:
-  version "13.0.1"
-  resolved "https://registry.npmjs.org/expo-constants/-/expo-constants-13.0.1.tgz"
-  integrity sha512-48rhXCZMJGVx/v4DEd9PqTY6V/xLgtWHBy8nos27QIpYCyiC27I3QUQEUI1T3MXUwBsIR4LLJuwnD/4IfftrBw==
+expo-crypto@~10.0.2:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/expo-crypto/-/expo-crypto-10.0.3.tgz#b6516759617c9d22e230fad7f9673d480df802c8"
+  integrity sha512-sTxJHMlRVqmMTKuz0EVbigFOpUUCCNQiCUZQJIJA+m7c5RwJqTahkDJBp+ZfWgRWCiSZo+01EsJNigF4/HQvPg==
   dependencies:
-    "@expo/config" "^6.0.6"
-    uuid "^3.3.2"
-
-expo-crypto@~10.1.0:
-  version "10.1.1"
-  resolved "https://registry.npmjs.org/expo-crypto/-/expo-crypto-10.1.1.tgz"
-  integrity sha512-QSakmCNwSQw7VJKz32eKoBsNCQ9E4qT3wzOzFWzYyJQnJXHak3V6S+YcoQtK/K/oJxXPxK7T4gcOeeAk1VzRdw==
+    expo-modules-core "~0.4.4"
 
 expo-error-recovery@~3.0.3:
   version "3.0.4"
@@ -3459,14 +3454,14 @@ expo-keep-awake@~10.0.0:
   resolved "https://registry.npmjs.org/expo-keep-awake/-/expo-keep-awake-10.0.1.tgz"
   integrity sha512-kcBtoDGkm3RRe6BpKDvR7gof/ErajEia38u92pRvNRctdh+p8AFO7GQuiipyg3iMfhcCFVTCIV7h3tuA0g/yDw==
 
-expo-linking@~3.0.0:
-  version "3.0.0"
-  resolved "https://registry.npmjs.org/expo-linking/-/expo-linking-3.0.0.tgz"
-  integrity sha512-TgRB4JTdhMRo79rTu9E9zwzWyBUJxHpSbHFlv0ZfMAwU+qFCsL9zZsL44R/yj7xrvcLOjqbCVmBszLQ0pFOt1g==
+expo-linking@~2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/expo-linking/-/expo-linking-2.4.2.tgz#b042f196c9a21ee0de25ca98763592d45524b6f2"
+  integrity sha512-uwUaC0npP2jQCyFD7+KfJqT+tde/WDcj56lkhd9hewnPGaYsd98pNStT74ZbMD9ewz/0WW+kjevyfmgLSe58UQ==
   dependencies:
-    expo-constants "~13.0.0"
+    expo-constants "~12.1.1"
     invariant "^2.2.4"
-    qs "^6.9.1"
+    qs "^6.5.0"
     url-parse "^1.4.4"
 
 expo-localization@~11.0.0:
@@ -3514,7 +3509,7 @@ expo-modules-autolinking@~0.5.1:
     find-up "^5.0.0"
     fs-extra "^9.1.0"
 
-expo-modules-core@~0.4.10, expo-modules-core@~0.4.4, expo-modules-core@~0.4.7, expo-modules-core@~0.4.8:
+expo-modules-core@~0.4.10, expo-modules-core@~0.4.4, expo-modules-core@~0.4.6, expo-modules-core@~0.4.7, expo-modules-core@~0.4.8:
   version "0.4.10"
   resolved "https://registry.npmjs.org/expo-modules-core/-/expo-modules-core-0.4.10.tgz"
   integrity sha512-uCZA3QzF0syRaHwYY99iaNhnye4vSQGsJ/y6IAiesXdbeVahWibX4G1KoKNPUyNsKXIM4tqA+4yByUSvJe4AAw==
@@ -3522,12 +3517,13 @@ expo-modules-core@~0.4.10, expo-modules-core@~0.4.4, expo-modules-core@~0.4.7, e
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo-random@^12.1.1:
-  version "12.1.1"
-  resolved "https://registry.npmjs.org/expo-random/-/expo-random-12.1.1.tgz"
-  integrity sha512-AxxP9aqgCgGQsUC9jvMaaMXLmdkwbeil1MYqLJVMsueeAifsRDAroSGcpkbuXjK7lgNFdfdJNU/+4Z7ybBev/A==
+expo-random@~12.0.1:
+  version "12.0.1"
+  resolved "https://registry.yarnpkg.com/expo-random/-/expo-random-12.0.1.tgz#d36706b744c27c1a145f0510f57093a6541aec5e"
+  integrity sha512-TX1qLnV2cqyefK8nfxz6MK/YD/49QkQbGgtM5gkWbYFQVIlFhzctRzAhaR3/bix5809m7s3mc+Mm0du3jIyA8g==
   dependencies:
     base64-js "^1.3.0"
+    expo-modules-core "~0.4.6"
 
 expo-splash-screen@~0.13.3, expo-splash-screen@~0.13.5:
   version "0.13.5"
@@ -3569,12 +3565,13 @@ expo-updates@~0.10.13:
     resolve-from "^5.0.0"
     uuid "^3.4.0"
 
-expo-web-browser@^10.1.0, expo-web-browser@~10.1.0:
-  version "10.1.0"
-  resolved "https://registry.npmjs.org/expo-web-browser/-/expo-web-browser-10.1.0.tgz"
-  integrity sha512-/sT+YovMxtR2AYVtZdeyjJLPYQrUXr06KAee2bbLeiPQbk0PPwVJNBK6w5/3GoQZIhNScR3K3P3xx6pNfm4X1A==
+expo-web-browser@~10.0.2, expo-web-browser@~10.0.3:
+  version "10.0.3"
+  resolved "https://registry.yarnpkg.com/expo-web-browser/-/expo-web-browser-10.0.3.tgz#9fc1ee306c5963f797d6bec2e4bf9c84d1532f81"
+  integrity sha512-Tvx4yk7aROS6Yzy9obBMpcwtmIl2NY8YIOCUo1HwCB8KwTN7gQBKvI/GSOVYPMeIx/nPRg3ySELlUpv9JoGNag==
   dependencies:
     compare-urls "^2.0.0"
+    expo-modules-core "~0.4.4"
 
 expo@~43.0.2:
   version "43.0.5"
@@ -6007,9 +6004,9 @@ qs@6.9.1:
   resolved "https://registry.npmjs.org/qs/-/qs-6.9.1.tgz"
   integrity sha512-Cxm7/SS/y/Z3MHWSxXb8lIFqgqBowP5JMlTUFyJN88y0SGQhVmZnqFK/PeuMX9LzUyWsqqhNxIyg0jlzq946yA==
 
-qs@^6.9.1:
+qs@^6.5.0:
   version "6.10.3"
-  resolved "https://registry.npmjs.org/qs/-/qs-6.10.3.tgz"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.10.3.tgz#d6cde1b2ffca87b5aa57889816c5f81535e22e8e"
   integrity sha512-wr7M2E0OFRfIfJZjKGieI8lBKb7fRCH4Fv5KNPEs7gJ8jadvotdsS08PzOKR7opXhZ/Xkjtt3WF9g38drmyRqQ==
   dependencies:
     side-channel "^1.0.4"
