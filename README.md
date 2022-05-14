@@ -33,7 +33,7 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) em ordem de prioridade referentes a Sprint 1:
 
 <p align="center">
-  <img src=""/></p>
+  <img src="https://github.com/cluster-8/esoja-mobile/blob/main/Docs/sprint-2-backlog.png"/></p>
 
 ## 📂 Documentação do Projeto
 
