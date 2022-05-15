@@ -48,12 +48,6 @@ export const Select: React.FC<PickerSelectProps> = ({
           />
         )}
         <StyledPickerSelect {...rest}>
-          <StyledPickerSelect.Item
-            key="default-value"
-            label={translate(defaultValueLabel)}
-            value={defaultValue}
-            color={theme.colors.primary}
-          />
           {itens.map(item => (
             <Picker.Item
               color={
@@ -63,7 +57,7 @@ export const Select: React.FC<PickerSelectProps> = ({
               }
               key={item.value}
               value={item.value}
-              label={translate(item.label)}
+              label={item.label}
             />
           ))}
         </StyledPickerSelect>
