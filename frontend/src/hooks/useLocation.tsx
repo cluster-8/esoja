@@ -16,6 +16,7 @@ interface Coordinates {
 interface LocationContextData {
   getCoordinates: () => Promise<Coordinates>;
   getZipcode: (coordinates: Coordinates) => Promise<string>;
+  getCity: (coordinates: Coordinates) => Promise<string>;
   getGeoCode: (cep: string) => Promise<Coordinates>;
 }
 
@@ -77,13 +78,27 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
     return { latitude: -23, longitude: -45 };
   }, []);
 
+  const getCity = useCallback(
+    async (coordinates: Coordinates): Promise<string> => {
+      if (coordinates?.latitude) {
+        const local = await Location.reverseGeocodeAsync(coordinates);
+        if (local.length > 0) {
+          return `${local[0].subregion} - ${local[0].region}`;
+        }
+      }
+      return '';
+    },
+    []
+  );
+
   const providerValue = useMemo(
     () => ({
       getCoordinates,
       getZipcode,
-      getGeoCode
+      getGeoCode,
+      getCity
     }),
-    [getCoordinates, getZipcode, getGeoCode]
+    [getCoordinates, getZipcode, getGeoCode, getCity]
   );
   return (
     <LocationContext.Provider value={providerValue}>

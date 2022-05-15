@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, StatusBar } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { ActivityIndicator, Alert, ScrollView, StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
+import { PropertyModal } from '../../components/PropertyModal';
 import { WeatherInfoCard } from '../../components/WeatherInfoCard';
 import { WeatherPropertCard } from '../../components/WeatherPropertCard';
 import { WeekDayCard } from '../../components/WeekDayCard';
@@ -10,10 +11,11 @@ import {
   getWeatherForecast,
   WeatherForecastProps
 } from '../../data/services/weather.services';
-import { useLocation } from '../../hooks/useLocation';
+import { useProperty } from '../../hooks/useProperty';
 import { formatHour } from '../../utils/formatter';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
 import { getWeatherImage } from '../../utils/getWeatherImage';
+import { queryBuilder } from '../../utils/queryBuilder';
 import {
   LoadingContainer,
   WeatherContainer,
@@ -33,76 +35,87 @@ import {
   WeekDayCardContainer
 } from './styles';
 
-import { useProperty } from '../../hooks/useProperty';
-
 interface Coordinates {
   latitude: number;
   longitude: number;
 }
 
-export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
+export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   const [list, setList] = useState<WeatherForecastProps[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [propertyList, setPropertyList] = useState<any[]>([]);
+  const [selectedProperty, setSelectedProperty] = useState<any[]>([]);
+
+  const [weatherType, setWeatherType] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<number | Date>(0);
   const [data, setData] = useState<WeatherForecastProps>(
     {} as WeatherForecastProps
   );
 
   const theme = useTheme();
-  const [weatherType, setWeatherType] = useState<string>('');
+  const { getProperties } = useProperty();
 
-  const { getCoordinates } = useLocation();
-  const { propertySelected } = useProperty();
+  const handleSelectDate = useCallback(
+    (weather: WeatherForecastProps[], date: number) => {
+      setSelectedDate(date);
+      const dataItem = weather.find(item => item.dt === date);
+      if (dataItem) {
+        setData(dataItem);
+      }
+    },
+    []
+  );
 
-  const handleSelectDate = (date: number) => {
-    setSelectedDate(date);
-    const dataItem = list.find(item => item.dt === date);
-    if (dataItem) {
-      setData(dataItem);
-    }
-  };
-
-  useEffect(() => {
-    const getData = async () => {
-      const coordinates = await getCoordinates();
-
-      const weather = await getWeatherForecast(coordinates, 'pt_br');
-
+  const getData = useCallback(
+    async (coords: Coordinates) => {
+      const weather = await getWeatherForecast(coords, 'pt_br');
       if (weather) {
         setList(weather);
-        handleSelectDate(weather[0].dt);
+        handleSelectDate(weather, weather[0].dt);
         setData(weather[0]);
         setWeatherType(weather[0].weather[0].main);
         setLoading(false);
       }
-    };
-    if (!list?.length) {
-      getData();
+    },
+    [handleSelectDate]
+  );
+
+  const handleSelectProperty = useCallback(
+    async (property: any) => {
+      await getData({
+        latitude: property?.latitude,
+        longitude: property?.longitude
+      });
+      setSelectedProperty(property);
+    },
+    [getData]
+  );
+
+  const handlePropertyCardClick = async () => {
+    if (!propertyList?.length) {
+      const query = queryBuilder({ select: 'name latitude longitude' });
+      const res = await getProperties(query);
+      setModalVisible(true);
+      if (res) {
+        setPropertyList(res);
+      } else {
+        Alert.alert('Não possivel buscar as propriedades');
+      }
     }
-  });
+    setModalVisible(true);
+  };
+
+  const firstTime = useCallback(async () => {
+    const query = queryBuilder({ select: 'name latitude longitude' });
+    const res = await getProperties(query);
+    handleSelectProperty(res[0]);
+  }, [getProperties, handleSelectProperty]);
 
   useEffect(() => {
-    if (propertySelected !== undefined) {
-      const coordinates: Coordinates = {
-        latitude: Number(propertySelected?.latitude),
-        longitude: Number(propertySelected?.longitude)
-      };
-
-      const getData = async () => {
-        const weather = await getWeatherForecast(coordinates, 'pt_br');
-
-        if (weather) {
-          setList(weather);
-          handleSelectDate(weather[0].dt);
-          setData(weather[0]);
-          setWeatherType(weather[0].weather[0].main);
-          setLoading(false);
-        }
-      };
-
-      getData();
-    }
-  }, [propertySelected]);
+    firstTime();
+  }, [firstTime]);
 
   return (
     <ScrollView>
@@ -114,13 +127,16 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
         <>
           <StatusBar backgroundColor="transparent" translucent />
           <WeatherContainer weatherType={weatherType}>
-            <WeatherPropertCard />
+            <WeatherPropertCard
+              onClick={handlePropertyCardClick}
+              selectedProperty={selectedProperty}
+            />
             <WeekDayCardContainer>
               {list.map(date => (
                 <ScrollView horizontal key={date.dt}>
                   <WeekDayCard
                     date={date.dt}
-                    onPress={() => handleSelectDate(date.dt)}
+                    onPress={() => handleSelectDate(list, date.dt)}
                     selectedDate={selectedDate}
                   />
                 </ScrollView>
@@ -216,6 +232,12 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
               </WeatherDayContent>
             </WeatherDayPeriodContainer>
           </WeatherContainer>
+          <PropertyModal
+            modalVisible={modalVisible}
+            setModalVisible={() => setModalVisible(!modalVisible)}
+            setSelectedProperty={handleSelectProperty}
+            properties={propertyList}
+          />
         </>
       )}
     </ScrollView>

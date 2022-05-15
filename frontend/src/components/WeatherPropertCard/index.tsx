@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from '../../hooks/useLocation';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
 import {
   CardPropertButton,
@@ -11,63 +12,42 @@ import {
   CardPropertPropertContainer
 } from './style';
 
-import { PropertyModal, Property } from '../PropertyModal';
-
-import { useProperty } from '../../hooks/useProperty';
-import { useHome } from '../../hooks/useHome';
-
-interface Coordinates {
-  latitude: number;
-  longitude: number;
+interface WeatherPropertCardProps {
+  onClick: () => void;
+  selectedProperty: any;
 }
 
-export const WeatherPropertCard: React.FC = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [propertyList, setPropertyList] = useState<Property[]>();
-
-  const { getProperties, propertySelected, setPropertySelected } =
-    useProperty();
-  const { getWeatherCurrentDay } = useHome();
+export const WeatherPropertCard: React.FC<WeatherPropertCardProps> = ({
+  onClick,
+  selectedProperty
+}) => {
+  const [city, setCity] = useState('');
+  const { getCity } = useLocation();
 
   useEffect(() => {
-    const query = `?select=name latitude longitude`;
-    getProperties(query)
-      .then(res => {
-        setPropertyList(res);
-        setPropertySelected(res[0]);
-        const coord: Coordinates = {
-          latitude: res[0].latitude,
-          longitude: res[0].longitude
-        };
-        getWeatherCurrentDay(coord);
-      })
-      .catch(err => console.log(err));
-  }, []);
+    const getCurrentCity = async () => {
+      setCity(
+        await getCity({
+          latitude: Number(selectedProperty?.latitude),
+          longitude: Number(selectedProperty?.longitude)
+        })
+      );
+    };
+    getCurrentCity();
+  }, [getCity, selectedProperty]);
 
   return (
     <CardPropertContainer>
       <CardPropertPropertContainer>
         <CardPropertIcon name="map-pin" size={RFFontSize(30)} />
         <CardPropertNameContainer>
-          <CardPropertName>{propertySelected?.name || ''}</CardPropertName>
-          <CardPropertDate>quarta-feira, 30 mar 2022</CardPropertDate>
+          <CardPropertName>{selectedProperty?.name || ''}</CardPropertName>
+          <CardPropertDate>{city}</CardPropertDate>
         </CardPropertNameContainer>
       </CardPropertPropertContainer>
-      <CardPropertButton
-        onPress={() => {
-          // console.log('apertou!');
-          setModalVisible(!modalVisible);
-        }}
-      >
+      <CardPropertButton onPress={onClick}>
         <CardPropertOptionIcon name="chevron-down" size={RFFontSize(30)} />
       </CardPropertButton>
-
-      <PropertyModal
-        modalVisible={modalVisible}
-        setModalVisible={() => setModalVisible(!modalVisible)}
-        setSelectedProperty={setPropertySelected}
-        properties={propertyList || []}
-      />
     </CardPropertContainer>
   );
 };
