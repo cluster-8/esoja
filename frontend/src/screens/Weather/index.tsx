@@ -33,6 +33,13 @@ import {
   WeekDayCardContainer
 } from './styles';
 
+import { useProperty } from '../../hooks/useProperty';
+
+interface Coordinates {
+  latitude: number;
+  longitude: number;
+}
+
 export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
   const [list, setList] = useState<WeatherForecastProps[]>([]);
   const [loading, setLoading] = useState(true);
@@ -45,6 +52,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
   const [weatherType, setWeatherType] = useState<string>('');
 
   const { getCoordinates } = useLocation();
+  const { propertySelected } = useProperty();
 
   const handleSelectDate = (date: number) => {
     setSelectedDate(date);
@@ -72,6 +80,29 @@ export const Weather: React.FC<WeatherScreenRouteProps> = ({ navigation }) => {
       getData();
     }
   });
+
+  useEffect(() => {
+    if (propertySelected !== undefined) {
+      const coordinates: Coordinates = {
+        latitude: Number(propertySelected?.latitude),
+        longitude: Number(propertySelected?.longitude)
+      };
+
+      const getData = async () => {
+        const weather = await getWeatherForecast(coordinates, 'pt_br');
+
+        if (weather) {
+          setList(weather);
+          handleSelectDate(weather[0].dt);
+          setData(weather[0]);
+          setWeatherType(weather[0].weather[0].main);
+          setLoading(false);
+        }
+      };
+
+      getData();
+    }
+  }, [propertySelected]);
 
   return (
     <ScrollView>
