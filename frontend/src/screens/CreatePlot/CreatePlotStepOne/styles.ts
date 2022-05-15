@@ -1,6 +1,11 @@
+import { Feather } from '@expo/vector-icons';
 import MapView from 'react-native-maps';
 import styled from 'styled-components/native';
-import { RFHeight, RFWidth } from '../../../utils/getResponsiveSizes';
+import {
+  RFFontSize,
+  RFHeight,
+  RFWidth
+} from '../../../utils/getResponsiveSizes';
 
 export const Container = styled.View`
   flex: 1;
@@ -36,21 +41,99 @@ export const FormContainer = styled.View`
 `;
 
 export const MapContainer = styled.View`
+  position: relative;
+  flex: 1;
+  height: ${RFHeight(380)}px;
+  margin-top: 10px;
+`;
+
+export const QuestionStep = styled.View`
   flex: 1;
   height: ${RFHeight(400)}px;
   margin-top: 10px;
 `;
 
-export const ReactNativeMapView = styled(MapView)`
+export const SelectModeContainer = styled.View`
+  flex: 1;
+  height: ${RFHeight(400)}px;
+  margin-top: 16px;
+`;
+export const ButtonCotainer = styled.TouchableOpacity`
+  flex: 1;
+  padding: ${RFHeight(16)}px;
+  background: ${({ theme }) => theme.colors.background_over};
+  border-radius: ${RFHeight(8)}px;
+  margin: ${RFHeight(8)}px 0;
+`;
+
+export const QuestionTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: ${RFFontSize(24)}px;
+  margin: ${RFHeight(8)}px 0;
+  text-align: center;
+  font-weight: bold;
+`;
+
+export const ButtonTitle = styled.Text`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFFontSize(18)}px;
+  margin: ${RFHeight(8)}px 0;
+  text-align: center;
+  font-weight: bold;
+`;
+
+export const ButtonMessage = styled.Text`
+  color: ${({ theme }) => theme.colors.text_secondary};
+  font-size: ${RFFontSize(18)}px;
+  text-align: center;
+  font-weight: normal;
+`;
+
+export const ModeTag = styled.TouchableOpacity`
+  padding: ${RFHeight(4)}px;
+  background: ${({ theme }) => theme.colors.primary};
+  border-radius: ${RFHeight(16)}px;
+  margin: ${RFHeight(8)}px 0;
+`;
+
+export const ModeText = styled.Text`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFFontSize(18)}px;
+  text-align: center;
+  font-weight: bold;
+`;
+
+interface MapButtonProps {
+  top: number;
+  danger?: boolean;
+}
+export const MapButton = styled.TouchableOpacity<MapButtonProps>`
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  background: ${({ theme, danger }) =>
+    danger ? theme.colors.attention : theme.colors.primary};
+  margin: ${RFHeight(8)}px 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  right: 8px;
+  top: ${({ top }) => top}px;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const MapIcon = styled(Feather)`
+  padding: ${RFHeight(4)}px;
+  border-radius: ${RFHeight(16)}px;
+  margin: ${RFHeight(8)}px 0;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const ReactNativeMapView = styled(MapView)`
+  flex: 1;
 `;
 
 export const MapViewMarker = styled.View``;
 
 export const NextStepButton = styled.View`
-  margin: ${RFHeight(24)}px 0;
+  margin: ${RFHeight(16)}px 0;
 `;

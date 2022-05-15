@@ -12,7 +12,7 @@ import React, {
 } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { Alert } from 'react-native';
-import { User } from '../data/@types/User';
+import { User } from '../data/Model/User';
 import { api } from '../data/services/api';
 
 interface AuthContextData {

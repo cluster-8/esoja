@@ -1,5 +1,5 @@
 import { Feather } from '@expo/vector-icons';
-import { TextInputMask } from 'react-native-masked-text';
+import { RectButton } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components/native';
 import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
@@ -11,6 +11,10 @@ interface ContainerProps {
 interface FeatherIconProps {
   isFocusedOrFilled: boolean;
   isErrored: boolean;
+}
+
+interface ValueTextProps {
+  isPlaceholder?: boolean;
 }
 
 export const Container = styled.View`
@@ -29,7 +33,6 @@ export const InnerContainer = styled.View<ContainerProps>`
   flex-direction: row;
   align-items: center;
   position: relative;
-
   ${props =>
     props.isErrored
       ? css`
@@ -41,7 +44,7 @@ export const InnerContainer = styled.View<ContainerProps>`
         `}
 `;
 
-export const RNTextInput = styled(TextInputMask)`
+export const RNTextInput = styled.TextInput`
   flex: 1;
   color: ${({ theme }) => theme.colors.text};
   font-size: ${RFFontSize(16)}px;
@@ -53,18 +56,31 @@ export const RNTextInput = styled(TextInputMask)`
 export const FeatherIcon = styled(Feather)<FeatherIconProps>`
   margin-right: ${RFWidth(16)}px;
   color: ${({ theme }) => theme.colors.details};
-
   ${({ isFocusedOrFilled, theme }) =>
     isFocusedOrFilled &&
     css`
       color: ${theme.colors.primary};
     `}
-
   ${({ isErrored, theme }) =>
     isErrored &&
     css`
       color: ${theme.colors.attention};
     `}
+`;
+
+export const PickerPressable = styled(RectButton)`
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const ValueText = styled.Text<ValueTextProps>`
+  flex: 1;
+  font-size: ${RFFontSize(14)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  color: ${({ theme, isPlaceholder }) =>
+    isPlaceholder ? theme.colors.details : theme.colors.text};
 `;
 
 export const InputLabel = styled.Text`

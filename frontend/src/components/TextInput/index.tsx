@@ -20,6 +20,7 @@ interface TextInputProps extends RNTextInputProps {
   label?: string;
   control?: Control;
   errorMessage?: string;
+  disabled?: boolean;
 }
 
 export const TextInput: React.FC<TextInputProps> = ({
@@ -30,6 +31,7 @@ export const TextInput: React.FC<TextInputProps> = ({
   control,
   errorMessage,
   defaultValue,
+  disabled = false,
   ...rest
 }) => {
   const theme = useTheme();
@@ -67,6 +69,7 @@ export const TextInput: React.FC<TextInputProps> = ({
         style={containerStyle}
         isFocused={isFocused}
         isErrored={!!errorMessage}
+        editable={!disabled}
       >
         {!!icon && (
           <FeatherIcon
@@ -79,6 +82,7 @@ export const TextInput: React.FC<TextInputProps> = ({
 
         <RNTextInput
           {...rest}
+          editable={!disabled}
           placeholder={rest.placeholder}
           value={field.value}
           ref={inputElementRef}

@@ -41,7 +41,7 @@ const PropertyProvider: React.FC<PropertyContextProps> = ({ children }) => {
     }
   }, []);
 
-  const getProperties = useCallback(async (query: string) => {
+  const getProperties = useCallback(async (query = '') => {
     try {
       const { data } = await api.get<any[]>(`/property${query}`);
       return data;

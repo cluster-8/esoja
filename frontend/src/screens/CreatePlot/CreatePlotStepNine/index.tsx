@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
+import { ApiError } from '../../../data/Model/Error';
 import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
+import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
 import {
   Container,
@@ -17,8 +19,10 @@ export const CreatePlotStepNine: React.FC<
   CreatePlotStepNineScreenRouteProps
 > = ({ navigation }) => {
   const [image, setImage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const { pictureUpload, selectImage } = useUpload();
+  const { saveStep, getPersistedData, createPlot } = useSample();
+  const { selectImage } = useUpload();
 
   const handleSelectImage = async () => {
     const uri = await selectImage();
@@ -26,11 +30,24 @@ export const CreatePlotStepNine: React.FC<
   };
 
   const handleSubmitStepNine = async () => {
-    const url = await pictureUpload(image, 'sample');
-    console.log(url);
-
-    navigation.navigate('Home');
+    setLoading(true);
+    try {
+      await saveStep({ photo: image });
+      await createPlot();
+      return navigation.navigate('Home');
+    } catch (err: ApiError) {
+      setLoading(false);
+      return Alert.alert(err);
+    }
   };
+
+  useEffect(() => {
+    getPersistedData().then(data => {
+      if (data) {
+        setImage(data?.photo || '');
+      }
+    });
+  }, [getPersistedData]);
 
   return (
     <ScrollView>
@@ -51,7 +68,11 @@ export const CreatePlotStepNine: React.FC<
             />
           </PictureContainer>
           <NextStepButton>
-            <Button title="Finalizar" onPress={handleSubmitStepNine} />
+            <Button
+              title="Finalizar"
+              onPress={handleSubmitStepNine}
+              showLoadingIndicator={loading}
+            />
           </NextStepButton>
         </FormContainer>
       </Container>

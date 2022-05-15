@@ -48,7 +48,7 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
       if (data) {
         setValue('grainsPlant1', data?.plantA?.grainsPlant1?.toString() || '');
         setValue('grainsPlant2', data?.plantA?.grainsPlant2?.toString() || '');
-        setValue('metersBetweenPlants', data?.plantA?.description || '');
+        setValue('description', data?.plantA?.description || '');
       }
     });
   }, [getPersistedData, setValue]);

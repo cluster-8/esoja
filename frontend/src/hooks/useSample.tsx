@@ -9,7 +9,9 @@ import React, {
 } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { Alert } from 'react-native';
+import { ApiError } from '../data/Model/Error';
 import { api } from '../data/services/api';
+import { useUpload } from './useUpload';
 
 interface Coordinates {
   latitude: number;
@@ -17,7 +19,8 @@ interface Coordinates {
 }
 
 interface Sample {
-  poligon?: Coordinates[];
+  areaTotal?: number;
+  cultiveCoordinates?: Coordinates[];
   name?: string;
   description?: string;
   metersBetweenPlants?: string;
@@ -39,13 +42,18 @@ interface Sample {
     description?: string;
   };
   photo?: string;
+  cropYear?: string;
+  plantingDate?: string;
+  propertyId?: string;
+  status?: 'pending' | 'inProduction' | 'finished';
 }
 
 interface SampleContextData {
-  saveStep: (data: FieldValues) => void;
-  saveLocale: (data: Coordinates[]) => void;
+  saveStep: (data: FieldValues) => Promise<void>;
+  saveLocale: (polygon: Coordinates[], areaTotal: number) => void;
   getPersistedData: () => Promise<Sample | null>;
   getPlot: () => Promise<any[]>;
+  createPlot: () => Promise<any>;
 }
 
 type SampleContextProps = {
@@ -56,6 +64,7 @@ const SampleContext = createContext({} as SampleContextData);
 
 const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
   const [sample, setSample] = useState<Sample | null>(null);
+  const { pictureUpload } = useUpload();
 
   const persistData = async (data: Sample) => {
     await AsyncStorage.setItem('@esoja:sample', JSON.stringify(data));
@@ -74,20 +83,34 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
   }, [sample]);
 
   const saveLocale = useCallback(
-    (data: Coordinates[]) => {
-      setSample(prev => ({ ...prev, poligon: data }));
-      persistData({ ...sample, poligon: data });
+    (cultiveCoordinates: Coordinates[], areaTotal: number) => {
+      setSample(prev => ({ ...prev, cultiveCoordinates, areaTotal }));
+      persistData({ ...sample, cultiveCoordinates, areaTotal });
     },
     [sample]
   );
 
   const saveStep = useCallback(
-    (data: FieldValues) => {
+    async (data: FieldValues) => {
       setSample(prev => ({ ...prev, ...data }));
-      persistData({ ...sample, ...data });
+      await persistData({ ...sample, ...data });
     },
     [sample]
   );
+
+  const createPlot = useCallback(async () => {
+    try {
+      const newSample: Sample = await getPersistedData();
+      if (newSample && newSample?.photo) {
+        newSample.photo = await pictureUpload(newSample.photo, 'sample');
+        newSample.status = 'pending';
+        await api.post<string>('/cultive', newSample);
+      }
+      throw new Error('cade a foto fio');
+    } catch (err: ApiError) {
+      throw new Error(err.response.data.message);
+    }
+  }, [getPersistedData, pictureUpload]);
 
   const getPlot = useCallback(async () => {
     try {
@@ -104,9 +127,10 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
       saveStep,
       getPersistedData,
       saveLocale,
-      getPlot
+      getPlot,
+      createPlot
     }),
-    [saveStep, getPersistedData, saveLocale, getPlot]
+    [saveStep, getPersistedData, saveLocale, getPlot, createPlot]
   );
   return (
     <SampleContext.Provider value={providerValue}>

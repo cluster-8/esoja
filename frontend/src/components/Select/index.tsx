@@ -4,7 +4,13 @@ import React from 'react';
 import { useTheme } from 'styled-components';
 import { translate } from '../../data/I18n';
 import { RFWidth } from '../../utils/getResponsiveSizes';
-import { Container, Icon, InputLabel, StyledPickerSelect } from './styles';
+import {
+  Container,
+  ErrorMessage,
+  Icon,
+  InputLabel,
+  StyledPickerSelect
+} from './styles';
 
 type ItemType = {
   value: string;
@@ -16,6 +22,7 @@ export interface PickerSelectProps extends PickerProps {
   defaultValueLabel: string;
   itens: ItemType[];
   label: string;
+  error?: string;
 }
 
 export const Select: React.FC<PickerSelectProps> = ({
@@ -24,28 +31,26 @@ export const Select: React.FC<PickerSelectProps> = ({
   defaultValueLabel,
   itens,
   label,
+  error,
   ...rest
 }) => {
   const theme = useTheme();
   return (
     <>
       {label && <InputLabel>{translate(label)}</InputLabel>}
-      <Container>
+      <Container error={error}>
         {icon && (
           <Icon
             name={icon}
             size={RFWidth(20)}
-            color={
-              rest.selectedValue ? theme.colors.primary : theme.colors.details
-            }
+            error={error}
+            selectedValue={rest.selectedValue}
           />
         )}
         <StyledPickerSelect {...rest}>
           <StyledPickerSelect.Item
             key="default-value"
-            label={translate(
-              `signUp.stepTwo.genderOptions.${defaultValueLabel}`
-            )}
+            label={translate(defaultValueLabel)}
             value={defaultValue}
             color={theme.colors.primary}
           />
@@ -58,11 +63,12 @@ export const Select: React.FC<PickerSelectProps> = ({
               }
               key={item.value}
               value={item.value}
-              label={translate(`signUp.stepTwo.genderOptions.${item.label}`)}
+              label={translate(item.label)}
             />
           ))}
         </StyledPickerSelect>
       </Container>
+      {!!error && <ErrorMessage>{error}</ErrorMessage>}
     </>
   );
 };

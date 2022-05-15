@@ -1,11 +1,11 @@
-import styled, { css } from 'styled-components/native';
 import { Feather } from '@expo/vector-icons';
-
+import styled, { css } from 'styled-components/native';
 import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 interface ContainerProps {
   isFocused: boolean;
   isErrored: boolean;
+  editable: boolean;
 }
 
 interface FeatherIconProps {
@@ -22,7 +22,8 @@ export const InnerContainer = styled.View<ContainerProps>`
   width: 100%;
   min-height: ${RFHeight(56)}px;
   padding: 0 ${RFWidth(16)}px;
-  background: ${({ theme }) => theme.colors.background_over};
+  background: ${({ theme, editable }) =>
+    editable ? theme.colors.background_over : theme.colors.background};
   border-radius: ${RFHeight(8)}px;
   border-width: ${RFWidth(2)}px;
   border-color: ${({ theme }) => theme.colors.details};

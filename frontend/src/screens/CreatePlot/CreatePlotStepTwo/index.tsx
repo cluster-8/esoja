@@ -1,32 +1,36 @@
-import React, { useEffect } from 'react';
-import * as yup from 'yup';
-import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { format } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
-import {
-  Container,
-  FormContainer,
-  HelperImageContainer,
-  NextStepButton,
-  StepTwoHelperImage
-} from './styles';
-
-import StepTwo from '../../../assets/plot-steps-images/StepTwo.png';
-
-import Title from '../../../components/Title';
-import { StepIndicator } from '../../../components/StepIndicator';
-import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
-import { TextInput } from '../../../components/TextInput';
+import * as yup from 'yup';
 import { Button } from '../../../components/Button';
+import { DateInput } from '../../../components/DateInput';
+import { Select } from '../../../components/Select';
+import { StepIndicator } from '../../../components/StepIndicator';
+import { TextInput } from '../../../components/TextInput';
+import { TextInputMask } from '../../../components/TextInputMask';
+import Title from '../../../components/Title';
+import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
+import { useProperty } from '../../../hooks/useProperty';
 import { useSample } from '../../../hooks/useSample';
+import { Container, FormContainer, NextStepButton } from './styles';
 
 const stepTwo = yup.object().shape({
-  name: yup.string().required('Nome é obrigatório')
+  name: yup.string().required('Nome é obrigatório'),
+  plantingDate: yup.date().required('Data de plantio é obrigatória'),
+  cropYear: yup
+    .string()
+    .required('Ano Safra é obrigatório')
+    .min(9, 'Formato invalido ex: 2019/2020)')
 });
 
 export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
   navigation
 }) => {
+  const [options, setOptions] = useState([]);
+  const [propertyId, setPropertyId] = useState('default');
+  const [error, setError] = useState('');
   const { saveStep, getPersistedData } = useSample();
   const {
     control,
@@ -37,19 +41,43 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     resolver: yupResolver(stepTwo)
   });
 
+  const { getProperties } = useProperty();
+
+  const handleSubmitStepTwo = (data: FieldValues) => {
+    if (propertyId === 'default') {
+      return setError('Propriedade é obrigatória');
+    }
+    data.plantingDate = format(new Date(data.plantingDate), 'yyyy-MM-dd');
+    saveStep({ ...data, propertyId });
+    return navigation.navigate('CreatePlotStepThree');
+  };
+
   useEffect(() => {
     getPersistedData().then(data => {
       if (data) {
         setValue('name', data?.name || '');
         setValue('description', data?.description || '');
+        setValue('plantingDate', new Date(data?.plantingDate || ''));
+        setValue('cropYear', data?.cropYear);
+        setPropertyId(data.propertyId || 'default');
       }
     });
   }, [getPersistedData, setValue]);
 
-  const handleSubmitStepTwo = (data: FieldValues) => {
-    saveStep(data);
-    navigation.navigate('CreatePlotStepThree');
-  };
+  useEffect(() => {
+    const getSelectData = async (): Promise<any> => {
+      const properties = await getProperties('?select=name');
+      if (properties) {
+        setOptions(
+          properties.map(property => ({
+            value: property.id,
+            label: property.name
+          }))
+        );
+      }
+    };
+    getSelectData();
+  }, [getProperties]);
 
   return (
     <ScrollView>
@@ -60,9 +88,19 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
         />
         <StepIndicator step={1} />
         <FormContainer>
-          <HelperImageContainer>
-            <StepTwoHelperImage source={StepTwo} resizeMode="contain" />
-          </HelperImageContainer>
+          {!!options.length && (
+            <Select
+              defaultValueLabel="Selecione a propiedade"
+              defaultValue={propertyId}
+              selectedValue={propertyId}
+              onValueChange={value => setPropertyId(`${value}`)}
+              icon="file-text"
+              itens={options}
+              label="signUp.stepTwo.genderLabel"
+              error={error}
+            />
+          )}
+
           <TextInput
             label="Nome"
             placeholder="Digite um nome para o talhão"
@@ -70,6 +108,23 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             name="name"
             control={control}
             errorMessage={errors?.name?.message}
+          />
+          <DateInput
+            name="plantingDate"
+            control={control}
+            icon="calendar"
+            label="Data de plantio"
+            errorMessage={errors?.plantingDate?.message}
+            placeholder="Data do plantio"
+          />
+          <TextInputMask
+            mask="9999-9999"
+            label="Ano safra"
+            placeholder="Informe o ano safra"
+            icon="check-square"
+            name="cropYear"
+            control={control}
+            errorMessage={errors?.cropYear?.message}
           />
           <TextInput
             label="Descrição"

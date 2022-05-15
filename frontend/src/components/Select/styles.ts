@@ -3,14 +3,18 @@ import { Picker } from '@react-native-community/picker';
 import styled from 'styled-components/native';
 import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
-export const Container = styled.View`
+interface ContainerProps {
+  error?: string;
+}
+export const Container = styled.View<ContainerProps>`
   width: 100%;
   min-height: ${RFHeight(56)}px;
   padding-left: ${RFWidth(8)}px;
-  background: ${({ theme }) => theme.colors.background};
+  background: ${({ theme }) => theme.colors.background_over};
   border-radius: 8px;
   border-width: 2px;
-  border-color: ${({ theme }) => theme.colors.details};
+  border-color: ${({ theme, error }) =>
+    error ? theme.colors.attention : theme.colors.details};
   flex-direction: row;
   align-items: center;
 `;
@@ -21,9 +25,22 @@ export const StyledPickerSelect = styled(Picker)`
   font-size: ${RFWidth(16)}px;
 `;
 
-export const Icon = styled(Feather)`
+interface IconProps {
+  error?: string;
+  selectedValue: boolean;
+}
+export const Icon = styled(Feather)<IconProps>`
   margin-left: ${RFWidth(8)}px;
   margin-right: ${RFWidth(8)}px;
+  color: ${({ theme, error, selectedValue }) => {
+    if (error) {
+      return theme.colors.attention;
+    }
+    if (selectedValue) {
+      return theme.colors.primary;
+    }
+    return theme.colors.details;
+  }};
 `;
 
 export const ErrorContainer = styled.View`
@@ -43,4 +60,10 @@ export const InputLabel = styled.Text`
   font-size: ${RFFontSize(14)}px;
   margin-top: ${RFHeight(12)}px;
   margin-bottom: ${RFHeight(8)}px;
+`;
+
+export const ErrorMessage = styled.Text`
+  color: ${({ theme }) => theme.colors.attention};
+  font-size: ${RFFontSize(14)}px;
+  margin: 0 ${RFHeight(4)}px;
 `;

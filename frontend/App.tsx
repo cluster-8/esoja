@@ -32,9 +32,9 @@ export const App: React.FC = () => {
     <ThemeProvider theme={theme[selectedTheme]}>
       <AuthProvider>
         <LocationProvider>
-          <HomeProvider>
-            <SampleProvider>
-              <UploadProvider>
+          <UploadProvider>
+            <HomeProvider>
+              <SampleProvider>
                 <PropertyProvider>
                   <GestureHandlerRootView style={{ flex: 1 }}>
                     <SafeAreaProvider>
@@ -51,9 +51,9 @@ export const App: React.FC = () => {
                     </SafeAreaProvider>
                   </GestureHandlerRootView>
                 </PropertyProvider>
-              </UploadProvider>
-            </SampleProvider>
-          </HomeProvider>
+              </SampleProvider>
+            </HomeProvider>
+          </UploadProvider>
         </LocationProvider>
       </AuthProvider>
     </ThemeProvider>
