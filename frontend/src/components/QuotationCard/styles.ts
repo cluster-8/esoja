@@ -18,10 +18,19 @@ export const Container = styled.View<ContainerProps>`
 
 export const QuotationDate = styled.Text`
   font-size: ${RFFontSize(18)}px;
+  padding: ${RFFontSize(4)}px;
+  color: ${({ theme }) => theme.colors.background};
+  font-family: ${({ theme }) => theme.fonts.medium};
 `;
 export const QuotationPrice = styled.Text`
   font-size: ${RFFontSize(18)}px;
+  padding: ${RFFontSize(4)}px;
+  color: ${({ theme }) => theme.colors.background};
+  font-family: ${({ theme }) => theme.fonts.medium};
 `;
 export const QuotationVariation = styled.Text`
   font-size: ${RFFontSize(18)}px;
+  padding-right: ${RFFontSize(4)}px;
+  color: ${({ theme }) => theme.colors.background};
+  font-family: ${({ theme }) => theme.fonts.medium};
 `;

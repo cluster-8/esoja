@@ -6,24 +6,19 @@ import {
   QuotationVariation
 } from './styles';
 
+import { Quote } from '../../screens/SeedQuotation';
+
 interface QuotationCardProps {
-  id: string;
-  variation: number;
-  date: string;
-  price: string;
+  id?: string;
+  data: Quote;
 }
 
-export const QuotationCard: React.FC<QuotationCardProps> = ({
-  id,
-  variation,
-  date,
-  price
-}) => {
+export const QuotationCard: React.FC<QuotationCardProps> = ({ id, data }) => {
   return (
-    <Container color={variation >= 0 ? 'green' : 'red'}>
-      <QuotationDate>{date}</QuotationDate>
-      <QuotationPrice>{price}</QuotationPrice>
-      <QuotationVariation>{variation}</QuotationVariation>
+    <Container key={id} color={data.variation >= 0 ? 'green' : 'red'}>
+      <QuotationDate>{data.date}</QuotationDate>
+      <QuotationPrice>R${data.price}</QuotationPrice>
+      <QuotationVariation>{data.variation}</QuotationVariation>
     </Container>
   );
 };
