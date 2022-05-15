@@ -102,11 +102,14 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
       })) as SocialAuthProps;
 
       if (type === 'success') {
+        console.log(params);
+
         try {
           const {
             data: { user, token }
-          } = await api.post<SignInRequestProps>('/authenticate', {
-            accessToken: params.access_token
+          } = await api.post<SignInRequestProps>('/social-sign-in', {
+            token: params.access_token,
+            provider: 'google'
           });
           await storeUser(user, token);
         } catch (err) {
@@ -143,8 +146,9 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
         try {
           const {
             data: { user, token }
-          } = await api.post<SignInRequestProps>('/authenticate', {
-            accessToken: params.access_token
+          } = await api.post<SignInRequestProps>('/social-sign-in', {
+            token: params.access_token,
+            provider: 'google'
           });
           await storeUser(user, token);
         } catch (err) {
