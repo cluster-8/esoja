@@ -9,6 +9,7 @@ import { TextInput } from '../../components/TextInput';
 import { TextInputMask } from '../../components/TextInputMask';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
+import { NewPropertyScreenRouteProps } from '../../data/routes/app';
 import { useAuth } from '../../hooks/useAuth';
 import { useLocation } from '../../hooks/useLocation';
 import { useProperty } from '../../hooks/useProperty';
@@ -30,7 +31,9 @@ const schema = Yup.object().shape({
   zipcode: Yup.string().required('validators.required').min(9).max(9)
 });
 
-export const NewProperty: React.FC = () => {
+export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
+  navigation
+}) => {
   const [loading, setLoading] = useState(false);
   const [getPositionLoading, setGetPositionLoading] = useState(false);
   const [image, setImage] = useState('');
@@ -63,7 +66,7 @@ export const NewProperty: React.FC = () => {
     setGetPositionLoading(false);
   };
 
-  async function handleRegister(data: FieldValues) {
+  async function handleCreateProperty(data: FieldValues) {
     try {
       setLoading(true);
       if (image) {
@@ -77,6 +80,7 @@ export const NewProperty: React.FC = () => {
       }
       data.userId = authUser?.id;
       await createPorperty(data);
+      navigation.navigate('Properties');
       setLoading(false);
     } catch (error) {
       Alert.alert('Não foi possível salvar.');
@@ -137,7 +141,7 @@ export const NewProperty: React.FC = () => {
               <ButtonContainer>
                 <Button
                   title="Enviar"
-                  onPress={handleSubmit(handleRegister)}
+                  onPress={handleSubmit(handleCreateProperty)}
                   showLoadingIndicator={loading}
                 />
               </ButtonContainer>

@@ -108,7 +108,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   };
 
   const firstTime = useCallback(async () => {
-    const query = queryBuilder({ select: 'name latitude longitude' });
+    const query = queryBuilder({ select: 'name latitude longitude', limit: 2 });
     const res = await getProperties(query);
     handleSelectProperty(res[0]);
   }, [getProperties, handleSelectProperty]);

@@ -34,10 +34,10 @@ export const CreatePlotStepNine: React.FC<
     try {
       await saveStep({ photo: image });
       await createPlot();
-      return navigation.navigate('Home');
+      await navigation.navigate('Plots');
     } catch (err: ApiError) {
       setLoading(false);
-      return Alert.alert(err);
+      Alert.alert(err);
     }
   };
 

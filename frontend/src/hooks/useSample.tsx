@@ -99,16 +99,46 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
   );
 
   const createPlot = useCallback(async () => {
+    let cultiveId;
     try {
-      const newSample: Sample = await getPersistedData();
-      if (newSample && newSample?.photo) {
-        newSample.photo = await pictureUpload(newSample.photo, 'sample');
-        newSample.status = 'pending';
-        await api.post<string>('/cultive', newSample);
+      const fullData: Sample = await getPersistedData();
+      if (fullData && fullData?.photo) {
+        const a = await api.post<{ id: string }>('/cultive', {});
+
+        fullData.photo = await pictureUpload(fullData.photo, 'sample');
+        const newCultive = {
+          propertyId: fullData?.propertyId,
+          cultiveCoordinates: fullData?.cultiveCoordinates,
+          cropYear: fullData?.cropYear,
+          plantingDate: fullData?.plantingDate,
+          areaTotal: fullData?.areaTotal,
+          plantsPerMeter: fullData?.plantsPerMeter,
+          metersBetweenPlants: fullData?.metersBetweenPlants,
+          status: 'pending',
+          description: fullData?.description,
+          photo: fullData?.photo
+        };
+        const { data } = await api.post<{ id: string }>('/cultive', newCultive);
+        cultiveId = data?.id;
+        const newSample = {
+          cultiveId,
+          samples: [
+            { ...fullData?.plantA, name: 'Amostra 1' },
+            { ...fullData?.plantB, name: 'Amostra 2' },
+            { ...fullData?.plantC, name: 'Amostra 3' }
+          ]
+        };
+        console.log(newSample);
+
+        await api.post('/sample', newSample);
       }
       throw new Error('cade a foto fio');
     } catch (err: ApiError) {
-      throw new Error(err.response.data.message);
+      if (cultiveId) {
+        await api.delete(`/cultive/${cultiveId}`);
+      }
+      console.log(err?.response?.data?.message[0]);
+      // throw new Error(err.response.data.message);
     }
   }, [getPersistedData, pictureUpload]);
 

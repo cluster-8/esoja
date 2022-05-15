@@ -135,6 +135,8 @@ export const WeatherPeriodTemp = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 export const LoadingContainer = styled.View`
-  flex: 1;
   height: 100%;
+  padding-top: 400px;
+  align-items: center;
+  justify-content: center;
 `;

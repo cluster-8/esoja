@@ -19,7 +19,7 @@ export interface Property {
 
 interface PropertyContextData {
   createPorperty: (data: FieldValues) => Promise<void>;
-  getProperties: (query: string) => Promise<any[]>;
+  getProperties: (query?: string) => Promise<any[]>;
   propertySelected: Property;
   setPropertySelected: (property: Property) => any;
 }

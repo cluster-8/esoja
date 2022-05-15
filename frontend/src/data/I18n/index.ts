@@ -1,11 +1,22 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
+import CreatePlotStepEight from './CreatePlotStepEight';
+import CreatePlotStepFive from './CreatePlotStepFive';
+import CreatePlotStepFour from './CreatePlotStepFour';
+import CreatePlotStepNine from './CreatePlotStepNine';
+import CreatePlotStepOne from './CreatePlotStepOne';
+import CreatePlotStepSeven from './CreatePlotStepSeven';
+import CreatePlotStepSix from './CreatePlotStepSix';
+import CreatePlotStepThree from './CreatePlotStepThree';
+import CreatePlotStepTwo from './CreatePlotStepTwo';
 import home from './home';
 import newProperties from './newProperties';
 import plots from './plots';
 import properties from './properties';
+import quotation from './quotation';
 import signIn from './signIn';
+import signUp from './signUp';
 import validators from './validators';
 import weather from './weather';
 
@@ -26,7 +37,18 @@ export const i18nConfig = () => {
       ...properties.pt,
       ...plots.pt,
       ...validators.pt,
-      ...newProperties.pt
+      ...newProperties.pt,
+      ...signUp.pt,
+      ...CreatePlotStepEight.pt,
+      ...CreatePlotStepOne.pt,
+      ...CreatePlotStepTwo.pt,
+      ...CreatePlotStepThree.pt,
+      ...CreatePlotStepFour.pt,
+      ...CreatePlotStepFive.pt,
+      ...CreatePlotStepSix.pt,
+      ...CreatePlotStepSeven.pt,
+      ...CreatePlotStepNine.pt,
+      ...quotation.pt
     },
     'en-US': {
       ...signIn.en,
@@ -35,7 +57,18 @@ export const i18nConfig = () => {
       ...properties.en,
       ...plots.en,
       ...validators.en,
-      ...newProperties.en
+      ...newProperties.en,
+      ...signUp.en,
+      ...CreatePlotStepEight.en,
+      ...CreatePlotStepOne.en,
+      ...CreatePlotStepOne.en,
+      ...CreatePlotStepThree.en,
+      ...CreatePlotStepFour.en,
+      ...CreatePlotStepFive.en,
+      ...CreatePlotStepSix.en,
+      ...CreatePlotStepSeven.en,
+      ...CreatePlotStepNine.en,
+      ...quotation.en
     }
   };
   i18n.translations = {

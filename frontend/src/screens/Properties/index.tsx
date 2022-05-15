@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { PropertyCard, PropertyCardProps } from '../../components/PropertyCard';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
+import { Property } from '../../data/Model/Property';
 import { PropertiesScreenRouteProps } from '../../data/routes/app';
 import { useProperty } from '../../hooks/useProperty';
 import { AddButton, Container, Header, Icon, PropertyList } from './styles';
@@ -13,7 +14,7 @@ export interface DataListProps extends PropertyCardProps {
 export const Properties: React.FC<PropertiesScreenRouteProps> = ({
   navigation
 }) => {
-  const [properties, setProperties] = useState<any[]>([]);
+  const [properties, setProperties] = useState<Property[]>([]);
   const { getProperties } = useProperty();
 
   const getData = useCallback(async () => {
@@ -34,7 +35,7 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({
       </Header>
 
       <PropertyList
-        data={properties}
+        data={properties as DataListProps | any}
         keyExtractor={item => item.id}
         renderItem={({ item }) => <PropertyCard data={item} />}
       />
