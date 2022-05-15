@@ -100,7 +100,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
         <HomeMenuContainer>
           <HomeMenuCardWidgetContainer>
             <MenuCard
-              onPress={() => handlerCardMenuClick('Quotation')}
+              onPress={() => handlerCardMenuClick('SeedQuotation')}
               widget
               title={translate('home.seeds')}
               value={`R$ ${seedQuote?.Valor || 0}`}
@@ -113,7 +113,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
               }
             />
             <MenuCard
-              onPress={() => handlerCardMenuClick('Quotation')}
+              onPress={() => handlerCardMenuClick('BagQuotation')}
               widget
               title={translate('home.soybeanPrice')}
               value={`R$ ${availableQuote?.Valor || 0}`}
