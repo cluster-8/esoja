@@ -4,7 +4,6 @@ import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
-import { ApiError } from '../../../data/Model/Error';
 import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
@@ -35,9 +34,9 @@ export const CreatePlotStepNine: React.FC<
       await saveStep({ photo: image });
       await createPlot();
       await navigation.navigate('Plots');
-    } catch (err: ApiError) {
+    } catch (err) {
       setLoading(false);
-      Alert.alert(err);
+      Alert.alert('erro');
     }
   };
 

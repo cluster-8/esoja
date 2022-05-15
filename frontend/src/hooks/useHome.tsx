@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {
   createContext,
   ReactNode,
@@ -5,7 +6,6 @@ import React, {
   useContext,
   useMemo
 } from 'react';
-import axios from 'axios';
 import { getWeatherDay } from '../data/services/weather.services';
 
 interface Coordinates {
@@ -74,7 +74,6 @@ const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
       );
       return [availableQuote[0], seedQuote[0]];
     } catch (err) {
-      console.log(err);
       return undefined;
     }
   }, []);

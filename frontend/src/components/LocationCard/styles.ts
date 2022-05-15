@@ -1,6 +1,4 @@
 import styled from 'styled-components/native';
-import { RectButton } from 'react-native-gesture-handler';
-import { Feather } from '@expo/vector-icons';
 import { RFFontSize, RFHeight } from '../../utils/getResponsiveSizes';
 
 export interface ContainerProps {
@@ -13,7 +11,6 @@ export const Container = styled.Pressable`
   border-radius: 5px;
   padding: 8px 24px;
   flex: 1;
-  elevation: 5;
   width: 100%;
   overflow: hidden;
 `;

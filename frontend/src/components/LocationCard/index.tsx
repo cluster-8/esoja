@@ -1,28 +1,19 @@
 import React from 'react';
-
+import { Property } from '../../data/Model/Property';
 import { Container, PropertyTitle } from './styles';
 
-export interface LocationCardProps {
-  id: string;
-  name?: string;
-  latitude?: string;
-  longitude?: string;
-  //   area?: number;
-  //   total_tal?: number;
-  //   cep?: string;
-  //   city?: string;
-  //   state?: string;
-}
-
-interface Props {
-  data: LocationCardProps;
+interface LocationCardProps {
+  property: Property;
   onClick: () => void;
 }
 
-export const LocationCard: React.FC<Props> = ({ data, onClick }) => {
+export const LocationCard: React.FC<LocationCardProps> = ({
+  property,
+  onClick
+}) => {
   return (
     <Container onPress={() => onClick()}>
-      <PropertyTitle>{`${data?.name}`}</PropertyTitle>
+      <PropertyTitle>{`${property?.name}`}</PropertyTitle>
     </Container>
   );
 };

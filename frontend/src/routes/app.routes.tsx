@@ -9,6 +9,7 @@ import { useTheme } from 'styled-components';
 import { NavigatorProps } from '.';
 import Logo from '../assets/images/logo-dark.png';
 import { AppRoutesParams } from '../data/routes/app';
+import { BagQuotation } from '../screens/BagQuotation';
 import { CreatePlotStepEight } from '../screens/CreatePlot/CreatePlotStepEight';
 import { CreatePlotStepFive } from '../screens/CreatePlot/CreatePlotStepFive';
 import { CreatePlotStepFour } from '../screens/CreatePlot/CreatePlotStepFour';
@@ -23,7 +24,7 @@ import { NewProperty } from '../screens/NewProperty';
 import { Plots } from '../screens/Plots';
 import { Properties } from '../screens/Properties';
 import { SeedQuotation } from '../screens/SeedQuotation';
-import { BagQuotation } from '../screens/BagQuotation';
+import { Statistics } from '../screens/Statistics';
 import { Weather } from '../screens/Weather';
 
 const Stack = createNativeStackNavigator<AppRoutesParams>();
@@ -146,6 +147,11 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
       <Stack.Screen
         name="BagQuotation"
         component={BagQuotation}
+        options={options}
+      />
+      <Stack.Screen
+        name="Statistics"
+        component={Statistics}
         options={options}
       />
       <Stack.Screen

@@ -3,7 +3,10 @@ import { Alert, ScrollView } from 'react-native';
 import { MenuCard } from '../../components/MenuCard';
 import { UserCard } from '../../components/UserCard';
 import { translate } from '../../data/I18n';
-import { AppRoutesParams, HomeScreenRouteProps } from '../../data/routes/app';
+import {
+  AppRoutesParams,
+  StatisticsScreenRouteProps
+} from '../../data/routes/app';
 import { useAuth } from '../../hooks/useAuth';
 import { Quotation, useHome, WeatherResponseProps } from '../../hooks/useHome';
 import { useLocation } from '../../hooks/useLocation';
@@ -20,7 +23,9 @@ import {
   MenuCardContainer
 } from './styles';
 
-export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
+export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
+  navigation
+}) => {
   const [weather, setWeather] = useState<WeatherResponseProps | null>(null);
   const [seedQuote, setSeedQuote] = useState<Quotation | null>(null);
   const [availableQuote, setAvailableQuote] = useState<Quotation | null>(null);

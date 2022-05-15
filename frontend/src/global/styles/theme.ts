@@ -1,9 +1,7 @@
 import backgroundLight from '../../assets/images/background-esoja-light.png';
 import backgroundDark from '../../assets/images/background-esoja.png';
-import {
-  default as esojaLogoDarkImg,
-  default as esojaLogoLightImg
-} from '../../assets/images/logo-dark.png';
+import EsojaLogoDarkImg from '../../assets/images/logo-dark.png';
+// import EsojaLogoLightImg from '../../assets/images/logo-light.png';
 import fonts from './fonts';
 
 export default {
@@ -23,7 +21,7 @@ export default {
       success: '#77B309'
     },
     images: {
-      esoja_logo: esojaLogoLightImg,
+      esoja_logo: EsojaLogoDarkImg,
       background: backgroundLight
     },
     ...fonts
@@ -44,7 +42,7 @@ export default {
       success: '#77B309'
     },
     images: {
-      esoja_logo: esojaLogoDarkImg,
+      esoja_logo: EsojaLogoDarkImg,
       background: backgroundDark
     },
     ...fonts

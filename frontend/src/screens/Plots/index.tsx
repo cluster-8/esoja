@@ -1,55 +1,21 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { CultiveCard, CultiveCardProps } from '../../components/PlotCard';
+import { PlotCard } from '../../components/PlotCard';
+import { Separator } from '../../components/Separator';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
+import { Plot } from '../../data/Model/Plot';
 import { PlotsScreenRouteProps } from '../../data/routes/app';
 import { useSample } from '../../hooks/useSample';
-import { AddButton, Container, CultiveList, Header, Icon } from './styles';
-
-export interface DataListProps extends CultiveCardProps {
-  id: string;
-}
+import { queryBuilder } from '../../utils/queryBuilder';
+import { AddButton, Container, Header, Icon, PlotList } from './styles';
 
 export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
-  const data = [
-    {
-      id: '1',
-      name: 'Teste 1',
-      area: 40,
-      distancia: 10,
-      media: 65,
-      produtividade: 50
-    },
-    {
-      id: '2',
-      name: 'Teste 2',
-      area: 40,
-      distancia: 10,
-      media: 65,
-      produtividade: 50
-    },
-    {
-      id: '3',
-      name: 'Teste 3',
-      area: 40,
-      distancia: 10,
-      media: 65,
-      produtividade: 50
-    },
-    {
-      id: '4',
-      name: 'Teste 4',
-      area: 40,
-      distancia: 10,
-      media: 65,
-      produtividade: 50
-    }
-  ];
-  const [plots, setPlots] = useState<any[]>([]);
+  const [plots, setPlots] = useState<Plot[]>([]);
   const { getPlot } = useSample();
 
   const getData = useCallback(async () => {
-    setPlots(await getPlot());
+    const query = queryBuilder({ select: 'cropYear areaTotal photo' });
+    setPlots(await getPlot(query));
   }, [getPlot]);
 
   useEffect(() => {
@@ -65,10 +31,11 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
         />
       </Header>
 
-      <CultiveList
-        data={data}
+      <PlotList
+        data={plots}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <CultiveCard data={item} />}
+        ItemSeparatorComponent={() => <Separator />}
+        renderItem={({ item }) => <PlotCard plot={item} />}
       />
 
       <AddButton onPress={() => navigation.navigate('CreatePlotStepOne')}>

@@ -3,25 +3,16 @@ import React, {
   ReactNode,
   useCallback,
   useContext,
-  useMemo,
-  useState
+  useMemo
 } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { Alert } from 'react-native';
+import { Property } from '../data/Model/Property';
 import { api } from '../data/services/api';
-
-export interface Property {
-  id: string;
-  name?: string;
-  latitude?: string;
-  longitude?: string;
-}
 
 interface PropertyContextData {
   createPorperty: (data: FieldValues) => Promise<void>;
-  getProperties: (query?: string) => Promise<any[]>;
-  propertySelected: Property;
-  setPropertySelected: (property: Property) => any;
+  getProperties: (query?: string) => Promise<Property[]>;
 }
 
 type PropertyContextProps = {
@@ -31,33 +22,29 @@ type PropertyContextProps = {
 const PropertyContext = createContext({} as PropertyContextData);
 
 const PropertyProvider: React.FC<PropertyContextProps> = ({ children }) => {
-  const [propertySelected, setPropertySelected] = useState<Property | any>();
-
   const createPorperty = useCallback(async (data: FieldValues) => {
     try {
       await api.post('/property', data);
-    } catch (err) {
+    } catch (err: any) {
       Alert.alert('erro');
     }
   }, []);
 
   const getProperties = useCallback(async (query = '') => {
     try {
-      const { data } = await api.get<any[]>(`/property${query}`);
+      const { data } = await api.get<Property[]>(`/property${query}`);
       return data;
-    } catch (err) {
-      Alert.alert('erro');
+    } catch (err: any) {
+      Alert.alert(err.response.data.message || err.response.data.message[0]);
       return [];
     }
   }, []);
   const providerValue = useMemo(
     () => ({
       createPorperty,
-      getProperties,
-      propertySelected,
-      setPropertySelected
+      getProperties
     }),
-    [createPorperty, getProperties, propertySelected, setPropertySelected]
+    [createPorperty, getProperties]
   );
   return (
     <PropertyContext.Provider value={providerValue}>

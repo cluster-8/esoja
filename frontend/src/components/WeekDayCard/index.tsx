@@ -1,8 +1,8 @@
+import { fromUnixTime, isSameDay } from 'date-fns';
 import React from 'react';
-import { WeekDayCardContainer, WeekDayItem } from './style';
 import { formatWeekDay } from '../../utils/formatter';
 import { isToday } from '../../utils/isToday';
-import { fromUnixTime, isSameDay } from 'date-fns';
+import { WeekDayCardContainer, WeekDayItem } from './style';
 
 interface WeekDayCardProps {
   selectedDate: number | Date;

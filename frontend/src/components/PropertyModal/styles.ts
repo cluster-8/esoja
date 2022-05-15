@@ -1,14 +1,11 @@
 import { FlatList, FlatListProps } from 'react-native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
+import { Property } from '../../data/Model/Property';
 import { RFHeight } from '../../utils/getResponsiveSizes';
 
-import { DataListProps } from '.';
-
 export const LocationList = styled(
-  FlatList as new (
-    props: FlatListProps<DataListProps>
-  ) => FlatList<DataListProps>
+  FlatList as new (props: FlatListProps<Property>) => FlatList<Property>
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
@@ -45,7 +42,6 @@ export const ModalView = styled.View`
 export const Button = styled.Pressable`
   border-radius: ${RFHeight(20)}px;
   padding: ${RFHeight(10)}px;
-  elevation: 2;
 `;
 
 export const TitleStyled = styled.Text`

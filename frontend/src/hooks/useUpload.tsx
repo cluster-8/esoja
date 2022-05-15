@@ -47,7 +47,6 @@ const UploadProvider: React.FC<UploadContextProps> = ({ children }) => {
         await reference.putFile(file);
         return reference.getDownloadURL();
       } catch (err) {
-        console.log(err);
         return '';
       }
     },

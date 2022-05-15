@@ -1,4 +1,5 @@
 import React from 'react';
+import { ImageSourcePropType } from 'react-native';
 import { useTheme } from 'styled-components';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
 import { LoadingIndicator } from '../LoadingIndicator';
@@ -16,7 +17,7 @@ import {
 
 export interface MenuCardProps {
   title: string;
-  picture?: any;
+  picture?: ImageSourcePropType;
   icon?: string;
   value?: string;
   variation?: number;

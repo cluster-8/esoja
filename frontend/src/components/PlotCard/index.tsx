@@ -1,35 +1,27 @@
 import React from 'react';
-import { Container, Footer, Header, InfoText, Title } from './styles';
+import { Avatar } from 'react-native-paper';
+import { Plot } from '../../data/Model/Plot';
+import { defaultImage } from '../../utils/default';
+import {
+  InformationContainer,
+  PropertyCity,
+  PropertyInformationContainer,
+  PropertyName
+} from './styles';
 
-export interface CultiveCardProps {
-  id: string;
-  name: string;
-  area: number;
-  distancia: number;
-  media: number;
-  produtividade: number;
+interface PlotCardProps {
+  plot: Plot;
 }
 
-interface Props {
-  data: CultiveCardProps;
-}
-
-export const CultiveCard = ({ data }: Props) => {
+export const PlotCard: React.FC<PlotCardProps> = ({ plot }) => {
   return (
-    <Container>
-      <Header>
-        <Title>{data.name}</Title>
-      </Header>
-
-      <Footer>
-        <InfoText>{`Área - ${data.area} Hectares`}</InfoText>
-
-        <InfoText>{`Distancia entre as linhas de cultivo - ${data.distancia} cm`}</InfoText>
-
-        <InfoText>{`Média de grãos por planta: ${data.media} grãos`}</InfoText>
-
-        <InfoText>{`Estimativa de produtividade - ${data.produtividade} sc/hc`}</InfoText>
-      </Footer>
-    </Container>
+    <PropertyInformationContainer>
+      <Avatar.Image source={{ uri: plot?.photo || defaultImage }} />
+      <InformationContainer>
+        <PropertyName>Safra {plot?.cropYear}</PropertyName>
+        <PropertyCity>Area {plot?.areaTotal} hectares</PropertyCity>
+        <PropertyCity>Estimativa de produção</PropertyCity>
+      </InformationContainer>
+    </PropertyInformationContainer>
   );
 };

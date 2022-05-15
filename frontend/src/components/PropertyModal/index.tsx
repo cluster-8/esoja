@@ -1,33 +1,19 @@
 import React from 'react';
+import { Property } from '../../data/Model/Property';
 import { LocationCard } from '../LocationCard';
-
 import {
   CenteredView,
-  ModalView,
-  TitleStyled,
+  LocationList,
   ModalStyled,
-  LocationList
+  ModalView,
+  TitleStyled
 } from './styles';
-
-export interface Property {
-  id: string;
-  name?: string;
-  latitude?: string;
-  longitude?: string;
-}
 
 export interface PropertyModalProps {
   modalVisible: boolean;
-  setModalVisible: () => any;
+  setModalVisible: () => unknown;
   setSelectedProperty: (property: Property) => void;
   properties: Property[];
-}
-
-export interface DataListProps {
-  id: string;
-  name?: string;
-  latitude?: string;
-  longitude?: string;
 }
 
 export const PropertyModal: React.FC<PropertyModalProps> = ({
@@ -57,7 +43,7 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
             data={properties}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
-              <LocationCard data={item} onClick={() => handleClick(item)} />
+              <LocationCard property={item} onClick={() => handleClick(item)} />
             )}
           />
         </ModalView>

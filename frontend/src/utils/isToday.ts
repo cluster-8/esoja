@@ -2,7 +2,8 @@ import { fromUnixTime, isSameDay, subHours } from 'date-fns';
 
 export const isToday = (date: number | Date) => {
   if (typeof date === 'number') {
-    date = fromUnixTime(date);
+    const formatDate = fromUnixTime(date);
+    return isSameDay(subHours(formatDate, 3), new Date());
   }
-  return isSameDay(subHours(date, 3), new Date());
+  return false;
 };

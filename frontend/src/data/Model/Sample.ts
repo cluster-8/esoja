@@ -1,8 +1,8 @@
-import { Cultive } from './Cultive';
+import { Plot } from './Plot';
 
 export interface Sample {
   id: string;
-  cultive: Cultive;
+  cultive: Plot;
   name: string;
   description: string;
   grainsPlant1: number;

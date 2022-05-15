@@ -1,45 +1,30 @@
 import React from 'react';
-
+import { Avatar } from 'react-native-paper';
+import { Property } from '../../data/Model/Property';
+import { defaultImage } from '../../utils/default';
 import {
-  Container,
-  Header,
-  Title,
-  ExcludeButton,
-  Icon,
-  Footer,
-  InfoText
+  InformationContainer,
+  PropertyCity,
+  PropertyInformationContainer,
+  PropertyName
 } from './styles';
 
-export interface PropertyCardProps {
-  id: string;
-  name: string;
-  area: number;
-  total_tal: number;
-  cep: string;
-  city: string;
-  state: string;
-}
-
 interface Props {
-  data: PropertyCardProps;
+  property: Property;
 }
 
-export function PropertyCard({ data }: Props) {
+export const PropertyCard = ({ property }: Props) => {
   return (
-    <Container>
-      <Header>
-        <Title>{data.name}</Title>
-      </Header>
-
-      <Footer>
-        <InfoText>{`Área - ${data.area} Hectares`}</InfoText>
-
-        <InfoText>{`Total de talhões - ${data.total_tal}`}</InfoText>
-
-        <InfoText>{`CEP: ${data.cep}`}</InfoText>
-
-        <InfoText>{`${data.city} - ${data.state}`}</InfoText>
-      </Footer>
-    </Container>
+    <PropertyInformationContainer>
+      <Avatar.Image source={{ uri: property?.picture || defaultImage }} />
+      <InformationContainer>
+        <PropertyName>{property?.name || ''}</PropertyName>
+        <PropertyCity>
+          {`${property?.cultives?.length} Talhoes cadastrados` ||
+            'Nenhum talhão cadastrado'}
+        </PropertyCity>
+        <PropertyCity>{property?.city || ''}</PropertyCity>
+      </InformationContainer>
+    </PropertyInformationContainer>
   );
-}
+};

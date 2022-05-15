@@ -9,8 +9,8 @@ import Image13 from '../assets/weather-images/13.png';
 import Image50 from '../assets/weather-images/50.png';
 
 export const getWeatherImage = (icon: string) => {
-  icon = icon.replace(/[^0-9]/g, '');
-  switch (icon) {
+  const iconId = icon.replace(/[^0-9]/g, '');
+  switch (iconId) {
     case '01':
       return Image01;
     case '02':

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Property } from '../../data/Model/Property';
 import { useLocation } from '../../hooks/useLocation';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
 import {
@@ -14,7 +15,7 @@ import {
 
 interface WeatherPropertCardProps {
   onClick: () => void;
-  selectedProperty: any;
+  selectedProperty: Property;
 }
 
 export const WeatherPropertCard: React.FC<WeatherPropertCardProps> = ({

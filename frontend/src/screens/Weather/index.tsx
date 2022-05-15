@@ -6,6 +6,7 @@ import { WeatherInfoCard } from '../../components/WeatherInfoCard';
 import { WeatherPropertCard } from '../../components/WeatherPropertCard';
 import { WeekDayCard } from '../../components/WeekDayCard';
 import { translate } from '../../data/I18n';
+import { Property } from '../../data/Model/Property';
 import { WeatherScreenRouteProps } from '../../data/routes/app';
 import {
   getWeatherForecast,
@@ -45,8 +46,10 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   const [loading, setLoading] = useState(true);
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [propertyList, setPropertyList] = useState<any[]>([]);
-  const [selectedProperty, setSelectedProperty] = useState<any[]>([]);
+  const [propertyList, setPropertyList] = useState<Property[]>([]);
+  const [selectedProperty, setSelectedProperty] = useState<Property>(
+    {} as Property
+  );
 
   const [weatherType, setWeatherType] = useState<string>('');
   const [selectedDate, setSelectedDate] = useState<number | Date>(0);
@@ -83,10 +86,10 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   );
 
   const handleSelectProperty = useCallback(
-    async (property: any) => {
+    async (property: Property) => {
       await getData({
-        latitude: property?.latitude,
-        longitude: property?.longitude
+        latitude: Number(property?.latitude),
+        longitude: Number(property?.longitude)
       });
       setSelectedProperty(property);
     },
@@ -95,7 +98,10 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
 
   const handlePropertyCardClick = async () => {
     if (!propertyList?.length) {
-      const query = queryBuilder({ select: 'name latitude longitude' });
+      const query = queryBuilder({
+        select: 'name latitude longitude',
+        limit: 0
+      });
       const res = await getProperties(query);
       setModalVisible(true);
       if (res) {
@@ -108,7 +114,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   };
 
   const firstTime = useCallback(async () => {
-    const query = queryBuilder({ select: 'name latitude longitude', limit: 2 });
+    const query = queryBuilder({ select: 'name latitude longitude' });
     const res = await getProperties(query);
     handleSelectProperty(res[0]);
   }, [getProperties, handleSelectProperty]);

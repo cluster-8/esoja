@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 interface Populate {
   path: string;
   select: string;
@@ -11,7 +10,4 @@ export interface Query {
   limit?: number;
   sort?: string | object;
   populate?: Populate[];
-  and?: any[];
-  or?: any[];
-  [key: string]: any;
 }

@@ -13,7 +13,7 @@ import {
 } from './styles';
 
 type ItemType = {
-  value: string;
+  value: any;
   label: string;
 };
 export interface PickerSelectProps extends PickerProps {

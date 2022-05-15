@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Alert } from 'react-native';
 import { WeatherResponseProps } from '../../hooks/useHome';
 
 interface Coordinates {
@@ -34,18 +35,18 @@ export interface WeatherForecastProps {
 
 export const getWeatherForecast = async (
   coordinates: Coordinates,
-  lang: string
+  lang = 'pt_br'
 ) => {
   try {
     const {
       data: { list }
     } = await axios.get<{ list: WeatherForecastProps[] }>(
-      `http://pro.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric&cnt=7`
+      `http://pro.openweathermap.org/data/2.5/forecast/daily?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${process.env.OPEN_WEATHER_API_KEY}&units=metric&cnt=7&lang=${lang}`
     );
 
     return list;
   } catch (err) {
-    return console.error(err);
+    return Alert.alert('Erro');
   }
 };
 
@@ -57,6 +58,6 @@ export const getWeatherDay = async (coordinates: Coordinates) => {
 
     return data;
   } catch (err) {
-    return console.log('err getWeatherDay: ', err);
+    return Alert.alert('Erro');
   }
 };

@@ -11,6 +11,7 @@ import { StepIndicator } from '../../../components/StepIndicator';
 import { TextInput } from '../../../components/TextInput';
 import { TextInputMask } from '../../../components/TextInputMask';
 import Title from '../../../components/Title';
+import { SelectOptions } from '../../../data/Model/SelectOptions';
 import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
 import { useProperty } from '../../../hooks/useProperty';
 import { useSample } from '../../../hooks/useSample';
@@ -28,7 +29,7 @@ const stepTwo = yup.object().shape({
 export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
   navigation
 }) => {
-  const [options, setOptions] = useState([]);
+  const [options, setOptions] = useState<SelectOptions[]>([]);
   const [propertyId, setPropertyId] = useState('default');
   const [error, setError] = useState('');
   const { saveStep, getPersistedData } = useSample();
@@ -65,13 +66,13 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
   }, [getPersistedData, setValue]);
 
   useEffect(() => {
-    const getSelectData = async (): Promise<any> => {
+    const getSelectData = async (): Promise<void> => {
       const properties = await getProperties('?select=name');
       if (properties) {
         setOptions(
           properties.map(property => ({
-            value: property.id,
-            label: property.name
+            value: `${property.id}`,
+            label: `${property.name}`
           }))
         );
       }

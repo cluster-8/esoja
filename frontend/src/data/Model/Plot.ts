@@ -1,7 +1,7 @@
 import { Coordinates } from './Coordinates';
 import { Sample } from './Sample';
 
-export interface Cultive {
+export interface Plot {
   propertyId: string;
   cultiveCoordinates: Coordinates[];
   samples: Sample[];

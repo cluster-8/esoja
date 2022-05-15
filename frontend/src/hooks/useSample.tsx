@@ -9,7 +9,7 @@ import React, {
 } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { Alert } from 'react-native';
-import { ApiError } from '../data/Model/Error';
+import { Plot } from '../data/Model/Plot';
 import { api } from '../data/services/api';
 import { useUpload } from './useUpload';
 
@@ -52,8 +52,8 @@ interface SampleContextData {
   saveStep: (data: FieldValues) => Promise<void>;
   saveLocale: (polygon: Coordinates[], areaTotal: number) => void;
   getPersistedData: () => Promise<Sample | null>;
-  getPlot: () => Promise<any[]>;
-  createPlot: () => Promise<any>;
+  getPlot: (query?: string) => Promise<Plot[]>;
+  createPlot: () => Promise<void>;
 }
 
 type SampleContextProps = {
@@ -103,10 +103,9 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     try {
       const fullData: Sample = await getPersistedData();
       if (fullData && fullData?.photo) {
-        const a = await api.post<{ id: string }>('/cultive', {});
-
+        await api.post<{ id: string }>('/cultive', {});
         fullData.photo = await pictureUpload(fullData.photo, 'sample');
-        const newCultive = {
+        const newPlot = {
           propertyId: fullData?.propertyId,
           cultiveCoordinates: fullData?.cultiveCoordinates,
           cropYear: fullData?.cropYear,
@@ -118,7 +117,7 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
           description: fullData?.description,
           photo: fullData?.photo
         };
-        const { data } = await api.post<{ id: string }>('/cultive', newCultive);
+        const { data } = await api.post<{ id: string }>('/cultive', newPlot);
         cultiveId = data?.id;
         const newSample = {
           cultiveId,
@@ -128,23 +127,22 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
             { ...fullData?.plantC, name: 'Amostra 3' }
           ]
         };
-        console.log(newSample);
-
         await api.post('/sample', newSample);
       }
       throw new Error('cade a foto fio');
-    } catch (err: ApiError) {
+    } catch (err: any) {
       if (cultiveId) {
         await api.delete(`/cultive/${cultiveId}`);
       }
-      console.log(err?.response?.data?.message[0]);
-      // throw new Error(err.response.data.message);
+      throw new Error(
+        err.response.data.message || err.response.data.message[0]
+      );
     }
   }, [getPersistedData, pictureUpload]);
 
-  const getPlot = useCallback(async () => {
+  const getPlot = useCallback(async (query = '') => {
     try {
-      const { data } = await api.get<any[]>('/cultive');
+      const { data } = await api.get<Plot[]>(`/cultive${query}`);
       return data;
     } catch (err) {
       Alert.alert('erro');

@@ -1,15 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { PropertyCard, PropertyCardProps } from '../../components/PropertyCard';
+import { PropertyCard } from '../../components/PropertyCard';
+import { Separator } from '../../components/Separator';
 import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
 import { Property } from '../../data/Model/Property';
 import { PropertiesScreenRouteProps } from '../../data/routes/app';
 import { useProperty } from '../../hooks/useProperty';
 import { AddButton, Container, Header, Icon, PropertyList } from './styles';
-
-export interface DataListProps extends PropertyCardProps {
-  id: string;
-}
 
 export const Properties: React.FC<PropertiesScreenRouteProps> = ({
   navigation
@@ -18,7 +15,9 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({
   const { getProperties } = useProperty();
 
   const getData = useCallback(async () => {
-    setProperties(await getProperties());
+    const query =
+      '?select=name city state&populate[0][path]=cultives&populate[0][select]=id';
+    setProperties(await getProperties(query));
   }, [getProperties]);
 
   useEffect(() => {
@@ -35,9 +34,10 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({
       </Header>
 
       <PropertyList
-        data={properties as DataListProps | any}
+        data={properties}
+        ItemSeparatorComponent={() => <Separator />}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <PropertyCard data={item} />}
+        renderItem={({ item }) => <PropertyCard property={item} />}
       />
 
       <AddButton onPress={() => navigation.navigate('NewProperty')}>

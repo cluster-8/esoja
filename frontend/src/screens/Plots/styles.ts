@@ -1,10 +1,9 @@
-import styled from 'styled-components/native';
+import { Feather } from '@expo/vector-icons';
 import { FlatList, FlatListProps } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
-import { Feather } from '@expo/vector-icons';
-
-import { DataListProps } from '.';
+import styled from 'styled-components/native';
+import { Plot } from '../../data/Model/Plot';
 import { RFFontSize, RFHeight } from '../../utils/getResponsiveSizes';
 
 export const Container = styled.View`
@@ -34,10 +33,8 @@ export const SubTitle = styled.Text`
   margin-bottom: 16px;
 `;
 
-export const CultiveList = styled(
-  FlatList as new (
-    props: FlatListProps<DataListProps>
-  ) => FlatList<DataListProps>
+export const PlotList = styled(
+  FlatList as new (props: FlatListProps<Plot>) => FlatList<Plot>
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {

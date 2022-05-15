@@ -9,7 +9,7 @@ import { Button } from '../../components/Button';
 import { SafeAreaView } from '../../components/SafeAreaView';
 import { TextInput } from '../../components/TextInput';
 import { translate } from '../../data/I18n';
-import { SignInScreenRouteProps } from '../../data/routes/auth';
+import { ForgotPasswordScreenRouteProps } from '../../data/routes/auth';
 import { useAuth } from '../../hooks/useAuth';
 import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 import {
@@ -40,7 +40,9 @@ const userLogin = yup.object().shape({
   password: yup.string().min(6, 'signIn.errors.password.length')
 });
 
-export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
+export const ForgotPassword: React.FC<ForgotPasswordScreenRouteProps> = ({
+  navigation
+}) => {
   const {
     control,
     handleSubmit,
