@@ -6,7 +6,8 @@ export type AppRoutesParams = {
   Plots: undefined;
   Properties: undefined;
   NewProperty: undefined;
-  Quotation: undefined;
+  SeedQuotation: undefined;
+  BagQuotation: undefined;
   CreatePlot: undefined;
   CreatePlotStepOne: undefined;
   CreatePlotStepTwo: undefined;
@@ -49,9 +50,14 @@ export type NewPropertyScreenRouteProps = NativeStackScreenProps<
   'NewProperty'
 >;
 
-export type QuotationScreenRouteProps = NativeStackScreenProps<
+export type SeedQuotationScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'Quotation'
+  'SeedQuotation'
+>;
+
+export type BagQuotationScreenRouteProps = NativeStackScreenProps<
+  AppRoutesParams,
+  'BagQuotation'
 >;
 
 export type CreatePlotStepOneScreenRouteProps = NativeStackScreenProps<
