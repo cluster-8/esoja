@@ -15,10 +15,12 @@ export default {
       background: '#F6F6F6',
       background_over: '#FFFFFF',
       details: '#BBBBBB',
-      attention: '#CC3333',
+      // attention: '#CC3333',
+      attention: '#BB4D2B',
       yellow: '#FCA600',
       white: '#FFFFFF',
-      success: '#66cc00'
+      // success: '#66cc00',
+      success: '#77B309'
     },
     images: {
       esoja_logo: esojaLogoLightImg,
@@ -34,10 +36,12 @@ export default {
       background: '#2D282A',
       background_over: '#3F3E40',
       details: '#606060',
-      attention: '#F85149',
+      // attention: '#F85149',
+      attention: '#BB4D2B',
       yellow: '#FCA600',
       white: '#FFFFFF',
-      success: '#66cc00'
+      // success: '#66cc00',    },
+      success: '#77B309'
     },
     images: {
       esoja_logo: esojaLogoDarkImg,
