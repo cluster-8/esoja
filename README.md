@@ -42,7 +42,7 @@ Entre no link e acesse a branch referente a sprint:
 | `Kik-off`  | Apresentação do projeto | 14/03/2022 a 18/03/2022 | ✅ |
 | [`Sprint 1`](https://github.com/cluster-8/esoja-mobile/blob/Sprint-1/README.md) | Meu Cultivo/Plantio e Previsão do Tempo | 25/03/2022 a 14/04/2022 | ✅ |
 | [`Sprint 2`](https://github.com/cluster-8/esoja-mobile/tree/Sprint-2) |  Login social e Informações do Mercado | 25/04/2022 a 15/15/2022 | ✅ |
-| `Sprint 3` | Custos de Produção, Comparação Estatística por Região e Estatísticas sobre o plantio, | 16/05/2022 a 05/06/2022 | Em espera |
+| `Sprint 3` | Custos de Produção, Comparação Estatística por Região e Estatísticas sobre o plantio | 16/05/2022 a 05/06/2022 | Em espera |
 | `Apresentação Final` | Apresentação da última Sprint | ??? a ??? | Em espera |
 | `Feira de Soluções` | Apresentação dos vídeos criados pelas equipes | ??? a ??? | Em espera |
   
