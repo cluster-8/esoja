@@ -60,4 +60,10 @@ Acesse o link para visualizar:
 
 ![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/QuotationsScreen.gif)
 
+### 🔧 Melhorias
+
+#### 🏡 Cadastro de Propriedades
+
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/CreatePropertyIntegration.gif)
+
 
