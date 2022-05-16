@@ -50,12 +50,14 @@ Acesse o link para visualizar:
 
 ## 💫 Funcionalidades implementadas
 
-### 🔑 Login Social
+### 🔑 LogIn e SignIn
 
-![]()
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/LoginScreen.gif)
+
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/SigninScreen.gif)
 
 ### 📰 Informações do Mercado da soja
 
-![]()
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/QuotationsScreen.gif)
 
 
