@@ -24,7 +24,7 @@ const signUpValidator = yup.object().shape({
   passwordConfirmation: yup
     .string()
     .required('signUp.errors.passwordConfirmation.required')
-    .oneOf([yup.ref('password'), null], 'signUp.errors.passwordConfirmation.min')
+    .oneOf([yup.ref('password'), null], 'signUp.errors.passwordConfirmation.oneOf')
 });
 
 export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
@@ -92,7 +92,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
 
           <TextInput
             label='signUp.signUpPassword'
-            placeholder={translate('passwordPlaceholder')}
+            placeholder={translate('signUp.passwordPlaceholder')}
             icon="lock"
             secureTextEntry
             name="password"
@@ -102,7 +102,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
 
           <TextInput
             label='signUp.passwordConfirmation'
-            placeholder={translate('passwordRepeatPlaceholder')}
+            placeholder={translate('signUp.passwordRepeatPlaceholder')}
             secureTextEntry
             icon="repeat"
             name="passwordConfirmation"
