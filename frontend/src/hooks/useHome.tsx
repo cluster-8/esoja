@@ -6,6 +6,7 @@ import React, {
   useContext,
   useMemo
 } from 'react';
+import { api } from '../data/services/api';
 import { getWeatherDay } from '../data/services/weather.services';
 
 interface Coordinates {
@@ -59,6 +60,9 @@ const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
 
   const getQuotation = useCallback(async () => {
     try {
+      const { data: apiQuotation } = await api.get('/imea/main');
+      console.log(apiQuotation);
+
       const { data } = await axios.get<Quotation[]>(
         `${process.env.IMEA_ROUTE}`
       );

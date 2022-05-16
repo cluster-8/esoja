@@ -58,7 +58,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
       if (data) {
         setValue('name', data?.name || '');
         setValue('description', data?.description || '');
-        setValue('plantingDate', new Date(data?.plantingDate || ''));
+        setValue('plantingDate', new Date(data?.plantingDate || new Date()));
         setValue('cropYear', data?.cropYear);
         setPropertyId(data.propertyId || 'default');
       }
