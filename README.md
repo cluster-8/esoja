@@ -46,7 +46,7 @@ Acesse os documentos clicando nos links abaixo:
 Acesse o link para visualizar:
 
 > * [Código Frontend](https://github.com/cluster-8/esoja-mobile/tree/mobile/frontend)
-> * [Código Backend](https://github.com/cluster-8/esoja-mobile/tree/backend/backend)
+> * [Código Backend](https://github.com/cluster-8/esoja-api)
 
 ## 💫 Funcionalidades implementadas
 
