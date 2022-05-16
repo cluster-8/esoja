@@ -102,12 +102,10 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
       })) as SocialAuthProps;
 
       if (type === 'success') {
-        console.log(params);
-
         try {
           const {
             data: { user, token }
-          } = await api.post<SignInRequestProps>('/social-sign-in', {
+          } = await api.post<SignInRequestProps>('/auth/social-sign-in', {
             token: params.access_token,
             provider: 'google'
           });
@@ -146,12 +144,12 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
         try {
           const {
             data: { user, token }
-          } = await api.post<SignInRequestProps>('/social-sign-in', {
+          } = await api.post<SignInRequestProps>('/auth/social-sign-in', {
             token: params.access_token,
-            provider: 'google'
+            provider: 'facebook'
           });
           await storeUser(user, token);
-        } catch (err) {
+        } catch (err: any) {
           Alert.alert(
             'Erro',
             'Não foi possível fazer o login, tente novamente mais tarde'

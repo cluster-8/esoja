@@ -13,7 +13,7 @@ export const LocationCard: React.FC<LocationCardProps> = ({
 }) => {
   return (
     <Container onPress={() => onClick()}>
-      <PropertyTitle>{`${property?.name}`}</PropertyTitle>
+      <PropertyTitle>{`nome: ${property?.name}`}</PropertyTitle>
     </Container>
   );
 };
