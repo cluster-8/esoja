@@ -54,6 +54,10 @@ Acesse o link para visualizar:
 
 ![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/LoginScreen.gif)
 
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/facebook-login.gif)
+
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/google-login.gif)
+
 ![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/SigninScreen.gif)
 
 ### 📰 Informações do Mercado da soja
@@ -65,5 +69,3 @@ Acesse o link para visualizar:
 #### 🏡 Cadastro de Propriedades
 
 ![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/CreatePropertyIntegration.gif)
-
-
