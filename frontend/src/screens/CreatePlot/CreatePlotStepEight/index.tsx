@@ -19,16 +19,17 @@ import { CreatePlotStepEightScreenRouteProps } from '../../../data/routes/app';
 import { TextInput } from '../../../components/TextInput';
 import { Button } from '../../../components/Button';
 import { useSample } from '../../../hooks/useSample';
+import { translate } from 'i18n-js';
 
 const userLogin = yup.object().shape({
   grainsPlant1: yup
     .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade de grãos não pode ser "ZERO"'),
+    .required('CreatePlotStepEight.errors.grainsPlant.required')
+    .min(1, 'CreatePlotStepEight.errors.garinsPlant.min'),
   grainsPlant2: yup
     .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade de grãos não pode ser "ZERO"')
+    .required('CreatePlotStepEight.errors.grainsPlant.required')
+    .min(1, 'CreatePlotStepEight.errors.grainsPlant.min')
 });
 
 export const CreatePlotStepEight: React.FC<
@@ -71,8 +72,8 @@ export const CreatePlotStepEight: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Amostra 3"
-          subtitle="Repita o passo anterior, essa sera a ultima amostra"
+          title={translate('CreatePlotStepEight.title')}
+          subtitle={translate('CreatePlotStepEight.subtitle')}
         />
         <StepIndicator step={1} indicator={7} />
         <FormContainer>
@@ -80,31 +81,31 @@ export const CreatePlotStepEight: React.FC<
             <StepEightHelperImage source={StepEight} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Quantidade total de grãos na planta A"
-            placeholder="Digite a quantidade de grãos"
+            label='CreatePlotStepEight.sampleA'
+            placeholder={translate('CreatePlotStepEight.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant1"
             control={control}
             errorMessage={errors?.grainsPlant1?.message}
           />
           <TextInput
-            label="Quantidade total de grãos na planta B"
-            placeholder="Digite a quantidade de grãos"
+            label='CreatePlotStepEight.sampleB'
+            placeholder={translate('CreatePlotStepEight.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant2"
             control={control}
             errorMessage={errors?.grainsPlant2?.message}
           />
           <TextInput
-            label="Descrição (opicional)"
-            placeholder="Descreva aqui..."
+            label='CreatePlotStepEight.sampleDescription'
+            placeholder={translate('CreatePlotStepEight.sampleDescriptionPlaceholder')}
             icon="check-square"
             name="description"
             control={control}
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepEight.buttonTitle')}
               onPress={handleSubmit(handleSubmitStepEight)}
             />
           </NextStepButton>

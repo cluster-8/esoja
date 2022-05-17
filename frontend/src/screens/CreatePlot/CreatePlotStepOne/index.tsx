@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { convertArea, getAreaOfPolygon } from 'geolib';
+import { translate } from 'i18n-js';
 import React, { useCallback, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Alert, ScrollView } from 'react-native';
@@ -45,7 +46,7 @@ const initialRegion = {
 };
 
 const stepOne = yup.object().shape({
-  areaTotal: yup.number().required('Quantidade é obrigatória').min(0.1)
+  areaTotal: yup.number().required('CreatePlotStepOne.errors.areaTotal.required').min(0.1)
 });
 
 export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
@@ -77,12 +78,12 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
 
   const handleSubmitStepOne = (data: FieldValues) => {
     if (!polygon.length) {
-      return Alert.alert('Localização invalida', 'Marque o talhão no mapa ');
+      return Alert.alert('CreatePlotStepOne.errors.polygonAlert.localFormat', 'CreatePlotStepOne.errors.polygonAlert.map');
     }
     if (mode === 'POLYGON' && polygon.length < 3) {
       return Alert.alert(
-        'Talhão invalido',
-        'Marque no minimo 3 pontos ou escolha o modo ponto unico'
+        'CreatePlotStepOne.errors.polygonAlert.fieldFormat',
+        'CreatePlotStepOne.errors.polygonAlert.min'
       );
     }
     saveLocale(polygon, data.areaTotal);
@@ -118,27 +119,25 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Coordenadas do talhão"
-          subtitle="Marque no mapa a localização e area correspondente ao talhão"
+          title={translate('CreatePlotStepOne.title')}
+          subtitle={translate('CreatePlotStepOne.subtitle')}
         />
         <StepIndicator step={0} />
         <FormContainer>
           {mode === '' && (
             <QuestionStep>
-              <QuestionTitle>Como deseja prosseguir</QuestionTitle>
+              <QuestionTitle>{translate('CreatePlotStepOne.questionTitle')}</QuestionTitle>
               <SelectModeContainer>
                 <ButtonCotainer onPress={() => setMode('POLYGON')}>
-                  <ButtonTitle>Desenhar talhão no mapa</ButtonTitle>
+                  <ButtonTitle>{translate('CreatePlotStepOne.buttonTitlePolygon')}</ButtonTitle>
                   <ButtonMessage>
-                    marque todos os pontos do talhão e calcularemos a area
-                    automaticamente
+                    {translate('CreatePlotStepOne.buttonMessagePolygon')}
                   </ButtonMessage>
                 </ButtonCotainer>
                 <ButtonCotainer onPress={() => setMode('POINT')}>
-                  <ButtonTitle>Marcar ponto unico</ButtonTitle>
+                  <ButtonTitle>{translate('CreatePlotStepOne.buttonTitlePoint')}</ButtonTitle>
                   <ButtonMessage>
-                    marque o ponto central do tralhao e informe a area
-                    manualmente
+                    {translate('CreatePlotStepOne.buttonMessagePoint')}
                   </ButtonMessage>
                 </ButtonCotainer>
               </SelectModeContainer>
@@ -153,7 +152,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
                   setValue('areaTotal', '');
                 }}
               >
-                <ModeText>Alterar modo</ModeText>
+                <ModeText>{translate('CreatePlotStepOne.ModeText')}</ModeText>
               </ModeTag>
               <MapContainer>
                 <ReactNativeMapView
@@ -198,8 +197,8 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
                   </MapButton>
                 )}
                 <TextInput
-                  label="Area"
-                  placeholder="Area do talhão em ha"
+                  label='CreatePlotStepOne.areaLabel'
+                  placeholder={translate('CreatePlotStepOne.areaPlaceholder')}
                   icon="check-square"
                   disabled={mode === 'POLYGON'}
                   name="areaTotal"
@@ -211,7 +210,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
           )}
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepOne.ContinueButton')}
               onPress={handleSubmit(handleSubmitStepOne)}
             />
           </NextStepButton>
