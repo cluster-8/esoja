@@ -16,14 +16,16 @@ import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
 import { useProperty } from '../../../hooks/useProperty';
 import { useSample } from '../../../hooks/useSample';
 import { Container, FormContainer, NextStepButton } from './styles';
+import { translate } from 'i18n-js';
+
 
 const stepTwo = yup.object().shape({
-  name: yup.string().required('Nome é obrigatório'),
-  plantingDate: yup.date().required('Data de plantio é obrigatória'),
+  name: yup.string().required('CreatePlotStepTwo.errors.stepTwoName.required'),
+  plantingDate: yup.date().required('CreatePlotStepTwo.errors.plantingDate.required'),
   cropYear: yup
     .string()
-    .required('Ano Safra é obrigatório')
-    .min(9, 'Formato invalido ex: 2019/2020)')
+    .required('CreatePlotStepTwo.errors.cropYear.required')
+    .min(9, 'CreatePlotStepTwo.errors.cropYear.min')
 });
 
 export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
@@ -84,14 +86,14 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Identitifique o talhão"
-          subtitle="Insira um nome e uma descrição para o seu novo talhão"
+          title={translate('CreatePlotStepTwo.title')}
+          subtitle={translate('CreatePlotStepTwo.subtitle')}
         />
         <StepIndicator step={1} />
         <FormContainer>
           {!!options.length && (
             <Select
-              defaultValueLabel="Selecione a propiedade"
+              defaultValueLabel='CreatePlotStepTwo.defaultValueLabel'
               defaultValue={propertyId}
               selectedValue={propertyId}
               onValueChange={value => setPropertyId(`${value}`)}
@@ -103,8 +105,8 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
           )}
 
           <TextInput
-            label="Nome"
-            placeholder="Digite um nome para o talhão"
+            label='CreatePlotStepTwo.fieldName'
+            placeholder={translate('CreatePlotStepTwo.fieldNamePlaceholder')}
             icon="check-square"
             name="name"
             control={control}
@@ -114,29 +116,29 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             name="plantingDate"
             control={control}
             icon="calendar"
-            label="Data de plantio"
+            label='CreatePlotStepTwo.plantingDateLabel'
             errorMessage={errors?.plantingDate?.message}
-            placeholder="Data do plantio"
+            placeholder={translate('CreatePlotStepTwo.plantingDatePlaceholder')}
           />
           <TextInputMask
             mask="9999-9999"
-            label="Ano safra"
-            placeholder="Informe o ano safra"
+            label='CreatePlotStepTwo.cropYearLabel'
+            placeholder={translate('CreatePlotStepTwo.cropYearPlaceholder')}
             icon="check-square"
             name="cropYear"
             control={control}
             errorMessage={errors?.cropYear?.message}
           />
           <TextInput
-            label="Descrição"
-            placeholder="Digite uma descrição"
+            label='CreatePlotStepTwo.fieldDescription'
+            placeholder={translate('CreatePlotStepTwo.fieldDescriptionPlaceholder')}
             icon="check-square"
             name="description"
             control={control}
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepTwo.continueButton')}
               onPress={handleSubmit(handleSubmitStepTwo)}
             />
           </NextStepButton>
