@@ -19,12 +19,13 @@ import { CreatePlotStepThreeScreenRouteProps } from '../../../data/routes/app';
 import { TextInput } from '../../../components/TextInput';
 import { Button } from '../../../components/Button';
 import { useSample } from '../../../hooks/useSample';
+import { translate } from 'i18n-js';
 
 const stepThree = yup.object().shape({
   metersBetweenPlants: yup
     .number()
-    .required('Distancia é obrigatória')
-    .min(1, 'Distancia deve ser maior que "ZERO"')
+    .required('CreatePlotStepThree.errors.metersBetweenPlants.required')
+    .min(1, 'CreatePlotStepThree.errors.metersBetweenPlants.min')
 });
 
 export const CreatePlotStepThree: React.FC<
@@ -59,8 +60,8 @@ export const CreatePlotStepThree: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Distancia linhas de plantio"
-          subtitle="Informe a distância entre as linhas de plantio em centímetros"
+          title={translate('CreatePlotStepThree.title')}
+          subtitle={translate('CreatePlotStepThree.subtitle')}
         />
         <StepIndicator step={1} indicator={2} />
         <FormContainer>
@@ -68,8 +69,8 @@ export const CreatePlotStepThree: React.FC<
             <StepThreeHelperImage source={StepThree} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Distancia entre linhas"
-            placeholder="Digite a distancia em cm"
+            label='CreatePlotStepThree.distanceBetweenLines'
+            placeholder={translate('CreatePlotStepThree.distanceBetweenLinesPlaceholder')}
             icon="check-square"
             keyboardType="numeric"
             name="metersBetweenPlants"
@@ -78,7 +79,7 @@ export const CreatePlotStepThree: React.FC<
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepThree.continueButton')}
               onPress={handleSubmit(handleSubmitStepThree)}
             />
           </NextStepButton>
