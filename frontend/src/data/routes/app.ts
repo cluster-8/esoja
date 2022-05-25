@@ -4,7 +4,13 @@ export type AppRoutesParams = {
   Home: undefined;
   Weather: undefined;
   Plots: undefined;
+  PlotDetail: {
+    plotId: string;
+  };
   Properties: undefined;
+  PropertyDetail: {
+    propertyId: string;
+  };
   NewProperty: undefined;
   Quotation: {
     selectedPage: string;
@@ -37,6 +43,11 @@ export type PlotsScreenRouteProps = NativeStackScreenProps<
   'Plots'
 >;
 
+export type PlotDetailScreenRouteProps = NativeStackScreenProps<
+  AppRoutesParams,
+  'PlotDetail'
+>;
+
 export type CreatePlotScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
   'CreatePlot'
@@ -45,6 +56,11 @@ export type CreatePlotScreenRouteProps = NativeStackScreenProps<
 export type PropertiesScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
   'Properties'
+>;
+
+export type PropertyDetailScreenRouteProps = NativeStackScreenProps<
+  AppRoutesParams,
+  'PropertyDetail'
 >;
 
 export type NewPropertyScreenRouteProps = NativeStackScreenProps<

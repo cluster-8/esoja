@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { format } from 'date-fns';
+import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
@@ -13,6 +14,7 @@ import { TextInputMask } from '../../../components/TextInputMask';
 import Title from '../../../components/Title';
 import { SelectOptions } from '../../../data/Model/SelectOptions';
 import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
+import { useAuth } from '../../../hooks/useAuth';
 import { useProperty } from '../../../hooks/useProperty';
 import { useSample } from '../../../hooks/useSample';
 import { Container, FormContainer, NextStepButton } from './styles';
@@ -42,6 +44,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     resolver: yupResolver(stepTwo)
   });
 
+  const { authUser } = useAuth();
   const { getProperties } = useProperty();
 
   const handleSubmitStepTwo = (data: FieldValues) => {
@@ -67,7 +70,11 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
 
   useEffect(() => {
     const getSelectData = async (): Promise<void> => {
-      const properties = await getProperties('?select=name');
+      const query: Query = {
+        select: 'name',
+        filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
+      };
+      const properties = await getProperties(query);
       if (properties) {
         setOptions(
           properties.map(property => ({

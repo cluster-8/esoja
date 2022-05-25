@@ -9,13 +9,17 @@ import {
   PropertyName
 } from './styles';
 
-interface Props {
+interface PropertyCardProps {
   property: Property;
+  onPress: (propertyId: string) => void;
 }
 
-export const PropertyCard = ({ property }: Props) => {
+export const PropertyCard: React.FC<PropertyCardProps> = ({
+  property,
+  onPress
+}) => {
   return (
-    <PropertyInformationContainer>
+    <PropertyInformationContainer onPress={() => onPress(property.id)}>
       <Avatar.Image source={{ uri: property?.picture || defaultImage }} />
       <InformationContainer>
         <PropertyName>{property?.name || ''}</PropertyName>

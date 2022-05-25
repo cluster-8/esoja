@@ -22,6 +22,7 @@ import { Home } from '../screens/Home';
 import { NewProperty } from '../screens/NewProperty';
 import { Plots } from '../screens/Plots';
 import { Properties } from '../screens/Properties';
+import { PropertyDetail } from '../screens/PropertyDetail';
 import { QuotationPage as Quotation } from '../screens/Quotation';
 import { Statistics } from '../screens/Statistics';
 import { Weather } from '../screens/Weather';
@@ -131,6 +132,11 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
       <Stack.Screen
         name="Properties"
         component={Properties}
+        options={options}
+      />
+      <Stack.Screen
+        name="PropertyDetail"
+        component={PropertyDetail}
         options={options}
       />
       <Stack.Screen

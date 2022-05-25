@@ -14,6 +14,7 @@ import { api } from '../data/services/api';
 interface PropertyContextData {
   createPorperty: (data: FieldValues) => Promise<void>;
   getProperties: (query: Query) => Promise<Property[]>;
+  getProperty: (propertyId: string, query: Query) => Promise<Property>;
 }
 
 type PropertyContextProps = {
@@ -24,11 +25,7 @@ const PropertyContext = createContext({} as PropertyContextData);
 
 const PropertyProvider: React.FC<PropertyContextProps> = ({ children }) => {
   const createPorperty = useCallback(async (data: FieldValues) => {
-    try {
-      await api.post('/property', data);
-    } catch (err: any) {
-      Alert.alert('erro');
-    }
+    await api.post('/property', data);
   }, []);
 
   const getProperties = useCallback(async (query: Query) => {
@@ -43,12 +40,22 @@ const PropertyProvider: React.FC<PropertyContextProps> = ({ children }) => {
       return [];
     }
   }, []);
+
+  const getProperty = useCallback(async (propertyId: string, query: Query) => {
+    const { data } = await api.get<Property>(`/property/${propertyId}`, {
+      params: query,
+      paramsSerializer: params => QueryString(params)
+    });
+    return data;
+  }, []);
+
   const providerValue = useMemo(
     () => ({
       createPorperty,
-      getProperties
+      getProperties,
+      getProperty
     }),
-    [createPorperty, getProperties]
+    [createPorperty, getProperties, getProperty]
   );
   return (
     <PropertyContext.Provider value={providerValue}>

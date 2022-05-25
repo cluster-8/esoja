@@ -104,7 +104,6 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     try {
       const fullData: Sample = await getPersistedData();
       if (fullData && fullData?.photo) {
-        await api.post<{ id: string }>('/cultive', {});
         fullData.photo = await pictureUpload(fullData.photo, 'sample');
         const newPlot = {
           propertyId: fullData?.propertyId,
@@ -129,8 +128,9 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
           ]
         };
         await api.post('/sample', newSample);
+      } else {
+        throw new Error('cade a foto fio');
       }
-      throw new Error('cade a foto fio');
     } catch (err: any) {
       if (cultiveId) {
         await api.delete(`/cultive/${cultiveId}`);
@@ -148,8 +148,8 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
         paramsSerializer: params => QueryString(params)
       });
       return data;
-    } catch (err) {
-      Alert.alert('erro');
+    } catch (err: any) {
+      Alert.alert(err.response.data.message || err.response.data.message[0]);
       return [];
     }
   }, []);
