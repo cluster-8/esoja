@@ -1,3 +1,4 @@
+import { Query, QueryString } from 'nestjs-prisma-querybuilder-interface';
 import React, {
   createContext,
   ReactNode,
@@ -12,7 +13,7 @@ import { api } from '../data/services/api';
 
 interface PropertyContextData {
   createPorperty: (data: FieldValues) => Promise<void>;
-  getProperties: (query?: string) => Promise<Property[]>;
+  getProperties: (query: Query) => Promise<Property[]>;
 }
 
 type PropertyContextProps = {
@@ -30,9 +31,12 @@ const PropertyProvider: React.FC<PropertyContextProps> = ({ children }) => {
     }
   }, []);
 
-  const getProperties = useCallback(async (query = '') => {
+  const getProperties = useCallback(async (query: Query) => {
     try {
-      const { data } = await api.get<Property[]>(`/property${query}`);
+      const { data } = await api.get<Property[]>(`/property`, {
+        params: query,
+        paramsSerializer: params => QueryString(params)
+      });
       return data;
     } catch (err: any) {
       Alert.alert(err.response.data.message || err.response.data.message[0]);

@@ -1,3 +1,4 @@
+import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { PropertyCard } from '../../components/PropertyCard';
 import { Separator } from '../../components/Separator';
@@ -15,8 +16,10 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({
   const { getProperties } = useProperty();
 
   const getData = useCallback(async () => {
-    const query =
-      '?select=name city state&populate[0][path]=cultives&populate[0][select]=id';
+    const query: Query = {
+      select: 'name city state picture',
+      populate: [{ path: 'cultives', select: 'id' }]
+    };
     setProperties(await getProperties(query));
   }, [getProperties]);
 

@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Query, QueryString } from 'nestjs-prisma-querybuilder-interface';
 import React, {
   createContext,
   ReactNode,
@@ -52,7 +53,7 @@ interface SampleContextData {
   saveStep: (data: FieldValues) => Promise<void>;
   saveLocale: (polygon: Coordinates[], areaTotal: number) => void;
   getPersistedData: () => Promise<Sample | null>;
-  getPlot: (query?: string) => Promise<Plot[]>;
+  getPlot: (query: Query) => Promise<Plot[]>;
   createPlot: () => Promise<void>;
 }
 
@@ -140,9 +141,12 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     }
   }, [getPersistedData, pictureUpload]);
 
-  const getPlot = useCallback(async (query = '') => {
+  const getPlot = useCallback(async query => {
     try {
-      const { data } = await api.get<Plot[]>(`/cultive${query}`);
+      const { data } = await api.get<Plot[]>(`/cultive`, {
+        params: query,
+        paramsSerializer: params => QueryString(params)
+      });
       return data;
     } catch (err) {
       Alert.alert('erro');

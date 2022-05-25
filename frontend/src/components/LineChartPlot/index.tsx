@@ -2,8 +2,8 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { useTheme } from 'styled-components';
+import { ChartData } from '../../screens/Quotation/SeedQuotation';
 import { ChartContainer, TextStyled } from './styles';
-import { ChartData } from '../../screens/SeedQuotation';
 
 interface LineChartProps {
   title: string;

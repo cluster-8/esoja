@@ -1,3 +1,4 @@
+import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { PlotCard } from '../../components/PlotCard';
 import { Separator } from '../../components/Separator';
@@ -6,7 +7,6 @@ import { translate } from '../../data/I18n';
 import { Plot } from '../../data/Model/Plot';
 import { PlotsScreenRouteProps } from '../../data/routes/app';
 import { useSample } from '../../hooks/useSample';
-import { queryBuilder } from '../../utils/queryBuilder';
 import { AddButton, Container, Header, Icon, PlotList } from './styles';
 
 export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
@@ -14,7 +14,7 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
   const { getPlot } = useSample();
 
   const getData = useCallback(async () => {
-    const query = queryBuilder({ select: 'cropYear areaTotal photo' });
+    const query: Query = { select: 'cropYear areaTotal photo' };
     setPlots(await getPlot(query));
   }, [getPlot]);
 

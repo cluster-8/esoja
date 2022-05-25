@@ -1,4 +1,6 @@
+import { format } from 'date-fns';
 import React from 'react';
+import { Quotation } from '../../hooks/useHome';
 import {
   Container,
   QuotationDate,
@@ -6,19 +8,21 @@ import {
   QuotationVariation
 } from './styles';
 
-import { Quote } from '../../screens/SeedQuotation';
-
 interface QuotationCardProps {
-  id?: string;
-  data: Quote;
+  data: Quotation;
 }
 
-export const QuotationCard: React.FC<QuotationCardProps> = ({ id, data }) => {
+export const QuotationCard: React.FC<QuotationCardProps> = ({ data }) => {
   return (
-    <Container key={id} color={data.variation >= 0 ? 'green' : 'red'}>
-      <QuotationDate>{data.date}</QuotationDate>
-      <QuotationPrice>R${data.price}</QuotationPrice>
-      <QuotationVariation>{data.variation}</QuotationVariation>
+    <Container color={data.Variacao >= 0 ? 'green' : 'red'}>
+      <QuotationDate>
+        {format(new Date(data?.DataPublicacao?.split(' ')[0]), 'dd/MM')}
+      </QuotationDate>
+      <QuotationPrice>R${data.Valor}</QuotationPrice>
+      <QuotationVariation>
+        {data.Variacao >= 0 ? '+ ' : '- '}
+        {data.Variacao}
+      </QuotationVariation>
     </Container>
   );
 };

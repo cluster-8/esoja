@@ -1,10 +1,15 @@
 import { Feather } from '@expo/vector-icons';
 import { FlatList, FlatListProps } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
 import styled from 'styled-components/native';
-import { DataListProps } from '.';
 import { RFFontSize, RFHeight } from '../../utils/getResponsiveSizes';
+
+interface DataListProps {
+  id: string;
+  variation: number;
+  date: string;
+  price: number;
+}
 
 export const Container = styled.ScrollView`
   flex: 1;
@@ -21,14 +26,9 @@ export const ListHeaderContainer = styled.View`
   border-radius: ${RFHeight(6)}px;
 `;
 
-export const QuotationDate = styled.Text`
+export const ListHeaderText = styled.Text`
   font-size: ${RFFontSize(18)}px;
-`;
-export const QuotationPrice = styled.Text`
-  font-size: ${RFFontSize(18)}px;
-`;
-export const QuotationVariation = styled.Text`
-  font-size: ${RFFontSize(18)}px;
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const Header = styled.View`
@@ -41,14 +41,14 @@ export const Header = styled.View`
 export const Title = styled.Text`
   font-size: ${RFFontSize(18)}px;
   font-family: ${({ theme }) => theme.fonts.bold};
-
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: 8px;
 `;
 
 export const SubTitle = styled.Text`
   font-size: ${RFFontSize(16)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
-
+  color: ${({ theme }) => theme.colors.text};
   margin-bottom: 16px;
 `;
 
@@ -59,7 +59,6 @@ export const QuotationList = styled(
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
-    // paddingBottom: getBottomSpace(),
     flex: 1
   }
 })``;
@@ -76,6 +75,32 @@ export const AddButton = styled(RectButton)`
 
 export const Icon = styled(Feather)`
   font-size: ${RFFontSize(35)}px;
-
   color: ${({ theme }) => theme.colors.background_over};
+`;
+
+export const QuotationNavigator = styled.View`
+  flex-direction: row;
+  width: 100%;
+  height: ${RFFontSize(56)}px;
+  background-color: ${({ theme }) => theme.colors.background_over};
+`;
+
+export const QuotationNavigatorButtonContainer = styled.TouchableOpacity`
+  flex-direction: row;
+  flex: 1;
+  height: ${RFFontSize(56)}px;
+  background-color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const QuotationNavigatorButton = styled.TouchableOpacity`
+  border: 1px solid ${({ theme }) => theme.colors.primary};
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const QuotationNavigatorText = styled.Text`
+  font-size: ${RFFontSize(16)}px;
+  font-family: ${({ theme }) => theme.fonts.bold};
+  color: ${({ theme }) => theme.colors.primary};
 `;

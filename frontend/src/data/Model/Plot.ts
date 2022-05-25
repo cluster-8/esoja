@@ -2,6 +2,7 @@ import { Coordinates } from './Coordinates';
 import { Sample } from './Sample';
 
 export interface Plot {
+  id: string;
   propertyId: string;
   cultiveCoordinates: Coordinates[];
   samples: Sample[];
