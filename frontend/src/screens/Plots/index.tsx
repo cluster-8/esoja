@@ -13,6 +13,10 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
   const [plots, setPlots] = useState<Plot[]>([]);
   const { getPlot } = useSample();
 
+  const handleSelectPlot = (plotId: string) => {
+    navigation.navigate('PlotDetail', { plotId });
+  };
+
   const getData = useCallback(async () => {
     const query: Query = {
       select: 'cropYear areaTotal photo',
@@ -42,7 +46,9 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
         data={plots}
         keyExtractor={item => item.id}
         ItemSeparatorComponent={() => <Separator />}
-        renderItem={({ item }) => <PlotCard plot={item} />}
+        renderItem={({ item }) => (
+          <PlotCard plot={item} onPress={handleSelectPlot} />
+        )}
       />
 
       <AddButton onPress={() => navigation.navigate('CreatePlotStepOne')}>

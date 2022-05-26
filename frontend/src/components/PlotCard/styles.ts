@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { RFWidth } from '../../utils/getResponsiveSizes';
 
-export const PropertyInformationContainer = styled.View`
+export const PlotInformationContainer = styled.TouchableOpacity`
   flex-flow: row;
   align-items: center;
   padding: ${RFWidth(16)}px;
@@ -14,11 +14,15 @@ export const InformationContainer = styled.View`
   padding-left: ${RFWidth(16)}px;
 `;
 
-export const PropertyName = styled.Text`
+export const PlotCropYear = styled.Text`
   color: ${({ theme }) => theme.colors.text};
   font-weight: bold;
 `;
 
-export const PropertyCity = styled.Text`
+export const PlotArea = styled.Text`
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+export const PlotProduction = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;

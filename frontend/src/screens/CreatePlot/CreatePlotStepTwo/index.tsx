@@ -20,7 +20,7 @@ import { useSample } from '../../../hooks/useSample';
 import { Container, FormContainer, NextStepButton } from './styles';
 
 const stepTwo = yup.object().shape({
-  name: yup.string().required('Nome é obrigatório'),
+  description: yup.string().required('Nome é obrigatório'),
   plantingDate: yup.date().required('Data de plantio é obrigatória'),
   cropYear: yup
     .string()
@@ -85,7 +85,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
       }
     };
     getSelectData();
-  }, [getProperties]);
+  }, [authUser.id, getProperties]);
 
   return (
     <ScrollView>
@@ -113,9 +113,9 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             label="Nome"
             placeholder="Digite um nome para o talhão"
             icon="check-square"
-            name="name"
+            name="description"
             control={control}
-            errorMessage={errors?.name?.message}
+            errorMessage={errors?.description?.message}
           />
           <DateInput
             name="plantingDate"
@@ -133,13 +133,6 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             name="cropYear"
             control={control}
             errorMessage={errors?.cropYear?.message}
-          />
-          <TextInput
-            label="Descrição"
-            placeholder="Digite uma descrição"
-            icon="check-square"
-            name="description"
-            control={control}
           />
           <NextStepButton>
             <Button

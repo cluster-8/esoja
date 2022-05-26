@@ -20,6 +20,7 @@ import { CreatePlotStepThree } from '../screens/CreatePlot/CreatePlotStepThree';
 import { CreatePlotStepTwo } from '../screens/CreatePlot/CreatePlotStepTwo';
 import { Home } from '../screens/Home';
 import { NewProperty } from '../screens/NewProperty';
+import { PlotDetail } from '../screens/PlotDetail';
 import { Plots } from '../screens/Plots';
 import { Properties } from '../screens/Properties';
 import { PropertyDetail } from '../screens/PropertyDetail';
@@ -85,6 +86,16 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
       />
       <Stack.Screen name="Plots" component={Plots} options={options} />
       <Stack.Screen
+        name="PlotDetail"
+        component={PlotDetail}
+        options={{
+          ...options,
+          headerStyle: { backgroundColor: 'transparent' },
+          headerShadowVisible: true,
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
         name="CreatePlotStepOne"
         component={CreatePlotStepOne}
         options={options}
@@ -137,7 +148,12 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
       <Stack.Screen
         name="PropertyDetail"
         component={PropertyDetail}
-        options={options}
+        options={{
+          ...options,
+          headerStyle: { backgroundColor: 'transparent' },
+          headerShadowVisible: true,
+          headerTransparent: true
+        }}
       />
       <Stack.Screen
         name="NewProperty"

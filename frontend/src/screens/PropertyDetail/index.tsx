@@ -29,6 +29,10 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
 
   const { getProperties } = useProperty();
 
+  const handleSelectPlot = (plotId: string) => {
+    navigation.navigate('PlotDetail', { plotId });
+  };
+
   const getData = useCallback(async () => {
     const query: Query = {
       select: 'name picture city state',
@@ -73,7 +77,7 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
               <EmptyData message="Nenhum talhão encontrado para esta propriedade" />
             )}
             {property?.cultives?.map(plot => (
-              <PlotCard plot={plot} key={plot.id} />
+              <PlotCard plot={plot} key={plot.id} onPress={handleSelectPlot} />
             ))}
           </PropertyDetailPlotCardContainer>
         </>
