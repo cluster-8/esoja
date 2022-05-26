@@ -1,6 +1,7 @@
 import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
+import { EmptyData } from '../../components/EmptyData';
 import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { PlotCard } from '../../components/PlotCard';
 import Title from '../../components/Title';
@@ -9,6 +10,8 @@ import { PropertyDetailScreenRouteProps } from '../../data/routes/app';
 import { useProperty } from '../../hooks/useProperty';
 import { defaultImage } from '../../utils/default';
 import {
+  PropertyDetailCardTitle,
+  PropertyDetailCity,
   PropertyDetailContainer,
   PropertyDetailHeaderContainer,
   PropertyDetailImage,
@@ -28,14 +31,12 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
 
   const getData = useCallback(async () => {
     const query: Query = {
-      select: 'name picture city',
+      select: 'name picture city state',
       populate: [{ path: 'cultives', select: 'cropYear areaTotal photo' }],
       filter: [{ path: 'id', operator: 'equals', value: propertyId }]
     };
     try {
       const properties = await getProperties(query);
-      console.log(properties);
-
       setProperty(properties[0]);
     } catch (err) {
       Alert.alert('Erro ao carregar propriedade');
@@ -60,8 +61,17 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
           </PropertyDetailHeaderContainer>
           <PropertyDetailTitleContainer>
             <Title title={property?.name || 'Minha Propriedade'} />
+            <PropertyDetailCity>
+              {property?.city} - {property?.state}
+            </PropertyDetailCity>
           </PropertyDetailTitleContainer>
           <PropertyDetailPlotCardContainer>
+            <PropertyDetailCardTitle>
+              Talhões de {property?.name}
+            </PropertyDetailCardTitle>
+            {property?.cultives?.length === 0 && (
+              <EmptyData message="Nenhum talhão encontrado para esta propriedade" />
+            )}
             {property?.cultives?.map(plot => (
               <PlotCard plot={plot} key={plot.id} />
             ))}

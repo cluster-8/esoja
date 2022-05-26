@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
+import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 export const PropertyDetailContainer = styled.View`
   flex: 1;
@@ -19,6 +19,18 @@ export const PropertyDetailTitleContainer = styled.View`
   height: 100px;
   align-items: center;
   justify-content: center;
+  margin: ${RFHeight(16)}px;
+`;
+
+export const PropertyDetailCity = styled.Text`
+  font-size: ${RFFontSize(16)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+`;
+
+export const PropertyDetailCardTitle = styled.Text`
+  font-size: ${RFFontSize(16)}px;
+  font-family: ${({ theme }) => theme.fonts.bold};
+  color: ${({ theme }) => theme.colors.primary};
 `;
 
 export const PropertyDetailImage = styled.Image`
@@ -33,4 +45,6 @@ export const PropertyDetailPlotCardContainer = styled.View`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.background_over};
   padding: ${RFWidth(8)}px;
+  align-items: center;
+  justify-content: flex-start;
 `;
