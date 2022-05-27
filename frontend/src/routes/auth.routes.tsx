@@ -8,7 +8,6 @@ import { BackHandler } from 'react-native';
 import { useTheme } from 'styled-components';
 import { NavigatorProps } from '.';
 import { AuthRoutesParams } from '../data/routes/auth';
-import { ForgotPassword } from '../screens/ForgotPassword';
 import { SignIn } from '../screens/SignIn';
 import { SignUp } from '../screens/SignUp';
 
@@ -59,11 +58,6 @@ export const AuthRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="SignUp" component={SignUp} options={options} />
-      <Stack.Screen
-        name="ForgotPassword"
-        component={ForgotPassword}
-        options={{ ...options, headerTransparent: true }}
-      />
     </Stack.Navigator>
   );
 };

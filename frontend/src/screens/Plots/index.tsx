@@ -6,12 +6,14 @@ import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
 import { Plot } from '../../data/Model/Plot';
 import { PlotsScreenRouteProps } from '../../data/routes/app';
-import { useSample } from '../../hooks/useSample';
+import { useAuth } from '../../hooks/useAuth';
+import { useProperty } from '../../hooks/useProperty';
 import { AddButton, Container, Header, Icon, PlotList } from './styles';
 
 export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
   const [plots, setPlots] = useState<Plot[]>([]);
-  const { getPlot } = useSample();
+  const { getProperties } = useProperty();
+  const { authUser } = useAuth();
 
   const handleSelectPlot = (plotId: string) => {
     navigation.navigate('PlotDetail', { plotId });
@@ -19,12 +21,17 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
 
   const getData = useCallback(async () => {
     const query: Query = {
-      select: 'cropYear areaTotal photo',
-      populate: [{ path: 'property', select: 'userId' }]
-      // filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
+      select: 'name city state picture',
+      populate: [{ path: 'cultives', select: 'cropYear areaTotal photo' }],
+      filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
     };
-    setPlots(await getPlot(query));
-  }, [getPlot]);
+    const properties = await getProperties(query);
+    const userPlots: Plot[] = [];
+    properties.map(property =>
+      property?.cultives ? userPlots.push(...property.cultives) : null
+    );
+    setPlots(userPlots);
+  }, [authUser.id, getProperties]);
 
   useEffect(() => {
     const subscription = navigation.addListener('focus', () => {
