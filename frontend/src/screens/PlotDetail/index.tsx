@@ -1,4 +1,5 @@
 /* eslint-disable react/no-array-index-key */
+import { translate } from '../../data/I18n'
 import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
@@ -71,7 +72,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
               />
             </PlotDetailHeaderContainer>
             <PlotDetailTitleContainer>
-              <Title title={plot?.description || 'Meu Talhão'} />
+              <Title title={plot?.description || 'PlotDetail.title'} />
               <PlotCropYear>Safra {plot?.cropYear}</PlotCropYear>
               <PlotArea>Area {plot?.areaTotal} hectares</PlotArea>
               <PlotCropYear>{plot?.metersBetweenPlants}</PlotCropYear>
@@ -82,7 +83,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
             <PlotDetailPlotCardContainer>
               <PlotDetailCardTitle>Amostra do talhão</PlotDetailCardTitle>
               {plot?.samples?.length === 0 && (
-                <EmptyData message="Nenhum talhão encontrado para esta propriedade" />
+                <EmptyData message={translate('PlotDetail.EmptyData')} />
               )}
               {plot?.samples?.map((sample, index) => (
                 <SampleCard sample={sample} key={index} />
@@ -90,7 +91,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
             </PlotDetailPlotCardContainer>
           </>
         ) : (
-          <LoadingIndicator message="Carregando propriedade..." />
+          <LoadingIndicator message={translate('PlotDetail.LoadingIndicator')} />
         )}
       </PlotDetailContainer>
     </ScrollView>

@@ -20,6 +20,7 @@ import signUp from './signUp';
 import validators from './validators';
 import weather from './weather';
 import PropertyDetail from './PropertyDetail';
+import PlotDetail from './PlotDetail';
 
 interface LanguageProps {
   [key: string]: {
@@ -50,7 +51,8 @@ export const i18nConfig = () => {
       ...CreatePlotStepSeven.pt,
       ...CreatePlotStepNine.pt,
       ...quotation.pt,
-      ...PropertyDetail.pt
+      ...PropertyDetail.pt,
+      ...PlotDetail.pt
     },
     'en-US': {
       ...signIn.en,
@@ -71,7 +73,8 @@ export const i18nConfig = () => {
       ...CreatePlotStepSeven.en,
       ...CreatePlotStepNine.en,
       ...quotation.en,
-      ...PropertyDetail.en
+      ...PropertyDetail.en,
+      ...PlotDetail.en
     }
   };
   i18n.translations = {
