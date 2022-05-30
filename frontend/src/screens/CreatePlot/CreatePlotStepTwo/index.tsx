@@ -22,13 +22,8 @@ import { translate } from 'i18n-js';
 
 
 const stepTwo = yup.object().shape({
-<<<<<<< HEAD
-  name: yup.string().required('CreatePlotStepTwo.errors.stepTwoName.required'),
-  plantingDate: yup.date().required('CreatePlotStepTwo.errors.plantingDate.required'),
-=======
   description: yup.string().required('Nome é obrigatório'),
   plantingDate: yup.date().required('Data de plantio é obrigatória'),
->>>>>>> 1f987fa78cf34aa9c1f6773a605ddcb8847dfae7
   cropYear: yup
     .string()
     .required('CreatePlotStepTwo.errors.cropYear.required')
@@ -141,16 +136,6 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             control={control}
             errorMessage={errors?.cropYear?.message}
           />
-<<<<<<< HEAD
-          <TextInput
-            label='CreatePlotStepTwo.fieldDescription'
-            placeholder={translate('CreatePlotStepTwo.fieldDescriptionPlaceholder')}
-            icon="check-square"
-            name="description"
-            control={control}
-          />
-=======
->>>>>>> 1f987fa78cf34aa9c1f6773a605ddcb8847dfae7
           <NextStepButton>
             <Button
               title={translate('CreatePlotStepTwo.continueButton')}
