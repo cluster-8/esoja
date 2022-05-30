@@ -4,6 +4,7 @@ import { Alert } from 'react-native';
 import { EmptyData } from '../../components/EmptyData';
 import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { PlotCard } from '../../components/PlotCard';
+import { translate } from '../../data/I18n';
 import Title from '../../components/Title';
 import { Property } from '../../data/Model/Property';
 import { PropertyDetailScreenRouteProps } from '../../data/routes/app';
@@ -64,7 +65,7 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
             />
           </PropertyDetailHeaderContainer>
           <PropertyDetailTitleContainer>
-            <Title title={property?.name || 'Minha Propriedade'} />
+            <Title title={property?.name || 'PropertyDetail.title'} />
             <PropertyDetailCity>
               {property?.city} - {property?.state}
             </PropertyDetailCity>
@@ -74,7 +75,7 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
               Talhões de {property?.name}
             </PropertyDetailCardTitle>
             {property?.cultives?.length === 0 && (
-              <EmptyData message="Nenhum talhão encontrado para esta propriedade" />
+              <EmptyData message={translate('PropertyDetail.subtitle')}/>
             )}
             {property?.cultives?.map(plot => (
               <PlotCard plot={plot} key={plot.id} onPress={handleSelectPlot} />
@@ -82,7 +83,7 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
           </PropertyDetailPlotCardContainer>
         </>
       ) : (
-        <LoadingIndicator message="Carregando propriedade..." />
+        <LoadingIndicator message={translate('PropertyDetail.LoadingIndicator')} />
       )}
     </PropertyDetailContainer>
   );
