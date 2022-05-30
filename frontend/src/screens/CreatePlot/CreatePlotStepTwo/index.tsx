@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { format } from 'date-fns';
+import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
@@ -13,6 +14,7 @@ import { TextInputMask } from '../../../components/TextInputMask';
 import Title from '../../../components/Title';
 import { SelectOptions } from '../../../data/Model/SelectOptions';
 import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
+import { useAuth } from '../../../hooks/useAuth';
 import { useProperty } from '../../../hooks/useProperty';
 import { useSample } from '../../../hooks/useSample';
 import { Container, FormContainer, NextStepButton } from './styles';
@@ -20,8 +22,13 @@ import { translate } from 'i18n-js';
 
 
 const stepTwo = yup.object().shape({
+<<<<<<< HEAD
   name: yup.string().required('CreatePlotStepTwo.errors.stepTwoName.required'),
   plantingDate: yup.date().required('CreatePlotStepTwo.errors.plantingDate.required'),
+=======
+  description: yup.string().required('Nome é obrigatório'),
+  plantingDate: yup.date().required('Data de plantio é obrigatória'),
+>>>>>>> 1f987fa78cf34aa9c1f6773a605ddcb8847dfae7
   cropYear: yup
     .string()
     .required('CreatePlotStepTwo.errors.cropYear.required')
@@ -44,6 +51,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     resolver: yupResolver(stepTwo)
   });
 
+  const { authUser } = useAuth();
   const { getProperties } = useProperty();
 
   const handleSubmitStepTwo = (data: FieldValues) => {
@@ -69,7 +77,11 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
 
   useEffect(() => {
     const getSelectData = async (): Promise<void> => {
-      const properties = await getProperties('?select=name');
+      const query: Query = {
+        select: 'name',
+        filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
+      };
+      const properties = await getProperties(query);
       if (properties) {
         setOptions(
           properties.map(property => ({
@@ -80,7 +92,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
       }
     };
     getSelectData();
-  }, [getProperties]);
+  }, [authUser.id, getProperties]);
 
   return (
     <ScrollView>
@@ -108,9 +120,9 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             label='CreatePlotStepTwo.fieldName'
             placeholder={translate('CreatePlotStepTwo.fieldNamePlaceholder')}
             icon="check-square"
-            name="name"
+            name="description"
             control={control}
-            errorMessage={errors?.name?.message}
+            errorMessage={errors?.description?.message}
           />
           <DateInput
             name="plantingDate"
@@ -129,6 +141,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             control={control}
             errorMessage={errors?.cropYear?.message}
           />
+<<<<<<< HEAD
           <TextInput
             label='CreatePlotStepTwo.fieldDescription'
             placeholder={translate('CreatePlotStepTwo.fieldDescriptionPlaceholder')}
@@ -136,6 +149,8 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             name="description"
             control={control}
           />
+=======
+>>>>>>> 1f987fa78cf34aa9c1f6773a605ddcb8847dfae7
           <NextStepButton>
             <Button
               title={translate('CreatePlotStepTwo.continueButton')}

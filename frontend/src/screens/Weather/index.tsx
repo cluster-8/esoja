@@ -1,3 +1,4 @@
+import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, ScrollView, StatusBar } from 'react-native';
 import { useTheme } from 'styled-components';
@@ -16,7 +17,6 @@ import { useProperty } from '../../hooks/useProperty';
 import { formatHour } from '../../utils/formatter';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
 import { getWeatherImage } from '../../utils/getWeatherImage';
-import { queryBuilder } from '../../utils/queryBuilder';
 import {
   LoadingContainer,
   WeatherContainer,
@@ -98,10 +98,9 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
 
   const handlePropertyCardClick = async () => {
     if (!propertyList?.length) {
-      const query = queryBuilder({
-        select: 'name latitude longitude',
-        limit: 0
-      });
+      const query: Query = {
+        select: 'name latitude longitude'
+      };
       const res = await getProperties(query);
       setModalVisible(true);
       if (res) {
@@ -114,7 +113,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   };
 
   const firstTime = useCallback(async () => {
-    const query = queryBuilder({ select: 'name latitude longitude' });
+    const query: Query = { select: 'name latitude longitude' };
     const res = await getProperties(query);
     handleSelectProperty(res[0]);
   }, [getProperties, handleSelectProperty]);

@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { RFWidth } from '../../utils/getResponsiveSizes';
 
-export const PropertyInformationContainer = styled.View`
+export const PropertyInformationContainer = styled.TouchableOpacity`
   flex-flow: row;
   align-items: center;
   padding: ${RFWidth(16)}px;

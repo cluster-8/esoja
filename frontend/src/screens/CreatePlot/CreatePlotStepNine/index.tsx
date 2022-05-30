@@ -36,6 +36,8 @@ export const CreatePlotStepNine: React.FC<
       await navigation.navigate('Plots');
     } catch (err) {
       setLoading(false);
+      console.log(err);
+
       Alert.alert('erro');
     }
   };

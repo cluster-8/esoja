@@ -14,8 +14,6 @@ import { useAuth } from '../../hooks/useAuth';
 import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 import {
   Container,
-  ForgotPasswordButton,
-  ForgotPasswordButtonText,
   FormContainer,
   KeyboardAvoidingView,
   LogoImage,
@@ -90,14 +88,6 @@ export const SignIn: React.FC<SignInScreenRouteProps> = ({ navigation }) => {
                 control={control}
                 errorMessage={errors?.password?.message}
               />
-
-              <ForgotPasswordButton
-                onPress={() => navigation.navigate('ForgotPassword')}
-              >
-                <ForgotPasswordButtonText>
-                  {translate('signIn.forgotPassword')}
-                </ForgotPasswordButtonText>
-              </ForgotPasswordButton>
 
               <Button
                 title={translate('signIn.signIn')}

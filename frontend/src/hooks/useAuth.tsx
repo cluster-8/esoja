@@ -89,8 +89,6 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
   );
 
   const signInWithGoogle = useCallback(async () => {
-    setLoading(true);
-
     const clientId = process.env.CLIENT_ID_GOOGLE;
     const redirectUri = process.env.REDIRECT_URI;
     const scope = encodeURI('profile email');
@@ -115,8 +113,6 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
             'Erro',
             'Não foi possível fazer o login, tente novamente mais tarde'
           );
-        } finally {
-          setLoading(false);
         }
       } else {
         throw new Error('rejected signIn');
@@ -130,8 +126,6 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
   }, []);
 
   const sigInWithFacebook = useCallback(async () => {
-    setLoading(true);
-
     const clientId = Number(process.env.CLIENT_ID_FACEBOOK);
     const redirectUri = process.env.REDIRECT_URI;
     const authUrl = `https://www.facebook.com/v12.0/dialog/oauth?client_id=${clientId}&redirect_uri=${redirectUri}&scope=email&response_type=token`;
@@ -149,13 +143,11 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
             provider: 'facebook'
           });
           await storeUser(user, token);
-        } catch (err: any) {
+        } catch (err) {
           Alert.alert(
             'Erro',
             'Não foi possível fazer o login, tente novamente mais tarde'
           );
-        } finally {
-          setLoading(false);
         }
       } else {
         throw new Error('rejected signIn');

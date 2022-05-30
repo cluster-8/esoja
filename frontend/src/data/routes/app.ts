@@ -4,10 +4,17 @@ export type AppRoutesParams = {
   Home: undefined;
   Weather: undefined;
   Plots: undefined;
+  PlotDetail: {
+    plotId: string;
+  };
   Properties: undefined;
+  PropertyDetail: {
+    propertyId: string;
+  };
   NewProperty: undefined;
-  SeedQuotation: undefined;
-  BagQuotation: undefined;
+  Quotation: {
+    selectedPage: string;
+  };
   Statistics: undefined;
   CreatePlot: undefined;
   CreatePlotStepOne: undefined;
@@ -36,6 +43,11 @@ export type PlotsScreenRouteProps = NativeStackScreenProps<
   'Plots'
 >;
 
+export type PlotDetailScreenRouteProps = NativeStackScreenProps<
+  AppRoutesParams,
+  'PlotDetail'
+>;
+
 export type CreatePlotScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
   'CreatePlot'
@@ -46,19 +58,19 @@ export type PropertiesScreenRouteProps = NativeStackScreenProps<
   'Properties'
 >;
 
+export type PropertyDetailScreenRouteProps = NativeStackScreenProps<
+  AppRoutesParams,
+  'PropertyDetail'
+>;
+
 export type NewPropertyScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
   'NewProperty'
 >;
 
-export type SeedQuotationScreenRouteProps = NativeStackScreenProps<
+export type QuotationScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'SeedQuotation'
->;
-
-export type BagQuotationScreenRouteProps = NativeStackScreenProps<
-  AppRoutesParams,
-  'BagQuotation'
+  'Quotation'
 >;
 
 export type StatisticsScreenRouteProps = NativeStackScreenProps<

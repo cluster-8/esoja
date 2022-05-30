@@ -9,7 +9,6 @@ import { useTheme } from 'styled-components';
 import { NavigatorProps } from '.';
 import Logo from '../assets/images/logo-dark.png';
 import { AppRoutesParams } from '../data/routes/app';
-import { BagQuotation } from '../screens/BagQuotation';
 import { CreatePlotStepEight } from '../screens/CreatePlot/CreatePlotStepEight';
 import { CreatePlotStepFive } from '../screens/CreatePlot/CreatePlotStepFive';
 import { CreatePlotStepFour } from '../screens/CreatePlot/CreatePlotStepFour';
@@ -21,9 +20,11 @@ import { CreatePlotStepThree } from '../screens/CreatePlot/CreatePlotStepThree';
 import { CreatePlotStepTwo } from '../screens/CreatePlot/CreatePlotStepTwo';
 import { Home } from '../screens/Home';
 import { NewProperty } from '../screens/NewProperty';
+import { PlotDetail } from '../screens/PlotDetail';
 import { Plots } from '../screens/Plots';
 import { Properties } from '../screens/Properties';
-import { SeedQuotation } from '../screens/SeedQuotation';
+import { PropertyDetail } from '../screens/PropertyDetail';
+import { QuotationPage as Quotation } from '../screens/Quotation';
 import { Statistics } from '../screens/Statistics';
 import { Weather } from '../screens/Weather';
 
@@ -85,6 +86,16 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
       />
       <Stack.Screen name="Plots" component={Plots} options={options} />
       <Stack.Screen
+        name="PlotDetail"
+        component={PlotDetail}
+        options={{
+          ...options,
+          headerStyle: { backgroundColor: 'transparent' },
+          headerShadowVisible: true,
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
         name="CreatePlotStepOne"
         component={CreatePlotStepOne}
         options={options}
@@ -135,20 +146,21 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         options={options}
       />
       <Stack.Screen
+        name="PropertyDetail"
+        component={PropertyDetail}
+        options={{
+          ...options,
+          headerStyle: { backgroundColor: 'transparent' },
+          headerShadowVisible: true,
+          headerTransparent: true
+        }}
+      />
+      <Stack.Screen
         name="NewProperty"
         component={NewProperty}
         options={options}
       />
-      <Stack.Screen
-        name="SeedQuotation"
-        component={SeedQuotation}
-        options={options}
-      />
-      <Stack.Screen
-        name="BagQuotation"
-        component={BagQuotation}
-        options={options}
-      />
+      <Stack.Screen name="Quotation" component={Quotation} options={options} />
       <Stack.Screen
         name="Statistics"
         component={Statistics}

@@ -38,7 +38,8 @@ export const PlotList = styled(
 ).attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
-    paddingBottom: getBottomSpace()
+    paddingBottom: getBottomSpace(),
+    flex: 1
   }
 })``;
 

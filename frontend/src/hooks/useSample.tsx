@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Query, QueryString } from 'nestjs-prisma-querybuilder-interface';
 import React, {
   createContext,
   ReactNode,
@@ -52,7 +53,7 @@ interface SampleContextData {
   saveStep: (data: FieldValues) => Promise<void>;
   saveLocale: (polygon: Coordinates[], areaTotal: number) => void;
   getPersistedData: () => Promise<Sample | null>;
-  getPlot: (query?: string) => Promise<Plot[]>;
+  getPlot: (query: Query) => Promise<Plot[]>;
   createPlot: () => Promise<void>;
 }
 
@@ -103,7 +104,6 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     try {
       const fullData: Sample = await getPersistedData();
       if (fullData && fullData?.photo) {
-        await api.post<{ id: string }>('/cultive', {});
         fullData.photo = await pictureUpload(fullData.photo, 'sample');
         const newPlot = {
           propertyId: fullData?.propertyId,
@@ -128,8 +128,9 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
           ]
         };
         await api.post('/sample', newSample);
+      } else {
+        throw new Error('cade a foto fio');
       }
-      throw new Error('cade a foto fio');
     } catch (err: any) {
       if (cultiveId) {
         await api.delete(`/cultive/${cultiveId}`);
@@ -140,12 +141,15 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     }
   }, [getPersistedData, pictureUpload]);
 
-  const getPlot = useCallback(async (query = '') => {
+  const getPlot = useCallback(async query => {
     try {
-      const { data } = await api.get<Plot[]>(`/cultive${query}`);
+      const { data } = await api.get<Plot[]>(`/cultive`, {
+        params: query,
+        paramsSerializer: params => QueryString(params)
+      });
       return data;
-    } catch (err) {
-      Alert.alert('erro');
+    } catch (err: any) {
+      Alert.alert(err.response.data.message || err.response.data.message[0]);
       return [];
     }
   }, []);

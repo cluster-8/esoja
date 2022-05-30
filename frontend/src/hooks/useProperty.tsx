@@ -1,3 +1,4 @@
+import { Query, QueryString } from 'nestjs-prisma-querybuilder-interface';
 import React, {
   createContext,
   ReactNode,
@@ -12,7 +13,8 @@ import { api } from '../data/services/api';
 
 interface PropertyContextData {
   createPorperty: (data: FieldValues) => Promise<void>;
-  getProperties: (query?: string) => Promise<Property[]>;
+  getProperties: (query: Query) => Promise<Property[]>;
+  getProperty: (propertyId: string, query: Query) => Promise<Property>;
 }
 
 type PropertyContextProps = {
@@ -23,28 +25,37 @@ const PropertyContext = createContext({} as PropertyContextData);
 
 const PropertyProvider: React.FC<PropertyContextProps> = ({ children }) => {
   const createPorperty = useCallback(async (data: FieldValues) => {
-    try {
-      await api.post('/property', data);
-    } catch (err: any) {
-      Alert.alert('erro');
-    }
+    await api.post('/property', data);
   }, []);
 
-  const getProperties = useCallback(async (query = '') => {
+  const getProperties = useCallback(async (query: Query) => {
     try {
-      const { data } = await api.get<Property[]>(`/property${query}`);
+      const { data } = await api.get<Property[]>(`/property`, {
+        params: query,
+        paramsSerializer: params => QueryString(params)
+      });
       return data;
     } catch (err: any) {
       Alert.alert(err.response.data.message || err.response.data.message[0]);
       return [];
     }
   }, []);
+
+  const getProperty = useCallback(async (propertyId: string, query: Query) => {
+    const { data } = await api.get<Property>(`/property/${propertyId}`, {
+      params: query,
+      paramsSerializer: params => QueryString(params)
+    });
+    return data;
+  }, []);
+
   const providerValue = useMemo(
     () => ({
       createPorperty,
-      getProperties
+      getProperties,
+      getProperty
     }),
-    [createPorperty, getProperties]
+    [createPorperty, getProperties, getProperty]
   );
   return (
     <PropertyContext.Provider value={providerValue}>

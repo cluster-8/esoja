@@ -6,7 +6,7 @@ export const TitleContainer = styled.View``;
 export const TitleStyled = styled.Text`
   margin: 8px 0;
   color: ${({ theme }) => theme.colors.primary};
-  font-size: ${RFFontSize(30)}px;
+  font-size: ${RFFontSize(26)}px;
   text-align: center;
   font-weight: bold;
 `;

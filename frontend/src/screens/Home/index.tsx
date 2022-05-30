@@ -31,8 +31,14 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   const { getWeatherCurrentDay, getQuotation } = useHome();
   const { getCoordinates } = useLocation();
 
-  const handlerCardMenuClick = (route: keyof AppRoutesParams) => {
-    navigation.navigate(route);
+  const handlerCardMenuClick = (
+    route: keyof AppRoutesParams,
+    path?: string
+  ) => {
+    if (route === 'Quotation' && path) {
+      return navigation.navigate(route, { selectedPage: path });
+    }
+    return navigation.navigate(route);
   };
 
   const handlerClickSignOut = () => {
@@ -64,18 +70,10 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
   const getData = useCallback(async () => {
     setLoading(true);
     const location = await getCoordinates();
-    const weatherData = await getWeatherCurrentDay(location);
-
-    if (weatherData) {
-      setWeather(weatherData);
-    }
-
-    const quoteData = await getQuotation();
-
-    if (quoteData) {
-      setAvailableQuote(quoteData[0]);
-      setSeedQuote(quoteData[1]);
-    }
+    setWeather(await getWeatherCurrentDay(location));
+    const { availableSoybeanPack, conventionalSeed } = await getQuotation();
+    setAvailableQuote(availableSoybeanPack);
+    setSeedQuote(conventionalSeed);
     setLoading(false);
   }, [getCoordinates, getQuotation, getWeatherCurrentDay]);
 
@@ -100,7 +98,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
         <HomeMenuContainer>
           <HomeMenuCardWidgetContainer>
             <MenuCard
-              onPress={() => handlerCardMenuClick('SeedQuotation')}
+              onPress={() => handlerCardMenuClick('Quotation', 'SeedQuotation')}
               widget
               title={translate('home.seeds')}
               value={`R$ ${seedQuote?.Valor || 0}`}
@@ -113,7 +111,7 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
               }
             />
             <MenuCard
-              onPress={() => handlerCardMenuClick('BagQuotation')}
+              onPress={() => handlerCardMenuClick('Quotation', 'BagQuotation')}
               widget
               title={translate('home.soybeanPrice')}
               value={`R$ ${availableQuote?.Valor || 0}`}

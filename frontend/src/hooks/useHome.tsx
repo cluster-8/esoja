@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, {
   createContext,
   ReactNode,
@@ -20,31 +19,28 @@ export interface WeatherResponseProps {
   };
   weather: [
     {
-      main: string;
-      description: string;
       icon: string;
     }
   ];
 }
 
 export interface Quotation {
-  Localidade: string;
   Variacao: number;
   Valor: number;
-  Safra: any;
-  IndicadorFinalId: string;
-  CadeiaId: number;
   DataPublicacao: string;
-  TipoLocalidadeId: string;
   UnidadeSigla: string;
-  UnidadeDescricao: string;
+}
+
+export interface QuotationResponse {
+  availableSoybeanPack: Quotation;
+  conventionalSeed: Quotation;
 }
 
 interface HomeContextData {
   getWeatherCurrentDay: (
     coordinates: Coordinates
-  ) => Promise<WeatherResponseProps | undefined>;
-  getQuotation: () => Promise<Quotation[] | undefined>;
+  ) => Promise<WeatherResponseProps>;
+  getQuotation: () => Promise<QuotationResponse>;
 }
 
 type HomeContextProps = {
@@ -54,31 +50,19 @@ type HomeContextProps = {
 const HomeContext = createContext({} as HomeContextData);
 
 const HomeProvider: React.FC<HomeContextProps> = ({ children }) => {
-  const getWeatherCurrentDay = useCallback(async (coordinates: Coordinates) => {
-    return getWeatherDay(coordinates);
-  }, []);
+  const getWeatherCurrentDay = useCallback(
+    async (coordinates: Coordinates): Promise<WeatherResponseProps> => {
+      return getWeatherDay(coordinates);
+    },
+    []
+  );
 
   const getQuotation = useCallback(async () => {
     try {
-      const { data: apiQuotation } = await api.get('/imea/main');
-      console.log(apiQuotation);
-
-      const { data } = await axios.get<Quotation[]>(
-        `${process.env.IMEA_ROUTE}`
-      );
-      const availableQuote = data.filter(
-        quotation =>
-          quotation.IndicadorFinalId === '708192508838936580' &&
-          quotation.Localidade === 'Mato Grosso'
-      );
-      const seedQuote = data.filter(
-        quotation =>
-          quotation.Localidade === 'Convencional' &&
-          quotation.UnidadeSigla === 'R$/sc'
-      );
-      return [availableQuote[0], seedQuote[0]];
+      const { data } = await api.get<QuotationResponse>('/imea/main');
+      return data;
     } catch (err) {
-      return undefined;
+      throw new Error('erro');
     }
   }, []);
 

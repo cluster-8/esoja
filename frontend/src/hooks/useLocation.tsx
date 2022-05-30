@@ -49,7 +49,10 @@ const LocationProvider: React.FC<LocationContextProps> = ({ children }) => {
         accuracy: Location.Accuracy.Highest
       });
       setCoords(geolocation.coords);
-      return geolocation.coords;
+      return {
+        latitude: geolocation.coords.latitude,
+        longitude: geolocation.coords.longitude
+      };
     }
     return { latitude: 47, longitude: 20 };
   }, [coords]);
