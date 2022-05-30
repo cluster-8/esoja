@@ -18,7 +18,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import { useProperty } from '../../../hooks/useProperty';
 import { useSample } from '../../../hooks/useSample';
 import { Container, FormContainer, NextStepButton } from './styles';
-import { translate } from 'i18n-js';
+import { translate } from '../../../data/I18n';
 
 
 const stepTwo = yup.object().shape({

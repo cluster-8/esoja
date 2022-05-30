@@ -19,7 +19,7 @@ import { CreatePlotStepSevenScreenRouteProps } from '../../../data/routes/app';
 import { TextInput } from '../../../components/TextInput';
 import { Button } from '../../../components/Button';
 import { useSample } from '../../../hooks/useSample';
-import { translate } from 'i18n-js';
+import { translate } from '../../../data/I18n';
 
 const userLogin = yup.object().shape({
   grainsPlant1: yup

@@ -19,7 +19,7 @@ import { CreatePlotStepFourScreenRouteProps } from '../../../data/routes/app';
 import { TextInput } from '../../../components/TextInput';
 import { Button } from '../../../components/Button';
 import { useSample } from '../../../hooks/useSample';
-import { translate } from 'i18n-js';
+import { translate } from '../../../data/I18n';
 
 const stepFour = yup.object().shape({
   plantsPerMeter: yup

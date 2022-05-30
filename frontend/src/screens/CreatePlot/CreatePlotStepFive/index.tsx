@@ -14,7 +14,7 @@ import Title from '../../../components/Title';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { CreatePlotStepFiveScreenRouteProps } from '../../../data/routes/app';
 import { Button } from '../../../components/Button';
-import { translate } from 'i18n-js';
+import { translate } from '../../../data/I18n';
 
 export const CreatePlotStepFive: React.FC<
   CreatePlotStepFiveScreenRouteProps

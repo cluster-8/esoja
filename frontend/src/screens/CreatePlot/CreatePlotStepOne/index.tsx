@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { convertArea, getAreaOfPolygon } from 'geolib';
-import { translate } from 'i18n-js';
+import { translate } from '../../../data/I18n';
 import React, { useCallback, useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { Alert, ScrollView } from 'react-native';

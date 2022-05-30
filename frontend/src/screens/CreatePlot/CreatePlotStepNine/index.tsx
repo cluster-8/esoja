@@ -3,6 +3,7 @@ import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
+import { translate } from '../../../data/I18n';
 import Title from '../../../components/Title';
 import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
