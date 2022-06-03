@@ -103,7 +103,7 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
             <FormContainer>
               <AvatarField>
                 <PictureInput
-                  placeholder={translate('newProperty.propertyPicturePlaceholder')}
+                  placeholder='newProperty.propertyPicturePlaceholder'
                   updatePictureLabel='newProperty.propertyUpdatePictureLabel'
                   onPress={handleSelectImage}
                   uri={image}
@@ -122,7 +122,7 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
               <ZipCodeContainer>
                 <TextInputMask
                   mask="99999-999"
-                  label="Nome"
+                  label="newProperty.propertyCepLabel"
                   name="zipcode"
                   control={control}
                   icon="map-pin"

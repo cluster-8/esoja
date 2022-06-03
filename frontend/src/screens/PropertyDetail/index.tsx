@@ -72,10 +72,10 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
           </PropertyDetailTitleContainer>
           <PropertyDetailPlotCardContainer>
             <PropertyDetailCardTitle>
-              Talhões de {property?.name}
+              {translate('PropertyDetail.cardTitle')}{property?.name}
             </PropertyDetailCardTitle>
             {property?.cultives?.length === 0 && (
-              <EmptyData message={translate('PropertyDetail.subtitle')}/>
+              <EmptyData message={translate('PropertyDetail.EmptyData')}/>
             )}
             {property?.cultives?.map(plot => (
               <PlotCard plot={plot} key={plot.id} onPress={handleSelectPlot} />

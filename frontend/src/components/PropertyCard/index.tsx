@@ -1,3 +1,4 @@
+import { translate } from '../../data/I18n'
 import React from 'react';
 import { Avatar } from 'react-native-paper';
 import { Property } from '../../data/Model/Property';
@@ -24,8 +25,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
       <InformationContainer>
         <PropertyName>{property?.name || ''}</PropertyName>
         <PropertyCity>
-          {`${property?.cultives?.length} Talhoes cadastrados` ||
-            'Nenhum talhão cadastrado'}
+          {`${property?.cultives?.length}`} {translate('propertyCard.propertyCity1')}
         </PropertyCity>
         <PropertyCity>{property?.city || ''}</PropertyCity>
       </InformationContainer>

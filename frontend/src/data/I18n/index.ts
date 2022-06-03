@@ -21,6 +21,8 @@ import validators from './validators';
 import weather from './weather';
 import PropertyDetail from './PropertyDetail';
 import PlotDetail from './PlotDetail';
+import properyCard from './propertyCard';
+import propertyCard from './propertyCard';
 
 interface LanguageProps {
   [key: string]: {
@@ -52,7 +54,8 @@ export const i18nConfig = () => {
       ...CreatePlotStepNine.pt,
       ...quotation.pt,
       ...PropertyDetail.pt,
-      ...PlotDetail.pt
+      ...PlotDetail.pt,
+      ...propertyCard.pt
     },
     'en-US': {
       ...signIn.en,
@@ -74,7 +77,8 @@ export const i18nConfig = () => {
       ...CreatePlotStepNine.en,
       ...quotation.en,
       ...PropertyDetail.en,
-      ...PlotDetail.en
+      ...PlotDetail.en,
+      ...propertyCard.en
     }
   };
   i18n.translations = {
