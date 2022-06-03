@@ -25,7 +25,7 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
       <InformationContainer>
         <PropertyName>{property?.name || ''}</PropertyName>
         <PropertyCity>
-          {`${property?.cultives?.length}`} {translate('propertyCard.propertyCity1')}
+          {`${property?.cultives?.length}` } {translate('propertyCard.propertyCity1')} 
         </PropertyCity>
         <PropertyCity>{property?.city || ''}</PropertyCity>
       </InformationContainer>

@@ -1,3 +1,4 @@
+import { translate } from '../../data/I18n';
 import React from 'react';
 import { Sample } from '../../data/Model/Sample';
 import { SampleData, SampleInformationContainer, SampleName } from './styles';
@@ -10,9 +11,9 @@ export const SampleCard: React.FC<SampleCardProps> = ({ sample }) => {
   return (
     <SampleInformationContainer>
       <SampleName>{sample?.name}</SampleName>
-      <SampleData>Planta 1: {sample?.grainsPlant1} grãos</SampleData>
-      <SampleData>Planta 2: {sample?.grainsPlant2} grãos</SampleData>
-      <SampleData>Descrição: {sample?.description}</SampleData>
+      <SampleData>{translate('sampleCard.grainsPlant1')} {sample?.grainsPlant1} {translate('sampleCard.grains')}</SampleData>
+      <SampleData>{translate('sampleCard.grainsPlant2')} {sample?.grainsPlant2} {translate('sampleCard.grains')}</SampleData>
+      <SampleData>{translate('sampleCard.description')} {sample?.description}</SampleData>
     </SampleInformationContainer>
   );
 };

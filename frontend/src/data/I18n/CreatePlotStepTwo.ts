@@ -13,6 +13,7 @@ export default {
       fieldDescription: 'Descrição',
       fieldDescriptionPlaceholder: 'Digite uma descrição',
       continueButton: 'Continuar',
+      genderLabel: 'Selecione a propriedade',
       errors: {
         stepTwoName: {
           required: 'Nome é obrigatório'
@@ -36,23 +37,24 @@ export default {
       defaultValueLabel: 'Select a property',
       fieldName: 'Name',
       fieldNamePlaceholder: 'Enter a name for the field',
-      PlantingDateLabel: 'Planting data',
-      PlantingDatePlaceholder: 'Planting Date',
+      plantingDateLabel: 'Planting date',
+      plantingDatePlaceholder: 'Planting Date',
       cropYearLabel: 'Year crop',
       cropYearPlaceholder: 'Enter the crop year',
       fieldDescription: 'Description',
       fieldDescriptionPlaceholder: 'Enter a description',
       continueButton: 'Continue',
+      genderLabel: 'Select a property',
       errors: {
         stepTwoName: {
           required: 'Name is required'
         },
         plantingDate: {
-          required: 'Planting data is required'
+          required: 'Planting date is required'
         },
         cropYear: {
           required: 'Sacred Year is required',
-          min: 'Invalid format! (eg: 2019/2020)'
+          min: 'Invalid format! (ex: 2019/2020)'
         }
       }
     }

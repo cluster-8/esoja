@@ -22,12 +22,12 @@ import { translate } from '../../../data/I18n';
 
 
 const stepTwo = yup.object().shape({
-  description: yup.string().required('Nome é obrigatório'),
-  plantingDate: yup.date().required('Data de plantio é obrigatória'),
+  description: yup.string().required('CreatePlotStepTwo.errors.stepTwoName.required'),
+  plantingDate: yup.date().required('CreatePlotStepTwo.errors.plantingDate.required'),
   cropYear: yup
     .string()
     .required('CreatePlotStepTwo.errors.cropYear.required')
-    .min(9, 'CreatePlotStepTwo.errors.cropYear.min')
+    .min(4, 'CreatePlotStepTwo.errors.cropYear.min')
 });
 
 export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
@@ -106,7 +106,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
               onValueChange={value => setPropertyId(`${value}`)}
               icon="file-text"
               itens={options}
-              label="signUp.stepTwo.genderLabel"
+              label='CreatePlotStepTwo.genderLabel'
               error={error}
             />
           )}
