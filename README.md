@@ -11,10 +11,10 @@
 
 
 <h1 align="center"> 
-🏁 Sprint 2 
+🏁 Sprint 3
 </h1>
 
-Abaixo encontram-se todos os itens produzidos durante a Sprint 2 conforme estabelecido previamente por meio do planejamento: 
+Abaixo encontram-se todos os itens produzidos durante a Sprint 3 conforme estabelecido previamente por meio do planejamento: 
 
 ## 💹 Planejamento da Sprint
 
@@ -24,15 +24,15 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 | ID     | Prioridade | User Story                       | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ |
-| US_05  | Desejável  | Eu como usuário gostaria de me cadastrar na aplicação utilizando minhas redes sociais  | 1. Google Login; 2. Facebook Login; 3. Login padrão; |
-| US_06  | Desejável | Eu como usuário gostaria de visualizar informações sobre o mercado da soja. | 1. Cotações da saca de soja; 2. Cotações da semente de soja; |
+| US_04  | Essencial  | Eu como usuário gostaria de visualizar estatísticas de meus cultivos  | |
+
 
 ### - Sprint Backlog
 
-A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) em ordem de prioridade referentes a Sprint 2:
+A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) em ordem de prioridade referentes a Sprint 3:
 
 <p align="center">
-  <img src="https://github.com/cluster-8/esoja-mobile/blob/main/Docs/sprint-2-backlog-update.png"/></p>
+  <img src=""/></p>
 
 ## 📂 Documentação do Projeto
 
@@ -50,22 +50,3 @@ Acesse o link para visualizar:
 
 ## 💫 Funcionalidades implementadas
 
-### 🔑 LogIn e SignIn
-
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/LoginScreen.gif)
-
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/facebook-login.gif)
-
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/google-login.gif)
-
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/SigninScreen.gif)
-
-### 📰 Informações do Mercado da soja
-
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/QuotationsScreen.gif)
-
-### 🔧 Melhorias
-
-#### 🏡 Cadastro de Propriedades
-
-![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/CreatePropertyIntegration.gif)
