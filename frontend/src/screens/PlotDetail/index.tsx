@@ -103,7 +103,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
                   <EmptyData message="Nenhuma amostra cadastrada para este talhão, deseja cadastrar agora?" />
                   <Button
                     style={{ width: '80%', marginBottom: 'auto' }}
-                    title={translate('Cadastrar agora')}
+                    title={translate('Cadastrar amostras')}
                     onPress={() =>
                       navigation.navigate('CreatePlotStepThree', {
                         cultiveId: plot.id

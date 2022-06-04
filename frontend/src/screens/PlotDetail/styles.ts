@@ -5,7 +5,7 @@ export const PlotDetailContainer = styled.View`
   flex: 1;
   width: 100%;
   background-color: ${({ theme }) => theme.colors.background_over};
-  padding-top: ${RFHeight(64)}px;
+  padding-top: ${RFHeight(24)}px;
 `;
 
 export const PlotDetailHeaderContainer = styled.View`
