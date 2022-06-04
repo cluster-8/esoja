@@ -9,12 +9,13 @@ export default {
       statistics: 'Estatísticas',
       homeLeaveAlert: 'Sair',
       homeLeaveAlertDescription:
-        'Ao sair da aplicação todos os dados não sincronizados serão perdidos, você confirma esta ação',
+        'Ao sair da aplicação todos os dados não sincronizados serão perdidos, você confirma esta ação?',
       homeCancelAlert: 'Ação Cancelada',
       homeCancelAlertDescription:
-        'Ação canelada com sucesso, seus dados não sincronizados continuam salvos',
+        'Ação cancelada com sucesso, seus dados não sincronizados continuam salvos',
       homeOnPressAction: 'Confirmar',
-      homeHandlerClickSyncAlert: 'Sincronizou'
+      homeHandlerClickSyncAlert: 'Sincronizou',
+      cancelButton: 'Cancelar'
     }
   },
   en: {
@@ -25,13 +26,15 @@ export default {
       properties: 'Properties',
       plots: 'Plots',
       statistics: 'Statistics',
+      homeLeaveAlert: 'Sign out',
       homeLeaveAlertDescription:
-        'When exiting the application all unsynchronized data will be lost, you confirm this action',
+        'When exiting the application all unsynchronized data will be lost, you confirm this action?',
       homeCancelAlert: 'Action Canceled',
       homeCancelAlertDescription:
         'Action corrugated successfully, your unsynchronized data is still saved',
       homeOnPressAction: 'Confirm',
-      homeHandlerClickSyncAlert: 'Synced'
+      homeHandlerClickSyncAlert: 'Synced',
+      cancelButton: 'Cancel'
     }
   }
 };
