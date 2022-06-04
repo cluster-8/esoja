@@ -95,6 +95,7 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
         ]
       };
       await api.post('/sample', newSample);
+      persistData({} as Sample);
     },
     [getPersistedData, pictureUpload]
   );
