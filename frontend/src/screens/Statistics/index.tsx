@@ -195,10 +195,10 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
                   onValueChange={value =>
                     value !== 'default' && handleSelectObtentor(`${value}`)
                   }
-                  placeholder="Selecione o OBTENTOR"
+                  placeholder={translate('statistics.selectPlot')}
                   icon="file-text"
                   itens={obtentoresOptions}
-                  label="signUp.stepTwo.genderLabel"
+                  label="statistics.selectPlot"
                 />
 
                 {selectedObtentor !== 'default' && (
@@ -209,14 +209,14 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
                         value !== 'default' &&
                         setSelectedCultivar(value as string)
                       }
-                      placeholder="Selecione o RNC (Registro Nacional do Cultivar)"
+                      placeholder={translate('statistics.selectNCR')}
                       icon="file-text"
                       itens={cultivarOptions}
-                      label="signUp.stepTwo.genderLabel"
+                      label="statistics.selectNCR"
                     />
 
                     <Button
-                      title="Confirmar"
+                      title={translate('statistics.pressAction')}
                       onPress={() =>
                         handleSubmitCultivar(selectedPlotId, +selectedCultivar)
                       }
