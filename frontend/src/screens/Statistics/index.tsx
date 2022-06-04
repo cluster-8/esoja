@@ -168,8 +168,8 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Identitifique o talhão"
-          subtitle="Insira um nome e uma descrição para o seu novo talhão"
+          title={translate('statistics.title')}
+          subtitle={translate('statistics.subtitle')}
         />
         {loading ? (
           <LoadingIndicator />
@@ -177,14 +177,14 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
           <FormContainer>
             {!!plotOptions.length && (
               <Select
-                placeholder="Selecione um talhão"
+                placeholder={translate('statistics.selectPlot')}
                 selectedValue={selectedPlotId}
                 onValueChange={value =>
                   value !== 'default' && handleSelectPlot(`${value}`)
                 }
                 icon="file-text"
                 itens={plotOptions}
-                label="signUp.stepTwo.genderLabel"
+                label="statistics.selectPlot"
               />
             )}
 

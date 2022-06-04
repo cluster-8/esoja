@@ -83,6 +83,7 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
       navigation.navigate('Properties');
       setLoading(false);
     } catch (error) {
+      console.log(error);
       Alert.alert('Não foi possível salvar.');
       setLoading(false);
     }
@@ -103,8 +104,8 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
             <FormContainer>
               <AvatarField>
                 <PictureInput
-                  placeholder="Adicionar imagem"
-                  updatePictureLabel="Alterar imagem"
+                  placeholder="newProperty.propertyPictureLabel"
+                  updatePictureLabel="newProperty.propertyUpdatePictureLabel"
                   onPress={handleSelectImage}
                   uri={image}
                 />
@@ -122,25 +123,25 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
               <ZipCodeContainer>
                 <TextInputMask
                   mask="99999-999"
-                  label="Nome"
+                  label="newProperty.propertyCepLabel"
                   name="zipcode"
                   control={control}
                   icon="map-pin"
-                  placeholder="Digite o CEP da propriedade"
+                  placeholder={translate('newProperty.propertyCepPlaceholder')}
                   keyboardType="numeric"
                   errorMessage={errors?.zipcode?.message}
                 />
-                <OrText>Ou</OrText>
+                <OrText>{translate('newProperty.or')}</OrText>
                 <Button
                   type="secondary"
-                  title="Pegar minha posição atual"
+                  title={translate('newProperty.propertyPositionTitle')}
                   onPress={handleGetCurrentPosition}
                   showLoadingIndicator={getPositionLoading}
                 />
               </ZipCodeContainer>
               <ButtonContainer>
                 <Button
-                  title="Enviar"
+                  title={translate('newProperty.propertyButtonTitle')}
                   onPress={handleSubmit(handleCreateProperty)}
                   showLoadingIndicator={loading}
                 />
