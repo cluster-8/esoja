@@ -1,8 +1,15 @@
-import React, { useEffect } from 'react';
-import * as yup from 'yup';
-import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
+import * as yup from 'yup';
+import StepFour from '../../../assets/plot-steps-images/StepFour.png';
+import { Button } from '../../../components/Button';
+import { StepIndicator } from '../../../components/StepIndicator';
+import { TextInput } from '../../../components/TextInput';
+import Title from '../../../components/Title';
+import { CreatePlotStepFourScreenRouteProps } from '../../../data/routes/app';
+import { useSample } from '../../../hooks/useSample';
 import {
   Container,
   FormContainer,
@@ -10,15 +17,6 @@ import {
   NextStepButton,
   StepFourHelperImage
 } from './styles';
-
-import StepFour from '../../../assets/plot-steps-images/StepFour.png';
-
-import Title from '../../../components/Title';
-import { StepIndicator } from '../../../components/StepIndicator';
-import { CreatePlotStepFourScreenRouteProps } from '../../../data/routes/app';
-import { TextInput } from '../../../components/TextInput';
-import { Button } from '../../../components/Button';
-import { useSample } from '../../../hooks/useSample';
 
 const stepFour = yup.object().shape({
   plantsPerMeter: yup
@@ -61,7 +59,7 @@ export const CreatePlotStepFour: React.FC<
           title="Quantidade de plantas"
           subtitle={'Informe a quantidade de plantas em "2 metros" lineares'}
         />
-        <StepIndicator step={1} indicator={3} />
+        <StepIndicator step={1} indicator={2} />
         <FormContainer>
           <HelperImageContainer>
             <StepFourHelperImage source={StepFour} resizeMode="contain" />

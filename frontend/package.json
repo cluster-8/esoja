@@ -33,6 +33,7 @@
     "expo-image-picker": "~11.0.3",
     "expo-localization": "~11.0.0",
     "expo-location": "~13.0.4",
+    "expo-network": "~4.0.3",
     "expo-random": "^12.1.1",
     "expo-splash-screen": "~0.13.5",
     "expo-status-bar": "~1.1.0",

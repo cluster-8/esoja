@@ -1,8 +1,15 @@
-import React, { useEffect } from 'react';
-import * as yup from 'yup';
-import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
+import * as yup from 'yup';
+import StepThree from '../../../assets/plot-steps-images/StepThree.png';
+import { Button } from '../../../components/Button';
+import { StepIndicator } from '../../../components/StepIndicator';
+import { TextInput } from '../../../components/TextInput';
+import Title from '../../../components/Title';
+import { CreatePlotStepThreeScreenRouteProps } from '../../../data/routes/app';
+import { useSample } from '../../../hooks/useSample';
 import {
   Container,
   FormContainer,
@@ -10,15 +17,6 @@ import {
   NextStepButton,
   StepThreeHelperImage
 } from './styles';
-
-import StepThree from '../../../assets/plot-steps-images/StepThree.png';
-
-import Title from '../../../components/Title';
-import { StepIndicator } from '../../../components/StepIndicator';
-import { CreatePlotStepThreeScreenRouteProps } from '../../../data/routes/app';
-import { TextInput } from '../../../components/TextInput';
-import { Button } from '../../../components/Button';
-import { useSample } from '../../../hooks/useSample';
 
 const stepThree = yup.object().shape({
   metersBetweenPlants: yup
@@ -29,7 +27,8 @@ const stepThree = yup.object().shape({
 
 export const CreatePlotStepThree: React.FC<
   CreatePlotStepThreeScreenRouteProps
-> = ({ navigation }) => {
+> = ({ navigation, route }) => {
+  const { cultiveId } = route.params;
   const { saveStep, getPersistedData } = useSample();
   const {
     control,
@@ -51,6 +50,7 @@ export const CreatePlotStepThree: React.FC<
     });
   }, [getPersistedData, setValue]);
   const handleSubmitStepThree = (data: FieldValues) => {
+    data.cultiveId = cultiveId;
     saveStep(data);
     navigation.navigate('CreatePlotStepFour');
   };
@@ -62,7 +62,7 @@ export const CreatePlotStepThree: React.FC<
           title="Distancia linhas de plantio"
           subtitle="Informe a distância entre as linhas de plantio em centímetros"
         />
-        <StepIndicator step={1} indicator={2} />
+        <StepIndicator step={0} indicator={1} />
         <FormContainer>
           <HelperImageContainer>
             <StepThreeHelperImage source={StepThree} resizeMode="contain" />

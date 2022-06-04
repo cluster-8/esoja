@@ -2,14 +2,16 @@
 import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
+import { Button } from '../../components/Button';
 import { EmptyData } from '../../components/EmptyData';
 import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { SampleCard } from '../../components/SampleCard';
 import { StrongText } from '../../components/StrongText';
 import Title from '../../components/Title';
+import { translate } from '../../data/I18n';
 import { Plot } from '../../data/Model/Plot';
 import { PlotDetailScreenRouteProps } from '../../data/routes/app';
-import { useSample } from '../../hooks/useSample';
+import { usePlot } from '../../hooks/usePlot';
 import { defaultImage } from '../../utils/default';
 import {
   PlotArea,
@@ -32,7 +34,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
 
   const { plotId } = route.params;
 
-  const { getPlots } = useSample();
+  const { getPlots } = usePlot();
 
   const getData = useCallback(async () => {
     const query: Query = {
@@ -97,7 +99,18 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
             <PlotDetailPlotCardContainer>
               <PlotDetailCardTitle>Amostra do talhão</PlotDetailCardTitle>
               {plot?.samples?.length === 0 && (
-                <EmptyData message="Nenhum talhão encontrado para esta propriedade" />
+                <>
+                  <EmptyData message="Nenhuma amostra cadastrada para este talhão, deseja cadastrar agora?" />
+                  <Button
+                    style={{ width: '80%', marginBottom: 'auto' }}
+                    title={translate('Cadastrar agora')}
+                    onPress={() =>
+                      navigation.navigate('CreatePlotStepThree', {
+                        cultiveId: plot.id
+                      })
+                    }
+                  />
+                </>
               )}
               {plot?.samples?.map((sample, index) => (
                 <SampleCard sample={sample} key={index} />

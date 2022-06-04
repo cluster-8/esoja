@@ -3610,6 +3610,13 @@ expo-modules-core@~0.4.10, expo-modules-core@~0.4.4, expo-modules-core@~0.4.7, e
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
+expo-network@~4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/expo-network/-/expo-network-4.0.3.tgz#21d7317b004ae8d1b16b56fd60bc3eca377198e3"
+  integrity sha512-9MBxNcaN2O2YinJa1UMNIoCaQkDA74roMLF1Gv/VsfysCd36qHTDH0m3mNUb2NNWAd+5b8O91Q6PLRGz1AJtog==
+  dependencies:
+    expo-modules-core "~0.4.4"
+
 expo-random@^12.1.1:
   version "12.1.1"
   resolved "https://registry.npmjs.org/expo-random/-/expo-random-12.1.1.tgz"

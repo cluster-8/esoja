@@ -36,7 +36,7 @@ interface Sample {
 interface SampleContextData {
   saveStep: (data: FieldValues) => Promise<void>;
   getPersistedData: () => Promise<Sample | null>;
-  createSample: () => Promise<any>;
+  createSample: (photoUri: string) => Promise<any>;
 }
 
 type SampleContextProps = {
@@ -73,28 +73,31 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     [sample]
   );
 
-  const createSample = useCallback(async () => {
-    const fullData: Sample = await getPersistedData();
-    fullData.photo = await pictureUpload(fullData.photo || '', 'sample');
-    const updatePlot = {
-      plantsPerMeter: fullData?.plantsPerMeter,
-      metersBetweenPlants: fullData?.metersBetweenPlants,
-      photo: fullData?.photo
-    };
-    await api.post(
-      `/cultive/sample-information/${fullData.cultiveId}`,
-      updatePlot
-    );
-    const newSample = {
-      cultiveId: fullData.cultiveId,
-      samples: [
-        { ...fullData?.plantA, name: 'Amostra 1' },
-        { ...fullData?.plantB, name: 'Amostra 2' },
-        { ...fullData?.plantC, name: 'Amostra 3' }
-      ]
-    };
-    return api.post('/sample', newSample);
-  }, [getPersistedData, pictureUpload]);
+  const createSample = useCallback(
+    async (photoUri: string) => {
+      const fullData: Sample = await getPersistedData();
+      fullData.photo = await pictureUpload(photoUri, 'sample');
+      const updatePlot = {
+        plantsPerMeter: fullData?.plantsPerMeter,
+        metersBetweenPlants: fullData?.metersBetweenPlants,
+        photo: fullData?.photo
+      };
+      await api.put(
+        `/cultive/sample-information/${fullData?.cultiveId}`,
+        updatePlot
+      );
+      const newSample = {
+        cultiveId: fullData?.cultiveId,
+        samples: [
+          { ...fullData?.plantA, name: 'Amostra 1' },
+          { ...fullData?.plantB, name: 'Amostra 2' },
+          { ...fullData?.plantC, name: 'Amostra 3' }
+        ]
+      };
+      await api.post('/sample', newSample);
+    },
+    [getPersistedData, pictureUpload]
+  );
 
   const providerValue = useMemo(
     () => ({

@@ -74,7 +74,7 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
             'Colete duas plantas de um ponto aleatorio do talhão \n (guarde as plantas para o ultimo passo)'
           }
         />
-        <StepIndicator step={1} indicator={5} />
+        <StepIndicator step={1} indicator={4} />
         <FormContainer>
           <HelperImageContainer>
             <StepSixHelperImage source={StepSix} resizeMode="contain" />

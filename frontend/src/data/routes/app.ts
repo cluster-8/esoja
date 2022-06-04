@@ -19,7 +19,9 @@ export type AppRoutesParams = {
   CreatePlot: undefined;
   CreatePlotStepOne: undefined;
   CreatePlotStepTwo: undefined;
-  CreatePlotStepThree: undefined;
+  CreatePlotStepThree: {
+    cultiveId: string;
+  };
   CreatePlotStepFour: undefined;
   CreatePlotStepFive: undefined;
   CreatePlotStepSix: undefined;
