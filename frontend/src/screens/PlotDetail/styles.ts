@@ -19,24 +19,35 @@ export const PlotDetailHeaderContainer = styled.View`
 export const PlotDetailTitleContainer = styled.View`
   margin: ${RFHeight(16)}px;
   overflow: hidden;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
 
 export const PlotCropYear = styled.Text`
+  color: ${({ theme }) => theme.colors.text_secondary};
   font-size: ${RFFontSize(16)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
 
 export const PlotArea = styled.Text`
+  color: ${({ theme }) => theme.colors.text_secondary};
   font-size: ${RFFontSize(16)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
 
 export const PlotProduction = styled.Text`
+  color: ${({ theme }) => theme.colors.text_secondary};
   font-size: ${RFFontSize(16)}px;
   font-family: ${({ theme }) => theme.fonts.regular};
 `;
 
 export const PlotDetailCardTitle = styled.Text`
+  font-size: ${RFFontSize(16)}px;
+  font-family: ${({ theme }) => theme.fonts.bold};
+  color: ${({ theme }) => theme.colors.primary};
+`;
+
+export const PlotProperty = styled.Text`
   font-size: ${RFFontSize(16)}px;
   font-family: ${({ theme }) => theme.fonts.bold};
   color: ${({ theme }) => theme.colors.primary};

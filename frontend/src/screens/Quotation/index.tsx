@@ -23,7 +23,7 @@ export const QuotationPage: React.FC<QuotationScreenRouteProps> = ({
           quotations.map(({ availableSoybeanPack }) => availableSoybeanPack)
         );
       } catch (err) {
-        // Alert.alert(String(err));
+        console.log(err);
       }
     };
     getData();

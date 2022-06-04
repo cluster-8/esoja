@@ -53,7 +53,9 @@ interface SampleContextData {
   saveStep: (data: FieldValues) => Promise<void>;
   saveLocale: (polygon: Coordinates[], areaTotal: number) => void;
   getPersistedData: () => Promise<Sample | null>;
-  getPlot: (query: Query) => Promise<Plot[]>;
+  getPlots: (query: Query) => Promise<Plot[]>;
+  getPlot: (id: string) => Promise<Plot>;
+  updateCultivar: (plotId: string, idCultivar: number) => Promise<void>;
   createPlot: () => Promise<void>;
 }
 
@@ -141,7 +143,7 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     }
   }, [getPersistedData, pictureUpload]);
 
-  const getPlot = useCallback(async query => {
+  const getPlots = useCallback(async query => {
     try {
       const { data } = await api.get<Plot[]>(`/cultive`, {
         params: query,
@@ -154,15 +156,48 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     }
   }, []);
 
+  const getPlot = useCallback(async (id: string) => {
+    try {
+      const { data } = await api.get<Plot>(`/cultive/${id}`);
+      return data;
+    } catch (err: any) {
+      Alert.alert(err.response.data.message || err.response.data.message[0]);
+      return {} as Plot;
+    }
+  }, []);
+
+  const updateCultivar = useCallback(
+    async (plotId: string, idCultivar: number) => {
+      try {
+        await api.put<Plot>(`/cultive/${plotId}`, {
+          idCultivar
+        });
+      } catch (err: any) {
+        Alert.alert(err.response.data.message || err.response.data.message[0]);
+      }
+    },
+    []
+  );
+
   const providerValue = useMemo(
     () => ({
       saveStep,
       getPersistedData,
       saveLocale,
+      getPlots,
       getPlot,
-      createPlot
+      createPlot,
+      updateCultivar
     }),
-    [saveStep, getPersistedData, saveLocale, getPlot, createPlot]
+    [
+      saveStep,
+      getPersistedData,
+      saveLocale,
+      getPlots,
+      getPlot,
+      createPlot,
+      updateCultivar
+    ]
   );
   return (
     <SampleContext.Provider value={providerValue}>

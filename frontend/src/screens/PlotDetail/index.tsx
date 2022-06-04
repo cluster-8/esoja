@@ -5,6 +5,7 @@ import { Alert, ScrollView } from 'react-native';
 import { EmptyData } from '../../components/EmptyData';
 import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { SampleCard } from '../../components/SampleCard';
+import { StrongText } from '../../components/StrongText';
 import Title from '../../components/Title';
 import { Plot } from '../../data/Model/Plot';
 import { PlotDetailScreenRouteProps } from '../../data/routes/app';
@@ -19,7 +20,8 @@ import {
   PlotDetailImage,
   PlotDetailPlotCardContainer,
   PlotDetailTitleContainer,
-  PlotProduction
+  PlotProduction,
+  PlotProperty
 } from './styles';
 
 export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
@@ -30,7 +32,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
 
   const { plotId } = route.params;
 
-  const { getPlot } = useSample();
+  const { getPlots } = useSample();
 
   const getData = useCallback(async () => {
     const query: Query = {
@@ -46,12 +48,12 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
       filter: [{ path: 'id', operator: 'equals', value: plotId }]
     };
     try {
-      const properties = await getPlot(query);
+      const properties = await getPlots(query);
       setPlot(properties[0]);
     } catch (err) {
       Alert.alert('Erro ao carregar propriedade');
     }
-  }, [getPlot, plotId]);
+  }, [getPlots, plotId]);
 
   useEffect(() => {
     const subscription = navigation.addListener('focus', () => {
@@ -72,12 +74,25 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
             </PlotDetailHeaderContainer>
             <PlotDetailTitleContainer>
               <Title title={plot?.description || 'Meu Talhão'} />
-              <PlotCropYear>Safra {plot?.cropYear}</PlotCropYear>
-              <PlotArea>Area {plot?.areaTotal} hectares</PlotArea>
-              <PlotCropYear>{plot?.metersBetweenPlants}</PlotCropYear>
-              <PlotArea>{plot?.plantsPerMeter}</PlotArea>
-              <PlotArea>{plot?.property.name} </PlotArea>
-              <PlotProduction>Estimativa de produção</PlotProduction>
+              <PlotProperty>{plot?.property.name?.toUpperCase()}</PlotProperty>
+              <PlotArea>
+                <StrongText>Area: </StrongText> {plot?.areaTotal} hectares
+              </PlotArea>
+              <PlotCropYear>
+                <StrongText>Ano safra: </StrongText> {plot?.cropYear}
+              </PlotCropYear>
+              <PlotArea>
+                <StrongText>Plantas por metro: </StrongText>
+                {plot?.plantsPerMeter}
+              </PlotArea>
+              <PlotCropYear>
+                <StrongText>Distancia entre plantas: </StrongText>
+                {plot?.metersBetweenPlants}cm
+              </PlotCropYear>
+              <PlotProduction>
+                <StrongText>Estimativa de produção: </StrongText>
+                Estou mocado aqui
+              </PlotProduction>
             </PlotDetailTitleContainer>
             <PlotDetailPlotCardContainer>
               <PlotDetailCardTitle>Amostra do talhão</PlotDetailCardTitle>
