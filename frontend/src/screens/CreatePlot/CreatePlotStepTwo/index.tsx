@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { ScrollView } from 'react-native';
+import { Alert, ScrollView } from 'react-native';
 import * as yup from 'yup';
 import { Button } from '../../../components/Button';
 import { DateInput } from '../../../components/DateInput';
@@ -15,8 +15,8 @@ import Title from '../../../components/Title';
 import { SelectOptions } from '../../../data/Model/SelectOptions';
 import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
 import { useAuth } from '../../../hooks/useAuth';
+import { usePlot } from '../../../hooks/usePlot';
 import { useProperty } from '../../../hooks/useProperty';
-import { useSample } from '../../../hooks/useSample';
 import { Container, FormContainer, NextStepButton } from './styles';
 
 const stepTwo = yup.object().shape({
@@ -34,11 +34,10 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
   const [options, setOptions] = useState<SelectOptions[]>([]);
   const [propertyId, setPropertyId] = useState('default');
   const [error, setError] = useState('');
-  const { saveStep, getPersistedData } = useSample();
+  const { createPlot } = usePlot();
   const {
     control,
     handleSubmit,
-    setValue,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(stepTwo)
@@ -47,26 +46,18 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
   const { authUser } = useAuth();
   const { getProperties } = useProperty();
 
-  const handleSubmitStepTwo = (data: FieldValues) => {
+  const handleSubmitStepTwo = async (data: FieldValues) => {
     if (propertyId === 'default') {
       return setError('Propriedade é obrigatória');
     }
     data.plantingDate = format(new Date(data.plantingDate), 'yyyy-MM-dd');
-    saveStep({ ...data, propertyId });
-    return navigation.navigate('CreatePlotStepThree');
+    try {
+      await createPlot({ ...data, propertyId });
+      return navigation.navigate('Plots');
+    } catch (err) {
+      return Alert.alert('Não foi possível criar o talhão');
+    }
   };
-
-  useEffect(() => {
-    getPersistedData().then(data => {
-      if (data) {
-        setValue('name', data?.name || '');
-        setValue('description', data?.description || '');
-        setValue('plantingDate', new Date(data?.plantingDate || new Date()));
-        setValue('cropYear', data?.cropYear);
-        setPropertyId(data.propertyId || 'default');
-      }
-    });
-  }, [getPersistedData, setValue]);
 
   useEffect(() => {
     const getSelectData = async (): Promise<void> => {
@@ -137,7 +128,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title="Finalizar"
               onPress={handleSubmit(handleSubmitStepTwo)}
             />
           </NextStepButton>

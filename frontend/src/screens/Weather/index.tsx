@@ -13,6 +13,7 @@ import {
   getWeatherForecast,
   WeatherForecastProps
 } from '../../data/services/weather.services';
+import { useLocation } from '../../hooks/useLocation';
 import { useProperty } from '../../hooks/useProperty';
 import { formatHour } from '../../utils/formatter';
 import { RFFontSize } from '../../utils/getResponsiveSizes';
@@ -59,6 +60,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
 
   const theme = useTheme();
   const { getProperties } = useProperty();
+  const { getCoordinates } = useLocation();
 
   const handleSelectDate = useCallback(
     (weather: WeatherForecastProps[], date: number) => {
@@ -87,13 +89,22 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
 
   const handleSelectProperty = useCallback(
     async (property: Property) => {
-      await getData({
-        latitude: Number(property?.latitude),
-        longitude: Number(property?.longitude)
-      });
-      setSelectedProperty(property);
+      if (property?.latitude) {
+        await getData({
+          latitude: Number(property?.latitude),
+          longitude: Number(property?.longitude)
+        });
+        setSelectedProperty(property);
+      } else {
+        const coords = await getCoordinates();
+        await getData({
+          latitude: Number(coords.latitude),
+          longitude: Number(coords.longitude)
+        });
+        setSelectedProperty(coords as Property);
+      }
     },
-    [getData]
+    [getCoordinates, getData]
   );
 
   const handlePropertyCardClick = async () => {

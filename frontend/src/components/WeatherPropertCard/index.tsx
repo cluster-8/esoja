@@ -42,13 +42,17 @@ export const WeatherPropertCard: React.FC<WeatherPropertCardProps> = ({
       <CardPropertPropertContainer>
         <CardPropertIcon name="map-pin" size={RFFontSize(30)} />
         <CardPropertNameContainer>
-          <CardPropertName>{selectedProperty?.name || ''}</CardPropertName>
+          <CardPropertName>
+            {selectedProperty?.name || 'Seu local'}
+          </CardPropertName>
           <CardPropertDate>{city}</CardPropertDate>
         </CardPropertNameContainer>
       </CardPropertPropertContainer>
-      <CardPropertButton onPress={onClick}>
-        <CardPropertOptionIcon name="chevron-down" size={RFFontSize(30)} />
-      </CardPropertButton>
+      {!!selectedProperty.name && (
+        <CardPropertButton onPress={onClick}>
+          <CardPropertOptionIcon name="chevron-down" size={RFFontSize(30)} />
+        </CardPropertButton>
+      )}
     </CardPropertContainer>
   );
 };

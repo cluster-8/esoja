@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Query, QueryString } from 'nestjs-prisma-querybuilder-interface';
 import React, {
   createContext,
   ReactNode,
@@ -9,21 +8,10 @@ import React, {
   useState
 } from 'react';
 import { FieldValues } from 'react-hook-form';
-import { Alert } from 'react-native';
-import { Plot } from '../data/Model/Plot';
 import { api } from '../data/services/api';
 import { useUpload } from './useUpload';
 
-interface Coordinates {
-  latitude: number;
-  longitude: number;
-}
-
 interface Sample {
-  areaTotal?: number;
-  cultiveCoordinates?: Coordinates[];
-  name?: string;
-  description?: string;
   metersBetweenPlants?: string;
   plantsPerMeter?: string;
   plantA?: {
@@ -36,27 +24,19 @@ interface Sample {
     grainsPlant2?: number;
     description?: string;
   };
-
   plantC?: {
     grainsPlant1?: number;
     grainsPlant2?: number;
     description?: string;
   };
   photo?: string;
-  cropYear?: string;
-  plantingDate?: string;
-  propertyId?: string;
-  status?: 'pending' | 'inProduction' | 'finished';
+  cultiveId?: string;
 }
 
 interface SampleContextData {
   saveStep: (data: FieldValues) => Promise<void>;
-  saveLocale: (polygon: Coordinates[], areaTotal: number) => void;
   getPersistedData: () => Promise<Sample | null>;
-  getPlots: (query: Query) => Promise<Plot[]>;
-  getPlot: (id: string) => Promise<Plot>;
-  updateCultivar: (plotId: string, idCultivar: number) => Promise<void>;
-  createPlot: () => Promise<void>;
+  createSample: () => Promise<any>;
 }
 
 type SampleContextProps = {
@@ -85,14 +65,6 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     return null;
   }, [sample]);
 
-  const saveLocale = useCallback(
-    (cultiveCoordinates: Coordinates[], areaTotal: number) => {
-      setSample(prev => ({ ...prev, cultiveCoordinates, areaTotal }));
-      persistData({ ...sample, cultiveCoordinates, areaTotal });
-    },
-    [sample]
-  );
-
   const saveStep = useCallback(
     async (data: FieldValues) => {
       setSample(prev => ({ ...prev, ...data }));
@@ -101,103 +73,36 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     [sample]
   );
 
-  const createPlot = useCallback(async () => {
-    let cultiveId;
-    try {
-      const fullData: Sample = await getPersistedData();
-      if (fullData && fullData?.photo) {
-        fullData.photo = await pictureUpload(fullData.photo, 'sample');
-        const newPlot = {
-          propertyId: fullData?.propertyId,
-          cultiveCoordinates: fullData?.cultiveCoordinates,
-          cropYear: fullData?.cropYear,
-          plantingDate: fullData?.plantingDate,
-          areaTotal: fullData?.areaTotal,
-          plantsPerMeter: fullData?.plantsPerMeter,
-          metersBetweenPlants: fullData?.metersBetweenPlants,
-          status: 'pending',
-          description: fullData?.description,
-          photo: fullData?.photo
-        };
-        const { data } = await api.post<{ id: string }>('/cultive', newPlot);
-        cultiveId = data?.id;
-        const newSample = {
-          cultiveId,
-          samples: [
-            { ...fullData?.plantA, name: 'Amostra 1' },
-            { ...fullData?.plantB, name: 'Amostra 2' },
-            { ...fullData?.plantC, name: 'Amostra 3' }
-          ]
-        };
-        await api.post('/sample', newSample);
-      } else {
-        throw new Error('cade a foto fio');
-      }
-    } catch (err: any) {
-      if (cultiveId) {
-        await api.delete(`/cultive/${cultiveId}`);
-      }
-      throw new Error(
-        err.response.data.message || err.response.data.message[0]
-      );
-    }
+  const createSample = useCallback(async () => {
+    const fullData: Sample = await getPersistedData();
+    fullData.photo = await pictureUpload(fullData.photo || '', 'sample');
+    const updatePlot = {
+      plantsPerMeter: fullData?.plantsPerMeter,
+      metersBetweenPlants: fullData?.metersBetweenPlants,
+      photo: fullData?.photo
+    };
+    await api.post(
+      `/cultive/sample-information/${fullData.cultiveId}`,
+      updatePlot
+    );
+    const newSample = {
+      cultiveId: fullData.cultiveId,
+      samples: [
+        { ...fullData?.plantA, name: 'Amostra 1' },
+        { ...fullData?.plantB, name: 'Amostra 2' },
+        { ...fullData?.plantC, name: 'Amostra 3' }
+      ]
+    };
+    return api.post('/sample', newSample);
   }, [getPersistedData, pictureUpload]);
-
-  const getPlots = useCallback(async query => {
-    try {
-      const { data } = await api.get<Plot[]>(`/cultive`, {
-        params: query,
-        paramsSerializer: params => QueryString(params)
-      });
-      return data;
-    } catch (err: any) {
-      Alert.alert(err.response.data.message || err.response.data.message[0]);
-      return [];
-    }
-  }, []);
-
-  const getPlot = useCallback(async (id: string) => {
-    try {
-      const { data } = await api.get<Plot>(`/cultive/${id}`);
-      return data;
-    } catch (err: any) {
-      Alert.alert(err.response.data.message || err.response.data.message[0]);
-      return {} as Plot;
-    }
-  }, []);
-
-  const updateCultivar = useCallback(
-    async (plotId: string, idCultivar: number) => {
-      try {
-        await api.put<Plot>(`/cultive/${plotId}`, {
-          idCultivar
-        });
-      } catch (err: any) {
-        Alert.alert(err.response.data.message || err.response.data.message[0]);
-      }
-    },
-    []
-  );
 
   const providerValue = useMemo(
     () => ({
       saveStep,
       getPersistedData,
-      saveLocale,
-      getPlots,
-      getPlot,
-      createPlot,
-      updateCultivar
+      createSample
     }),
-    [
-      saveStep,
-      getPersistedData,
-      saveLocale,
-      getPlots,
-      getPlot,
-      createPlot,
-      updateCultivar
-    ]
+    [saveStep, getPersistedData, createSample]
   );
   return (
     <SampleContext.Provider value={providerValue}>

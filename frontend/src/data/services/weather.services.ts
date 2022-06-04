@@ -46,7 +46,7 @@ export const getWeatherForecast = async (
 
     return list;
   } catch (err) {
-    return Alert.alert('Erro');
+    return Alert.alert('Erro ao atualizar clima');
   }
 };
 
