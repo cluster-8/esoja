@@ -6,7 +6,7 @@ export default {
         'Crie uma conta no eSoja para ter acesso á todas as funcionalidades',
       imagePlaceholder: 'Adicionar imagem',
       imageUpdatePictureLabel: 'Alterar imagem',
-      signUpName: 'Nome',
+      name: 'Nome',
       namePlaceholder: 'Digite um nome para o talhão',
       email: 'E-mail',
       emailPlaceholder: 'Digite seu email',
@@ -36,7 +36,7 @@ export default {
   },
   en: {
     signUp: {
-      title: 'Teste',
+      title: "Let's get started",
       subtitle: 'Create an eSoja account to have access to all features',
       imagePlaceholder: 'Add image',
       imageUpdatePictureLabel: 'Change Image',

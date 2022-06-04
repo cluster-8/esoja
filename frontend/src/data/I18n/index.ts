@@ -19,6 +19,7 @@ import signIn from './signIn';
 import signUp from './signUp';
 import validators from './validators';
 import weather from './weather';
+import statistics from './statistics';
 
 interface LanguageProps {
   [key: string]: {
@@ -48,7 +49,8 @@ export const i18nConfig = () => {
       ...CreatePlotStepSix.pt,
       ...CreatePlotStepSeven.pt,
       ...CreatePlotStepNine.pt,
-      ...quotation.pt
+      ...quotation.pt,
+      ...statistics.pt
     },
     'en-US': {
       ...signIn.en,
@@ -68,7 +70,8 @@ export const i18nConfig = () => {
       ...CreatePlotStepSix.en,
       ...CreatePlotStepSeven.en,
       ...CreatePlotStepNine.en,
-      ...quotation.en
+      ...quotation.en,
+      ...statistics.en
     }
   };
   i18n.translations = {
