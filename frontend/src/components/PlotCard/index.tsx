@@ -7,6 +7,7 @@ import {
   PlotArea,
   PlotCropYear,
   PlotInformationContainer,
+  PlotName,
   PlotProduction
 } from './styles';
 
@@ -20,9 +21,14 @@ export const PlotCard: React.FC<PlotCardProps> = ({ plot, onPress }) => {
     <PlotInformationContainer onPress={() => onPress(plot.id)}>
       <Avatar.Image source={{ uri: plot?.photo || defaultImage }} />
       <InformationContainer>
+        <PlotName>{plot?.description}</PlotName>
         <PlotCropYear>Safra {plot?.cropYear}</PlotCropYear>
         <PlotArea>Area {plot?.areaTotal} hectares</PlotArea>
-        <PlotProduction>Estimativa de produção</PlotProduction>
+        {plot?.expectedProduction && (
+          <PlotProduction>
+            Estimativa de produção: {plot.expectedProduction}
+          </PlotProduction>
+        )}
       </InformationContainer>
     </PlotInformationContainer>
   );
