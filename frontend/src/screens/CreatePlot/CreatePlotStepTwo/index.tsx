@@ -98,8 +98,11 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
         <FormContainer>
           {!!options.length && (
             <Select
+              placeholder="Selecione uma propriedade"
               selectedValue={propertyId}
-              onValueChange={value => setPropertyId(`${value}`)}
+              onValueChange={value =>
+                value !== 'default' && setPropertyId(`${value}`)
+              }
               icon="file-text"
               itens={options}
               label="signUp.stepTwo.genderLabel"
