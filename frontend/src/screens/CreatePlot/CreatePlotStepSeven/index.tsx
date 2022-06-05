@@ -1,8 +1,16 @@
-import React, { useEffect } from 'react';
-import * as yup from 'yup';
-import { FieldValues, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
+import { translate } from '../../../data/I18n';
+import * as yup from 'yup';
+import StepSeven from '../../../assets/plot-steps-images/StepSample.png';
+import { Button } from '../../../components/Button';
+import { StepIndicator } from '../../../components/StepIndicator';
+import { TextInput } from '../../../components/TextInput';
+import Title from '../../../components/Title';
+import { CreatePlotStepSevenScreenRouteProps } from '../../../data/routes/app';
+import { useSample } from '../../../hooks/useSample';
 import {
   Container,
   FormContainer,
@@ -11,15 +19,8 @@ import {
   StepSevenHelperImage
 } from './styles';
 
-import StepSeven from '../../../assets/plot-steps-images/StepSample.png';
 
-import Title from '../../../components/Title';
-import { StepIndicator } from '../../../components/StepIndicator';
-import { CreatePlotStepSevenScreenRouteProps } from '../../../data/routes/app';
-import { TextInput } from '../../../components/TextInput';
-import { Button } from '../../../components/Button';
-import { useSample } from '../../../hooks/useSample';
-import { translate } from '../../../data/I18n';
+
 
 const userLogin = yup.object().shape({
   grainsPlant1: yup
@@ -75,7 +76,7 @@ export const CreatePlotStepSeven: React.FC<
           title={translate('CreatePlotStepSeven.title')}
           subtitle={translate('CreatePlotStepSeven.subtitle')}
         />
-        <StepIndicator step={1} indicator={6} />
+        <StepIndicator step={1} indicator={5} />
         <FormContainer>
           <HelperImageContainer>
             <StepSevenHelperImage source={StepSeven} resizeMode="contain" />

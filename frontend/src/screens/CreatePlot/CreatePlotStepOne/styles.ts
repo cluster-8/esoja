@@ -97,7 +97,7 @@ export const ModeTag = styled.TouchableOpacity`
 `;
 
 export const ModeText = styled.Text`
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ theme }) => theme.colors.white};
   font-size: ${RFFontSize(18)}px;
   text-align: center;
   font-weight: bold;

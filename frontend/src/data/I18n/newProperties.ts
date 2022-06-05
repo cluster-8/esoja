@@ -11,7 +11,8 @@ export default {
       propertyPicturePlaceholder: 'Selecione uma imagem',
       propertyPositionTitle: 'Pegar minha posição atual',
       propertyButtonTitle: 'Enviar',
-      newPropertyAlert: 'Não foi possível salvar.'
+      newPropertyAlert: 'Não foi possível salvar.',
+      or: 'ou'
     }
   },
   en: {
@@ -25,8 +26,9 @@ export default {
       propertyUpdatePictureLabel: 'Change image',
       propertyPicturePlaceholder: 'Select a picture',
       propertyPositionTitle: 'Get my current position',
-      propertyButtonTitle: 'Submit',
-      newPropertyAlert: 'Unable to save.'
+      propertyButtonTitle: 'Send',
+      newPropertyAlert: 'Could not save.',
+      or: 'or'
     }
   }
 };

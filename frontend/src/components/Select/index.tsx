@@ -18,8 +18,7 @@ type ItemType = {
 };
 export interface PickerSelectProps extends PickerProps {
   icon?: string;
-  defaultValue: string | number;
-  defaultValueLabel: string;
+  placeholder?: string;
   itens: ItemType[];
   label: string;
   error?: string;
@@ -27,8 +26,7 @@ export interface PickerSelectProps extends PickerProps {
 
 export const Select: React.FC<PickerSelectProps> = ({
   icon,
-  defaultValue,
-  defaultValueLabel,
+  placeholder,
   itens,
   label,
   error,
@@ -60,6 +58,13 @@ export const Select: React.FC<PickerSelectProps> = ({
               label={item.label}
             />
           ))}
+          {!!placeholder && (
+            <Picker.Item
+              color={theme.colors.text}
+              value="default"
+              label={placeholder}
+            />
+          )}
         </StyledPickerSelect>
       </Container>
       {!!error && <ErrorMessage>{error}</ErrorMessage>}

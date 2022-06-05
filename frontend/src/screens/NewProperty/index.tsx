@@ -83,6 +83,7 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
       navigation.navigate('Properties');
       setLoading(false);
     } catch (error) {
+      console.log(error);
       Alert.alert('Não foi possível salvar.');
       setLoading(false);
     }
@@ -103,8 +104,8 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
             <FormContainer>
               <AvatarField>
                 <PictureInput
-                  placeholder='newProperty.propertyPicturePlaceholder'
-                  updatePictureLabel='newProperty.propertyUpdatePictureLabel'
+                  placeholder="newProperty.propertyPictureLabel"
+                  updatePictureLabel="newProperty.propertyUpdatePictureLabel"
                   onPress={handleSelectImage}
                   uri={image}
                 />
@@ -130,7 +131,7 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
                   keyboardType="numeric"
                   errorMessage={errors?.zipcode?.message}
                 />
-                <OrText>Ou</OrText>
+                <OrText>{translate('newProperty.or')}</OrText>
                 <Button
                   type="secondary"
                   title={translate('newProperty.propertyPositionTitle')}

@@ -13,7 +13,7 @@ import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
 import { CreatePlotStepOneScreenRouteProps } from '../../../data/routes/app';
 import { useLocation } from '../../../hooks/useLocation';
-import { useSample } from '../../../hooks/useSample';
+import { usePlot } from '../../../hooks/usePlot';
 import {
   ButtonCotainer,
   ButtonMessage,
@@ -58,7 +58,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
 
   const theme = useTheme();
   const { getCoordinates } = useLocation();
-  const { saveLocale, getPersistedData } = useSample();
+  const { localeStep } = usePlot();
 
   const {
     control,
@@ -86,7 +86,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
         'CreatePlotStepOne.errors.polygonAlert.min'
       );
     }
-    saveLocale(polygon, data.areaTotal);
+    localeStep(polygon, data.areaTotal);
     return navigation.navigate('CreatePlotStepTwo');
   };
 
@@ -100,20 +100,6 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
   useEffect(() => {
     getCurrentCoordinates();
   }, [getCurrentCoordinates]);
-
-  useEffect(() => {
-    getPersistedData().then(data => {
-      if (data?.cultiveCoordinates && data.areaTotal) {
-        setPolygon(data.cultiveCoordinates);
-        setValue('areaTotal', data.areaTotal.toString());
-        if (data.cultiveCoordinates.length > 1) {
-          setMode('POLYGON');
-        } else {
-          setMode('POINT');
-        }
-      }
-    });
-  }, [getPersistedData, setValue]);
 
   return (
     <ScrollView>

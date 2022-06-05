@@ -11,6 +11,7 @@ import { useProperty } from '../../hooks/useProperty';
 import { AddButton, Container, Header, Icon, PlotList } from './styles';
 
 export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
+  const [hasProperties, setHasProperties] = useState(false);
   const [plots, setPlots] = useState<Plot[]>([]);
   const { getProperties } = useProperty();
   const { authUser } = useAuth();
@@ -22,10 +23,13 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
   const getData = useCallback(async () => {
     const query: Query = {
       select: 'name city state picture',
-      populate: [{ path: 'cultives', select: 'cropYear areaTotal photo' }],
+      populate: [
+        { path: 'cultives', select: 'cropYear areaTotal photo description' }
+      ],
       filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
     };
     const properties = await getProperties(query);
+    setHasProperties(properties?.length > 0);
     const userPlots: Plot[] = [];
     properties.map(property =>
       property?.cultives ? userPlots.push(...property.cultives) : null
@@ -57,10 +61,11 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
           <PlotCard plot={item} onPress={handleSelectPlot} />
         )}
       />
-
-      <AddButton onPress={() => navigation.navigate('CreatePlotStepOne')}>
-        <Icon name="plus" />
-      </AddButton>
+      {hasProperties && (
+        <AddButton onPress={() => navigation.navigate('CreatePlotStepOne')}>
+          <Icon name="plus" />
+        </AddButton>
+      )}
     </Container>
   );
 };

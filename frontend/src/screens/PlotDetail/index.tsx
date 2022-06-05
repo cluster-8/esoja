@@ -3,13 +3,15 @@ import { translate } from '../../data/I18n'
 import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
+import { Button } from '../../components/Button';
 import { EmptyData } from '../../components/EmptyData';
 import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { SampleCard } from '../../components/SampleCard';
+import { StrongText } from '../../components/StrongText';
 import Title from '../../components/Title';
 import { Plot } from '../../data/Model/Plot';
 import { PlotDetailScreenRouteProps } from '../../data/routes/app';
-import { useSample } from '../../hooks/useSample';
+import { usePlot } from '../../hooks/usePlot';
 import { defaultImage } from '../../utils/default';
 import {
   PlotArea,
@@ -20,7 +22,8 @@ import {
   PlotDetailImage,
   PlotDetailPlotCardContainer,
   PlotDetailTitleContainer,
-  PlotProduction
+  PlotProduction,
+  PlotProperty
 } from './styles';
 
 export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
@@ -31,7 +34,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
 
   const { plotId } = route.params;
 
-  const { getPlot } = useSample();
+  const { getPlots } = usePlot();
 
   const getData = useCallback(async () => {
     const query: Query = {
@@ -47,12 +50,12 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
       filter: [{ path: 'id', operator: 'equals', value: plotId }]
     };
     try {
-      const properties = await getPlot(query);
+      const properties = await getPlots(query);
       setPlot(properties[0]);
     } catch (err) {
       Alert.alert('Erro ao carregar propriedade');
     }
-  }, [getPlot, plotId]);
+  }, [getPlots, plotId]);
 
   useEffect(() => {
     const subscription = navigation.addListener('focus', () => {
@@ -72,18 +75,42 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
               />
             </PlotDetailHeaderContainer>
             <PlotDetailTitleContainer>
-              <Title title={plot?.description || 'PlotDetail.title'} />
-              <PlotCropYear>Safra {plot?.cropYear}</PlotCropYear>
-              <PlotArea>Area {plot?.areaTotal} hectares</PlotArea>
-              <PlotCropYear>{plot?.metersBetweenPlants}</PlotCropYear>
-              <PlotArea>{plot?.plantsPerMeter}</PlotArea>
-              <PlotArea>{plot?.property.name} </PlotArea>
-              <PlotProduction>Estimativa de produção</PlotProduction>
+              <Title title={plot?.description || 'Meu Talhão'} />
+              <PlotProperty>{plot?.property.name?.toUpperCase()}</PlotProperty>
+              <PlotArea>
+                <StrongText>{translate('PlotDetail.areaTotal')} </StrongText> {plot?.areaTotal} {translate('PlotDetail.areaTotal2')}
+              </PlotArea>
+              <PlotCropYear>
+                <StrongText>{translate('PlotDetail.cropYear')} </StrongText> {plot?.cropYear}
+              </PlotCropYear>
+              <PlotArea>
+                <StrongText>{translate('PlotDetail.plantsPerMeter')} </StrongText>
+                {plot?.plantsPerMeter}
+              </PlotArea>
+              <PlotCropYear>
+                <StrongText>{translate('PlotDetail.metersBetweenPlants')}: </StrongText>
+                {plot?.metersBetweenPlants}cm
+              </PlotCropYear>
+              <PlotProduction>
+                <StrongText>{translate('PlotDetail.productionEstimate')} </StrongText>
+                Estou mocado aqui
+              </PlotProduction>
             </PlotDetailTitleContainer>
             <PlotDetailPlotCardContainer>
-              <PlotDetailCardTitle>Amostra do talhão</PlotDetailCardTitle>
+              <PlotDetailCardTitle>{translate('PlotDetail.cardTitle')}</PlotDetailCardTitle>
               {plot?.samples?.length === 0 && (
-                <EmptyData message={translate('PlotDetail.EmptyData')} />
+                <>
+                  <EmptyData message={translate('PlotDetail.EmptyData')} />
+                  <Button
+                    style={{ width: '80%', marginBottom: 'auto' }}
+                    title={translate('PlotDetail.title2')}
+                    onPress={() =>
+                      navigation.navigate('CreatePlotStepThree', {
+                        cultiveId: plot.id
+                      })
+                    }
+                  />
+                </>
               )}
               {plot?.samples?.map((sample, index) => (
                 <SampleCard sample={sample} key={index} />

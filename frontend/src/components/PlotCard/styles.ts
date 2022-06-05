@@ -14,9 +14,13 @@ export const InformationContainer = styled.View`
   padding-left: ${RFWidth(16)}px;
 `;
 
+export const PlotName = styled.Text`
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: bold;
+`;
+
 export const PlotCropYear = styled.Text`
   color: ${({ theme }) => theme.colors.text};
-  font-weight: bold;
 `;
 
 export const PlotArea = styled.Text`

@@ -16,4 +16,7 @@ export interface Plot {
   status: 'pending';
   description?: string;
   photo?: string;
+  idCultivar?: number;
+  expectedProduction: number;
+  expectedBagsPerHectares: number;
 }

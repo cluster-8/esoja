@@ -8,20 +8,23 @@ import Title from '../../../components/Title';
 import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
+import { hasConnection } from '../../../utils/hasConnection';
 import {
   Container,
   FormContainer,
   NextStepButton,
+  NoNetworkMessage,
   PictureContainer
 } from './styles';
 
 export const CreatePlotStepNine: React.FC<
   CreatePlotStepNineScreenRouteProps
 > = ({ navigation }) => {
+  const [isConnected, setIsConnected] = useState(false);
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { saveStep, getPersistedData, createPlot } = useSample();
+  const { createSample } = useSample();
   const { selectImage } = useUpload();
 
   const handleSelectImage = async () => {
@@ -32,50 +35,62 @@ export const CreatePlotStepNine: React.FC<
   const handleSubmitStepNine = async () => {
     setLoading(true);
     try {
-      await saveStep({ photo: image });
-      await createPlot();
-      await navigation.navigate('Plots');
+      await createSample(image);
+      navigation.navigate('Plots');
     } catch (err) {
       setLoading(false);
-      console.log(err);
-
-      Alert.alert('erro');
+      Alert.alert(
+        'Erro ao cadastrar',
+        'Não foi possivel cadastrar as amostras'
+      );
     }
   };
-
   useEffect(() => {
-    getPersistedData().then(data => {
-      if (data) {
-        setImage(data?.photo || '');
-      }
-    });
-  }, [getPersistedData]);
+    hasConnection().then(connection => setIsConnected(connection));
+  }, []);
 
   return (
     <ScrollView>
       <Container>
         <Title
-          title="Imagem das amostras"
-          subtitle="Tire uma foto de todas as plantas usadas nas amostras"
+          title={translate('CreatePlotStepNine.title')}
+          subtitle={translate('CreatePlotStepNine.subtitle')}
         />
-        <StepIndicator step={2} indicator={7} />
+        <StepIndicator step={2} indicator={8} />
         <FormContainer>
-          <PictureContainer>
-            <PictureInput
-              model="RETANGLE"
-              placeholder="Adicionar imagem"
-              updatePictureLabel="Alterar imagem"
-              onPress={handleSelectImage}
-              uri={image}
-            />
-          </PictureContainer>
-          <NextStepButton>
-            <Button
-              title="Finalizar"
-              onPress={handleSubmitStepNine}
-              showLoadingIndicator={loading}
-            />
-          </NextStepButton>
+          {isConnected ? (
+            <>
+              <PictureContainer>
+                <PictureInput
+                  model="RETANGLE"
+                  placeholder={translate('CreatePlotStepNine.imagePlaceholder')}
+                  updatePictureLabel='CreatePlotStepNine.imadeUpdatePictureLabel'
+                  onPress={handleSelectImage}
+                  uri={image}
+                />
+              </PictureContainer>
+              <NextStepButton>
+                <Button
+                  title={translate('CreatePlotStepNine.finishButton')}
+                  onPress={handleSubmitStepNine}
+                  showLoadingIndicator={loading}
+                />
+              </NextStepButton>
+            </>
+          ) : (
+            <>
+              <NoNetworkMessage>
+                {translate('CreatePlotStepNine.noNetwork')}
+              </NoNetworkMessage>
+              <NextStepButton>
+                <Button
+                  title={translate('CreatePlotStepNine.nextStepButton')}
+                  onPress={() => navigation.navigate('Home')}
+                  showLoadingIndicator={loading}
+                />
+              </NextStepButton>
+            </>
+          )}
         </FormContainer>
       </Container>
     </ScrollView>

@@ -1,5 +1,9 @@
 import styled from 'styled-components/native';
-import { RFHeight, RFWidth } from '../../../utils/getResponsiveSizes';
+import {
+  RFFontSize,
+  RFHeight,
+  RFWidth
+} from '../../../utils/getResponsiveSizes';
 
 export const Container = styled.View`
   flex: 1;
@@ -27,4 +31,12 @@ export const FormContainer = styled.View`
 
 export const NextStepButton = styled.View`
   margin: ${RFHeight(24)}px 0;
+`;
+
+export const NoNetworkMessage = styled.Text`
+  color: ${({ theme }) => theme.colors.text};
+  font-size: ${RFFontSize(16)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  text-align: center;
+  margin: ${RFHeight(48)}px 0;
 `;

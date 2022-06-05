@@ -20,7 +20,7 @@ export const QuotationCard: React.FC<QuotationCardProps> = ({ data }) => {
       </QuotationDate>
       <QuotationPrice>R${data.Valor}</QuotationPrice>
       <QuotationVariation>
-        {data.Variacao >= 0 ? '+ ' : '- '}
+        {data.Variacao >= 0 ? '+' : ' '}
         {data.Variacao}
       </QuotationVariation>
     </Container>

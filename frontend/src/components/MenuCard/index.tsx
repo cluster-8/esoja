@@ -58,8 +58,10 @@ export const MenuCard: React.FC<MenuCardProps> = ({
                 }
               />
             )}
-            {picture && <MenuCardImage source={picture} resizeMode="contain" />}
-            {variation && (
+            {!!picture && (
+              <MenuCardImage source={picture} resizeMode="contain" />
+            )}
+            {(!!variation || variation === 0) && (
               <MenuCardValue>
                 {variation >= 0 ? `+ ${variation}` : variation}
               </MenuCardValue>

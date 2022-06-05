@@ -23,6 +23,7 @@ import PropertyDetail from './PropertyDetail';
 import PlotDetail from './PlotDetail';
 import propertyCard from './propertyCard';
 import sampleCard from './sampleCard';
+import statistics from './statistics';
 
 interface LanguageProps {
   [key: string]: {
@@ -56,7 +57,8 @@ export const i18nConfig = () => {
       ...PropertyDetail.pt,
       ...PlotDetail.pt,
       ...propertyCard.pt,
-      ...sampleCard.pt
+      ...sampleCard.pt,
+      ...statistics.pt
     },
     'en-US': {
       ...signIn.en,
@@ -80,7 +82,8 @@ export const i18nConfig = () => {
       ...PropertyDetail.en,
       ...PlotDetail.en,
       ...propertyCard.en,
-      ...sampleCard.en
+      ...sampleCard.en,
+      ...statistics.en
     }
   };
   i18n.translations = {

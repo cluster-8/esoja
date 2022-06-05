@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
 import { QuotationScreenRouteProps } from '../../data/routes/app';
 import { getQuotation } from '../../data/services/quotation.service';
 import { Quotation } from '../../hooks/useHome';
@@ -16,14 +17,37 @@ export const QuotationPage: React.FC<QuotationScreenRouteProps> = ({
     const getData = async () => {
       try {
         const quotations = await getQuotation();
+
+        const seeds = quotations.map(
+          ({ conventionalSeed }) => conventionalSeed
+        );
         setSeedQuotation(
-          quotations.map(({ conventionalSeed }) => conventionalSeed)
+          seeds.sort((seedA, seedB) => {
+            if (seedA.DataPublicacao) {
+              return -1;
+            }
+            if (seedB.DataPublicacao) {
+              return 1;
+            }
+            return 0;
+          })
+        );
+        const bags = quotations.map(
+          ({ availableSoybeanPack }) => availableSoybeanPack
         );
         setBagQuotation(
-          quotations.map(({ availableSoybeanPack }) => availableSoybeanPack)
+          bags.sort((seedA, seedB) => {
+            if (seedA.DataPublicacao) {
+              return -1;
+            }
+            if (seedB.DataPublicacao) {
+              return 1;
+            }
+            return 0;
+          })
         );
       } catch (err) {
-        // Alert.alert(String(err));
+        Alert.alert('Não foi possivel atualizar os dados ');
       }
     };
     getData();

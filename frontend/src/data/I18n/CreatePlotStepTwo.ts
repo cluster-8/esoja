@@ -3,7 +3,7 @@ export default {
     CreatePlotStepTwo: {
       title: 'Identifique o talhão',
       subtitle: 'Insira um nome e uma descrição para o seu novo talhão',
-      defaultValueLabel: 'Selecione a propriedade',
+      defaultValueLabel: 'Selecione uma propriedade',
       fieldName: 'Nome',
       fieldNamePlaceholder: 'Digite um nome para o talhão',
       plantingDateLabel: 'Data de plantio',
@@ -12,7 +12,7 @@ export default {
       cropYearPlaceholder: 'Informe o ano safra',
       fieldDescription: 'Descrição',
       fieldDescriptionPlaceholder: 'Digite uma descrição',
-      continueButton: 'Continuar',
+      continueButton: 'Finalizar',
       genderLabel: 'Selecione a propriedade',
       errors: {
         stepTwoName: {
@@ -43,7 +43,7 @@ export default {
       cropYearPlaceholder: 'Enter the crop year',
       fieldDescription: 'Description',
       fieldDescriptionPlaceholder: 'Enter a description',
-      continueButton: 'Continue',
+      continueButton: 'Finish',
       genderLabel: 'Select a property',
       errors: {
         stepTwoName: {

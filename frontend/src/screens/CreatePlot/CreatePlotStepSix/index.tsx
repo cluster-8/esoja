@@ -73,7 +73,7 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
           title={translate('CreatePlotStepSix.title')}
           subtitle={translate('CreatePlotStepSix.subtitle')}
         />
-        <StepIndicator step={1} indicator={5} />
+        <StepIndicator step={1} indicator={4} />
         <FormContainer>
           <HelperImageContainer>
             <StepSixHelperImage source={StepSix} resizeMode="contain" />

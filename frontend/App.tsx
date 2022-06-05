@@ -10,6 +10,7 @@ import { useApp } from './src/hooks/useApp';
 import { AuthProvider } from './src/hooks/useAuth';
 import { HomeProvider } from './src/hooks/useHome';
 import { LocationProvider } from './src/hooks/useLocation';
+import { PlotProvider } from './src/hooks/usePlot';
 import { PropertyProvider } from './src/hooks/useProperty';
 import { SampleProvider } from './src/hooks/useSample';
 import { UploadProvider } from './src/hooks/useUpload';
@@ -35,22 +36,24 @@ export const App: React.FC = () => {
           <UploadProvider>
             <HomeProvider>
               <SampleProvider>
-                <PropertyProvider>
-                  <GestureHandlerRootView style={{ flex: 1 }}>
-                    <SafeAreaProvider>
-                      <StatusBar
-                        barStyle={
-                          selectedTheme === 'dark'
-                            ? 'light-content'
-                            : 'dark-content'
-                        }
-                        backgroundColor="transparent"
-                        translucent
-                      />
-                      <Routes />
-                    </SafeAreaProvider>
-                  </GestureHandlerRootView>
-                </PropertyProvider>
+                <PlotProvider>
+                  <PropertyProvider>
+                    <GestureHandlerRootView style={{ flex: 1 }}>
+                      <SafeAreaProvider>
+                        <StatusBar
+                          barStyle={
+                            selectedTheme === 'dark'
+                              ? 'light-content'
+                              : 'dark-content'
+                          }
+                          backgroundColor="transparent"
+                          translucent
+                        />
+                        <Routes />
+                      </SafeAreaProvider>
+                    </GestureHandlerRootView>
+                  </PropertyProvider>
+                </PlotProvider>
               </SampleProvider>
             </HomeProvider>
           </UploadProvider>

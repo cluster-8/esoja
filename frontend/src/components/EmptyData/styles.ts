@@ -9,6 +9,7 @@ export const EmptyDataContainer = styled.TouchableOpacity`
 `;
 
 export const EmptyDataMessage = styled.Text`
+  text-align: center;
   color: ${({ theme }) => theme.colors.text};
   font-size: ${RFFontSize(16)}px;
 `;

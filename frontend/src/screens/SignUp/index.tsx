@@ -66,15 +66,15 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
         <FormContainer>
           <PictureContainer>
             <PictureInput
-              placeholder='signUp.imagePlaceholder'
-              updatePictureLabel='signUp.imageUpdatePictureLabel'
+              placeholder="signUp.imagePlaceholder"
+              updatePictureLabel="signUp.imageUpdatePictureLabel"
               onPress={handleSelectImage}
               uri={image}
             />
           </PictureContainer>
 
           <TextInput
-            label='signUp.signUpName'
+            label="signUp.name"
             placeholder={translate('signUp.namePlaceholder')}
             icon="user"
             name="name"
@@ -82,7 +82,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
             errorMessage={errors?.name?.message}
           />
           <TextInput
-            label='signUp.email'
+            label="signUp.email"
             placeholder={translate('signUp.emailPlaceholder')}
             icon="mail"
             name="email"
@@ -91,7 +91,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
           />
 
           <TextInput
-            label='signUp.signUpPassword'
+            label="signUp.signUpPassword"
             placeholder={translate('signUp.passwordPlaceholder')}
             icon="lock"
             secureTextEntry
@@ -101,7 +101,7 @@ export const SignUp: React.FC<SignUpScreenRouteProps> = () => {
           />
 
           <TextInput
-            label='signUp.passwordConfirmation'
+            label="signUp.passwordConfirmation"
             placeholder={translate('signUp.passwordRepeatPlaceholder')}
             secureTextEntry
             icon="repeat"

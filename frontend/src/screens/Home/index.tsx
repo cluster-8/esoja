@@ -43,20 +43,20 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
 
   const handlerClickSignOut = () => {
     Alert.alert(
-      'Sair',
-      'Ao sair da aplicação todos os dados não sincronizados serão perdidos, você confirma esta ação',
+      translate('home.homeLeaveAlert'),
+      translate('home.homeLeaveAlertDescription'),
       [
         {
-          text: 'Cancel',
+          text: translate('home.cancelButton'),
           onPress: () =>
             Alert.alert(
-              'Ação cancelada',
-              'Ação canelada com sucesso, seus dados não sincronizados continuam salvos'
+              translate('home.homeCancelAlert'),
+              translate('home.homeCancelAlertDescription')
             ),
           style: 'cancel'
         },
         {
-          text: 'Confirmar',
+          text: translate('home.homeOnPressAction'),
           onPress: () => signOut()
         }
       ]
