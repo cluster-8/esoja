@@ -3,19 +3,6 @@ export default {
     CreatePlotStepTwo: {
       title: 'Identifique o talhão',
       subtitle: 'Insira um nome e uma descrição para o seu novo talhão',
-<<<<<<< HEAD
-      defaultValueLabel: 'Selecione uma propriedade',
-      fieldName: 'Nome',
-      fieldNamePlaceholder: 'Digite um nome para o talhão',
-      plantingDateLabel: 'Data de plantio',
-      plantingDatePlaceholder: 'Data do plantio',
-      cropYearLabel: 'Ano safra',
-      cropYearPlaceholder: 'Informe o ano safra',
-      fieldDescription: 'Descrição',
-      fieldDescriptionPlaceholder: 'Digite uma descrição',
-      continueButton: 'Finalizar',
-      genderLabel: 'Selecione a propriedade',
-=======
 
       fieldPropertyLabel: 'Selecione e propriedade do talhão',
 
@@ -32,7 +19,6 @@ export default {
       fieldDescriptionPlaceholder: 'Digite uma descrição',
 
       continueButton: 'Continuar',
->>>>>>> 148aa8128eedf2515ed243156ec3cf5200915182
       errors: {
         stepTwoName: {
           required: 'Nome é obrigatório'
@@ -53,15 +39,6 @@ export default {
     CreatePlotStepTwo: {
       title: 'Identify the field',
       subtitle: 'Enter a name and description for your new field',
-<<<<<<< HEAD
-      defaultValueLabel: 'Select a property',
-      fieldName: 'Name',
-      fieldNamePlaceholder: 'Enter a name for the field',
-      plantingDateLabel: 'Planting date',
-      plantingDatePlaceholder: 'Planting Date',
-      cropYearLabel: 'Year crop',
-      cropYearPlaceholder: 'Enter the crop year',
-=======
 
       fieldPropertyLabel: "Select  property's field",
 
@@ -74,7 +51,6 @@ export default {
       fieldCropYear: 'Crop year',
       fieldCropYearPlaceholder: 'Enter crop year',
 
->>>>>>> 148aa8128eedf2515ed243156ec3cf5200915182
       fieldDescription: 'Description',
       fieldDescriptionPlaceholder: 'Enter a description',
       continueButton: 'Finish',
