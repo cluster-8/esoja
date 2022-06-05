@@ -10,6 +10,7 @@ import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
+import { translate } from '../../../data/I18n';
 import { CreatePlotStepOneScreenRouteProps } from '../../../data/routes/app';
 import { useLocation } from '../../../hooks/useLocation';
 import { usePlot } from '../../../hooks/usePlot';
@@ -31,8 +32,6 @@ import {
   ReactNativeMapView,
   SelectModeContainer
 } from './styles';
-
-import { translate } from '../../../data/I18n';
 
 interface Coordinates {
   latitude: number;
@@ -109,7 +108,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
           title={translate('CreatePlotStepOne.title')}
           subtitle={translate('CreatePlotStepOne.subtitle')}
         />
-        <StepIndicator step={0} />
+        <StepIndicator step={0} stepNumber={2} />
         <FormContainer>
           {mode === '' && (
             <QuestionStep>

@@ -117,7 +117,6 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
     const { temperaturaMinima } = productivity.data;
     const { temperaturaMaxima } = productivity.data;
     const { precipitacao } = productivity.data;
-    const { grausDia } = productivity.data;
     return {
       x: temperaturaMinima.map((item, index) => String(index + 1)),
       datasets: [
@@ -351,7 +350,10 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
                   title="Total"
                   value={`${selectedPlot?.expectedProduction || 0} ton/ha`}
                 />
-                <StatisticsCard title="Lucro bruto" value={`R$ ${profit}`} />
+                <StatisticsCard
+                  title="Lucro bruto"
+                  value={`R$ ${profit.toFixed(2)}`}
+                />
                 <StatisticsCard
                   title="media UF"
                   value={`${average.toFixed(2)} ton/ha`}

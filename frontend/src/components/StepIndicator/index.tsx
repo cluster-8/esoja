@@ -6,9 +6,14 @@ import { Container, Indicator } from './styles';
 interface StepProps {
   step: number;
   indicator?: number;
+  stepNumber?: number;
 }
 
-export const StepIndicator: React.FC<StepProps> = ({ step, indicator = 1 }) => {
+export const StepIndicator: React.FC<StepProps> = ({
+  step,
+  indicator = 1,
+  stepNumber = 3
+}) => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const theme = useTheme();
 
@@ -42,7 +47,7 @@ export const StepIndicator: React.FC<StepProps> = ({ step, indicator = 1 }) => {
       <Step
         customStyles={customStyles}
         currentPosition={currentPosition}
-        stepCount={3}
+        stepCount={stepNumber}
         renderStepIndicator={({ position, stepStatus }) => (
           <Indicator
             status={stepStatus}

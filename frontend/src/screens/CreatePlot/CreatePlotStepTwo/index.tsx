@@ -86,7 +86,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
           title={translate('CreatePlotStepTwo.title')}
           subtitle={translate('CreatePlotStepTwo.subtitle')}
         />
-        <StepIndicator step={1} />
+        <StepIndicator step={1} stepNumber={2} />
         <FormContainer>
           {!!options.length && (
             <Select
