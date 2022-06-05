@@ -1,8 +1,8 @@
 import React from 'react';
 import { Avatar } from 'react-native-paper';
+import { translate } from '../../data/I18n';
 import { Plot } from '../../data/Model/Plot';
 import { defaultImage } from '../../utils/default';
-import { translate } from '../../data/I18n';
 import {
   InformationContainer,
   PlotArea,
@@ -30,7 +30,7 @@ export const PlotCard: React.FC<PlotCardProps> = ({ plot, onPress }) => {
         {plot?.expectedProduction && (
           <PlotProduction>
             {translate('plots.PlotCardProdExpectation')}:{' '}
-            {plot.expectedProduction}
+            {plot.expectedProduction} ton/ha
           </PlotProduction>
         )}
       </InformationContainer>

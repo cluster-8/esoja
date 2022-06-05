@@ -38,7 +38,10 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
     const query: Query = {
       select: 'name picture city state',
       populate: [
-        { path: 'cultives', select: 'cropYear areaTotal photo description' }
+        {
+          path: 'cultives',
+          select: 'cropYear areaTotal photo description expectedProduction'
+        }
       ],
       filter: [{ path: 'id', operator: 'equals', value: propertyId }]
     };

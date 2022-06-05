@@ -24,7 +24,10 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
     const query: Query = {
       select: 'name city state picture',
       populate: [
-        { path: 'cultives', select: 'cropYear areaTotal photo description' }
+        {
+          path: 'cultives',
+          select: 'cropYear areaTotal photo description expectedProduction'
+        }
       ],
       filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
     };
