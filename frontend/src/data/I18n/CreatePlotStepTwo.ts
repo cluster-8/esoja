@@ -13,7 +13,7 @@ export default {
       fieldDatePlaceholder: 'Insira a data de plantio',
 
       fieldCropYear: 'Ano safra',
-      fieldCropYearPlaceholder: 'Insira o ano safra',
+      fieldCropYearPlaceholder: 'ex: 2021-2022',
 
       fieldDescription: 'Descrição',
       fieldDescriptionPlaceholder: 'Digite uma descrição',
@@ -40,7 +40,7 @@ export default {
       fieldDatePlaceholder: 'Enter planting date',
 
       fieldCropYear: 'Crop year',
-      fieldCropYearPlaceholder: 'Enter crop year',
+      fieldCropYearPlaceholder: 'ex: 2021-2022',
 
       fieldDescription: 'Description',
       fieldDescriptionPlaceholder: 'Enter a description',

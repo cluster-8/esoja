@@ -83,7 +83,7 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
       fullData.photo = await pictureUpload(photoUri, 'sample');
       const updatePlot = {
         plantsPerMeter: fullData?.plantsPerMeter,
-        metersBetweenPlants: fullData?.metersBetweenPlants,
+        metersBetweenPlants: (Number(fullData?.metersBetweenPlants) || 0) / 100,
         photo: fullData?.photo
       };
       await api.put(

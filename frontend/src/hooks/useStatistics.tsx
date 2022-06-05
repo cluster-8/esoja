@@ -7,16 +7,18 @@ import React, {
 } from 'react';
 import { api } from '../data/services/api';
 
-export interface ProductionResponse {
-  balancoHidrico: number;
-  deficienciaHidrica: number;
-  excedenteHidrico: number;
-  grausDia: number;
-  precipitacao: number;
-  temperaturaMaxima: number;
-  temperaturaMinima: number;
-  produtividadeAlmejada: number;
-  produtividadeMediaMunicipio: number;
+export interface Produtividade {
+  data: {
+    produtividadeAlmejada: number[];
+    produtividadeMediaMunicipio: number[];
+    temperaturaMinima: number[];
+    temperaturaMaxima: number[];
+    precipitacao: number[];
+    grausDia: number[];
+    balancoHidrico: number[];
+    deficienciaHidrica: number[];
+    excedenteHidrico: number[];
+  };
 }
 
 interface CultivarResponse {
@@ -25,7 +27,10 @@ interface CultivarResponse {
 }
 
 interface StatisticsContextData {
-  getProduction: (cultiveId: string, idCultivar: number) => Promise<any>;
+  getProduction: (
+    cultiveId: string,
+    idCultivar: number
+  ) => Promise<Produtividade>;
   getObtentores: (cultiveId: string) => Promise<string[]>;
   getCultivares: (
     cultiveId: string,
@@ -42,13 +47,10 @@ const StatisticsContext = createContext({} as StatisticsContextData);
 const StatisticsProvider: React.FC<StatisticsContextProps> = ({ children }) => {
   const getProduction = useCallback(
     async (cultiveId: string, idCultivar: number) => {
-      const { data } = await api.post<ProductionResponse[]>(
-        'agritec/produtividade',
-        {
-          cultiveId,
-          idCultivar
-        }
-      );
+      const { data } = await api.post<Produtividade>('agritec/produtividade', {
+        cultiveId,
+        idCultivar
+      });
       return data;
     },
     []

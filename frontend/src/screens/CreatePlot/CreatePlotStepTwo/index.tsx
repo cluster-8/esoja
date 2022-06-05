@@ -12,13 +12,13 @@ import { StepIndicator } from '../../../components/StepIndicator';
 import { TextInput } from '../../../components/TextInput';
 import { TextInputMask } from '../../../components/TextInputMask';
 import Title from '../../../components/Title';
+import { translate } from '../../../data/I18n';
 import { SelectOptions } from '../../../data/Model/SelectOptions';
 import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
 import { useAuth } from '../../../hooks/useAuth';
 import { usePlot } from '../../../hooks/usePlot';
 import { useProperty } from '../../../hooks/useProperty';
 import { Container, FormContainer, NextStepButton } from './styles';
-import { translate } from '../../../data/I18n';
 
 const stepTwo = yup.object().shape({
   description: yup.string().required('Nome é obrigatório'),

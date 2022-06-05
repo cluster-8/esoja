@@ -5,11 +5,11 @@ import { EmptyData } from '../../components/EmptyData';
 import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { PlotCard } from '../../components/PlotCard';
 import Title from '../../components/Title';
+import { translate } from '../../data/I18n';
 import { Property } from '../../data/Model/Property';
 import { PropertyDetailScreenRouteProps } from '../../data/routes/app';
 import { useProperty } from '../../hooks/useProperty';
 import { defaultImage } from '../../utils/default';
-import { translate } from '../../data/I18n';
 import {
   PropertyDetailCardTitle,
   PropertyDetailCity,
@@ -37,7 +37,9 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
   const getData = useCallback(async () => {
     const query: Query = {
       select: 'name picture city state',
-      populate: [{ path: 'cultives', select: 'cropYear areaTotal photo' }],
+      populate: [
+        { path: 'cultives', select: 'cropYear areaTotal photo description' }
+      ],
       filter: [{ path: 'id', operator: 'equals', value: propertyId }]
     };
     try {

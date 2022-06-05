@@ -17,7 +17,7 @@ export const StatisticsCardTitle = styled.Text`
 
 export const StatisticsCardValue = styled.Text`
   color: ${({ theme }) => theme.colors.text_secondary};
-  font-size: ${RFWidth(16)}px;
+  font-size: ${RFWidth(14)}px;
   font-weight: bold;
   margin-top: ${RFHeight(8)}px;
 `;

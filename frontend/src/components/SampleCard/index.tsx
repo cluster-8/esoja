@@ -12,7 +12,9 @@ export const SampleCard: React.FC<SampleCardProps> = ({ sample }) => {
       <SampleName>{sample?.name}</SampleName>
       <SampleData>Planta 1: {sample?.grainsPlant1} grãos</SampleData>
       <SampleData>Planta 2: {sample?.grainsPlant2} grãos</SampleData>
-      <SampleData>Descrição: {sample?.description}</SampleData>
+      {!!sample?.description && (
+        <SampleData>Descrição: {sample?.description}</SampleData>
+      )}
     </SampleInformationContainer>
   );
 };

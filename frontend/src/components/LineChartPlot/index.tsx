@@ -6,19 +6,27 @@ import { ChartContainer, TextStyled } from './styles';
 
 interface ChartData {
   x: string[];
-  y: number[];
+  y?: number[];
+  datasets?: {
+    data: number[];
+    color: () => string; // optional
+  }[];
 }
 
 interface LineChartProps {
   title: string;
   data: ChartData;
   backgroundColor?: 'OVER' | 'BACKGROUND';
+  currence?: boolean;
+  legend?: string[];
 }
 
 export const LineChartPlot: React.FC<LineChartProps> = ({
   title,
   data,
-  backgroundColor = 'BACKGROUND'
+  backgroundColor = 'BACKGROUND',
+  currence = true,
+  legend = []
 }) => {
   const theme = useTheme();
 
@@ -27,16 +35,19 @@ export const LineChartPlot: React.FC<LineChartProps> = ({
       <TextStyled>{title}</TextStyled>
       <LineChart
         data={{
+          legend,
           labels: data?.x,
-          datasets: [
-            {
-              data: data?.y
-            }
-          ]
+          datasets: data?.y
+            ? [
+                {
+                  data: data?.y
+                }
+              ]
+            : data.datasets
         }}
         width={Dimensions.get('window').width - 50}
         height={220}
-        yAxisLabel="R$"
+        yAxisLabel={currence ? 'R$' : ''}
         yAxisSuffix=""
         yAxisInterval={1}
         verticalLabelRotation={320}
@@ -50,7 +61,7 @@ export const LineChartPlot: React.FC<LineChartProps> = ({
             backgroundColor === 'OVER'
               ? theme.colors.background_over
               : theme.colors.background,
-          decimalPlaces: 2,
+          decimalPlaces: currence ? 2 : 0,
           color: () => theme.colors.text,
           labelColor: () => theme.colors.text,
           style: {
@@ -58,8 +69,7 @@ export const LineChartPlot: React.FC<LineChartProps> = ({
           },
           propsForDots: {
             r: '6',
-            strokeWidth: '2',
-            stroke: '#ffa726'
+            strokeWidth: '2'
           }
         }}
         bezier

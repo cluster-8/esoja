@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { RFWidth } from '../../utils/getResponsiveSizes';
+import { RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 export const PlotInformationContainer = styled.TouchableOpacity`
   flex-flow: row;
@@ -7,6 +7,7 @@ export const PlotInformationContainer = styled.TouchableOpacity`
   padding: ${RFWidth(16)}px;
   background-color: ${({ theme }) => theme.colors.background};
   border-radius: ${RFWidth(6)}px;
+  margin-top: ${RFHeight(8)}px;
 `;
 
 export const InformationContainer = styled.View`

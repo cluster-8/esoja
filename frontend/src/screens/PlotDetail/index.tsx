@@ -39,7 +39,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
   const getData = useCallback(async () => {
     const query: Query = {
       select:
-        'cropYear areaTotal photo plantingDate description metersBetweenPlants plantsPerMeter',
+        'cropYear areaTotal photo plantingDate description metersBetweenPlants plantsPerMeter expectedProduction expectedBagsPerHectares',
       populate: [
         {
           path: 'samples',
@@ -82,7 +82,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
               />
               <PlotProperty>{plot?.property.name?.toUpperCase()}</PlotProperty>
               <PlotArea>
-                <StrongText>{translate('plots.PlotDetailArea')}: </StrongText>{' '}
+                <StrongText>{translate('plots.PlotDetailArea')}: </StrongText>
                 {plot?.areaTotal} {translate('plots.PlotDetailAreaUnit')}
               </PlotArea>
               <PlotCropYear>
@@ -91,24 +91,28 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
                 </StrongText>{' '}
                 {plot?.cropYear}
               </PlotCropYear>
-              <PlotArea>
-                <StrongText>
-                  {translate('plots.PlotDetailPlantsPerMeter')}:
-                </StrongText>
-                {plot?.plantsPerMeter}
-              </PlotArea>
-              <PlotCropYear>
-                <StrongText>
-                  {translate('plots.PlotDetailDistanceBetween')}:{' '}
-                </StrongText>
-                {plot?.metersBetweenPlants}cm
-              </PlotCropYear>
-              <PlotProduction>
-                <StrongText>
-                  {translate('plots.PlotDetailProdExpectation')}:{' '}
-                </StrongText>
-                Estou mocado aqui
-              </PlotProduction>
+              {!!plot?.samples?.length && (
+                <>
+                  <PlotArea>
+                    <StrongText>
+                      {translate('plots.PlotDetailPlantsPerMeter')}:
+                    </StrongText>{' '}
+                    {plot?.plantsPerMeter}
+                  </PlotArea>
+                  <PlotCropYear>
+                    <StrongText>
+                      {translate('plots.PlotDetailDistanceBetween')}:
+                    </StrongText>{' '}
+                    {plot?.metersBetweenPlants}cm
+                  </PlotCropYear>
+                  <PlotProduction>
+                    <StrongText>
+                      {translate('plots.PlotDetailProdExpectation')}:{' '}
+                    </StrongText>
+                    {plot?.expectedProduction}
+                  </PlotProduction>
+                </>
+              )}
             </PlotDetailTitleContainer>
             <PlotDetailPlotCardContainer>
               <PlotDetailCardTitle>

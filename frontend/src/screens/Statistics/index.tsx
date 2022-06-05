@@ -13,9 +13,10 @@ import { Plot } from '../../data/Model/Plot';
 import { SelectOptions } from '../../data/Model/SelectOptions';
 import { StatisticsScreenRouteProps } from '../../data/routes/app';
 import { useAuth } from '../../hooks/useAuth';
+import { useHome } from '../../hooks/useHome';
 import { usePlot } from '../../hooks/usePlot';
 import { useProperty } from '../../hooks/useProperty';
-import { useStatistics } from '../../hooks/useStatistics';
+import { Produtividade, useStatistics } from '../../hooks/useStatistics';
 import {
   Container,
   FormContainer,
@@ -26,18 +27,48 @@ import {
 
 interface ChartData {
   x: string[];
-  y: number[];
+  y?: number[];
+  datasets?: {
+    data: number[];
+    color: () => string; // optional
+  }[];
+  legend?: string[];
 }
+
+const produtividade = {
+  data: {
+    produtividadeAlmejada: [3.57, 3.57, 3.57, 3.57, 3.57],
+    produtividadeMediaMunicipio: [
+      2.999191593128688, 2.9983646917193654, 2.9975250683836463,
+      2.996674034753864, 2.996674034753864
+    ],
+    temperaturaMinima: [15.5, 16, 18, 18, 16],
+    temperaturaMaxima: [25, 26.5, 26.5, 27, 29.5],
+    precipitacao: [0, 0, 0, 0, 15.75],
+    grausDia: [6.25, 10.75, 15, 19, 30],
+    balancoHidrico: [
+      48.37136384046921, 48.01206155057355, 47.68801874470446,
+      47.39738353089488, 70
+    ],
+    deficienciaHidrica: [
+      2.384237497802248, 1.380365894658342, 1.256107947715423,
+      1.1357686881577302, 2.764941198737602
+    ],
+    excedenteHidrico: [0, 0, 0, 0, 0.0019513565920199483]
+  }
+};
 
 export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
   const [average, setAverage] = useState(0);
+  const [profit, setProfit] = useState(0);
+
   const [plotOptions, setPlotOptions] = useState<SelectOptions[]>([]);
   const [obtentoresOptions, setObtentoresOptions] = useState<SelectOptions[]>(
     []
   );
   const [cultivarOptions, setCultivarOptions] = useState<SelectOptions[]>([]);
 
-  const [emptyPlots, setEmptyPlots] = useState(false);
+  const [emptyPlots, setEmptyPlots] = useState(true);
 
   const [plots, setPlots] = useState<Plot[]>([]);
   const [selectedPlot, setSelectedPlot] = useState<Plot | null>(null);
@@ -46,25 +77,90 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
   const [selectedObtentor, setSelectedObtentor] = useState('default');
   const [selectedCultivar, setSelectedCultivar] = useState('default');
 
-  const [productionChartData, setProductionChartData] = useState<ChartData>({
-    x: ['1'],
-    y: [1]
-  });
-  const [weatherChartData, setWeatherChartData] = useState<ChartData>({
-    x: ['1'],
-    y: [1]
-  });
-  const [waterChartData, setWaterChartData] = useState<ChartData>({
-    x: ['1'],
-    y: [1]
-  });
+  const [productionChartData, setProductionChartData] =
+    useState<ChartData | null>(null);
+  const [weatherChartData, setWeatherChartData] = useState<ChartData | null>(
+    null
+  );
+  const [waterChartData, setWaterChartData] = useState<ChartData | null>(null);
 
   const [loading, setLoading] = useState(false);
 
   const { getProduction, getObtentores, getCultivares } = useStatistics();
   const { authUser } = useAuth();
+  const { getQuotation } = useHome();
   const { getAverageProductivity } = usePlot();
   const { getProperties } = useProperty();
+
+  const getWaterChartData = (productivity: Produtividade) => {
+    const { balancoHidrico } = productivity.data;
+    const { deficienciaHidrica } = productivity.data;
+    return {
+      x: balancoHidrico.map((item, index) => String(index + 1)),
+      datasets: [
+        {
+          data: balancoHidrico,
+          title: 'Balanco Hidrico',
+          color: () => `rgb(6, 15, 139)`
+        },
+        {
+          data: deficienciaHidrica,
+          title: 'Deficiencia Hidrica',
+          color: () => `rgb(171, 193, 5)`
+        }
+      ],
+      legend: ['Balanco Hid.', 'Deficiencia Hid.']
+    };
+  };
+
+  const getWeatherChartData = (productivity: Produtividade) => {
+    const { temperaturaMinima } = productivity.data;
+    const { temperaturaMaxima } = productivity.data;
+    const { precipitacao } = productivity.data;
+    const { grausDia } = productivity.data;
+    return {
+      x: temperaturaMinima.map((item, index) => String(index + 1)),
+      datasets: [
+        {
+          data: temperaturaMinima,
+          Title: 'Minima',
+          color: () => `rgb(6, 15, 139)`
+        },
+        {
+          data: temperaturaMaxima,
+          title: 'Maxima',
+          color: () => `rgb(221, 138, 4)`
+        },
+        {
+          data: precipitacao,
+          title: 'Preciptação',
+          color: () => `rgb(3, 153, 183)`
+        }
+      ],
+      legend: ['Min', 'Max', 'Preciptation %']
+    };
+  };
+
+  const getProductionChartData = (productivity: Produtividade) => {
+    const { produtividadeAlmejada } = productivity.data;
+    const { produtividadeMediaMunicipio } = productivity.data;
+    return {
+      x: produtividadeAlmejada.map((item, index) => String(index + 1)),
+      datasets: [
+        {
+          data: produtividadeAlmejada,
+          Title: 'Produtividade',
+          color: () => `rgb(6, 139, 6)`
+        },
+        {
+          data: produtividadeMediaMunicipio,
+          title: 'Media Municipal',
+          color: () => `rgb(6, 15, 139)`
+        }
+      ],
+      legend: ['Produtividade', 'Media Municipal']
+    };
+  };
 
   const handleSubmitCultivar = async (
     cultiveId: string,
@@ -72,8 +168,11 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
   ) => {
     if (idCultivar && idCultivar !== 'default') {
       try {
-        const data = await getProduction(cultiveId, Number(idCultivar));
-        console.log(data);
+        const res = await getProduction(cultiveId, Number(idCultivar));
+        setProductionChartData(getProductionChartData(produtividade));
+        setWeatherChartData(getWeatherChartData(produtividade));
+        setWaterChartData(getWaterChartData(produtividade));
+        console.log(res);
         setObtentoresOptions([]);
       } catch (err) {
         Alert.alert(
@@ -98,6 +197,12 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
       if (plot) {
         setSelectedPlot(plot);
         setSelectedPlotId(cultiveId);
+        const { availableSoybeanPack } = await getQuotation();
+        setProfit(
+          availableSoybeanPack.Valor *
+            (plot.areaTotal * plot.expectedBagsPerHectares)
+        );
+
         if (plot?.idCultivar) {
           handleSubmitCultivar(plot.id, plot.idCultivar);
         } else {
@@ -132,13 +237,14 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
 
   useEffect(() => {
     const getSelectData = async (): Promise<void> => {
+      setLoading(true);
       const query: Query = {
         select: 'id',
         populate: [
           {
             path: 'cultives',
             select:
-              'description expectedProduction expectedBagsPerHectares idCultivar areaTotal'
+              'photo description expectedProduction expectedBagsPerHectares idCultivar areaTotal'
           }
         ],
         filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
@@ -150,18 +256,19 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
         properties.forEach(property => {
           property?.cultives?.forEach(plot => {
             if (plot.photo) {
-              setEmptyPlots(true);
+              setEmptyPlots(false);
+              tempPlots.push(plot);
+              options.push({
+                value: `${plot.id}`,
+                label: `${plot.description}`
+              });
             }
-            tempPlots.push(plot);
-            options.push({
-              value: `${plot.id}`,
-              label: `${plot.description}`
-            });
           });
         });
         setPlots(tempPlots);
         setPlotOptions(options);
       }
+      setLoading(false);
     };
     getSelectData();
   }, [authUser.id, getProperties]);
@@ -235,22 +342,16 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
             )}
           </FormContainer>
         )}
-        {!productionChartData?.x?.length && (
+        {!!productionChartData && !!weatherChartData && !!waterChartData && (
           <>
             <Title title="Produção" />
             <StatisticsMenuContainer>
               <StatisticsCardWidgetContainer>
                 <StatisticsCard
                   title="Total"
-                  value={`${
-                    (selectedPlot?.expectedProduction || 0) *
-                    (selectedPlot?.areaTotal || 0)
-                  } ton`}
+                  value={`${selectedPlot?.expectedProduction || 0} ton/ha`}
                 />
-                <StatisticsCard
-                  title="sc/ha"
-                  value={`${selectedPlot?.expectedBagsPerHectares} sc/ha`}
-                />
+                <StatisticsCard title="Lucro bruto" value={`R$ ${profit}`} />
                 <StatisticsCard
                   title="media UF"
                   value={`${average.toFixed(2)} ton/ha`}
@@ -261,17 +362,22 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
                   title={translate('quotation.chartTitle')}
                   data={productionChartData}
                   backgroundColor="OVER"
+                  legend={productionChartData.legend}
                 />
                 <LineChartPlot
                   title={translate('quotation.chartTitle')}
                   data={weatherChartData}
+                  currence={false}
                   backgroundColor="OVER"
+                  legend={weatherChartData.legend}
                 />
 
                 <LineChartPlot
                   title={translate('quotation.chartTitle')}
                   data={waterChartData}
+                  currence={false}
                   backgroundColor="OVER"
+                  legend={waterChartData.legend}
                 />
               </StatisticsContentContainer>
             </StatisticsMenuContainer>
