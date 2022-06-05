@@ -18,7 +18,13 @@ export default {
       PlotDetailLoading: 'Carregando propriedade...',
       PlotDetailLoadProErro: 'Erro ao carregar propriedade',
       PlotCardCropYear: 'Ano safra',
-      PlotCardProdExpectation: 'Estimativa de produção'
+      PlotCardProdExpectation: 'Estimativa de produção',
+      PlotCardPlants: {
+        plant1: 'Planta 1',
+        plant2: 'Planta 2',
+        description: 'Descrição',
+        grains: 'grãos'
+      }
     }
   },
   en: {
@@ -40,7 +46,13 @@ export default {
       PlotDetailLoading: 'Loading property...',
       PlotDetailLoadProErro: 'Error loading property',
       PlotCardCropYear: 'Crop year',
-      PlotCardProdExpectation: 'Production expectation'
+      PlotCardProdExpectation: 'Production expectation',
+      PlotCardPlants: {
+        plant1: 'Plant 1',
+        plant2: 'Plant 2',
+        description: 'Description',
+        grains: 'grains'
+      }
     }
   }
 };

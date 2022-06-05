@@ -1,6 +1,7 @@
 import React from 'react';
 import { Sample } from '../../data/Model/Sample';
 import { SampleData, SampleInformationContainer, SampleName } from './styles';
+import { translate } from '../../data/I18n';
 
 interface SampleCardProps {
   sample: Sample;
@@ -10,10 +11,18 @@ export const SampleCard: React.FC<SampleCardProps> = ({ sample }) => {
   return (
     <SampleInformationContainer>
       <SampleName>{sample?.name}</SampleName>
-      <SampleData>Planta 1: {sample?.grainsPlant1} grãos</SampleData>
-      <SampleData>Planta 2: {sample?.grainsPlant2} grãos</SampleData>
+      <SampleData>
+        {translate('plots.PlotCardPlants.plant1')}: {sample?.grainsPlant1}{' '}
+        {translate('plots.PlotCardPlants.grains')}
+      </SampleData>
+      <SampleData>
+        {translate('plots.PlotCardPlants.plant2')}: {sample?.grainsPlant2}{' '}
+        {translate('plots.PlotCardPlants.grains')}
+      </SampleData>
       {!!sample?.description && (
-        <SampleData>Descrição: {sample?.description}</SampleData>
+        <SampleData>
+          {translate('plots.PlotCardPlants.description')}: {sample?.description}
+        </SampleData>
       )}
     </SampleInformationContainer>
   );
