@@ -2,6 +2,7 @@ import React from 'react';
 import { Property } from '../../data/Model/Property';
 import { LocationCard } from '../LocationCard';
 import { Separator } from '../Separator';
+import { translate } from '../../data/I18n';
 import {
   CenteredView,
   CloseButton,
@@ -44,7 +45,7 @@ export const PropertyModal: React.FC<PropertyModalProps> = ({
           <CloseButton onPress={setModalVisible}>
             <CloseButtonIcon name="x-circle" />
           </CloseButton>
-          <TitleStyled>Selecione a propriedade</TitleStyled>
+          <TitleStyled>{translate('propertyCard.propertyModal')}</TitleStyled>
           <LocationList
             data={properties}
             keyExtractor={item => item.id}
