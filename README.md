@@ -24,12 +24,13 @@ A tabela abaixo mostra as __Histórias de Usuário__ selecionadas para serem des
 
 | ID     | Prioridade | User Story                       | Funcionalidades                      |
 | -------| ---------- | -------------------------------- | ------------------------------------ |
-| US_04  | Essencial  | Eu como usuário gostaria de visualizar estatísticas de meus cultivos  | |
+| US_04  | Essencial  | Eu como usuário gostaria de visualizar estatísticas de meus cultivos  | 1. Expectativa de produção; 2. Estimativa de faturamento total; 3. Nível de precipitação; 4. Balanço e deficiência hídrica; |
+| US_07  | Desejável  | Eu como usuário gostaria de visualizar estimativa de produção da região | 1. Expectativa de produção da região; |
 
 
 ### - Sprint Backlog
 
-A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf) em ordem de prioridade referentes a Sprint 3:
+A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/eSoja-product-backlog.pdf) em ordem de prioridade referentes a Sprint 3:
 
 <p align="center">
   <img src=""/></p>
@@ -38,7 +39,7 @@ A imagem abaixo mostra os itens do [__Product Backlog__](https://github.com/clus
 
 Acesse os documentos clicando nos links abaixo:
 
-> * [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/Product-Backlog-Visiona-eSoja.pdf)
+> * [__Product Backlog__](https://github.com/cluster-8/esoja-mobile/blob/main/Docs/eSoja-product-backlog.pdf)
 
 
 ## 📃 Código - Ambiente de Desenvolvimento 
