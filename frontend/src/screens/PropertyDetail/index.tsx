@@ -9,6 +9,7 @@ import { Property } from '../../data/Model/Property';
 import { PropertyDetailScreenRouteProps } from '../../data/routes/app';
 import { useProperty } from '../../hooks/useProperty';
 import { defaultImage } from '../../utils/default';
+import { translate } from '../../data/I18n';
 import {
   PropertyDetailCardTitle,
   PropertyDetailCity,
@@ -43,7 +44,7 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
       const properties = await getProperties(query);
       setProperty(properties[0]);
     } catch (err) {
-      Alert.alert('Erro ao carregar propriedade');
+      Alert.alert(translate('properties.PropertyDetailLoadError'));
     }
   }, [getProperties, propertyId]);
 
@@ -64,17 +65,24 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
             />
           </PropertyDetailHeaderContainer>
           <PropertyDetailTitleContainer>
-            <Title title={property?.name || 'Minha Propriedade'} />
+            <Title
+              title={
+                property?.name ||
+                translate('properties.PropertyDetailDefaultName')
+              }
+            />
             <PropertyDetailCity>
               {property?.city} - {property?.state}
             </PropertyDetailCity>
           </PropertyDetailTitleContainer>
           <PropertyDetailPlotCardContainer>
             <PropertyDetailCardTitle>
-              Talhões de {property?.name}
+              {translate('properties.PropertyDetailFields')} {property?.name}
             </PropertyDetailCardTitle>
             {property?.cultives?.length === 0 && (
-              <EmptyData message="Nenhum talhão encontrado para esta propriedade" />
+              <EmptyData
+                message={translate('properties.PropertyDetailFieldsNotFound')}
+              />
             )}
             {property?.cultives?.map(plot => (
               <PlotCard plot={plot} key={plot.id} onPress={handleSelectPlot} />
@@ -82,7 +90,9 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
           </PropertyDetailPlotCardContainer>
         </>
       ) : (
-        <LoadingIndicator message="Carregando propriedade..." />
+        <LoadingIndicator
+          message={translate('properties.PropertyDetailLoadingProperty')}
+        />
       )}
     </PropertyDetailContainer>
   );
