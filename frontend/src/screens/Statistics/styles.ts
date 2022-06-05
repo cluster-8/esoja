@@ -22,7 +22,6 @@ export const StatisticsMenuContainer = styled.View`
   width: 100%;
   justify-content: center;
   align-items: center;
-  margin-top: ${RFHeight(40)}px;
   background-color: ${({ theme }) => theme.colors.background};
   border-top-left-radius: ${RFHeight(24)}px;
   border-top-right-radius: ${RFHeight(24)}px;
@@ -33,7 +32,6 @@ export const StatisticsCardWidgetContainer = styled.View`
   position: absolute;
   top: -${RFHeight(40)}px;
   justify-content: space-evenly;
-  width: 100%;
 `;
 
 export const StatisticsContentContainer = styled.View`

@@ -54,13 +54,15 @@ export const CreatePlotStepEight: React.FC<
   }, [getPersistedData, setValue]);
 
   const handleSubmitStepEight = (data: FieldValues) => {
-    const sample = {
+    const sample: any = {
       plantC: {
         grainsPlant1: data.grainsPlant1,
-        grainsPlant2: data.grainsPlant2,
-        description: data.description
+        grainsPlant2: data.grainsPlant2
       }
     };
+    if (data?.description) {
+      sample.plantC.description = data.description;
+    }
     saveStep(sample);
     navigation.navigate('CreatePlotStepNine');
   };
