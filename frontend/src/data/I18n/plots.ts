@@ -16,7 +16,9 @@ export default {
         'Nenhuma amostra cadastrada para este talhão, deseja cadastrar agora?',
       PlotDetailRegisterSample: 'Cadastrar amostras',
       PlotDetailLoading: 'Carregando propriedade...',
-      PlotDetailLoadProErro: 'Erro ao carregar propriedade'
+      PlotDetailLoadProErro: 'Erro ao carregar propriedade',
+      PlotCardCropYear: 'Ano safra',
+      PlotCardProdExpectation: 'Estimativa de produção'
     }
   },
   en: {
@@ -36,7 +38,9 @@ export default {
         'No samples registered for this field, do you want to register now?',
       PlotDetailRegisterSample: 'Register samples',
       PlotDetailLoading: 'Loading property...',
-      PlotDetailLoadProErro: 'Error loading property'
+      PlotDetailLoadProErro: 'Error loading property',
+      PlotCardCropYear: 'Crop year',
+      PlotCardProdExpectation: 'Production expectation'
     }
   }
 };
