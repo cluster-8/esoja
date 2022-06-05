@@ -18,6 +18,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import { usePlot } from '../../../hooks/usePlot';
 import { useProperty } from '../../../hooks/useProperty';
 import { Container, FormContainer, NextStepButton } from './styles';
+import { translate } from '../../../data/I18n';
 
 const stepTwo = yup.object().shape({
   description: yup.string().required('Nome é obrigatório'),
@@ -82,28 +83,30 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Identitifique o talhão"
-          subtitle="Insira um nome e uma descrição para o seu novo talhão"
+          title={translate('CreatePlotStepTwo.title')}
+          subtitle={translate('CreatePlotStepTwo.subtitle')}
         />
         <StepIndicator step={1} />
         <FormContainer>
           {!!options.length && (
             <Select
-              placeholder="Selecione uma propriedade"
+              placeholder={translate(
+                'CreatePlotStepTwo.fieldProperyPlaceholder'
+              )}
               selectedValue={propertyId}
               onValueChange={value =>
                 value !== 'default' && setPropertyId(`${value}`)
               }
               icon="file-text"
               itens={options}
-              label="signUp.stepTwo.genderLabel"
+              label="CreatePlotStepTwo.fieldPropertyLabel"
               error={error}
             />
           )}
 
           <TextInput
-            label="Nome"
-            placeholder="Digite um nome para o talhão"
+            label="CreatePlotStepTwo.fieldName"
+            placeholder={translate('CreatePlotStepTwo.fieldNamePlaceholder')}
             icon="check-square"
             name="description"
             control={control}
@@ -113,14 +116,16 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             name="plantingDate"
             control={control}
             icon="calendar"
-            label="Data de plantio"
+            label="CreatePlotStepTwo.fieldDate"
             errorMessage={errors?.plantingDate?.message}
-            placeholder="Data do plantio"
+            placeholder={translate('CreatePlotStepTwo.fieldDatePlaceholder')}
           />
           <TextInputMask
             mask="9999-9999"
-            label="Ano safra"
-            placeholder="Informe o ano safra"
+            label="CreatePlotStepTwo.fieldCropYear"
+            placeholder={translate(
+              'CreatePlotStepTwo.fieldCropYearPlaceholder'
+            )}
             icon="check-square"
             name="cropYear"
             control={control}
