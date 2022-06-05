@@ -27,6 +27,7 @@ interface PlotContextData {
   getPlots: (query: Query) => Promise<Plot[]>;
   getPlot: (id: string) => Promise<Plot>;
   createPlot: (data: FieldValues) => Promise<{ id: string }>;
+  getAverageProductivity: (cultiveId: string) => Promise<{ avarege: number }>;
 }
 
 type PlotContextProps = {
@@ -82,14 +83,22 @@ const PlotProvider: React.FC<PlotContextProps> = ({ children }) => {
     }
   }, []);
 
+  const getAverageProductivity = useCallback(async (cultiveId: string) => {
+    const { data } = await api.get<{ avarege: number }>(
+      `/cultive/productivity/${cultiveId}`
+    );
+    return data;
+  }, []);
+
   const providerValue = useMemo(
     () => ({
       localeStep,
       getPlots,
       getPlot,
-      createPlot
+      createPlot,
+      getAverageProductivity
     }),
-    [localeStep, getPlots, getPlot, createPlot]
+    [localeStep, getPlots, getPlot, createPlot, getAverageProductivity]
   );
 
   return (

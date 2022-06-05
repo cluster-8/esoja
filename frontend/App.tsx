@@ -13,6 +13,7 @@ import { LocationProvider } from './src/hooks/useLocation';
 import { PlotProvider } from './src/hooks/usePlot';
 import { PropertyProvider } from './src/hooks/useProperty';
 import { SampleProvider } from './src/hooks/useSample';
+import { StatisticsProvider } from './src/hooks/useStatistics';
 import { UploadProvider } from './src/hooks/useUpload';
 import { Routes } from './src/routes';
 
@@ -38,20 +39,22 @@ export const App: React.FC = () => {
               <SampleProvider>
                 <PlotProvider>
                   <PropertyProvider>
-                    <GestureHandlerRootView style={{ flex: 1 }}>
-                      <SafeAreaProvider>
-                        <StatusBar
-                          barStyle={
-                            selectedTheme === 'dark'
-                              ? 'light-content'
-                              : 'dark-content'
-                          }
-                          backgroundColor="transparent"
-                          translucent
-                        />
-                        <Routes />
-                      </SafeAreaProvider>
-                    </GestureHandlerRootView>
+                    <StatisticsProvider>
+                      <GestureHandlerRootView style={{ flex: 1 }}>
+                        <SafeAreaProvider>
+                          <StatusBar
+                            barStyle={
+                              selectedTheme === 'dark'
+                                ? 'light-content'
+                                : 'dark-content'
+                            }
+                            backgroundColor="transparent"
+                            translucent
+                          />
+                          <Routes />
+                        </SafeAreaProvider>
+                      </GestureHandlerRootView>
+                    </StatisticsProvider>
                   </PropertyProvider>
                 </PlotProvider>
               </SampleProvider>

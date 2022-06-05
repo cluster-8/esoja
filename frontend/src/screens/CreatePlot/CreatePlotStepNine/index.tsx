@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import { useNetInfo } from '@react-native-community/netinfo';
+import React, { useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
@@ -7,7 +8,6 @@ import Title from '../../../components/Title';
 import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
-import { hasConnection } from '../../../utils/hasConnection';
 import {
   Container,
   FormContainer,
@@ -19,7 +19,7 @@ import {
 export const CreatePlotStepNine: React.FC<
   CreatePlotStepNineScreenRouteProps
 > = ({ navigation }) => {
-  const [isConnected, setIsConnected] = useState(false);
+  const { isConnected } = useNetInfo();
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -44,9 +44,6 @@ export const CreatePlotStepNine: React.FC<
       );
     }
   };
-  useEffect(() => {
-    hasConnection().then(connection => setIsConnected(connection));
-  }, []);
 
   return (
     <ScrollView>

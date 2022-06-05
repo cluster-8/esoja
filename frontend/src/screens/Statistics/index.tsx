@@ -12,9 +12,10 @@ import { translate } from '../../data/I18n';
 import { Plot } from '../../data/Model/Plot';
 import { SelectOptions } from '../../data/Model/SelectOptions';
 import { StatisticsScreenRouteProps } from '../../data/routes/app';
-import { api } from '../../data/services/api';
 import { useAuth } from '../../hooks/useAuth';
+import { usePlot } from '../../hooks/usePlot';
 import { useProperty } from '../../hooks/useProperty';
+import { useStatistics } from '../../hooks/useStatistics';
 import {
   Container,
   FormContainer,
@@ -23,31 +24,12 @@ import {
   StatisticsMenuContainer
 } from './styles';
 
-interface CultivarResponse {
-  idCultivar: number;
-  numeroRnc: string;
-}
-
 interface ChartData {
   x: string[];
   y: number[];
 }
 
-interface ProductionResponse {
-  balancoHidrico: number;
-  deficienciaHidrica: number;
-  excedenteHidrico: number;
-  grausDia: number;
-  precipitacao: number;
-  temperaturaMaxima: number;
-  temperaturaMinima: number;
-  produtividadeAlmejada: number;
-  produtividadeMediaMunicipio: number;
-}
-
-export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
-  navigation
-}) => {
+export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
   const [average, setAverage] = useState(0);
   const [plotOptions, setPlotOptions] = useState<SelectOptions[]>([]);
   const [obtentoresOptions, setObtentoresOptions] = useState<SelectOptions[]>(
@@ -58,7 +40,6 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
   const [emptyPlots, setEmptyPlots] = useState(false);
 
   const [plots, setPlots] = useState<Plot[]>([]);
-  const [production, setProduction] = useState<ProductionResponse[]>([]);
   const [selectedPlot, setSelectedPlot] = useState<Plot | null>(null);
 
   const [selectedPlotId, setSelectedPlotId] = useState('default');
@@ -80,7 +61,9 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
 
   const [loading, setLoading] = useState(false);
 
+  const { getProduction, getObtentores, getCultivares } = useStatistics();
   const { authUser } = useAuth();
+  const { getAverageProductivity } = usePlot();
   const { getProperties } = useProperty();
 
   const handleSubmitCultivar = async (
@@ -89,14 +72,8 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
   ) => {
     if (idCultivar && idCultivar !== 'default') {
       try {
-        const { data } = await api.post<ProductionResponse[]>(
-          'agritec/produtividade',
-          {
-            cultiveId,
-            idCultivar: +idCultivar
-          }
-        );
-        setProduction(data);
+        const data = await getProduction(cultiveId, Number(idCultivar));
+        console.log(data);
         setObtentoresOptions([]);
       } catch (err) {
         Alert.alert(
@@ -114,11 +91,9 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
 
   const handleSelectPlot = async (cultiveId: string) => {
     setLoading(true);
-    const { data } = await api.get<{ avarege: number }>(
-      `/cultive/productivity/${cultiveId}`
-    );
-    setAverage(data.avarege);
     try {
+      const data = await getAverageProductivity(cultiveId);
+      setAverage(data.avarege);
       const plot = plots.find(p => p.id === cultiveId);
       if (plot) {
         setSelectedPlot(plot);
@@ -126,12 +101,7 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
         if (plot?.idCultivar) {
           handleSubmitCultivar(plot.id, plot.idCultivar);
         } else {
-          const { data: obtentores } = await api.post<string[]>(
-            'agritec/obtentores',
-            {
-              cultiveId
-            }
-          );
+          const obtentores = await getObtentores(cultiveId);
           setObtentoresOptions(
             obtentores.map(obtentor => ({ label: obtentor, value: obtentor }))
           );
@@ -147,21 +117,15 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
     setLoading(true);
     try {
       setSelectedObtentor(obtentor);
-      const { data } = await api.post<CultivarResponse[]>(
-        'agritec/cultivares',
-        {
-          cultiveId: selectedPlotId,
-          obtentorMantenedor: obtentor
-        }
-      );
+      const cultivares = await getCultivares(selectedPlotId, obtentor);
       setCultivarOptions(
-        data.map(cultivar => ({
+        cultivares.map(cultivar => ({
           label: cultivar.numeroRnc,
           value: cultivar.idCultivar
         }))
       );
     } catch (err) {
-      Alert.alert('Não foi possivel buscar os obtentores');
+      Alert.alert('Não foi possivel buscar os cultivares');
     }
     setLoading(false);
   };
@@ -271,7 +235,7 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = ({
             )}
           </FormContainer>
         )}
-        {!production.length && (
+        {!productionChartData?.x?.length && (
           <>
             <Title title="Produção" />
             <StatisticsMenuContainer>
