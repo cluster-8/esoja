@@ -98,7 +98,7 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
           />
           <TextInput
             label='CreatePlotStepSix.sampleDescription'
-            placeholder='CreatePlotStepSix.sampleDescriptionPlaceholder'
+            placeholder={translate('CreatePlotStepSix.sampleDescriptionPlaceholder')}
             icon="check-square"
             name="description"
             control={control}

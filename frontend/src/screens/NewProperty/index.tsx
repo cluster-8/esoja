@@ -104,8 +104,8 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
             <FormContainer>
               <AvatarField>
                 <PictureInput
-                  placeholder="newProperty.propertyPictureLabel"
-                  updatePictureLabel="newProperty.propertyUpdatePictureLabel"
+                  placeholder='newProperty.propertyPicturePlaceholder'
+                  updatePictureLabel='newProperty.propertyUpdatePictureLabel'
                   onPress={handleSelectImage}
                   uri={image}
                 />

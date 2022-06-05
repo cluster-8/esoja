@@ -26,7 +26,7 @@ const stepTwo = yup.object().shape({
   cropYear: yup
     .string()
     .required('CreatePlotStepTwo.errors.cropYear.required')
-    .min(4, 'CreatePlotStepTwo.errors.cropYear.min')
+    .min(9, 'CreatePlotStepTwo.errors.cropYear.min')
 });
 
 export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
@@ -91,7 +91,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
           {!!options.length && (
             <Select
               placeholder={translate(
-                'CreatePlotStepTwo.fieldProperyPlaceholder'
+                'CreatePlotStepTwo.fieldPropertyLabel'
               )}
               selectedValue={propertyId}
               onValueChange={value =>

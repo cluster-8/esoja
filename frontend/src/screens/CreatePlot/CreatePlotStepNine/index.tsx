@@ -63,8 +63,8 @@ export const CreatePlotStepNine: React.FC<
               <PictureContainer>
                 <PictureInput
                   model="RETANGLE"
-                  placeholder={translate('CreatePlotStepNine.imagePlaceholder')}
-                  updatePictureLabel='CreatePlotStepNine.imadeUpdatePictureLabel'
+                  placeholder='CreatePlotStepNine.imagePlaceholder'
+                  updatePictureLabel='CreatePlotStepNine.imageUpdatePictureLabel'
                   onPress={handleSelectImage}
                   uri={image}
                 />
