@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar } from 'react-native-paper';
 import { Plot } from '../../data/Model/Plot';
 import { defaultImage } from '../../utils/default';
+import { translate } from '../../data/I18n';
 import {
   InformationContainer,
   PlotArea,
@@ -22,11 +23,14 @@ export const PlotCard: React.FC<PlotCardProps> = ({ plot, onPress }) => {
       <Avatar.Image source={{ uri: plot?.photo || defaultImage }} />
       <InformationContainer>
         <PlotName>{plot?.description}</PlotName>
-        <PlotCropYear>Safra {plot?.cropYear}</PlotCropYear>
-        <PlotArea>Area {plot?.areaTotal} hectares</PlotArea>
+        <PlotCropYear>
+          {translate('plots.PlotCardCropYear')}: {plot?.cropYear}
+        </PlotCropYear>
+        <PlotArea>Area: {plot?.areaTotal} hectares</PlotArea>
         {plot?.expectedProduction && (
           <PlotProduction>
-            Estimativa de produção: {plot.expectedProduction}
+            {translate('plots.PlotCardProdExpectation')}:{' '}
+            {plot.expectedProduction}
           </PlotProduction>
         )}
       </InformationContainer>

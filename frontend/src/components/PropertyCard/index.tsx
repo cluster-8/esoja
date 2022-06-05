@@ -2,6 +2,7 @@ import React from 'react';
 import { Avatar } from 'react-native-paper';
 import { Property } from '../../data/Model/Property';
 import { defaultImage } from '../../utils/default';
+import { translate } from '../../data/I18n';
 import {
   InformationContainer,
   PropertyCity,
@@ -24,8 +25,9 @@ export const PropertyCard: React.FC<PropertyCardProps> = ({
       <InformationContainer>
         <PropertyName>{property?.name || ''}</PropertyName>
         <PropertyCity>
-          {`${property?.cultives?.length} Talhoes cadastrados` ||
-            'Nenhum talhão cadastrado'}
+          {`${property?.cultives?.length} ${translate(
+            'properties.PropertyCardFields'
+          )}` || translate('properties.PropertyCardNoFields')}
         </PropertyCity>
         <PropertyCity>{property?.city || ''}</PropertyCity>
       </InformationContainer>

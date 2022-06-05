@@ -8,7 +8,9 @@ export default {
       PropertyDetailFields: 'Talhões de',
       PropertyDetailFieldsNotFound:
         'Nenhum talhão encontrado para esta propriedade',
-      PropertyDetailLoadingProperty: 'Carregando propriedade...'
+      PropertyDetailLoadingProperty: 'Carregando propriedade...',
+      PropertyCardFields: 'Talhões cadastrados',
+      PropertyCardNoFields: 'Nenhum talhão cadastrado'
     }
   },
   en: {
@@ -19,7 +21,9 @@ export default {
       PropertyDetailLoadError: 'Error loading property',
       PropertyDetailFields: 'Fields of',
       PropertyDetailFieldsNotFound: 'No fields found for this property',
-      PropertyDetailLoadingProperty: 'Loading property...'
+      PropertyDetailLoadingProperty: 'Loading property...',
+      PropertyCardFields: 'Registered fields',
+      PropertyCardNoFields: 'No fields registered'
     }
   }
 };
