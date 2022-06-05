@@ -32,6 +32,8 @@ import {
   SelectModeContainer
 } from './styles';
 
+import { translate } from '../../../data/I18n';
+
 interface Coordinates {
   latitude: number;
   longitude: number;
@@ -104,27 +106,31 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Coordenadas do talhão"
-          subtitle="Marque no mapa a localização e area correspondente ao talhão"
+          title={translate('CreatePlotStepOne.title')}
+          subtitle={translate('CreatePlotStepOne.subtitle')}
         />
         <StepIndicator step={0} />
         <FormContainer>
           {mode === '' && (
             <QuestionStep>
-              <QuestionTitle>Como deseja prosseguir</QuestionTitle>
+              <QuestionTitle>
+                {translate('CreatePlotStepOne.questionTitle')}
+              </QuestionTitle>
               <SelectModeContainer>
                 <ButtonCotainer onPress={() => setMode('POLYGON')}>
-                  <ButtonTitle>Desenhar talhão no mapa</ButtonTitle>
+                  <ButtonTitle>
+                    {translate('CreatePlotStepOne.drawFieldButton')}
+                  </ButtonTitle>
                   <ButtonMessage>
-                    marque todos os pontos do talhão e calcularemos a area
-                    automaticamente
+                    {translate('CreatePlotStepOne.drawFieldButtonMsg')}
                   </ButtonMessage>
                 </ButtonCotainer>
                 <ButtonCotainer onPress={() => setMode('POINT')}>
-                  <ButtonTitle>Marcar ponto unico</ButtonTitle>
+                  <ButtonTitle>
+                    {translate('CreatePlotStepOne.markPointButton')}
+                  </ButtonTitle>
                   <ButtonMessage>
-                    marque o ponto central do tralhao e informe a area
-                    manualmente
+                    {translate('CreatePlotStepOne.markPointButtonMsg')}
                   </ButtonMessage>
                 </ButtonCotainer>
               </SelectModeContainer>
@@ -139,7 +145,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
                   setValue('areaTotal', '');
                 }}
               >
-                <ModeText>Alterar modo</ModeText>
+                <ModeText>{translate('CreatePlotStepOne.modeText')}</ModeText>
               </ModeTag>
               <MapContainer>
                 <ReactNativeMapView
@@ -184,8 +190,8 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
                   </MapButton>
                 )}
                 <TextInput
-                  label="Area"
-                  placeholder="Area do talhão em ha"
+                  label="CreatePlotStepOne.title"
+                  placeholder={translate('CreatePlotStepOne.area')}
                   icon="check-square"
                   disabled={mode === 'POLYGON'}
                   name="areaTotal"
@@ -197,7 +203,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
           )}
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepOne.ContinueButton')}
               onPress={handleSubmit(handleSubmitStepOne)}
             />
           </NextStepButton>
