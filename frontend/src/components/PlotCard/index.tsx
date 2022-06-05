@@ -30,7 +30,7 @@ export const PlotCard: React.FC<PlotCardProps> = ({ plot, onPress }) => {
         {plot?.expectedProduction && (
           <PlotProduction>
             {translate('plots.PlotCardProdExpectation')}:{' '}
-            {plot.expectedProduction} ton/ha
+            {plot.expectedProduction.toFixed(2)} ton/ha
           </PlotProduction>
         )}
       </InformationContainer>

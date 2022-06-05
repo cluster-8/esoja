@@ -4,7 +4,8 @@ export default {
       title: 'Identifique o talhão',
       subtitle: 'Insira um nome e uma descrição para o seu novo talhão',
 
-      fieldPropertyLabel: 'Selecione e propriedade do talhão',
+      fieldPropertyLabel: 'Propriedade do talhão',
+      fieldPropertyPlaceholder: 'Selecione a propriedade do talhão',
 
       fieldName: 'Nome do talhão',
       fieldNamePlaceholder: 'Digite um nome para o talhão',
@@ -32,6 +33,7 @@ export default {
       subtitle: 'Enter a name and description for your new field',
 
       fieldPropertyLabel: "Select  property's field",
+      fieldPropertyPlaceholder: "Select property's field",
 
       fieldName: "Field's name",
       fieldNamePlaceholder: 'Enter a name for the field',
