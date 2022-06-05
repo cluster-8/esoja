@@ -91,7 +91,7 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
           {!!options.length && (
             <Select
               placeholder={translate(
-                'CreatePlotStepTwo.fieldProperyPlaceholder'
+                'CreatePlotStepTwo.fieldPropertyPlaceholder'
               )}
               selectedValue={propertyId}
               onValueChange={value =>

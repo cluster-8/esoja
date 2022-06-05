@@ -176,13 +176,13 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
         setObtentoresOptions([]);
       } catch (err) {
         Alert.alert(
-          'Erro',
-          'Não foi possivel estimar a produtividade, tente novamente mais tarde!'
+          translate('statistics.errorAlertTitle'),
+          translate('statistics.ProdExpectationMsgError')
         );
       }
     } else {
       Alert.alert(
-        'Preenchimento incompleto',
+        translate('statistics.incompleteAlertTitle'),
         'Registro Nacional do Cultivar é obrigatório!'
       );
     }
@@ -213,7 +213,7 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
         }
       }
     } catch (err) {
-      Alert.alert('Não foi possivel buscar os obtentores');
+      Alert.alert(translate('statistics.holdersAlertMsg'));
     }
     setLoading(false);
   };
@@ -230,7 +230,7 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
         }))
       );
     } catch (err) {
-      Alert.alert('Não foi possivel buscar os cultivares');
+      Alert.alert(translate('statistics.cultivarsAlertMsg'));
     }
     setLoading(false);
   };
@@ -298,7 +298,7 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
             )}
 
             {emptyPlots && (
-              <EmptyData message="Você não possui nenhum talhão com amostras ja cadastradas, crie um talhão ou adicione amostras em um para vizualizar suas estatisticas" />
+              <EmptyData message={translate('statistics.emptyPlotsMsg')} />
             )}
 
             {!!obtentoresOptions.length && (
@@ -344,31 +344,35 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
         )}
         {!!productionChartData && !!weatherChartData && !!waterChartData && (
           <>
-            <Title title="Produção" />
+            <Title title={translate('statistics.productionTitle')} />
             <StatisticsMenuContainer>
               <StatisticsCardWidgetContainer>
                 <StatisticsCard
                   title="Total"
-                  value={`${selectedPlot?.expectedProduction || 0} ton/ha`}
+                  value={`${
+                    selectedPlot?.expectedProduction.toFixed(2) || 0
+                  } ton/ha`}
                 />
                 <StatisticsCard
-                  title="Lucro bruto"
+                  title={translate('statistics.profitCard')}
                   value={formatCurrency(profit)}
                 />
                 <StatisticsCard
-                  title="media UF"
+                  title={translate('statistics.stateAverage')}
                   value={`${average.toFixed(2)} ton/ha`}
                 />
               </StatisticsCardWidgetContainer>
               <StatisticsContentContainer>
                 <LineChartPlot
-                  title={translate('quotation.chartTitle')}
+                  title={translate(
+                    'statistics.lineChart.productionExpectation'
+                  )}
                   data={productionChartData}
                   backgroundColor="OVER"
                   legend={productionChartData.legend}
                 />
                 <LineChartPlot
-                  title={translate('quotation.chartTitle')}
+                  title={translate('statistics.lineChart.rainPreciptation')}
                   data={weatherChartData}
                   currence={false}
                   backgroundColor="OVER"
@@ -376,7 +380,7 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
                 />
 
                 <LineChartPlot
-                  title={translate('quotation.chartTitle')}
+                  title={translate('statistics.lineChart.water')}
                   data={waterChartData}
                   currence={false}
                   backgroundColor="OVER"
