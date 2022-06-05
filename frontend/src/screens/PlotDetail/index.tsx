@@ -53,7 +53,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
       const properties = await getPlots(query);
       setPlot(properties[0]);
     } catch (err) {
-      Alert.alert('Erro ao carregar propriedade');
+      Alert.alert(translate('plots.PlotDetailLoadProErro'));
     }
   }, [getPlots, plotId]);
 
@@ -75,35 +75,51 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
               />
             </PlotDetailHeaderContainer>
             <PlotDetailTitleContainer>
-              <Title title={plot?.description || 'Meu Talhão'} />
+              <Title
+                title={
+                  plot?.description || translate('plots.PlotDetailDefaultTitle')
+                }
+              />
               <PlotProperty>{plot?.property.name?.toUpperCase()}</PlotProperty>
               <PlotArea>
-                <StrongText>Area: </StrongText> {plot?.areaTotal} hectares
+                <StrongText>{translate('plots.PlotDetailArea')}: </StrongText>{' '}
+                {plot?.areaTotal} {translate('plots.PlotDetailAreaUnit')}
               </PlotArea>
               <PlotCropYear>
-                <StrongText>Ano safra: </StrongText> {plot?.cropYear}
+                <StrongText>
+                  {translate('plots.PlotDetailCropYear')}:
+                </StrongText>{' '}
+                {plot?.cropYear}
               </PlotCropYear>
               <PlotArea>
-                <StrongText>Plantas por metro: </StrongText>
+                <StrongText>
+                  {translate('plots.PlotDetailPlantsPerMeter')}:
+                </StrongText>
                 {plot?.plantsPerMeter}
               </PlotArea>
               <PlotCropYear>
-                <StrongText>Distancia entre plantas: </StrongText>
+                <StrongText>
+                  {translate('plots.PlotDetailDistanceBetween')}:{' '}
+                </StrongText>
                 {plot?.metersBetweenPlants}cm
               </PlotCropYear>
               <PlotProduction>
-                <StrongText>Estimativa de produção: </StrongText>
+                <StrongText>
+                  {translate('plots.PlotDetailProdExpectation')}:{' '}
+                </StrongText>
                 Estou mocado aqui
               </PlotProduction>
             </PlotDetailTitleContainer>
             <PlotDetailPlotCardContainer>
-              <PlotDetailCardTitle>Amostra do talhão</PlotDetailCardTitle>
+              <PlotDetailCardTitle>
+                {translate('plots.PlotDetailFieldSample')}
+              </PlotDetailCardTitle>
               {plot?.samples?.length === 0 && (
                 <>
-                  <EmptyData message="Nenhuma amostra cadastrada para este talhão, deseja cadastrar agora?" />
+                  <EmptyData message={translate('plots.PlotDetailEmptyMsg')} />
                   <Button
                     style={{ width: '80%', marginBottom: 'auto' }}
-                    title={translate('Cadastrar amostras')}
+                    title={translate('plots.PlotDetailRegisterSample')}
                     onPress={() =>
                       navigation.navigate('CreatePlotStepThree', {
                         cultiveId: plot.id
@@ -118,7 +134,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
             </PlotDetailPlotCardContainer>
           </>
         ) : (
-          <LoadingIndicator message="Carregando propriedade..." />
+          <LoadingIndicator message={translate('plots.PlotDetailLoading')} />
         )}
       </PlotDetailContainer>
     </ScrollView>
