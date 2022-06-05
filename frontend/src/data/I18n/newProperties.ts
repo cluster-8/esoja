@@ -12,6 +12,8 @@ export default {
       propertyPositionTitle: 'Pegar minha posição atual',
       propertyButtonTitle: 'Enviar',
       newPropertyAlert: 'Não foi possível salvar.',
+      newPropertyCepAlert: 'Informe um cep válido',
+
       or: 'ou'
     }
   },
@@ -28,6 +30,7 @@ export default {
       propertyPositionTitle: 'Get my current position',
       propertyButtonTitle: 'Send',
       newPropertyAlert: 'Could not save.',
+      newPropertyCepAlert: 'Invalid ZipCode',
       or: 'or'
     }
   }

@@ -33,6 +33,8 @@ import {
   SelectModeContainer
 } from './styles';
 
+
+
 interface Coordinates {
   latitude: number;
   longitude: number;
@@ -112,18 +114,24 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
         <FormContainer>
           {mode === '' && (
             <QuestionStep>
-              <QuestionTitle>{translate('CreatePlotStepOne.questionTitle')}</QuestionTitle>
+              <QuestionTitle>
+                {translate('CreatePlotStepOne.questionTitle')}
+              </QuestionTitle>
               <SelectModeContainer>
                 <ButtonCotainer onPress={() => setMode('POLYGON')}>
-                  <ButtonTitle>{translate('CreatePlotStepOne.buttonTitlePolygon')}</ButtonTitle>
+                  <ButtonTitle>
+                    {translate('CreatePlotStepOne.drawFieldButton')}
+                  </ButtonTitle>
                   <ButtonMessage>
-                    {translate('CreatePlotStepOne.buttonMessagePolygon')}
+                    {translate('CreatePlotStepOne.drawFieldButtonMsg')}
                   </ButtonMessage>
                 </ButtonCotainer>
                 <ButtonCotainer onPress={() => setMode('POINT')}>
-                  <ButtonTitle>{translate('CreatePlotStepOne.buttonTitlePoint')}</ButtonTitle>
+                  <ButtonTitle>
+                    {translate('CreatePlotStepOne.markPointButton')}
+                  </ButtonTitle>
                   <ButtonMessage>
-                    {translate('CreatePlotStepOne.buttonMessagePoint')}
+                    {translate('CreatePlotStepOne.markPointButtonMsg')}
                   </ButtonMessage>
                 </ButtonCotainer>
               </SelectModeContainer>
@@ -138,7 +146,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
                   setValue('areaTotal', '');
                 }}
               >
-                <ModeText>{translate('CreatePlotStepOne.ModeText')}</ModeText>
+                <ModeText>{translate('CreatePlotStepOne.modeText')}</ModeText>
               </ModeTag>
               <MapContainer>
                 <ReactNativeMapView
@@ -183,8 +191,8 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
                   </MapButton>
                 )}
                 <TextInput
-                  label='CreatePlotStepOne.areaLabel'
-                  placeholder={translate('CreatePlotStepOne.areaPlaceholder')}
+                  label="CreatePlotStepOne.title"
+                  placeholder={translate('CreatePlotStepOne.area')}
                   icon="check-square"
                   disabled={mode === 'POLYGON'}
                   name="areaTotal"

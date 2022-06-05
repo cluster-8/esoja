@@ -84,7 +84,7 @@ export const NewProperty: React.FC<NewPropertyScreenRouteProps> = ({
       setLoading(false);
     } catch (error) {
       console.log(error);
-      Alert.alert('Não foi possível salvar.');
+      Alert.alert(translate('newProperty.newPropertyAlert'));
       setLoading(false);
     }
   }

@@ -2,15 +2,24 @@ import React from 'react';
 import { Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 import { useTheme } from 'styled-components';
-import { ChartData } from '../../screens/Quotation/SeedQuotation';
 import { ChartContainer, TextStyled } from './styles';
+
+interface ChartData {
+  x: string[];
+  y: number[];
+}
 
 interface LineChartProps {
   title: string;
   data: ChartData;
+  backgroundColor?: 'OVER' | 'BACKGROUND';
 }
 
-export const LineChartPlot: React.FC<LineChartProps> = ({ title, data }) => {
+export const LineChartPlot: React.FC<LineChartProps> = ({
+  title,
+  data,
+  backgroundColor = 'BACKGROUND'
+}) => {
   const theme = useTheme();
 
   return (
@@ -33,8 +42,14 @@ export const LineChartPlot: React.FC<LineChartProps> = ({ title, data }) => {
         verticalLabelRotation={320}
         xLabelsOffset={10}
         chartConfig={{
-          backgroundGradientFrom: theme.colors.background,
-          backgroundGradientTo: theme.colors.background,
+          backgroundGradientFrom:
+            backgroundColor === 'OVER'
+              ? theme.colors.background_over
+              : theme.colors.background,
+          backgroundGradientTo:
+            backgroundColor === 'OVER'
+              ? theme.colors.background_over
+              : theme.colors.background,
           decimalPlaces: 2,
           color: () => theme.colors.text,
           labelColor: () => theme.colors.text,

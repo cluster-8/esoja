@@ -20,7 +20,6 @@ import { useProperty } from '../../../hooks/useProperty';
 import { Container, FormContainer, NextStepButton } from './styles';
 import { translate } from '../../../data/I18n';
 
-
 const stepTwo = yup.object().shape({
   description: yup.string().required('CreatePlotStepTwo.errors.stepTwoName.required'),
   plantingDate: yup.date().required('CreatePlotStepTwo.errors.plantingDate.required'),
@@ -91,20 +90,22 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
         <FormContainer>
           {!!options.length && (
             <Select
-              placeholder={translate('CreatePlotStepTwo.defaultValueLabel')}
+              placeholder={translate(
+                'CreatePlotStepTwo.fieldProperyPlaceholder'
+              )}
               selectedValue={propertyId}
               onValueChange={value =>
                 value !== 'default' && setPropertyId(`${value}`)
               }
               icon="file-text"
               itens={options}
-              label='CreatePlotStepTwo.genderLabel'
+              label="CreatePlotStepTwo.fieldPropertyLabel"
               error={error}
             />
           )}
 
           <TextInput
-            label='CreatePlotStepTwo.fieldName'
+            label="CreatePlotStepTwo.fieldName"
             placeholder={translate('CreatePlotStepTwo.fieldNamePlaceholder')}
             icon="check-square"
             name="description"
@@ -115,14 +116,16 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             name="plantingDate"
             control={control}
             icon="calendar"
-            label='CreatePlotStepTwo.plantingDateLabel'
+            label="CreatePlotStepTwo.fieldDate"
             errorMessage={errors?.plantingDate?.message}
-            placeholder={translate('CreatePlotStepTwo.plantingDatePlaceholder')}
+            placeholder={translate('CreatePlotStepTwo.fieldDatePlaceholder')}
           />
           <TextInputMask
             mask="9999-9999"
-            label='CreatePlotStepTwo.cropYearLabel'
-            placeholder={translate('CreatePlotStepTwo.cropYearPlaceholder')}
+            label="CreatePlotStepTwo.fieldCropYear"
+            placeholder={translate(
+              'CreatePlotStepTwo.fieldCropYearPlaceholder'
+            )}
             icon="check-square"
             name="cropYear"
             control={control}

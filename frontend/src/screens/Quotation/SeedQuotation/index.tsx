@@ -29,11 +29,6 @@ export interface Quote {
   price: number;
 }
 
-export interface ChartData {
-  x: string[];
-  y: number[];
-}
-
 const buttons = [
   {
     path: 'SeedQuotation',

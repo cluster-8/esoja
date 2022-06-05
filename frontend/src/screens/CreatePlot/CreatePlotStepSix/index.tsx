@@ -55,13 +55,15 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
   }, [getPersistedData, setValue]);
 
   const handleSubmitStepSix = (data: FieldValues) => {
-    const sample = {
+    const sample: any = {
       plantA: {
         grainsPlant1: data.grainsPlant1,
-        grainsPlant2: data.grainsPlant2,
-        description: data.description
+        grainsPlant2: data.grainsPlant2
       }
     };
+    if (data?.description) {
+      sample.plantA.description = data.description;
+    }
     saveStep(sample);
     navigation.navigate('CreatePlotStepSeven');
   };

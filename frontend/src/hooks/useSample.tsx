@@ -53,6 +53,10 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     await AsyncStorage.setItem('@esoja:sample', JSON.stringify(data));
   };
 
+  const removeData = async () => {
+    await AsyncStorage.removeItem('@esoja:sample');
+  };
+
   const getPersistedData = useCallback(async () => {
     if (sample) {
       return sample;
@@ -95,7 +99,7 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
         ]
       };
       await api.post('/sample', newSample);
-      persistData({} as Sample);
+      removeData();
     },
     [getPersistedData, pictureUpload]
   );
