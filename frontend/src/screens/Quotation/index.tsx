@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 import { QuotationScreenRouteProps } from '../../data/routes/app';
-import { getQuotation } from '../../data/services/quotation.service';
-import { Quotation } from '../../hooks/useHome';
+import { Quotation, useHome } from '../../hooks/useHome';
 import { BagQuotation } from './BagQuotation';
 import { SeedQuotation } from './SeedQuotation';
 
@@ -13,11 +12,12 @@ export const QuotationPage: React.FC<QuotationScreenRouteProps> = ({
   const [bagQuotation, setBagQuotation] = useState<Quotation[]>([]);
   const [seedQuotation, setSeedQuotation] = useState<Quotation[]>([]);
 
+  const { getHistoryQuotation } = useHome();
+
   useEffect(() => {
     const getData = async () => {
       try {
-        const quotations = await getQuotation();
-
+        const quotations = await getHistoryQuotation();
         const seeds = quotations.map(
           ({ conventionalSeed }) => conventionalSeed
         );

@@ -1,4 +1,3 @@
-import { useNetInfo } from '@react-native-community/netinfo';
 import React, { useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
@@ -6,6 +5,7 @@ import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
 import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
+import { useAuth } from '../../../hooks/useAuth';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
 import {
@@ -19,7 +19,7 @@ import {
 export const CreatePlotStepNine: React.FC<
   CreatePlotStepNineScreenRouteProps
 > = ({ navigation }) => {
-  const { isConnected } = useNetInfo();
+  const { isConnected } = useAuth();
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
 

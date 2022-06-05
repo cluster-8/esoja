@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { PropertyCard } from '../../components/PropertyCard';
@@ -14,7 +15,7 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({
   navigation
 }) => {
   const [properties, setProperties] = useState<Property[]>([]);
-  const { authUser } = useAuth();
+  const { authUser, isConnected } = useAuth();
   const { getProperties } = useProperty();
 
   const handleSelectProperty = (propertyId: string) => {
@@ -22,20 +23,27 @@ export const Properties: React.FC<PropertiesScreenRouteProps> = ({
   };
 
   const getData = useCallback(async () => {
-    const query: Query = {
-      select: 'name city state picture',
-      populate: [{ path: 'cultives', select: 'id' }],
-      filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
-    };
-    setProperties(await getProperties(query));
-  }, [authUser.id, getProperties]);
+    if (isConnected) {
+      const query: Query = {
+        select: 'name city state picture',
+        populate: [{ path: 'cultives', select: 'id' }],
+        filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
+      };
+      const data = await getProperties(query);
+      setProperties(data);
+      await AsyncStorage.setItem('@esoja:propertiesPage', JSON.stringify(data));
+    } else {
+      const data: any = await AsyncStorage.getItem('@esoja:propertiesPage');
+      setProperties(JSON.parse(data));
+    }
+  }, [authUser.id, getProperties, isConnected]);
 
   useEffect(() => {
     const subscription = navigation.addListener('focus', () => {
       getData();
     });
     return subscription;
-  }, [getData, navigation]);
+  }, [getData, navigation, isConnected]);
 
   return (
     <Container>

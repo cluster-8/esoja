@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNetInfo } from '@react-native-community/netinfo';
 import * as AuthSession from 'expo-auth-session';
 import * as WebBrowser from 'expo-web-browser';
 import React, {
@@ -23,6 +24,7 @@ interface AuthContextData {
   signOut: () => Promise<void>;
   authUser: User;
   isLoading: boolean;
+  isConnected: boolean;
 }
 
 type AuthContextProps = {
@@ -51,6 +53,14 @@ const AuthContext = createContext({} as AuthContextData);
 const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
   const [isLoading, setLoading] = useState(true);
   const [authUser, setAuthUser] = useState<User>({} as User);
+  const info = useNetInfo();
+
+  const isConnected = useMemo(() => {
+    if (info.isConnected) {
+      return true;
+    }
+    return false;
+  }, [info.isConnected]);
 
   const storeUser = async (user: User, token: string) => {
     setAuthUser(user);
@@ -208,7 +218,8 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
       isLoading,
       signInWithGoogle,
       sigInWithFacebook,
-      signUp
+      signUp,
+      isConnected
     }),
     [
       signInWithPassword,
@@ -217,7 +228,8 @@ const AuthProvider: React.FC<AuthContextProps> = ({ children }) => {
       isLoading,
       signInWithGoogle,
       sigInWithFacebook,
-      signUp
+      signUp,
+      isConnected
     ]
   );
   return (

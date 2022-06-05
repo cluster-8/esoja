@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert } from 'react-native';
@@ -8,6 +9,7 @@ import Title from '../../components/Title';
 import { translate } from '../../data/I18n';
 import { Property } from '../../data/Model/Property';
 import { PropertyDetailScreenRouteProps } from '../../data/routes/app';
+import { useAuth } from '../../hooks/useAuth';
 import { useProperty } from '../../hooks/useProperty';
 import { defaultImage } from '../../utils/default';
 import {
@@ -28,6 +30,7 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
 
   const { propertyId } = route.params;
 
+  const { isConnected } = useAuth();
   const { getProperties } = useProperty();
 
   const handleSelectPlot = (plotId: string) => {
@@ -35,30 +38,39 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
   };
 
   const getData = useCallback(async () => {
-    const query: Query = {
-      select: 'name picture city state',
-      populate: [
-        {
-          path: 'cultives',
-          select: 'cropYear areaTotal photo description expectedProduction'
-        }
-      ],
-      filter: [{ path: 'id', operator: 'equals', value: propertyId }]
-    };
-    try {
-      const properties = await getProperties(query);
-      setProperty(properties[0]);
-    } catch (err) {
-      Alert.alert(translate('properties.PropertyDetailLoadError'));
+    if (isConnected) {
+      const query: Query = {
+        select: 'name picture city state',
+        populate: [
+          {
+            path: 'cultives',
+            select: 'cropYear areaTotal photo description expectedProduction'
+          }
+        ],
+        filter: [{ path: 'id', operator: 'equals', value: propertyId }]
+      };
+      try {
+        const properties = await getProperties(query);
+        setProperty(properties[0]);
+        await AsyncStorage.setItem(
+          '@esoja:propertyDetail',
+          JSON.stringify(properties[0])
+        );
+      } catch (err) {
+        Alert.alert(translate('properties.PropertyDetailLoadError'));
+      }
+    } else {
+      const data: any = await AsyncStorage.getItem('@esoja:propertyDetail');
+      setProperty(JSON.parse(data));
     }
-  }, [getProperties, propertyId]);
+  }, [getProperties, propertyId, isConnected]);
 
   useEffect(() => {
     const subscription = navigation.addListener('focus', () => {
       getData();
     });
     return subscription;
-  }, [getData, navigation]);
+  }, [getData, navigation, isConnected]);
   return (
     <PropertyDetailContainer>
       {property ? (
