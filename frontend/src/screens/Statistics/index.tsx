@@ -17,6 +17,7 @@ import { useHome } from '../../hooks/useHome';
 import { usePlot } from '../../hooks/usePlot';
 import { useProperty } from '../../hooks/useProperty';
 import { Produtividade, useStatistics } from '../../hooks/useStatistics';
+import { formatCurrency } from '../../utils/formatCurrence';
 import {
   Container,
   FormContainer,
@@ -352,7 +353,7 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
                 />
                 <StatisticsCard
                   title="Lucro bruto"
-                  value={`R$ ${profit.toFixed(2)}`}
+                  value={formatCurrency(profit)}
                 />
                 <StatisticsCard
                   title="media UF"
