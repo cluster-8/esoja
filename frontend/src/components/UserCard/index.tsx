@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar } from 'react-native-paper';
-import { defaultImage } from '../../utils/default';
+import { defaultUserImage } from '../../utils/default';
 import {
   InformationContainer,
   UserCardContainer,
@@ -15,7 +15,7 @@ export interface UserCardProps {
 export const UserCard: React.FC<UserCardProps> = ({ picture, name }) => {
   return (
     <UserCardContainer>
-      <Avatar.Image source={{ uri: picture || defaultImage }} />
+      <Avatar.Image source={{ uri: picture || defaultUserImage }} />
       <InformationContainer>
         <UserCardName>{name}</UserCardName>
       </InformationContainer>
