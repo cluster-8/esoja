@@ -51,3 +51,26 @@ Acesse o link para visualizar:
 
 ## 💫 Funcionalidades implementadas
 
+### 🏡 Criando uma propriedade
+
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/create-property.gif)
+
+### 🌱 Criando um Talhão + Adicionando amostras do Talhão
+
+> * Área do Talhão
+> * Propriedade + Data de Plantio + Ano Safra
+> * Amostras (x3)
+> * Imagem das Amostras
+
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/amostras.gif)
+
+### 📈 Estatísticas
+
+> * Expectativa de Podução
+> * Expectativa de Lucro Bruto
+> * Média de Produtividade da Região
+> * Produtividade e Produtividade Média do Muncípio
+> * Níveis de Precipitação
+> * Balanço e Deficiência Hídrica
+
+![](https://github.com/cluster-8/esoja-mobile/blob/main/Gifs/expectativa-producao.gif)
