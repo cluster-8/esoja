@@ -10,6 +10,7 @@ import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
 import { CreatePlotStepFourScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
+import { translate } from '../../../data/I18n';
 import {
   Container,
   FormContainer,
@@ -56,8 +57,8 @@ export const CreatePlotStepFour: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Quantidade de plantas"
-          subtitle={'Informe a quantidade de plantas em "2 metros" lineares'}
+          title={translate('CreatePlotStepFour.title')}
+          subtitle={translate('CreatePlotStepFour.subtitle')}
         />
         <StepIndicator step={1} indicator={2} />
         <FormContainer>
@@ -65,8 +66,10 @@ export const CreatePlotStepFour: React.FC<
             <StepFourHelperImage source={StepFour} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Platas em 2 metros"
-            placeholder="Digite a quantidade de plantas"
+            label="CreatePlotStepFour.plantsNumber"
+            placeholder={translate(
+              'CreatePlotStepFour.plantsNumberPlaceholder'
+            )}
             icon="check-square"
             keyboardType="numeric"
             name="plantsPerMeter"
@@ -75,7 +78,7 @@ export const CreatePlotStepFour: React.FC<
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepFour.continueButton')}
               onPress={handleSubmit(handleSubmitStepFour)}
             />
           </NextStepButton>

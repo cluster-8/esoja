@@ -4,6 +4,7 @@ import StepFive from '../../../assets/plot-steps-images/StepFive.png';
 import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
+import { translate } from '../../../data/I18n';
 import { CreatePlotStepFiveScreenRouteProps } from '../../../data/routes/app';
 import {
   Container,
@@ -24,8 +25,8 @@ export const CreatePlotStepFive: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Extração das amostras"
-          subtitle="Nos proximos passos, vamos precisar de amostras do plantio, continue quando estiver proximo do talhão, os passos feitos ate aqui ja foram salvos e não serão perdidos"
+          title={translate('CreatePlotStepFive.title')}
+          subtitle={translate('CreatePlotStepFive.subtitle')}
         />
         <StepIndicator step={1} indicator={3} />
         <FormContainer>
@@ -33,7 +34,10 @@ export const CreatePlotStepFive: React.FC<
             <StepFiveHelperImage source={StepFive} resizeMode="contain" />
           </HelperImageContainer>
           <NextStepButton>
-            <Button title="Continuar" onPress={handleSubmitStepFive} />
+            <Button
+              title={translate('CreatePlotStepFive.continueButton')}
+              onPress={handleSubmitStepFive}
+            />
           </NextStepButton>
         </FormContainer>
       </Container>

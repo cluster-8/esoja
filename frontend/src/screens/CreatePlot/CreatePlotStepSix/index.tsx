@@ -10,6 +10,7 @@ import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
 import { CreatePlotStepSixScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
+import { translate } from '../../../data/I18n';
 import {
   Container,
   FormContainer,
@@ -71,10 +72,8 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title="Amostra 1"
-          subtitle={
-            'Colete duas plantas de um ponto aleatorio do talhão \n (guarde as plantas para o ultimo passo)'
-          }
+          title={translate('CreatePlotStepSix.title')}
+          subtitle={translate('CreatePlotStepSix.subtitle')}
         />
         <StepIndicator step={1} indicator={4} />
         <FormContainer>
@@ -82,24 +81,26 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
             <StepSixHelperImage source={StepSix} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Quantidade total de grãos na planta A"
-            placeholder="Digite a quantidade de grãos"
+            label="CreatePlotStepSix.sampleA"
+            placeholder={translate('CreatePlotStepSix.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant1"
             control={control}
             errorMessage={errors?.grainsPlant1?.message}
           />
           <TextInput
-            label="Quantidade total de grãos na planta B"
-            placeholder="Digite a quantidade de grãos"
+            label="CreatePlotStepSix.sampleB"
+            placeholder={translate('CreatePlotStepSix.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant2"
             control={control}
             errorMessage={errors?.grainsPlant2?.message}
           />
           <TextInput
-            label="Descrição (opicional)"
-            placeholder="Descreva aqui..."
+            label="CreatePlotStepSix.sampleDescription"
+            placeholder={translate(
+              'CreatePlotStepSix.sampleDescriptionPlaceholder'
+            )}
             icon="check-square"
             name="description"
             control={control}

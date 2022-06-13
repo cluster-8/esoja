@@ -8,6 +8,7 @@ import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
 import { useAuth } from '../../../hooks/useAuth';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
+import { translate } from '../../../data/I18n';
 import {
   Container,
   FormContainer,
@@ -49,8 +50,8 @@ export const CreatePlotStepNine: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Imagem das amostras"
-          subtitle="Tire uma foto de todas as plantas usadas nas amostras"
+          title={translate('CreatePlotStepNine.title')}
+          subtitle={translate('CreatePlotStepNine.subtitle')}
         />
         <StepIndicator step={2} indicator={8} />
         <FormContainer>
@@ -59,8 +60,8 @@ export const CreatePlotStepNine: React.FC<
               <PictureContainer>
                 <PictureInput
                   model="RETANGLE"
-                  placeholder="Adicionar imagem"
-                  updatePictureLabel="Alterar imagem"
+                  placeholder="CreatePlotStepNine.imagePlaceholder"
+                  updatePictureLabel="CreatePlotStepNine.imageUpdatePictureLabel"
                   onPress={handleSelectImage}
                   uri={image}
                 />

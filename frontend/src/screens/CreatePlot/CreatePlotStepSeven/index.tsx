@@ -10,6 +10,7 @@ import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
 import { CreatePlotStepSevenScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
+import { translate } from '../../../data/I18n';
 import {
   Container,
   FormContainer,
@@ -71,8 +72,8 @@ export const CreatePlotStepSeven: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Amostra 2"
-          subtitle="Repita o passo anterior, em outro ponto do talhão"
+          title={translate('CreatePlotStepSeven.title')}
+          subtitle={translate('CreatePlotStepSeven.subtitle')}
         />
         <StepIndicator step={1} indicator={5} />
         <FormContainer>
@@ -80,31 +81,33 @@ export const CreatePlotStepSeven: React.FC<
             <StepSevenHelperImage source={StepSeven} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Quantidade total de grãos na planta A"
-            placeholder="Digite a quantidade de grãos"
+            label="CreatePlotStepSeven.sampleA"
+            placeholder={translate('CreatePlotStepSeven.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant1"
             control={control}
             errorMessage={errors?.grainsPlant1?.message}
           />
           <TextInput
-            label="Quantidade total de grãos na planta B"
-            placeholder="Digite a quantidade de grãos"
+            label="CreatePlotStepSeven.sampleB"
+            placeholder={translate('CreatePlotStepSeven.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant2"
             control={control}
             errorMessage={errors?.grainsPlant2?.message}
           />
           <TextInput
-            label="Descrição (opicional)"
-            placeholder="Descreva aqui..."
+            label="CreatePlotStepSeven.sampleDescription"
+            placeholder={translate(
+              'CreatePlotStepSeven.sampleDescriptionPlaceholder'
+            )}
             icon="check-square"
             name="description"
             control={control}
           />
           <NextStepButton>
             <Button
-              title="Continuar"
+              title={translate('CreatePlotStepSeven.buttonTitle')}
               onPress={handleSubmit(handleSubmitStepSeven)}
             />
           </NextStepButton>

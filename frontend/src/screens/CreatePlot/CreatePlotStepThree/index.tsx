@@ -10,6 +10,7 @@ import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
 import { CreatePlotStepThreeScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
+import { translate } from '../../../data/I18n';
 import {
   Container,
   FormContainer,
@@ -59,8 +60,8 @@ export const CreatePlotStepThree: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title="Distancia linhas de plantio"
-          subtitle="Informe a distância entre as linhas de plantio em centímetros"
+          title={translate('CreatePlotStepThree.title')}
+          subtitle={translate('CreatePlotStepThree.subtitle')}
         />
         <StepIndicator step={0} indicator={1} />
         <FormContainer>
@@ -68,8 +69,10 @@ export const CreatePlotStepThree: React.FC<
             <StepThreeHelperImage source={StepThree} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="Distancia entre linhas"
-            placeholder="Digite a distancia em cm"
+            label="CreatePlotStepThree.distanceBetweenLines"
+            placeholder={translate(
+              'CreatePlotStepThree.distanceBetweenLinesPlaceholder'
+            )}
             icon="check-square"
             keyboardType="numeric"
             name="metersBetweenPlants"
