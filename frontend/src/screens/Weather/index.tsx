@@ -13,6 +13,7 @@ import {
   getWeatherForecast,
   WeatherForecastProps
 } from '../../data/services/weather.services';
+import { useAuth } from '../../hooks/useAuth';
 import { useLocation } from '../../hooks/useLocation';
 import { useProperty } from '../../hooks/useProperty';
 import { formatHour } from '../../utils/formatter';
@@ -61,6 +62,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   const theme = useTheme();
   const { getProperties } = useProperty();
   const { getCoordinates } = useLocation();
+  const { authUser } = useAuth();
 
   const handleSelectDate = useCallback(
     (weather: WeatherForecastProps[], date: number) => {
@@ -110,7 +112,8 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   const handlePropertyCardClick = async () => {
     if (!propertyList?.length) {
       const query: Query = {
-        select: 'name latitude longitude'
+        select: 'name latitude longitude',
+        filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
       };
       const res = await getProperties(query);
       setModalVisible(true);
@@ -124,10 +127,13 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
   };
 
   const firstTime = useCallback(async () => {
-    const query: Query = { select: 'name latitude longitude' };
+    const query: Query = {
+      select: 'name latitude longitude',
+      filter: [{ path: 'userId', operator: 'equals', value: authUser.id }]
+    };
     const res = await getProperties(query);
     handleSelectProperty(res[0]);
-  }, [getProperties, handleSelectProperty]);
+  }, [authUser.id, getProperties, handleSelectProperty]);
 
   useEffect(() => {
     firstTime();

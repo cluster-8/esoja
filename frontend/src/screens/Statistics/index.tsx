@@ -172,7 +172,6 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
         setProductionChartData(getProductionChartData(produtividade));
         setWeatherChartData(getWeatherChartData(produtividade));
         setWaterChartData(getWaterChartData(produtividade));
-        console.log(res);
         setObtentoresOptions([]);
       } catch (err) {
         Alert.alert(

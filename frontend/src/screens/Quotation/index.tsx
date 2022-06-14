@@ -21,37 +21,18 @@ export const QuotationPage: React.FC<QuotationScreenRouteProps> = ({
         const seeds = quotations.map(
           ({ conventionalSeed }) => conventionalSeed
         );
-        setSeedQuotation(
-          seeds.sort((seedA, seedB) => {
-            if (seedA.DataPublicacao) {
-              return -1;
-            }
-            if (seedB.DataPublicacao) {
-              return 1;
-            }
-            return 0;
-          })
-        );
+        setSeedQuotation(seeds);
         const bags = quotations.map(
           ({ availableSoybeanPack }) => availableSoybeanPack
         );
-        setBagQuotation(
-          bags.sort((seedA, seedB) => {
-            if (seedA.DataPublicacao) {
-              return -1;
-            }
-            if (seedB.DataPublicacao) {
-              return 1;
-            }
-            return 0;
-          })
-        );
+        setBagQuotation(bags);
       } catch (err) {
         Alert.alert('Não foi possivel atualizar os dados ');
       }
     };
     getData();
-  }, []);
+  }, [getHistoryQuotation]);
+
   if (page === 'BagQuotation') {
     return (
       <BagQuotation

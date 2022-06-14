@@ -1,10 +1,10 @@
 export default {
   pt: {
     weather: {
-      humidity: 'Humidade',
+      humidity: 'Hum.',
       wind: 'Vento',
       rain: 'Chuva',
-      precipitation: 'Precipitação',
+      precipitation: 'mili.',
       morning: 'Manhã',
       afternoon: 'Tarde',
       evening: 'Noite',
@@ -14,10 +14,10 @@ export default {
   },
   en: {
     weather: {
-      humidity: 'Humidity',
+      humidity: 'Hum.',
       wind: 'Wind',
       rain: 'Rain',
-      precipitation: 'Precipitation',
+      precipitation: 'Amount',
       morning: 'Morning',
       afternoon: 'Afternoon',
       evening: 'Evening',

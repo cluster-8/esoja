@@ -63,10 +63,6 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
     );
   };
 
-  const handlerClickSync = () => {
-    Alert.alert('Sincronizou', 'Sincronizou');
-  };
-
   const getData = useCallback(async () => {
     setLoading(true);
     const location = await getCoordinates();
@@ -89,9 +85,6 @@ export const Home: React.FC<HomeScreenRouteProps> = ({ navigation }) => {
           <HeaderButtonContainer>
             <HeaderButton color="attention" onPress={handlerClickSignOut}>
               <HeaderButtonIcon name="log-out" />
-            </HeaderButton>
-            <HeaderButton color="success" onPress={handlerClickSync}>
-              <HeaderButtonIcon name="refresh-cw" />
             </HeaderButton>
           </HeaderButtonContainer>
         </HeaderContainer>
