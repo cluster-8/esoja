@@ -105,11 +105,6 @@ export type CreatePlotStepFiveScreenRouteProps = NativeStackScreenProps<
   'CreatePlotStepFive'
 >;
 
-export type CreatePlotStepSixScreenRouteProps = NativeStackScreenProps<
-  AppRoutesParams,
-  'CreatePlotStepSix'
->;
-
 export type CreatePlotStepSevenScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
   'CreatePlotStepSeven'
@@ -123,4 +118,9 @@ export type CreatePlotStepEightScreenRouteProps = NativeStackScreenProps<
 export type CreatePlotStepNineScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
   'CreatePlotStepNine'
+>;
+
+export type CreatePlotStepSixScreenRouteProps = NativeStackScreenProps<
+  AppRoutesParams,
+  'CreatePlotStepSix'
 >;
