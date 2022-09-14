@@ -1,8 +1,9 @@
 export default {
   pt: {
     CreatePlotStepSeven: {
-      title: 'Amostra 2',
-      subtitle: 'Repita o passso anterior, em outro ponto do talhão',
+      title: 'Amostra 1',
+      subtitle:
+        'Colete duas plantas de um ponto aleatorio do talhão \n (guarde as plantas para o ultimo passo)',
       sampleA: 'Quantidade total de grãos na planta A',
       sampleB: 'Quantidade total de grãos na planta B',
       samplePlaceholder: 'Digite a quantidade de grãos',
@@ -11,7 +12,7 @@ export default {
       buttonTitle: 'Continuar',
       errors: {
         grainsPlant: {
-          required: 'Quantidade de grãos é obrigatório',
+          required: 'Quantidade é obrigatória',
           min: 'Quantidade de grãos não pode ser "ZERO"'
         }
       }
@@ -19,8 +20,9 @@ export default {
   },
   en: {
     CreatePlotStepSeven: {
-      title: 'Sample 2',
-      subtitle: 'Repeat the previous step, at another point in the field',
+      title: 'Sample 1',
+      subtitle:
+        'Collect two plants from a random spot in the field \n (save the plants for the last step)',
       sampleA: 'Total amount of grains in plant A',
       sampleB: 'Total amount of grains in plant B',
       samplePlaceholder: 'Enter the amount of beans',
@@ -29,7 +31,7 @@ export default {
       buttonTitle: 'Continue',
       errors: {
         grainsPlant: {
-          required: 'Grain quantity is required',
+          required: 'Quantity is required',
           min: 'Grain quantity cannot be "ZERO"'
         }
       }

@@ -1,49 +1,71 @@
-import React, { useState } from 'react';
-import { Alert, ScrollView } from 'react-native';
+import { yupResolver } from '@hookform/resolvers/yup';
+import React, { useEffect } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import { ScrollView } from 'react-native';
+import * as yup from 'yup';
+import StepEight from '../../../assets/plot-steps-images/StepSample.png';
 import { Button } from '../../../components/Button';
-import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
+import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
-import { CreatePlotStepNineScreenRouteProps } from '../../../data/routes/app';
-import { useAuth } from '../../../hooks/useAuth';
+import { CreatePlotStepEightScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
-import { useUpload } from '../../../hooks/useUpload';
 import { translate } from '../../../data/I18n';
 import {
   Container,
   FormContainer,
+  HelperImageContainer,
   NextStepButton,
-  NoNetworkMessage,
-  PictureContainer
+  StepEightHelperImage
 } from './styles';
 
+const userLogin = yup.object().shape({
+  grainsPlant1: yup
+    .number()
+    .required('Quantidade é obrigatória')
+    .min(1, 'Quantidade de grãos não pode ser "ZERO"'),
+  grainsPlant2: yup
+    .number()
+    .required('Quantidade é obrigatória')
+    .min(1, 'Quantidade de grãos não pode ser "ZERO"')
+});
+
 export const CreatePlotStepNine: React.FC<
-  CreatePlotStepNineScreenRouteProps
+  CreatePlotStepEightScreenRouteProps
 > = ({ navigation }) => {
-  const { isConnected } = useAuth();
-  const [image, setImage] = useState('');
-  const [loading, setLoading] = useState(false);
+  const { saveStep, getPersistedData } = useSample();
 
-  const { createSample } = useSample();
-  const { selectImage } = useUpload();
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(userLogin)
+  });
 
-  const handleSelectImage = async () => {
-    const uri = await selectImage();
-    setImage(uri);
-  };
+  useEffect(() => {
+    getPersistedData().then(data => {
+      if (data) {
+        setValue('grainsPlant1', data?.plantC?.grainsPlant1?.toString() || '');
+        setValue('grainsPlant2', data?.plantC?.grainsPlant2?.toString() || '');
+        setValue('description', data?.plantC?.description || '');
+      }
+    });
+  }, [getPersistedData, setValue]);
 
-  const handleSubmitStepNine = async () => {
-    setLoading(true);
-    try {
-      await createSample(image);
-      navigation.navigate('Plots');
-    } catch (err) {
-      setLoading(false);
-      Alert.alert(
-        'Erro ao cadastrar',
-        'Não foi possivel cadastrar as amostras'
-      );
+  const handleSubmitStepEight = (data: FieldValues) => {
+    const sample: any = {
+      plantC: {
+        grainsPlant1: data.grainsPlant1,
+        grainsPlant2: data.grainsPlant2
+      }
+    };
+    if (data?.description) {
+      sample.plantC.description = data.description;
     }
+    saveStep(sample);
+    navigation.navigate('CreatePlotStepNine');
   };
 
   return (
@@ -53,44 +75,42 @@ export const CreatePlotStepNine: React.FC<
           title={translate('CreatePlotStepNine.title')}
           subtitle={translate('CreatePlotStepNine.subtitle')}
         />
-        <StepIndicator step={2} indicator={8} />
+        <StepIndicator step={1} indicator={6} />
         <FormContainer>
-          {isConnected ? (
-            <>
-              <PictureContainer>
-                <PictureInput
-                  model="RETANGLE"
-                  placeholder="CreatePlotStepNine.imagePlaceholder"
-                  updatePictureLabel="CreatePlotStepNine.imageUpdatePictureLabel"
-                  onPress={handleSelectImage}
-                  uri={image}
-                />
-              </PictureContainer>
-              <NextStepButton>
-                <Button
-                  title="Finalizar"
-                  onPress={handleSubmitStepNine}
-                  showLoadingIndicator={loading}
-                />
-              </NextStepButton>
-            </>
-          ) : (
-            <>
-              <NoNetworkMessage>
-                Você não possui conexão com a internet no momento, retire a foto
-                e deixe salva em seu dispositivo e quando tiver com conexão
-                retorne nesta etapa para finalizar o cadastro, Os dados
-                coletados até este ponto não serão perdidos se sair dessa tela
-              </NoNetworkMessage>
-              <NextStepButton>
-                <Button
-                  title="Ir para Menu principal"
-                  onPress={() => navigation.navigate('Home')}
-                  showLoadingIndicator={loading}
-                />
-              </NextStepButton>
-            </>
-          )}
+          <HelperImageContainer>
+            <StepEightHelperImage source={StepEight} resizeMode="contain" />
+          </HelperImageContainer>
+          <TextInput
+            label="CreatePlotStepNine.sampleA"
+            placeholder={translate('CreatePlotStepNine.samplePlaceholder')}
+            icon="check-square"
+            name="grainsPlant1"
+            control={control}
+            errorMessage={errors?.grainsPlant1?.message}
+          />
+          <TextInput
+            label="CreatePlotStepNine.sampleB"
+            placeholder={translate('CreatePlotStepNine.samplePlaceholder')}
+            icon="check-square"
+            name="grainsPlant2"
+            control={control}
+            errorMessage={errors?.grainsPlant2?.message}
+          />
+          <TextInput
+            label="CreatePlotStepNine.sampleDescription"
+            placeholder={translate(
+              'CreatePlotStepNine.sampleDescriptionPlaceholder'
+            )}
+            icon="check-square"
+            name="description"
+            control={control}
+          />
+          <NextStepButton>
+            <Button
+              title="Continuar"
+              onPress={handleSubmit(handleSubmitStepEight)}
+            />
+          </NextStepButton>
         </FormContainer>
       </Container>
     </ScrollView>

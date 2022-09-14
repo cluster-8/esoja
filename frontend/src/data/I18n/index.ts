@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
-import CreatePlotStepEight from './CreatePlotStepEight';
+import CreatePlotStepEight from './CreatePlotStepNine';
 import CreatePlotStepFive from './CreatePlotStepFive';
 import CreatePlotStepFour from './CreatePlotStepFour';
-import CreatePlotStepNine from './CreatePlotStepNine';
+import CreatePlotStepNine from './CreatePlotStepSix';
 import CreatePlotStepOne from './CreatePlotStepOne';
-import CreatePlotStepSeven from './CreatePlotStepSeven';
-import CreatePlotStepSix from './CreatePlotStepSix';
+import CreatePlotStepSeven from './CreatePlotStepEight';
+import CreatePlotStepSix from './CreatePlotStepSeven';
 import CreatePlotStepThree from './CreatePlotStepThree';
 import CreatePlotStepTwo from './CreatePlotStepTwo';
 import home from './home';

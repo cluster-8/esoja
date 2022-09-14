@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
 import * as yup from 'yup';
-import StepEight from '../../../assets/plot-steps-images/StepSample.png';
+import StepSeven from '../../../assets/plot-steps-images/StepSample.png';
 import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
-import { CreatePlotStepEightScreenRouteProps } from '../../../data/routes/app';
+import { CreatePlotStepSevenScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
 import { translate } from '../../../data/I18n';
 import {
@@ -16,7 +16,7 @@ import {
   FormContainer,
   HelperImageContainer,
   NextStepButton,
-  StepEightHelperImage
+  StepSevenHelperImage
 } from './styles';
 
 const userLogin = yup.object().shape({
@@ -31,7 +31,7 @@ const userLogin = yup.object().shape({
 });
 
 export const CreatePlotStepEight: React.FC<
-  CreatePlotStepEightScreenRouteProps
+  CreatePlotStepSevenScreenRouteProps
 > = ({ navigation }) => {
   const { saveStep, getPersistedData } = useSample();
 
@@ -47,25 +47,25 @@ export const CreatePlotStepEight: React.FC<
   useEffect(() => {
     getPersistedData().then(data => {
       if (data) {
-        setValue('grainsPlant1', data?.plantC?.grainsPlant1?.toString() || '');
-        setValue('grainsPlant2', data?.plantC?.grainsPlant2?.toString() || '');
-        setValue('description', data?.plantC?.description || '');
+        setValue('grainsPlant1', data?.plantB?.grainsPlant1?.toString() || '');
+        setValue('grainsPlant2', data?.plantB?.grainsPlant2?.toString() || '');
+        setValue('description', data?.plantB?.description || '');
       }
     });
   }, [getPersistedData, setValue]);
 
-  const handleSubmitStepEight = (data: FieldValues) => {
+  const handleSubmitStepSeven = (data: FieldValues) => {
     const sample: any = {
-      plantC: {
+      plantB: {
         grainsPlant1: data.grainsPlant1,
         grainsPlant2: data.grainsPlant2
       }
     };
     if (data?.description) {
-      sample.plantC.description = data.description;
+      sample.plantB.description = data.description;
     }
     saveStep(sample);
-    navigation.navigate('CreatePlotStepNine');
+    navigation.navigate('CreatePlotStepEight');
   };
 
   return (
@@ -75,10 +75,10 @@ export const CreatePlotStepEight: React.FC<
           title={translate('CreatePlotStepEight.title')}
           subtitle={translate('CreatePlotStepEight.subtitle')}
         />
-        <StepIndicator step={1} indicator={6} />
+        <StepIndicator step={1} indicator={5} />
         <FormContainer>
           <HelperImageContainer>
-            <StepEightHelperImage source={StepEight} resizeMode="contain" />
+            <StepSevenHelperImage source={StepSeven} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
             label="CreatePlotStepEight.sampleA"
@@ -107,8 +107,8 @@ export const CreatePlotStepEight: React.FC<
           />
           <NextStepButton>
             <Button
-              title="Continuar"
-              onPress={handleSubmit(handleSubmitStepEight)}
+              title={translate('CreatePlotStepEight.buttonTitle')}
+              onPress={handleSubmit(handleSubmitStepSeven)}
             />
           </NextStepButton>
         </FormContainer>

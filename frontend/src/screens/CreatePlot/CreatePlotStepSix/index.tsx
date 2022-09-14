@@ -1,71 +1,49 @@
-import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useEffect } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { ScrollView } from 'react-native';
-import * as yup from 'yup';
-import StepSix from '../../../assets/plot-steps-images/StepSample.png';
+import React, { useState } from 'react';
+import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
+import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
-import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
 import { CreatePlotStepSixScreenRouteProps } from '../../../data/routes/app';
+import { useAuth } from '../../../hooks/useAuth';
 import { useSample } from '../../../hooks/useSample';
+import { useUpload } from '../../../hooks/useUpload';
 import { translate } from '../../../data/I18n';
 import {
   Container,
   FormContainer,
-  HelperImageContainer,
   NextStepButton,
-  StepSixHelperImage
+  NoNetworkMessage,
+  PictureContainer
 } from './styles';
 
-const userLogin = yup.object().shape({
-  grainsPlant1: yup
-    .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade de grãos não pode ser "ZERO"'),
-  grainsPlant2: yup
-    .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade de grãos não pode ser "ZERO"')
-});
+export const CreatePlotStepSix: React.FC<
+  CreatePlotStepSixScreenRouteProps
+> = ({ navigation }) => {
+  const { isConnected } = useAuth();
+  const [image, setImage] = useState('');
+  const [loading, setLoading] = useState(false);
 
-export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
-  navigation
-}) => {
-  const { saveStep, getPersistedData } = useSample();
+  const { createSample } = useSample();
+  const { selectImage } = useUpload();
 
-  const {
-    control,
-    handleSubmit,
-    setValue,
-    formState: { errors }
-  } = useForm({
-    resolver: yupResolver(userLogin)
-  });
+  const handleSelectImage = async () => {
+    const uri = await selectImage();
+    setImage(uri);
+  };
 
-  useEffect(() => {
-    getPersistedData().then(data => {
-      if (data) {
-        setValue('grainsPlant1', data?.plantA?.grainsPlant1?.toString() || '');
-        setValue('grainsPlant2', data?.plantA?.grainsPlant2?.toString() || '');
-        setValue('description', data?.plantA?.description || '');
-      }
-    });
-  }, [getPersistedData, setValue]);
-
-  const handleSubmitStepSix = (data: FieldValues) => {
-    const sample: any = {
-      plantA: {
-        grainsPlant1: data.grainsPlant1,
-        grainsPlant2: data.grainsPlant2
-      }
-    };
-    if (data?.description) {
-      sample.plantA.description = data.description;
+  const handleSubmitStepNine = async () => {
+    setLoading(true);
+    try {
+      await createSample(image);
+      navigation.navigate('Plots');
+    } catch (err) {
+      setLoading(false);
+      Alert.alert(
+        'Erro ao cadastrar',
+        'Não foi possivel cadastrar as amostras'
+      );
     }
-    saveStep(sample);
-    navigation.navigate('CreatePlotStepSeven');
   };
 
   return (
@@ -75,42 +53,44 @@ export const CreatePlotStepSix: React.FC<CreatePlotStepSixScreenRouteProps> = ({
           title={translate('CreatePlotStepSix.title')}
           subtitle={translate('CreatePlotStepSix.subtitle')}
         />
-        <StepIndicator step={1} indicator={4} />
+        <StepIndicator step={2} indicator={8} />
         <FormContainer>
-          <HelperImageContainer>
-            <StepSixHelperImage source={StepSix} resizeMode="contain" />
-          </HelperImageContainer>
-          <TextInput
-            label="CreatePlotStepSix.sampleA"
-            placeholder={translate('CreatePlotStepSix.samplePlaceholder')}
-            icon="check-square"
-            name="grainsPlant1"
-            control={control}
-            errorMessage={errors?.grainsPlant1?.message}
-          />
-          <TextInput
-            label="CreatePlotStepSix.sampleB"
-            placeholder={translate('CreatePlotStepSix.samplePlaceholder')}
-            icon="check-square"
-            name="grainsPlant2"
-            control={control}
-            errorMessage={errors?.grainsPlant2?.message}
-          />
-          <TextInput
-            label="CreatePlotStepSix.sampleDescription"
-            placeholder={translate(
-              'CreatePlotStepSix.sampleDescriptionPlaceholder'
-            )}
-            icon="check-square"
-            name="description"
-            control={control}
-          />
-          <NextStepButton>
-            <Button
-              title="Continuar"
-              onPress={handleSubmit(handleSubmitStepSix)}
-            />
-          </NextStepButton>
+          {isConnected ? (
+            <>
+              <PictureContainer>
+                <PictureInput
+                  model="RETANGLE"
+                  placeholder="CreatePlotStepSix.imagePlaceholder"
+                  updatePictureLabel="CreatePlotStepSix.imageUpdatePictureLabel"
+                  onPress={handleSelectImage}
+                  uri={image}
+                />
+              </PictureContainer>
+              <NextStepButton>
+                <Button
+                  title="Finalizar"
+                  onPress={handleSubmitStepNine}
+                  showLoadingIndicator={loading}
+                />
+              </NextStepButton>
+            </>
+          ) : (
+            <>
+              <NoNetworkMessage>
+                Você não possui conexão com a internet no momento, retire a foto
+                e deixe salva em seu dispositivo e quando tiver com conexão
+                retorne nesta etapa para finalizar o cadastro, Os dados
+                coletados até este ponto não serão perdidos se sair dessa tela
+              </NoNetworkMessage>
+              <NextStepButton>
+                <Button
+                  title="Ir para Menu principal"
+                  onPress={() => navigation.navigate('Home')}
+                  showLoadingIndicator={loading}
+                />
+              </NextStepButton>
+            </>
+          )}
         </FormContainer>
       </Container>
     </ScrollView>
