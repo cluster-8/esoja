@@ -9,7 +9,7 @@ export const Container = styled.View`
   background: ${({ theme }) => theme.colors.background_over};
 `;
 
-export const StepEightHelperImage = styled.Image`
+export const StepSevenHelperImage = styled.Image`
   width: 140px;
   height: 140px;
 `;

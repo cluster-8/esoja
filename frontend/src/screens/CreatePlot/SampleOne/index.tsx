@@ -3,12 +3,12 @@ import React, { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
 import * as yup from 'yup';
-import StepEight from '../../../assets/plot-steps-images/StepSample.png';
+import StepSix from '../../../assets/plot-steps-images/StepSample.png';
 import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
-import { CreatePlotStepEightScreenRouteProps } from '../../../data/routes/app';
+import { PicturePhotosScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
 import { translate } from '../../../data/I18n';
 import {
@@ -16,7 +16,7 @@ import {
   FormContainer,
   HelperImageContainer,
   NextStepButton,
-  StepEightHelperImage
+  StepSixHelperImage
 } from './styles';
 
 const userLogin = yup.object().shape({
@@ -30,9 +30,9 @@ const userLogin = yup.object().shape({
     .min(1, 'Quantidade de grãos não pode ser "ZERO"')
 });
 
-export const CreatePlotStepNine: React.FC<
-  CreatePlotStepEightScreenRouteProps
-> = ({ navigation }) => {
+export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
+  navigation
+}) => {
   const { saveStep, getPersistedData } = useSample();
 
   const {
@@ -47,59 +47,59 @@ export const CreatePlotStepNine: React.FC<
   useEffect(() => {
     getPersistedData().then(data => {
       if (data) {
-        setValue('grainsPlant1', data?.plantC?.grainsPlant1?.toString() || '');
-        setValue('grainsPlant2', data?.plantC?.grainsPlant2?.toString() || '');
-        setValue('description', data?.plantC?.description || '');
+        setValue('grainsPlant1', data?.plantA?.grainsPlant1?.toString() || '');
+        setValue('grainsPlant2', data?.plantA?.grainsPlant2?.toString() || '');
+        setValue('description', data?.plantA?.description || '');
       }
     });
   }, [getPersistedData, setValue]);
 
-  const handleSubmitStepEight = (data: FieldValues) => {
+  const handleSubmitStepSix = (data: FieldValues) => {
     const sample: any = {
-      plantC: {
+      plantA: {
         grainsPlant1: data.grainsPlant1,
         grainsPlant2: data.grainsPlant2
       }
     };
     if (data?.description) {
-      sample.plantC.description = data.description;
+      sample.plantA.description = data.description;
     }
     saveStep(sample);
-    navigation.navigate('CreatePlotStepNine');
+    navigation.navigate('SampleOne');
   };
 
   return (
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepNine.title')}
-          subtitle={translate('CreatePlotStepNine.subtitle')}
+          title={translate('SampleOne.title')}
+          subtitle={translate('SampleOne.subtitle')}
         />
-        <StepIndicator step={1} indicator={6} />
+        <StepIndicator step={1} indicator={4} />
         <FormContainer>
           <HelperImageContainer>
-            <StepEightHelperImage source={StepEight} resizeMode="contain" />
+            <StepSixHelperImage source={StepSix} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="CreatePlotStepNine.sampleA"
-            placeholder={translate('CreatePlotStepNine.samplePlaceholder')}
+            label="SampleOne.sampleA"
+            placeholder={translate('SampleOne.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant1"
             control={control}
             errorMessage={errors?.grainsPlant1?.message}
           />
           <TextInput
-            label="CreatePlotStepNine.sampleB"
-            placeholder={translate('CreatePlotStepNine.samplePlaceholder')}
+            label="SampleOne.sampleB"
+            placeholder={translate('SampleOne.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant2"
             control={control}
             errorMessage={errors?.grainsPlant2?.message}
           />
           <TextInput
-            label="CreatePlotStepNine.sampleDescription"
+            label="SampleOne.sampleDescription"
             placeholder={translate(
-              'CreatePlotStepNine.sampleDescriptionPlaceholder'
+              'SampleOne.sampleDescriptionPlaceholder'
             )}
             icon="check-square"
             name="description"
@@ -108,7 +108,7 @@ export const CreatePlotStepNine: React.FC<
           <NextStepButton>
             <Button
               title="Continuar"
-              onPress={handleSubmit(handleSubmitStepEight)}
+              onPress={handleSubmit(handleSubmitStepSix)}
             />
           </NextStepButton>
         </FormContainer>

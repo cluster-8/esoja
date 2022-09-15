@@ -125,7 +125,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
                     style={{ width: '80%', marginBottom: 'auto' }}
                     title={translate('plots.PlotDetailRegisterSample')}
                     onPress={() =>
-                      navigation.navigate('CreatePlotStepThree', {
+                      navigation.navigate('PlantingDistance', {
                         cultiveId: plot.id
                       })
                     }

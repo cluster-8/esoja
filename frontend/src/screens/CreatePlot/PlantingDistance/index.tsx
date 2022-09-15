@@ -8,7 +8,7 @@ import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
-import { CreatePlotStepThreeScreenRouteProps } from '../../../data/routes/app';
+import { PlantingDistanceScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
 import { translate } from '../../../data/I18n';
 import {
@@ -26,8 +26,8 @@ const stepThree = yup.object().shape({
     .min(1, 'Distancia deve ser maior que "ZERO"')
 });
 
-export const CreatePlotStepThree: React.FC<
-  CreatePlotStepThreeScreenRouteProps
+export const PlantingDistance: React.FC<
+  PlantingDistanceScreenRouteProps
 > = ({ navigation, route }) => {
   const { cultiveId } = route.params;
   const { saveStep, getPersistedData } = useSample();
@@ -53,15 +53,15 @@ export const CreatePlotStepThree: React.FC<
   const handleSubmitStepThree = (data: FieldValues) => {
     data.cultiveId = cultiveId;
     saveStep(data);
-    navigation.navigate('CreatePlotStepFour');
+    navigation.navigate('NumberPlants');
   };
 
   return (
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepThree.title')}
-          subtitle={translate('CreatePlotStepThree.subtitle')}
+          title={translate('PlantingDistance.title')}
+          subtitle={translate('PlantingDistance.subtitle')}
         />
         <StepIndicator step={0} indicator={1} />
         <FormContainer>
@@ -69,9 +69,9 @@ export const CreatePlotStepThree: React.FC<
             <StepThreeHelperImage source={StepThree} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="CreatePlotStepThree.distanceBetweenLines"
+            label="PlantingDistance.distanceBetweenLines"
             placeholder={translate(
-              'CreatePlotStepThree.distanceBetweenLinesPlaceholder'
+              'PlantingDistance.distanceBetweenLinesPlaceholder'
             )}
             icon="check-square"
             keyboardType="numeric"

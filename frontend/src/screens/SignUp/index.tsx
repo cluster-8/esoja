@@ -10,7 +10,7 @@ import Title from '../../components/Title';
 import { SignUpScreenRouteProps } from '../../data/routes/auth';
 import { useAuth } from '../../hooks/useAuth';
 import { useUpload } from '../../hooks/useUpload';
-import { PictureContainer } from '../CreatePlot/CreatePlotStepSix/styles';
+import { PictureContainer } from '../CreatePlot/PicturePhotos/styles';
 import { Container, FormContainer, NextStepButton } from './styles';
 import { translate } from '../../data/I18n';
 

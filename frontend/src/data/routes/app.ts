@@ -17,16 +17,16 @@ export type AppRoutesParams = {
   };
   Statistics: undefined;
   CreatePlot: undefined;
-  CreatePlotStepOne: undefined;
-  CreatePlotStepTwo: undefined;
-  CreatePlotStepThree: {
+  PlotCoordinates: undefined;
+  PlotIdentification: undefined;
+  PlantingDistance: {
     cultiveId: string;
   };
-  CreatePlotStepFour: undefined;
-  CreatePlotStepFive: undefined;
-  CreatePlotStepSix: undefined;
-  CreatePlotStepSeven: undefined;
-  CreatePlotStepEight: undefined;
+  NumberPlants: undefined;
+  SampleExtraction: undefined;
+  PicturePhotos: undefined;
+  SampleOne: undefined;
+  SampleTwo: undefined;
   CreatePlotStepNine: undefined;
 };
 
@@ -80,39 +80,39 @@ export type StatisticsScreenRouteProps = NativeStackScreenProps<
   'Statistics'
 >;
 
-export type CreatePlotStepOneScreenRouteProps = NativeStackScreenProps<
+export type PlotCoordinatesScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepOne'
+  'PlotCoordinates'
 >;
 
-export type CreatePlotStepTwoScreenRouteProps = NativeStackScreenProps<
+export type PlotIdentificationScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepTwo'
+  'PlotIdentification'
 >;
 
-export type CreatePlotStepThreeScreenRouteProps = NativeStackScreenProps<
+export type PlantingDistanceScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepThree'
+  'PlantingDistance'
 >;
 
-export type CreatePlotStepFourScreenRouteProps = NativeStackScreenProps<
+export type NumberPlantsScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepFour'
+  'NumberPlants'
 >;
 
-export type CreatePlotStepFiveScreenRouteProps = NativeStackScreenProps<
+export type SampleExtractionScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepFive'
+  'SampleExtraction'
 >;
 
-export type CreatePlotStepSevenScreenRouteProps = NativeStackScreenProps<
+export type SampleOneScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepSeven'
+  'SampleOne'
 >;
 
-export type CreatePlotStepEightScreenRouteProps = NativeStackScreenProps<
+export type SampleTwoScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepEight'
+  'SampleTwo'
 >;
 
 export type CreatePlotStepNineScreenRouteProps = NativeStackScreenProps<
@@ -120,7 +120,7 @@ export type CreatePlotStepNineScreenRouteProps = NativeStackScreenProps<
   'CreatePlotStepNine'
 >;
 
-export type CreatePlotStepSixScreenRouteProps = NativeStackScreenProps<
+export type PicturePhotosScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepSix'
+  'PicturePhotos'
 >;

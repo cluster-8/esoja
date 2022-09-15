@@ -14,7 +14,7 @@ import { TextInputMask } from '../../../components/TextInputMask';
 import Title from '../../../components/Title';
 import { translate } from '../../../data/I18n';
 import { SelectOptions } from '../../../data/Model/SelectOptions';
-import { CreatePlotStepTwoScreenRouteProps } from '../../../data/routes/app';
+import { PlotIdentificationScreenRouteProps } from '../../../data/routes/app';
 import { useAuth } from '../../../hooks/useAuth';
 import { usePlot } from '../../../hooks/usePlot';
 import { useProperty } from '../../../hooks/useProperty';
@@ -29,7 +29,7 @@ const stepTwo = yup.object().shape({
     .min(9, 'Formato invalido ex: 2019/2020)')
 });
 
-export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
+export const PlotIdentification: React.FC<PlotIdentificationScreenRouteProps> = ({
   navigation
 }) => {
   const [options, setOptions] = useState<SelectOptions[]>([]);
@@ -83,15 +83,15 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepTwo.title')}
-          subtitle={translate('CreatePlotStepTwo.subtitle')}
+          title={translate('PlotIdentification.title')}
+          subtitle={translate('PlotIdentification.subtitle')}
         />
         <StepIndicator step={1} stepNumber={2} />
         <FormContainer>
           {!!options.length && (
             <Select
               placeholder={translate(
-                'CreatePlotStepTwo.fieldPropertyPlaceholder'
+                'PlotIdentification.fieldPropertyPlaceholder'
               )}
               selectedValue={propertyId}
               onValueChange={value =>
@@ -99,14 +99,14 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
               }
               icon="file-text"
               itens={options}
-              label="CreatePlotStepTwo.fieldPropertyLabel"
+              label="PlotIdentification.fieldPropertyLabel"
               error={error}
             />
           )}
 
           <TextInput
-            label="CreatePlotStepTwo.fieldName"
-            placeholder={translate('CreatePlotStepTwo.fieldNamePlaceholder')}
+            label="PlotIdentification.fieldName"
+            placeholder={translate('PlotIdentification.fieldNamePlaceholder')}
             icon="check-square"
             name="description"
             control={control}
@@ -116,15 +116,15 @@ export const CreatePlotStepTwo: React.FC<CreatePlotStepTwoScreenRouteProps> = ({
             name="plantingDate"
             control={control}
             icon="calendar"
-            label="CreatePlotStepTwo.fieldDate"
+            label="PlotIdentification.fieldDate"
             errorMessage={errors?.plantingDate?.message}
-            placeholder={translate('CreatePlotStepTwo.fieldDatePlaceholder')}
+            placeholder={translate('PlotIdentification.fieldDatePlaceholder')}
           />
           <TextInputMask
             mask="9999-9999"
-            label="CreatePlotStepTwo.fieldCropYear"
+            label="PlotIdentification.fieldCropYear"
             placeholder={translate(
-              'CreatePlotStepTwo.fieldCropYearPlaceholder'
+              'PlotIdentification.fieldCropYearPlaceholder'
             )}
             icon="check-square"
             name="cropYear"

@@ -1,6 +1,6 @@
 export default {
   pt: {
-    CreatePlotStepTwo: {
+    PlotIdentification: {
       title: 'Identifique o talhão',
       subtitle: 'Insira um nome e uma descrição para o seu novo talhão',
 
@@ -28,7 +28,7 @@ export default {
     }
   },
   en: {
-    CreatePlotStepTwo: {
+    PlotIdentification: {
       title: 'Identify the field',
       subtitle: 'Enter a name and description for your new field',
 

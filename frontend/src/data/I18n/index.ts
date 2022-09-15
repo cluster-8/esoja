@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
-import CreatePlotStepEight from './CreatePlotStepNine';
-import CreatePlotStepFive from './CreatePlotStepFive';
-import CreatePlotStepFour from './CreatePlotStepFour';
-import CreatePlotStepNine from './CreatePlotStepSix';
-import CreatePlotStepOne from './CreatePlotStepOne';
-import CreatePlotStepSeven from './CreatePlotStepEight';
-import CreatePlotStepSix from './CreatePlotStepSeven';
-import CreatePlotStepThree from './CreatePlotStepThree';
-import CreatePlotStepTwo from './CreatePlotStepTwo';
+import SampleTwo from './SampleThree';
+import SampleExtraction from './SampleExtraction';
+import NumberPlants from './NumberPlants';
+import CreatePlotStepNine from './PicturePhotos';
+import PlotCoordinates from './PlotCoordinates';
+import SampleOne from './SampleTwo';
+import PicturePhotos from './SampleOne';
+import PlantingDistance from './PlantingDistance';
+import PlotIdentification from './PlotIdentification';
 import home from './home';
 import newProperties from './newProperties';
 import plots from './plots';
@@ -40,14 +40,14 @@ export const i18nConfig = () => {
       ...validators.pt,
       ...newProperties.pt,
       ...signUp.pt,
-      ...CreatePlotStepEight.pt,
-      ...CreatePlotStepOne.pt,
-      ...CreatePlotStepTwo.pt,
-      ...CreatePlotStepThree.pt,
-      ...CreatePlotStepFour.pt,
-      ...CreatePlotStepFive.pt,
-      ...CreatePlotStepSix.pt,
-      ...CreatePlotStepSeven.pt,
+      ...SampleTwo.pt,
+      ...PlotCoordinates.pt,
+      ...PlotIdentification.pt,
+      ...PlantingDistance.pt,
+      ...NumberPlants.pt,
+      ...SampleExtraction.pt,
+      ...PicturePhotos.pt,
+      ...SampleOne.pt,
       ...CreatePlotStepNine.pt,
       ...quotation.pt,
       ...statistics.pt
@@ -61,14 +61,14 @@ export const i18nConfig = () => {
       ...validators.en,
       ...newProperties.en,
       ...signUp.en,
-      ...CreatePlotStepEight.en,
-      ...CreatePlotStepOne.en,
-      ...CreatePlotStepOne.en,
-      ...CreatePlotStepThree.en,
-      ...CreatePlotStepFour.en,
-      ...CreatePlotStepFive.en,
-      ...CreatePlotStepSix.en,
-      ...CreatePlotStepSeven.en,
+      ...SampleTwo.en,
+      ...PlotCoordinates.en,
+      ...PlotCoordinates.en,
+      ...PlantingDistance.en,
+      ...NumberPlants.en,
+      ...SampleExtraction.en,
+      ...PicturePhotos.en,
+      ...SampleOne.en,
       ...CreatePlotStepNine.en,
       ...quotation.en,
       ...statistics.en

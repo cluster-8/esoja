@@ -1,6 +1,6 @@
 export default {
   pt: {
-    CreatePlotStepFour: {
+    NumberPlants: {
       title: 'Quantidade de plantas',
       subtitle: 'Informe a quantidade de plantas em "2 metros" lineares',
       plantsNumber: 'Plantas em 2 metros',
@@ -15,7 +15,7 @@ export default {
     }
   },
   en: {
-    CreatePlotStepFour: {
+    NumberPlants: {
       title: 'Number of plants',
       subtitle: 'Enter the number of plants in linear "2 meters"',
       plantsNumber: 'Plants in 2 meters',

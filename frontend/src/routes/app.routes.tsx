@@ -9,15 +9,15 @@ import { useTheme } from 'styled-components';
 import { NavigatorProps } from '.';
 import Logo from '../assets/images/logo-dark.png';
 import { AppRoutesParams } from '../data/routes/app';
-import { CreatePlotStepNine } from '../screens/CreatePlot/CreatePlotStepNine';
-import { CreatePlotStepFive } from '../screens/CreatePlot/CreatePlotStepFive';
-import { CreatePlotStepFour } from '../screens/CreatePlot/CreatePlotStepFour';
-import { CreatePlotStepSix } from '../screens/CreatePlot/CreatePlotStepSix';
-import { CreatePlotStepOne } from '../screens/CreatePlot/CreatePlotStepOne';
-import { CreatePlotStepEight } from '../screens/CreatePlot/CreatePlotStepEight';
-import { CreatePlotStepSeven } from '../screens/CreatePlot/CreatePlotStepSeven';
-import { CreatePlotStepThree } from '../screens/CreatePlot/CreatePlotStepThree';
-import { CreatePlotStepTwo } from '../screens/CreatePlot/CreatePlotStepTwo';
+import { CreatePlotStepNine } from '../screens/CreatePlot/SampleThree';
+import { SampleExtraction } from '../screens/CreatePlot/SampleExtraction';
+import { NumberPlants } from '../screens/CreatePlot/NumberPlants';
+import { PicturePhotos } from '../screens/CreatePlot/PicturePhotos';
+import { PlotCoordinates } from '../screens/CreatePlot/PlotCoordinates';
+import { SampleTwo } from '../screens/CreatePlot/SampleTwo';
+import { SampleOne } from '../screens/CreatePlot/SampleOne';
+import { PlantingDistance } from '../screens/CreatePlot/PlantingDistance';
+import { PlotIdentification } from '../screens/CreatePlot/PlotIdentification';
 import { Home } from '../screens/Home';
 import { NewProperty } from '../screens/NewProperty';
 import { PlotDetail } from '../screens/PlotDetail';
@@ -96,43 +96,43 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         }}
       />
       <Stack.Screen
-        name="CreatePlotStepOne"
-        component={CreatePlotStepOne}
+        name="PlotCoordinates"
+        component={PlotCoordinates}
         options={options}
       />
       <Stack.Screen
-        name="CreatePlotStepTwo"
-        component={CreatePlotStepTwo}
+        name="PlotIdentification"
+        component={PlotIdentification}
         options={options}
       />
       <Stack.Screen
-        name="CreatePlotStepThree"
-        component={CreatePlotStepThree}
+        name="PlantingDistance"
+        component={PlantingDistance}
         options={options}
       />
       <Stack.Screen
-        name="CreatePlotStepFour"
-        component={CreatePlotStepFour}
+        name="NumberPlants"
+        component={NumberPlants}
         options={options}
       />
       <Stack.Screen
-        name="CreatePlotStepFive"
-        component={CreatePlotStepFive}
+        name="SampleExtraction"
+        component={SampleExtraction}
         options={options}
       />
       <Stack.Screen
-        name="CreatePlotStepSix"
-        component={CreatePlotStepSix}
+        name="PicturePhotos"
+        component={PicturePhotos}
         options={options}
       />
       <Stack.Screen
-        name="CreatePlotStepSeven"
-        component={CreatePlotStepSeven}
+        name="SampleOne"
+        component={SampleOne}
         options={options}
       />
       <Stack.Screen
-        name="CreatePlotStepEight"
-        component={CreatePlotStepEight}
+        name="SampleTwo"
+        component={SampleTwo}
         options={options}
       />
       <Stack.Screen
