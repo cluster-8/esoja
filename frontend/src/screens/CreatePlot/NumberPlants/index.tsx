@@ -8,7 +8,7 @@ import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
-import { CreatePlotStepFourScreenRouteProps } from '../../../data/routes/app';
+import { NumberPlantsScreenRouteProps } from '../../../data/routes/app';
 import { useSample } from '../../../hooks/useSample';
 import { translate } from '../../../data/I18n';
 import {
@@ -26,8 +26,8 @@ const stepFour = yup.object().shape({
     .min(1, 'Quantidade deve ser maior que "ZERO"')
 });
 
-export const CreatePlotStepFour: React.FC<
-  CreatePlotStepFourScreenRouteProps
+export const NumberPlants: React.FC<
+  NumberPlantsScreenRouteProps
 > = ({ navigation }) => {
   const { saveStep, getPersistedData } = useSample();
 
@@ -50,15 +50,15 @@ export const CreatePlotStepFour: React.FC<
 
   const handleSubmitStepFour = (data: FieldValues) => {
     saveStep(data);
-    navigation.navigate('CreatePlotStepFive');
+    navigation.navigate('SampleExtraction');
   };
 
   return (
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepFour.title')}
-          subtitle={translate('CreatePlotStepFour.subtitle')}
+          title={translate('NumberPlants.title')}
+          subtitle={translate('NumberPlants.subtitle')}
         />
         <StepIndicator step={1} indicator={2} />
         <FormContainer>
@@ -66,9 +66,9 @@ export const CreatePlotStepFour: React.FC<
             <StepFourHelperImage source={StepFour} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="CreatePlotStepFour.plantsNumber"
+            label="NumberPlants.plantsNumber"
             placeholder={translate(
-              'CreatePlotStepFour.plantsNumberPlaceholder'
+              'NumberPlants.plantsNumberPlaceholder'
             )}
             icon="check-square"
             keyboardType="numeric"
@@ -78,7 +78,7 @@ export const CreatePlotStepFour: React.FC<
           />
           <NextStepButton>
             <Button
-              title={translate('CreatePlotStepFour.continueButton')}
+              title={translate('NumberPlants.continueButton')}
               onPress={handleSubmit(handleSubmitStepFour)}
             />
           </NextStepButton>

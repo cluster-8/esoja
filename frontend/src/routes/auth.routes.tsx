@@ -9,6 +9,7 @@ import { useTheme } from 'styled-components';
 import { NavigatorProps } from '.';
 import { AuthRoutesParams } from '../data/routes/auth';
 import { SignIn } from '../screens/SignIn';
+import { CreatePlotStepNine } from '../screens/CreatePlot/SampleThree';
 import { SignUp } from '../screens/SignUp';
 
 /* import { Splash } from '../pages/Splash';
@@ -54,7 +55,7 @@ export const AuthRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
     >
       <Stack.Screen
         name="SignIn"
-        component={SignIn}
+        component={CreatePlotStepNine}
         options={{ headerShown: false }}
       />
       <Stack.Screen name="SignUp" component={SignUp} options={options} />

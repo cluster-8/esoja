@@ -65,7 +65,7 @@ export const Plots: React.FC<PlotsScreenRouteProps> = ({ navigation }) => {
         )}
       />
       {hasProperties && (
-        <AddButton onPress={() => navigation.navigate('CreatePlotStepOne')}>
+        <AddButton onPress={() => navigation.navigate('PlotCoordinates')}>
           <Icon name="plus" />
         </AddButton>
       )}

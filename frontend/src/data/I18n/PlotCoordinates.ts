@@ -1,6 +1,6 @@
 export default {
   pt: {
-    CreatePlotStepOne: {
+    PlotCoordinates: {
       title: 'Coordenadas do talhão',
       subtitle: 'Desenhe no mapa a área correspondente do talhão',
       ClearButton: 'Limpar',
@@ -17,7 +17,7 @@ export default {
     }
   },
   en: {
-    CreatePlotStepOne: {
+    PlotCoordinates: {
       title: 'Plots coordinates',
       subtitle: 'Draw on the map the corresponding area of the field',
       ClearButton: 'Clear',

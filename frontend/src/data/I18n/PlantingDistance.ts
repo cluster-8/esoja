@@ -1,6 +1,6 @@
 export default {
   pt: {
-    CreatePlotStepThree: {
+    PlantingDistance: {
       title: 'Distância entre linhas de plantio',
       subtitle: 'Informe a distância entre as linhas de plantio em centímetros',
       distanceBetweenLines: 'Distancia entre linhas',
@@ -15,7 +15,7 @@ export default {
     }
   },
   en: {
-    CreatePlotStepThree: {
+    PlantingDistance: {
       title: 'Distance between planting lines',
       subtitle: 'Enter the distance between the planting lines in centimeters',
       distanceBetweenLines: 'Distance between lines',

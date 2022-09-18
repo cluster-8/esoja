@@ -11,7 +11,7 @@ import { StepIndicator } from '../../../components/StepIndicator';
 import { TextInput } from '../../../components/TextInput';
 import Title from '../../../components/Title';
 import { translate } from '../../../data/I18n';
-import { CreatePlotStepOneScreenRouteProps } from '../../../data/routes/app';
+import { PlotCoordinatesScreenRouteProps } from '../../../data/routes/app';
 import { useLocation } from '../../../hooks/useLocation';
 import { usePlot } from '../../../hooks/usePlot';
 import {
@@ -49,7 +49,7 @@ const stepOne = yup.object().shape({
   areaTotal: yup.number().required('Quantidade é obrigatória').min(0.1)
 });
 
-export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
+export const PlotCoordinates: React.FC<PlotCoordinatesScreenRouteProps> = ({
   navigation
 }) => {
   const [mode, setMode] = useState('');
@@ -87,7 +87,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
       );
     }
     localeStep(polygon, data.areaTotal);
-    return navigation.navigate('CreatePlotStepTwo');
+    return navigation.navigate('PlotIdentification');
   };
 
   const getArea = (pol: Coordinates[]) => {
@@ -105,31 +105,31 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepOne.title')}
-          subtitle={translate('CreatePlotStepOne.subtitle')}
+          title={translate('PlotCoordinates.title')}
+          subtitle={translate('PlotCoordinates.subtitle')}
         />
         <StepIndicator step={0} stepNumber={2} />
         <FormContainer>
           {mode === '' && (
             <QuestionStep>
               <QuestionTitle>
-                {translate('CreatePlotStepOne.questionTitle')}
+                {translate('PlotCoordinates.questionTitle')}
               </QuestionTitle>
               <SelectModeContainer>
                 <ButtonCotainer onPress={() => setMode('POLYGON')}>
                   <ButtonTitle>
-                    {translate('CreatePlotStepOne.drawFieldButton')}
+                    {translate('PlotCoordinates.drawFieldButton')}
                   </ButtonTitle>
                   <ButtonMessage>
-                    {translate('CreatePlotStepOne.drawFieldButtonMsg')}
+                    {translate('PlotCoordinates.drawFieldButtonMsg')}
                   </ButtonMessage>
                 </ButtonCotainer>
                 <ButtonCotainer onPress={() => setMode('POINT')}>
                   <ButtonTitle>
-                    {translate('CreatePlotStepOne.markPointButton')}
+                    {translate('PlotCoordinates.markPointButton')}
                   </ButtonTitle>
                   <ButtonMessage>
-                    {translate('CreatePlotStepOne.markPointButtonMsg')}
+                    {translate('PlotCoordinates.markPointButtonMsg')}
                   </ButtonMessage>
                 </ButtonCotainer>
               </SelectModeContainer>
@@ -144,7 +144,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
                   setValue('areaTotal', '');
                 }}
               >
-                <ModeText>{translate('CreatePlotStepOne.modeText')}</ModeText>
+                <ModeText>{translate('PlotCoordinates.modeText')}</ModeText>
               </ModeTag>
               <MapContainer>
                 <ReactNativeMapView
@@ -189,8 +189,8 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
                   </MapButton>
                 )}
                 <TextInput
-                  label="CreatePlotStepOne.title"
-                  placeholder={translate('CreatePlotStepOne.area')}
+                  label="PlotCoordinates.title"
+                  placeholder={translate('PlotCoordinates.area')}
                   icon="check-square"
                   disabled={mode === 'POLYGON'}
                   name="areaTotal"
@@ -202,7 +202,7 @@ export const CreatePlotStepOne: React.FC<CreatePlotStepOneScreenRouteProps> = ({
           )}
           <NextStepButton>
             <Button
-              title={translate('CreatePlotStepOne.ContinueButton')}
+              title={translate('PlotCoordinates.ContinueButton')}
               onPress={handleSubmit(handleSubmitStepOne)}
             />
           </NextStepButton>

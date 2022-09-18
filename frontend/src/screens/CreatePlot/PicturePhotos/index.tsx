@@ -4,7 +4,7 @@ import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
-import { CreatePlotStepSixScreenRouteProps } from '../../../data/routes/app';
+import { PicturePhotosScreenRouteProps } from '../../../data/routes/app';
 import { useAuth } from '../../../hooks/useAuth';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
@@ -17,8 +17,8 @@ import {
   PictureContainer
 } from './styles';
 
-export const CreatePlotStepSix: React.FC<
-  CreatePlotStepSixScreenRouteProps
+export const PicturePhotos: React.FC<
+  PicturePhotosScreenRouteProps
 > = ({ navigation }) => {
   const { isConnected } = useAuth();
   const [image, setImage] = useState('');
@@ -50,8 +50,8 @@ export const CreatePlotStepSix: React.FC<
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepSix.title')}
-          subtitle={translate('CreatePlotStepSix.subtitle')}
+          title={translate('PicturePhotos.title')}
+          subtitle={translate('PicturePhotos.subtitle')}
         />
         <StepIndicator step={2} indicator={8} />
         <FormContainer>
@@ -60,8 +60,8 @@ export const CreatePlotStepSix: React.FC<
               <PictureContainer>
                 <PictureInput
                   model="RETANGLE"
-                  placeholder="CreatePlotStepSix.imagePlaceholder"
-                  updatePictureLabel="CreatePlotStepSix.imageUpdatePictureLabel"
+                  placeholder="PicturePhotos.imagePlaceholder"
+                  updatePictureLabel="PicturePhotos.imageUpdatePictureLabel"
                   onPress={handleSelectImage}
                   uri={image}
                 />

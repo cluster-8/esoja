@@ -5,7 +5,7 @@ import { Button } from '../../../components/Button';
 import { StepIndicator } from '../../../components/StepIndicator';
 import Title from '../../../components/Title';
 import { translate } from '../../../data/I18n';
-import { CreatePlotStepFiveScreenRouteProps } from '../../../data/routes/app';
+import { SampleExtractionScreenRouteProps } from '../../../data/routes/app';
 import {
   Container,
   FormContainer,
@@ -14,19 +14,19 @@ import {
   StepFiveHelperImage
 } from './styles';
 
-export const CreatePlotStepFive: React.FC<
-  CreatePlotStepFiveScreenRouteProps
+export const SampleExtraction: React.FC<
+  SampleExtractionScreenRouteProps
 > = ({ navigation }) => {
   const handleSubmitStepFive = () => {
-    navigation.navigate('CreatePlotStepSix');
+    navigation.navigate('PicturePhotos');
   };
 
   return (
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepFive.title')}
-          subtitle={translate('CreatePlotStepFive.subtitle')}
+          title={translate('SampleExtraction.title')}
+          subtitle={translate('SampleExtraction.subtitle')}
         />
         <StepIndicator step={1} indicator={3} />
         <FormContainer>
@@ -35,7 +35,7 @@ export const CreatePlotStepFive: React.FC<
           </HelperImageContainer>
           <NextStepButton>
             <Button
-              title={translate('CreatePlotStepFive.continueButton')}
+              title={translate('SampleExtraction.continueButton')}
               onPress={handleSubmitStepFive}
             />
           </NextStepButton>
