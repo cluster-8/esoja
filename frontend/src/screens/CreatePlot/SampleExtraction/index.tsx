@@ -14,10 +14,11 @@ import {
   StepFiveHelperImage
 } from './styles';
 
+//Passo 5 ou 3B
 export const SampleExtraction: React.FC<
   SampleExtractionScreenRouteProps
 > = ({ navigation }) => {
-  const handleSubmitStepFive = () => {
+  const handleSampleExtraction = () => {
     navigation.navigate('PicturePhotos');
   };
 
@@ -28,7 +29,7 @@ export const SampleExtraction: React.FC<
           title={translate('SampleExtraction.title')}
           subtitle={translate('SampleExtraction.subtitle')}
         />
-        <StepIndicator step={1} indicator={3} />
+        <StepIndicator step={1} indicator={2} />
         <FormContainer>
           <HelperImageContainer>
             <StepFiveHelperImage source={StepFive} resizeMode="contain" />
@@ -36,7 +37,7 @@ export const SampleExtraction: React.FC<
           <NextStepButton>
             <Button
               title={translate('SampleExtraction.continueButton')}
-              onPress={handleSubmitStepFive}
+              onPress={handleSampleExtraction}
             />
           </NextStepButton>
         </FormContainer>

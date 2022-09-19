@@ -17,6 +17,7 @@ import {
   PictureContainer
 } from './styles';
 
+//Passo 6 ou 4B
 export const PicturePhotos: React.FC<
   PicturePhotosScreenRouteProps
 > = ({ navigation }) => {
@@ -32,11 +33,11 @@ export const PicturePhotos: React.FC<
     setImage(uri);
   };
 
-  const handleSubmitStepNine = async () => {
+  const handlePicturePhotos = async () => {
     setLoading(true);
     try {
       await createSample(image);
-      navigation.navigate('Plots');
+      navigation.navigate('SampleOne');
     } catch (err) {
       setLoading(false);
       Alert.alert(
@@ -53,7 +54,7 @@ export const PicturePhotos: React.FC<
           title={translate('PicturePhotos.title')}
           subtitle={translate('PicturePhotos.subtitle')}
         />
-        <StepIndicator step={2} indicator={8} />
+        <StepIndicator step={1} indicator={3} />
         <FormContainer>
           {isConnected ? (
             <>
@@ -69,7 +70,7 @@ export const PicturePhotos: React.FC<
               <NextStepButton>
                 <Button
                   title="Finalizar"
-                  onPress={handleSubmitStepNine}
+                  onPress={handlePicturePhotos}
                   showLoadingIndicator={loading}
                 />
               </NextStepButton>

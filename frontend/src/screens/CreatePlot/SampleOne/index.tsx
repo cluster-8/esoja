@@ -19,7 +19,7 @@ import {
   StepSixHelperImage
 } from './styles';
 
-const userLogin = yup.object().shape({
+const sampleOne = yup.object().shape({
   grainsPlant1: yup
     .number()
     .required('Quantidade é obrigatória')
@@ -30,6 +30,7 @@ const userLogin = yup.object().shape({
     .min(1, 'Quantidade de grãos não pode ser "ZERO"')
 });
 
+//Passo 7 ou 5B
 export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
   navigation
 }) => {
@@ -41,7 +42,7 @@ export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(userLogin)
+    resolver: yupResolver(sampleOne)
   });
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
     });
   }, [getPersistedData, setValue]);
 
-  const handleSubmitStepSix = (data: FieldValues) => {
+  const handlePicturePhotos = (data: FieldValues) => {
     const sample: any = {
       plantA: {
         grainsPlant1: data.grainsPlant1,
@@ -108,7 +109,7 @@ export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
           <NextStepButton>
             <Button
               title="Continuar"
-              onPress={handleSubmit(handleSubmitStepSix)}
+              onPress={handleSubmit(handlePicturePhotos)}
             />
           </NextStepButton>
         </FormContainer>

@@ -19,7 +19,7 @@ import {
   StepEightHelperImage
 } from './styles';
 
-const userLogin = yup.object().shape({
+const sampleThree = yup.object().shape({
   grainsPlant1: yup
     .number()
     .required('Quantidade é obrigatória')
@@ -30,6 +30,7 @@ const userLogin = yup.object().shape({
     .min(1, 'Quantidade de grãos não pode ser "ZERO"')
 });
 
+//Passo 9 ou 7B
 export const SampleThree: React.FC<
   SampleTwoScreenRouteProps
 > = ({ navigation }) => {
@@ -41,7 +42,7 @@ export const SampleThree: React.FC<
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(userLogin)
+    resolver: yupResolver(sampleThree)
   });
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export const SampleThree: React.FC<
     });
   }, [getPersistedData, setValue]);
 
-  const handleSubmitStepEight = (data: FieldValues) => {
+  const handleSampleThree = (data: FieldValues) => {
     const sample: any = {
       plantC: {
         grainsPlant1: data.grainsPlant1,
@@ -65,7 +66,8 @@ export const SampleThree: React.FC<
       sample.plantC.description = data.description;
     }
     saveStep(sample);
-    navigation.navigate('SampleThree');
+    navigation.navigate('Plots');
+
   };
 
   return (
@@ -75,11 +77,8 @@ export const SampleThree: React.FC<
           title={translate('SampleThree.title')}
           subtitle={translate('SampleThree.subtitle')}
         />
-        <StepIndicator step={1} indicator={6} />
+        <StepIndicator step={2} indicator={6} />
         <FormContainer>
-          <HelperImageContainer>
-            <StepEightHelperImage source={StepEight} resizeMode="contain" />
-          </HelperImageContainer>
           <TextInput
             label="SampleThree.sampleA"
             placeholder={translate('SampleThree.samplePlaceholder')}
@@ -108,7 +107,7 @@ export const SampleThree: React.FC<
           <NextStepButton>
             <Button
               title="Continuar"
-              onPress={handleSubmit(handleSubmitStepEight)}
+              onPress={handleSubmit(handleSampleThree)}
             />
           </NextStepButton>
         </FormContainer>

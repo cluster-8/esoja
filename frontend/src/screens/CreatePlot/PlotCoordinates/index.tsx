@@ -45,10 +45,11 @@ const initialRegion = {
   longitudeDelta: 0.005
 };
 
-const stepOne = yup.object().shape({
+const plotCoordinates = yup.object().shape({
   areaTotal: yup.number().required('Quantidade é obrigatória').min(0.1)
 });
 
+//Passo 1
 export const PlotCoordinates: React.FC<PlotCoordinatesScreenRouteProps> = ({
   navigation
 }) => {
@@ -66,7 +67,7 @@ export const PlotCoordinates: React.FC<PlotCoordinatesScreenRouteProps> = ({
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(stepOne)
+    resolver: yupResolver(plotCoordinates)
   });
 
   const getCurrentCoordinates = useCallback(async () => {

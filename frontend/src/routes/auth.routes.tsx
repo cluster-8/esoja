@@ -11,8 +11,6 @@ import { AuthRoutesParams } from '../data/routes/auth';
 import { SignIn } from '../screens/SignIn';
 import { SignUp } from '../screens/SignUp';
 
-/* import { Splash } from '../pages/Splash';
- */
 const Stack = createNativeStackNavigator<AuthRoutesParams>();
 
 export const AuthRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
