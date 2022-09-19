@@ -27,7 +27,7 @@ export type AppRoutesParams = {
   PicturePhotos: undefined;
   SampleOne: undefined;
   SampleTwo: undefined;
-  CreatePlotStepNine: undefined;
+  SampleThree: undefined;
 };
 
 export type HomeScreenRouteProps = NativeStackScreenProps<
@@ -117,7 +117,7 @@ export type SampleTwoScreenRouteProps = NativeStackScreenProps<
 
 export type CreatePlotStepNineScreenRouteProps = NativeStackScreenProps<
   AppRoutesParams,
-  'CreatePlotStepNine'
+  'SampleThree'
 >;
 
 export type PicturePhotosScreenRouteProps = NativeStackScreenProps<

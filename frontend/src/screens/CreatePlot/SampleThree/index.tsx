@@ -30,7 +30,7 @@ const userLogin = yup.object().shape({
     .min(1, 'Quantidade de grãos não pode ser "ZERO"')
 });
 
-export const CreatePlotStepNine: React.FC<
+export const SampleThree: React.FC<
   SampleTwoScreenRouteProps
 > = ({ navigation }) => {
   const { saveStep, getPersistedData } = useSample();
@@ -65,15 +65,15 @@ export const CreatePlotStepNine: React.FC<
       sample.plantC.description = data.description;
     }
     saveStep(sample);
-    navigation.navigate('CreatePlotStepNine');
+    navigation.navigate('SampleThree');
   };
 
   return (
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepNine.title')}
-          subtitle={translate('CreatePlotStepNine.subtitle')}
+          title={translate('SampleThree.title')}
+          subtitle={translate('SampleThree.subtitle')}
         />
         <StepIndicator step={1} indicator={6} />
         <FormContainer>
@@ -81,25 +81,25 @@ export const CreatePlotStepNine: React.FC<
             <StepEightHelperImage source={StepEight} resizeMode="contain" />
           </HelperImageContainer>
           <TextInput
-            label="CreatePlotStepNine.sampleA"
-            placeholder={translate('CreatePlotStepNine.samplePlaceholder')}
+            label="SampleThree.sampleA"
+            placeholder={translate('SampleThree.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant1"
             control={control}
             errorMessage={errors?.grainsPlant1?.message}
           />
           <TextInput
-            label="CreatePlotStepNine.sampleB"
-            placeholder={translate('CreatePlotStepNine.samplePlaceholder')}
+            label="SampleThree.sampleB"
+            placeholder={translate('SampleThree.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant2"
             control={control}
             errorMessage={errors?.grainsPlant2?.message}
           />
           <TextInput
-            label="CreatePlotStepNine.sampleDescription"
+            label="SampleThree.sampleDescription"
             placeholder={translate(
-              'CreatePlotStepNine.sampleDescriptionPlaceholder'
+              'SampleThree.sampleDescriptionPlaceholder'
             )}
             icon="check-square"
             name="description"
