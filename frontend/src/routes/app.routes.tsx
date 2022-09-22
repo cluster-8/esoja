@@ -9,7 +9,7 @@ import { useTheme } from 'styled-components';
 import { NavigatorProps } from '.';
 import Logo from '../assets/images/logo-dark.png';
 import { AppRoutesParams } from '../data/routes/app';
-import { CreatePlotStepNine } from '../screens/CreatePlot/SampleThree';
+import { SampleThree } from '../screens/CreatePlot/SampleThree';
 import { SampleExtraction } from '../screens/CreatePlot/SampleExtraction';
 import { NumberPlants } from '../screens/CreatePlot/NumberPlants';
 import { PicturePhotos } from '../screens/CreatePlot/PicturePhotos';
@@ -136,8 +136,8 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         options={options}
       />
       <Stack.Screen
-        name="CreatePlotStepNine"
-        component={CreatePlotStepNine}
+        name="SampleThree"
+        component={SampleThree}
         options={options}
       />
       <Stack.Screen

@@ -20,7 +20,7 @@ import { usePlot } from '../../../hooks/usePlot';
 import { useProperty } from '../../../hooks/useProperty';
 import { Container, FormContainer, NextStepButton } from './styles';
 
-const stepTwo = yup.object().shape({
+const plotIdentification = yup.object().shape({
   description: yup.string().required('Nome é obrigatório'),
   plantingDate: yup.date().required('Data de plantio é obrigatória'),
   cropYear: yup
@@ -29,6 +29,7 @@ const stepTwo = yup.object().shape({
     .min(9, 'Formato invalido ex: 2019/2020)')
 });
 
+//Passo 2
 export const PlotIdentification: React.FC<PlotIdentificationScreenRouteProps> = ({
   navigation
 }) => {
@@ -41,13 +42,13 @@ export const PlotIdentification: React.FC<PlotIdentificationScreenRouteProps> = 
     handleSubmit,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(stepTwo)
+    resolver: yupResolver(plotIdentification)
   });
 
   const { authUser } = useAuth();
   const { getProperties } = useProperty();
 
-  const handleSubmitStepTwo = async (data: FieldValues) => {
+  const handlePlotIdentification = async (data: FieldValues) => {
     if (propertyId === 'default') {
       return setError('Propriedade é obrigatória');
     }
@@ -134,7 +135,7 @@ export const PlotIdentification: React.FC<PlotIdentificationScreenRouteProps> = 
           <NextStepButton>
             <Button
               title="Finalizar"
-              onPress={handleSubmit(handleSubmitStepTwo)}
+              onPress={handleSubmit(handlePlotIdentification)}
             />
           </NextStepButton>
         </FormContainer>

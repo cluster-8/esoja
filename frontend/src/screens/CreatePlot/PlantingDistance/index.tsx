@@ -19,13 +19,14 @@ import {
   StepThreeHelperImage
 } from './styles';
 
-const stepThree = yup.object().shape({
+const plantingDistance = yup.object().shape({
   metersBetweenPlants: yup
     .number()
     .required('Distancia é obrigatória')
     .min(1, 'Distancia deve ser maior que "ZERO"')
 });
 
+//Passo 3 ou 1 B
 export const PlantingDistance: React.FC<
   PlantingDistanceScreenRouteProps
 > = ({ navigation, route }) => {
@@ -37,7 +38,7 @@ export const PlantingDistance: React.FC<
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(stepThree)
+    resolver: yupResolver(plantingDistance)
   });
 
   useEffect(() => {
@@ -50,7 +51,7 @@ export const PlantingDistance: React.FC<
       }
     });
   }, [getPersistedData, setValue]);
-  const handleSubmitStepThree = (data: FieldValues) => {
+  const handlePlantingDistance = (data: FieldValues) => {
     data.cultiveId = cultiveId;
     saveStep(data);
     navigation.navigate('NumberPlants');
@@ -82,7 +83,7 @@ export const PlantingDistance: React.FC<
           <NextStepButton>
             <Button
               title="Continuar"
-              onPress={handleSubmit(handleSubmitStepThree)}
+              onPress={handleSubmit(handlePlantingDistance)}
             />
           </NextStepButton>
         </FormContainer>

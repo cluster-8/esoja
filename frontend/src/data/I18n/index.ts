@@ -4,7 +4,7 @@ import i18n from 'i18n-js';
 import SampleTwo from './SampleThree';
 import SampleExtraction from './SampleExtraction';
 import NumberPlants from './NumberPlants';
-import CreatePlotStepNine from './PicturePhotos';
+import SampleThree from './PicturePhotos';
 import PlotCoordinates from './PlotCoordinates';
 import SampleOne from './SampleTwo';
 import PicturePhotos from './SampleOne';
@@ -48,7 +48,7 @@ export const i18nConfig = () => {
       ...SampleExtraction.pt,
       ...PicturePhotos.pt,
       ...SampleOne.pt,
-      ...CreatePlotStepNine.pt,
+      ...SampleThree.pt,
       ...quotation.pt,
       ...statistics.pt
     },
@@ -69,7 +69,7 @@ export const i18nConfig = () => {
       ...SampleExtraction.en,
       ...PicturePhotos.en,
       ...SampleOne.en,
-      ...CreatePlotStepNine.en,
+      ...SampleThree.en,
       ...quotation.en,
       ...statistics.en
     }

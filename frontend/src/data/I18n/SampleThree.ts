@@ -1,6 +1,6 @@
 export default {
   pt: {
-    CreatePlotStepNine: {
+    SampleThree: {
       title: 'Amostra 3',
       subtitle: 'Repita o passso anterior, essa sera a ultima amostra',
       sampleA: 'Quantidade total de grãos na planta A',
@@ -18,7 +18,7 @@ export default {
     }
   },
   en: {
-    CreatePlotStepNine: {
+    SampleThree: {
       title: 'Sample 3',
       subtitle: 'Repeat the previous step, this will be the last sample',
       sampleA: 'Total amount of grains in plant A',

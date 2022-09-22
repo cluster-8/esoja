@@ -19,13 +19,14 @@ import {
   StepFourHelperImage
 } from './styles';
 
-const stepFour = yup.object().shape({
+const numberPlants = yup.object().shape({
   plantsPerMeter: yup
     .number()
     .required('Quantidade é obrigatória')
     .min(1, 'Quantidade deve ser maior que "ZERO"')
 });
 
+//Passo 4 ou 2B
 export const NumberPlants: React.FC<
   NumberPlantsScreenRouteProps
 > = ({ navigation }) => {
@@ -37,7 +38,7 @@ export const NumberPlants: React.FC<
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(stepFour)
+    resolver: yupResolver(numberPlants)
   });
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export const NumberPlants: React.FC<
     });
   }, [getPersistedData, setValue]);
 
-  const handleSubmitStepFour = (data: FieldValues) => {
+  const handleNumberPlants = (data: FieldValues) => {
     saveStep(data);
     navigation.navigate('SampleExtraction');
   };
@@ -60,7 +61,7 @@ export const NumberPlants: React.FC<
           title={translate('NumberPlants.title')}
           subtitle={translate('NumberPlants.subtitle')}
         />
-        <StepIndicator step={1} indicator={2} />
+        <StepIndicator step={1} indicator={1} />
         <FormContainer>
           <HelperImageContainer>
             <StepFourHelperImage source={StepFour} resizeMode="contain" />
@@ -79,7 +80,7 @@ export const NumberPlants: React.FC<
           <NextStepButton>
             <Button
               title={translate('NumberPlants.continueButton')}
-              onPress={handleSubmit(handleSubmitStepFour)}
+              onPress={handleSubmit(handleNumberPlants)}
             />
           </NextStepButton>
         </FormContainer>

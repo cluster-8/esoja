@@ -19,7 +19,7 @@ import {
   StepEightHelperImage
 } from './styles';
 
-const userLogin = yup.object().shape({
+const sampleThree = yup.object().shape({
   grainsPlant1: yup
     .number()
     .required('Quantidade é obrigatória')
@@ -30,7 +30,8 @@ const userLogin = yup.object().shape({
     .min(1, 'Quantidade de grãos não pode ser "ZERO"')
 });
 
-export const CreatePlotStepNine: React.FC<
+//Passo 9 ou 7B
+export const SampleThree: React.FC<
   SampleTwoScreenRouteProps
 > = ({ navigation }) => {
   const { saveStep, getPersistedData } = useSample();
@@ -41,7 +42,7 @@ export const CreatePlotStepNine: React.FC<
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(userLogin)
+    resolver: yupResolver(sampleThree)
   });
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export const CreatePlotStepNine: React.FC<
     });
   }, [getPersistedData, setValue]);
 
-  const handleSubmitStepEight = (data: FieldValues) => {
+  const handleSampleThree = (data: FieldValues) => {
     const sample: any = {
       plantC: {
         grainsPlant1: data.grainsPlant1,
@@ -65,41 +66,39 @@ export const CreatePlotStepNine: React.FC<
       sample.plantC.description = data.description;
     }
     saveStep(sample);
-    navigation.navigate('CreatePlotStepNine');
+    navigation.navigate('Plots');
+
   };
 
   return (
     <ScrollView>
       <Container>
         <Title
-          title={translate('CreatePlotStepNine.title')}
-          subtitle={translate('CreatePlotStepNine.subtitle')}
+          title={translate('SampleThree.title')}
+          subtitle={translate('SampleThree.subtitle')}
         />
-        <StepIndicator step={1} indicator={6} />
+        <StepIndicator step={2} indicator={6} />
         <FormContainer>
-          <HelperImageContainer>
-            <StepEightHelperImage source={StepEight} resizeMode="contain" />
-          </HelperImageContainer>
           <TextInput
-            label="CreatePlotStepNine.sampleA"
-            placeholder={translate('CreatePlotStepNine.samplePlaceholder')}
+            label="SampleThree.sampleA"
+            placeholder={translate('SampleThree.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant1"
             control={control}
             errorMessage={errors?.grainsPlant1?.message}
           />
           <TextInput
-            label="CreatePlotStepNine.sampleB"
-            placeholder={translate('CreatePlotStepNine.samplePlaceholder')}
+            label="SampleThree.sampleB"
+            placeholder={translate('SampleThree.samplePlaceholder')}
             icon="check-square"
             name="grainsPlant2"
             control={control}
             errorMessage={errors?.grainsPlant2?.message}
           />
           <TextInput
-            label="CreatePlotStepNine.sampleDescription"
+            label="SampleThree.sampleDescription"
             placeholder={translate(
-              'CreatePlotStepNine.sampleDescriptionPlaceholder'
+              'SampleThree.sampleDescriptionPlaceholder'
             )}
             icon="check-square"
             name="description"
@@ -108,7 +107,7 @@ export const CreatePlotStepNine: React.FC<
           <NextStepButton>
             <Button
               title="Continuar"
-              onPress={handleSubmit(handleSubmitStepEight)}
+              onPress={handleSubmit(handleSampleThree)}
             />
           </NextStepButton>
         </FormContainer>

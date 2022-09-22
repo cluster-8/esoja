@@ -19,7 +19,7 @@ import {
   StepSevenHelperImage
 } from './styles';
 
-const userLogin = yup.object().shape({
+const sampleTwo = yup.object().shape({
   grainsPlant1: yup
     .number()
     .required('Quantidade é obrigatória')
@@ -30,6 +30,7 @@ const userLogin = yup.object().shape({
     .min(1, 'Quantidade de grãos não pode ser "ZERO"')
 });
 
+//Passo 8 ou 6B
 export const SampleTwo: React.FC<
   SampleOneScreenRouteProps
 > = ({ navigation }) => {
@@ -41,7 +42,7 @@ export const SampleTwo: React.FC<
     setValue,
     formState: { errors }
   } = useForm({
-    resolver: yupResolver(userLogin)
+    resolver: yupResolver(sampleTwo)
   });
 
   useEffect(() => {
@@ -54,7 +55,7 @@ export const SampleTwo: React.FC<
     });
   }, [getPersistedData, setValue]);
 
-  const handleSubmitStepSeven = (data: FieldValues) => {
+  const handleSampleTwo = (data: FieldValues) => {
     const sample: any = {
       plantB: {
         grainsPlant1: data.grainsPlant1,
@@ -108,7 +109,7 @@ export const SampleTwo: React.FC<
           <NextStepButton>
             <Button
               title={translate('SampleTwo.buttonTitle')}
-              onPress={handleSubmit(handleSubmitStepSeven)}
+              onPress={handleSubmit(handleSampleTwo)}
             />
           </NextStepButton>
         </FormContainer>
