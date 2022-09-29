@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
+import { PropertyModal } from '../../../components/PropertyModal';
+
 import Title from '../../../components/Title';
 import { PicturePhotosScreenRouteProps } from '../../../data/routes/app';
 import { useAuth } from '../../../hooks/useAuth';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
 import { translate } from '../../../data/I18n';
+import { Property } from '../../../data/Model/Property';
+
 import {
   Container,
   FormContainer,
@@ -16,6 +20,7 @@ import {
   NoNetworkMessage,
   PictureContainer
 } from './styles';
+import { CenteredView, CloseButton, CloseButtonIcon, LocationList, ModalStyled, ModalView, TitleStyled } from '../../../components/PropertyModal/styles';
 
 //Passo 6 ou 4B
 export const PicturePhotos: React.FC<
@@ -24,6 +29,8 @@ export const PicturePhotos: React.FC<
   const { isConnected } = useAuth();
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+  const [propertyList, setPropertyList] = useState<Property[]>([]);
 
   const { createSample } = useSample();
   const { selectImage } = useUpload();
@@ -47,6 +54,14 @@ export const PicturePhotos: React.FC<
     }
   };
 
+    const handleSelectProperty = useCallback(
+    async (property: Property) => {
+      console.log('aaaaaaaaa');
+      
+    },
+    []
+  );
+
   return (
     <ScrollView>
       <Container>
@@ -63,7 +78,7 @@ export const PicturePhotos: React.FC<
                   model="RETANGLE"
                   placeholder="PicturePhotos.imagePlaceholder"
                   updatePictureLabel="PicturePhotos.imageUpdatePictureLabel"
-                  onPress={handleSelectImage}
+                  onPress={() => setModalVisible(!modalVisible)}
                   uri={image}
                 />
               </PictureContainer>
@@ -91,6 +106,23 @@ export const PicturePhotos: React.FC<
           )}
         </FormContainer>
       </Container>
+      <ModalStyled
+      animationType="slide"
+      transparent
+      visible={modalVisible}
+      onRequestClose={() => {
+        setModalVisible(!modalVisible);
+      }}
+    >
+      <CenteredView>
+        <ModalView>
+          <CloseButton onPress={()=>{setModalVisible(!modalVisible)}}>
+            <CloseButtonIcon name="x-circle" />
+          </CloseButton>
+          <TitleStyled>modal</TitleStyled>
+        </ModalView>
+      </CenteredView>
+    </ModalStyled>
     </ScrollView>
   );
 };
