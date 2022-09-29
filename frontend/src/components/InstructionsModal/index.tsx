@@ -1,9 +1,11 @@
 import React from 'react';
+import { Button } from 'react-native';
+import { Text } from 'react-native-paper';
 import { Property } from '../../data/Model/Property';
+import { PictureContainer } from '../../screens/CreatePlot/PicturePhotos/styles';
+import { PictureInput } from '../PictureInput';
 import {
-  CenteredView,
-  CloseButton,
-  CloseButtonIcon,
+  FullView,
   ModalStyled,
   ModalView,
   TitleStyled
@@ -31,14 +33,21 @@ export const InstructionsModal: React.FC<InstructionsModalProps> = ({
         setModalVisible();
       }}
     >
-      <CenteredView>
+      <FullView>
         <ModalView>
-          <CloseButton onPress={setModalVisible}>
-            <CloseButtonIcon name="x-circle" />
-          </CloseButton>
+          <Button title='Entendido' onPress={setModalVisible} />
           <TitleStyled>Instruções foto</TitleStyled>
+          <PictureContainer >
+            <PictureInput
+                  model="RETANGLE"
+                  placeholder="PicturePhotos.imagePlaceholder"
+                  updatePictureLabel="PicturePhotos.imageUpdatePictureLabel"
+                  onPress={() => {}}
+                />
+          </PictureContainer>
+          <Text>Texto com instruções</Text>
         </ModalView>
-      </CenteredView>
+      </FullView>
     </ModalStyled>
   );
 };
