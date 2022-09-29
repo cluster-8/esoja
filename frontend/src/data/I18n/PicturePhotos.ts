@@ -14,7 +14,8 @@ export default {
       subtitle: 'Take a photo of all the plants used in the samples',
       imagePlaceholder: 'Add image',
       imageUpdatePictureLabel: 'Change image',
-      finishButton: 'Finish'
+      finishButton: 'Finish',
+      menuPrincipal:'Go to Menu'
     }
   }
 };

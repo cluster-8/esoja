@@ -41,7 +41,7 @@ export const PicturePhotos: React.FC<
     } catch (err) {
       setLoading(false);
       Alert.alert(
-        'Erro ao cadastrar',
+        'Error when registering',
         'Não foi possivel cadastrar as amostras'
       );
     }
@@ -78,14 +78,11 @@ export const PicturePhotos: React.FC<
           ) : (
             <>
               <NoNetworkMessage>
-                Você não possui conexão com a internet no momento, retire a foto
-                e deixe salva em seu dispositivo e quando tiver com conexão
-                retorne nesta etapa para finalizar o cadastro, Os dados
-                coletados até este ponto não serão perdidos se sair dessa tela
+                You do not have an internet connection. Save the image and try again later.
               </NoNetworkMessage>
               <NextStepButton>
                 <Button
-                  title="Ir para Menu principal"
+                  title={translate('PicturePhotos.menuPrincipal')}
                   onPress={() => navigation.navigate('Home')}
                   showLoadingIndicator={loading}
                 />
