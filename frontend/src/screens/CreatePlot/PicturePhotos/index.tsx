@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, {  useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
@@ -11,7 +11,6 @@ import { useAuth } from '../../../hooks/useAuth';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
 import { translate } from '../../../data/I18n';
-import { Property } from '../../../data/Model/Property';
 
 import {
   Container,
@@ -20,7 +19,6 @@ import {
   NoNetworkMessage,
   PictureContainer
 } from './styles';
-import { CenteredView, CloseButton, CloseButtonIcon, LocationList, ModalStyled, ModalView, TitleStyled } from '../../../components/PropertyModal/styles';
 
 //Passo 6 ou 4B
 export const PicturePhotos: React.FC<
@@ -30,7 +28,6 @@ export const PicturePhotos: React.FC<
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
-  const [propertyList, setPropertyList] = useState<Property[]>([]);
 
   const { createSample } = useSample();
   const { selectImage } = useUpload();
@@ -53,14 +50,6 @@ export const PicturePhotos: React.FC<
       );
     }
   };
-
-    const handleSelectProperty = useCallback(
-    async (property: Property) => {
-      console.log('aaaaaaaaa');
-      
-    },
-    []
-  );
 
   return (
     <ScrollView>
