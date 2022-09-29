@@ -8,7 +8,8 @@ import {
   FullView,
   ModalStyled,
   ModalView,
-  TitleStyled
+  TitleStyled,
+  InstructionsImage
 } from './styles';
 
 export interface InstructionsModalProps {
@@ -38,12 +39,7 @@ export const InstructionsModal: React.FC<InstructionsModalProps> = ({
           <Button title='Entendido' onPress={setModalVisible} />
           <TitleStyled>Instruções foto</TitleStyled>
           <PictureContainer >
-            <PictureInput
-                  model="RETANGLE"
-                  placeholder="PicturePhotos.imagePlaceholder"
-                  updatePictureLabel="PicturePhotos.imageUpdatePictureLabel"
-                  onPress={() => {}}
-                />
+            <InstructionsImage />
           </PictureContainer>
           <Text>Texto com instruções</Text>
         </ModalView>
