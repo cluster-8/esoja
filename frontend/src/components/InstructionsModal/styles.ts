@@ -1,6 +1,5 @@
-import { Feather } from '@expo/vector-icons';
 import styled from 'styled-components/native';
-import { RFFontSize, RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
+import { RFHeight } from '../../utils/getResponsiveSizes';
 
 export const FullView = styled.View`
   flex: 1;
