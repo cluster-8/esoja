@@ -9,19 +9,16 @@ import {
   TitleStyled
 } from './styles';
 
-export interface PropertyModalProps {
+export interface InstructionsModalProps {
   modalVisible: boolean;
   setModalVisible: () => unknown;
-  setSelectedProperty: (property: Property) => void;
 }
 
-export const PropertyModal: React.FC<PropertyModalProps> = ({
+export const InstructionsModal: React.FC<InstructionsModalProps> = ({
   modalVisible = false,
   setModalVisible,
-  setSelectedProperty
 }) => {
   const handleClick = (item: Property) => {
-    setSelectedProperty(item);
     setModalVisible();
   };
 
