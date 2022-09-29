@@ -3,7 +3,7 @@ import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
-import { PropertyModal } from '../../../components/PropertyModal';
+import { InstructionsModal } from '../../../components/InstructionsModal';
 
 import Title from '../../../components/Title';
 import { PicturePhotosScreenRouteProps } from '../../../data/routes/app';
@@ -106,23 +106,7 @@ export const PicturePhotos: React.FC<
           )}
         </FormContainer>
       </Container>
-      <ModalStyled
-      animationType="slide"
-      transparent
-      visible={modalVisible}
-      onRequestClose={() => {
-        setModalVisible(!modalVisible);
-      }}
-    >
-      <CenteredView>
-        <ModalView>
-          <CloseButton onPress={()=>{setModalVisible(!modalVisible)}}>
-            <CloseButtonIcon name="x-circle" />
-          </CloseButton>
-          <TitleStyled>modal</TitleStyled>
-        </ModalView>
-      </CenteredView>
-    </ModalStyled>
+      <InstructionsModal modalVisible={modalVisible} setModalVisible={()=>setModalVisible(!modalVisible)}  />
     </ScrollView>
   );
 };
