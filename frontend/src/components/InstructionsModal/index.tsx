@@ -26,8 +26,8 @@ export const InstructionsModal: React.FC<InstructionsModalProps> = ({
   goToSelectImage
 }) => {
   const handleClick = () => {
-    goToSelectImage();
     setModalVisible();
+    goToSelectImage();
   };
 
   return (
