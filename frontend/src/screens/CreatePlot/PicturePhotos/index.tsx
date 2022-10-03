@@ -34,8 +34,19 @@ export const PicturePhotos: React.FC<
 
   const handleSelectImage = async () => {
     const uri = await selectImage();
+    if(!uri){
+      errorNoAccess();
+      return;
+    }
     setImage(uri);
   };
+
+  const errorNoAccess = ()=>{
+    Alert.alert(
+        translate("error.cameraAccessDenial.title"),
+        translate("error.cameraAccessDenial.description")
+      );
+  }
 
   const handlePicturePhotos = async () => {
     setLoading(true);
