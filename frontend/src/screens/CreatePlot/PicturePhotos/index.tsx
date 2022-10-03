@@ -73,7 +73,7 @@ export const PicturePhotos: React.FC<
               </PictureContainer>
               <NextStepButton>
                 <Button
-                  title="Finalizar"
+                  title={translate("PicturePhotos.finishButton")}
                   onPress={handlePicturePhotos}
                   showLoadingIndicator={loading}
                 />
