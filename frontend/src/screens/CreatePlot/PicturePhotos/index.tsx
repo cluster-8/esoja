@@ -95,7 +95,7 @@ export const PicturePhotos: React.FC<
           )}
         </FormContainer>
       </Container>
-      <InstructionsModal modalVisible={modalVisible} setModalVisible={()=>setModalVisible(!modalVisible)}  />
+      <InstructionsModal modalVisible={modalVisible} goToSelectImage={handleSelectImage} setModalVisible={()=>setModalVisible(!modalVisible)}  />
     </ScrollView>
   );
 };

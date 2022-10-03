@@ -27,11 +27,13 @@ export const Button = styled.Pressable`
 export const TitleStyled = styled.Text`
   font-weight: bold;
   text-align: center;
-  margin-top: 8px;
-  margin-bottom: 12px;
   font-size: 20px;
   color: ${({ theme }) => theme.colors.text};
 `;
+
+export const TextInstructions = styled.Text`
+  font-size:16px
+`
 
 export const TextStyled = styled.Text`
   color: white;
