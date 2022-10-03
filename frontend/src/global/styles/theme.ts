@@ -1,5 +1,6 @@
 import backgroundLight from '../../assets/images/background-esoja-light.png';
 import backgroundDark from '../../assets/images/background-esoja.png';
+import sojaImage from "../../assets/images/soja.png"
 import EsojaLogoDarkImg from '../../assets/images/logo-dark.png';
 // import EsojaLogoLightImg from '../../assets/images/logo-light.png';
 import fonts from './fonts';
@@ -22,7 +23,8 @@ export default {
     },
     images: {
       esoja_logo: EsojaLogoDarkImg,
-      background: backgroundLight
+      background: backgroundLight,
+      soja:sojaImage
     },
     ...fonts
   },
@@ -43,7 +45,8 @@ export default {
     },
     images: {
       esoja_logo: EsojaLogoDarkImg,
-      background: backgroundDark
+      background: backgroundDark,
+      soja:sojaImage
     },
     ...fonts
   }

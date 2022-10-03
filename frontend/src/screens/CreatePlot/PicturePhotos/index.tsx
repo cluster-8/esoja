@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { Alert, ScrollView } from 'react-native';
 import { Button } from '../../../components/Button';
 import { PictureInput } from '../../../components/PictureInput';
 import { StepIndicator } from '../../../components/StepIndicator';
+import { InstructionsModal } from '../../../components/InstructionsModal';
+
 import Title from '../../../components/Title';
 import { PicturePhotosScreenRouteProps } from '../../../data/routes/app';
 import { useAuth } from '../../../hooks/useAuth';
 import { useSample } from '../../../hooks/useSample';
 import { useUpload } from '../../../hooks/useUpload';
 import { translate } from '../../../data/I18n';
+
 import {
   Container,
   FormContainer,
@@ -24,14 +27,26 @@ export const PicturePhotos: React.FC<
   const { isConnected } = useAuth();
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
 
   const { createSample } = useSample();
   const { selectImage } = useUpload();
 
   const handleSelectImage = async () => {
     const uri = await selectImage();
+    if(!uri){
+      errorNoAccess();
+      return;
+    }
     setImage(uri);
   };
+
+  const errorNoAccess = ()=>{
+    Alert.alert(
+        translate("error.cameraAccessDenial.title"),
+        translate("error.cameraAccessDenial.description")
+      );
+  }
 
   const handlePicturePhotos = async () => {
     setLoading(true);
@@ -41,7 +56,7 @@ export const PicturePhotos: React.FC<
     } catch (err) {
       setLoading(false);
       Alert.alert(
-        'Erro ao cadastrar',
+        'Error when registering',
         'Não foi possivel cadastrar as amostras'
       );
     }
@@ -63,13 +78,13 @@ export const PicturePhotos: React.FC<
                   model="RETANGLE"
                   placeholder="PicturePhotos.imagePlaceholder"
                   updatePictureLabel="PicturePhotos.imageUpdatePictureLabel"
-                  onPress={handleSelectImage}
+                  onPress={() => setModalVisible(!modalVisible)}
                   uri={image}
                 />
               </PictureContainer>
               <NextStepButton>
                 <Button
-                  title="Finalizar"
+                  title={translate("PicturePhotos.finishButton")}
                   onPress={handlePicturePhotos}
                   showLoadingIndicator={loading}
                 />
@@ -78,14 +93,11 @@ export const PicturePhotos: React.FC<
           ) : (
             <>
               <NoNetworkMessage>
-                Você não possui conexão com a internet no momento, retire a foto
-                e deixe salva em seu dispositivo e quando tiver com conexão
-                retorne nesta etapa para finalizar o cadastro, Os dados
-                coletados até este ponto não serão perdidos se sair dessa tela
+                You do not have an internet connection. Save the image and try again later.
               </NoNetworkMessage>
               <NextStepButton>
                 <Button
-                  title="Ir para Menu principal"
+                  title={translate('PicturePhotos.menuPrincipal')}
                   onPress={() => navigation.navigate('Home')}
                   showLoadingIndicator={loading}
                 />
@@ -94,6 +106,7 @@ export const PicturePhotos: React.FC<
           )}
         </FormContainer>
       </Container>
+      <InstructionsModal modalVisible={modalVisible} goToSelectImage={handleSelectImage} setModalVisible={()=>setModalVisible(!modalVisible)}  />
     </ScrollView>
   );
 };
