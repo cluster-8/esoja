@@ -3,7 +3,6 @@ import { Button } from 'react-native';
 import { Text } from 'react-native-paper';
 import { Property } from '../../data/Model/Property';
 import { PictureContainer } from '../../screens/CreatePlot/PicturePhotos/styles';
-import { PictureInput } from '../PictureInput';
 import {
   FullView,
   ModalStyled,

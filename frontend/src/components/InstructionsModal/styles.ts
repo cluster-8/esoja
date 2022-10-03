@@ -43,11 +43,10 @@ export const ModalText = styled.Text`
   text-align: center;
 `;
 
-const instructionsImageSize = RFHeight(50)
+const instructionsImageHeight = RFHeight(500)
 
-export const InstructionsImage = styled.Image.attrs(({ theme }) => ({
+export const InstructionsImage:any = styled.Image.attrs(({ theme }) => ({
   source: theme.images.soja
 }))`
-  width: ${instructionsImageSize}px;
-  height: ${instructionsImageSize}px;
+  height: ${instructionsImageHeight}px;
 `;

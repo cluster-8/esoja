@@ -23,7 +23,8 @@ export default {
     },
     images: {
       esoja_logo: EsojaLogoDarkImg,
-      background: backgroundLight
+      background: backgroundLight,
+      soja:sojaImage
     },
     ...fonts
   },
