@@ -107,9 +107,8 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
 
   const getGrainsEstimation = useCallback(
     async ()=>{
-        // const fullData: Sample = await getPersistedData();
-        // const grains = await api2.get(`/getGrains/${fullData?.cultiveId}`)
-        const grains = await api2.get(`/getGrains/${2}`)
+        const fullData: Sample = await getPersistedData();
+        const grains = await api2.get(`/getGrains/${fullData?.cultiveId}`)
         return grains.data;
     },[]
   )
