@@ -2,6 +2,7 @@ import React from 'react';
 import { Text,Button } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { PictureContainer } from '../../screens/CreatePlot/PicturePhotos/styles';
+import { translate } from '../../data/I18n';
 
 import {
   FullView,
@@ -41,21 +42,21 @@ export const InstructionsModal: React.FC<InstructionsModalProps> = ({
       <FullView>
         <ModalView>
           <ScrollView>
-          <TitleStyled>Instruções</TitleStyled>
+          <TitleStyled>{translate("InstructionsModal.title")}</TitleStyled>
           <PictureContainer >
             <InstructionsImage />
           </PictureContainer>
           <TextInstructions>
-            - Tenha certeza de enquadrar a planta toda na foto
+            - {translate("InstructionsModal.frameWholePlant")}
             {"\n"}
-            - Arrume a planta de forma que todas as vagens sejam visiveis
+            - {translate("InstructionsModal.tidyUpPlant")}
             {"\n"}
-            - Coloque a soja sobre um plano de cor que não seja verde
+            - {translate("InstructionsModal.doNotUseGreenBackground")}
           </TextInstructions>
           <Text>
             {"\n"}
           </Text>
-          <Button title='Entendido' onPress={handleClick} />
+          <Button title={translate("InstructionsModal.understood")} onPress={handleClick} />
           </ScrollView>
         </ModalView>
       </FullView>

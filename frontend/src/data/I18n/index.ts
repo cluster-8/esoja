@@ -20,6 +20,7 @@ import signUp from './signUp';
 import validators from './validators';
 import weather from './weather';
 import statistics from './statistics';
+import instructionsModal from './InstructionsModal'
 
 interface LanguageProps {
   [key: string]: {
@@ -50,7 +51,8 @@ export const i18nConfig = () => {
       ...SampleOne.pt,
       ...SampleThree.pt,
       ...quotation.pt,
-      ...statistics.pt
+      ...statistics.pt,
+      ...instructionsModal.pt
     },
     'en-US': {
       ...signIn.en,
@@ -71,7 +73,8 @@ export const i18nConfig = () => {
       ...SampleOne.en,
       ...SampleThree.en,
       ...quotation.en,
-      ...statistics.en
+      ...statistics.en,
+      ...instructionsModal.en,
     }
   };
   i18n.translations = {
