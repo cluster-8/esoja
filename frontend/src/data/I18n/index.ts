@@ -21,6 +21,7 @@ import validators from './validators';
 import weather from './weather';
 import statistics from './statistics';
 import instructionsModal from './InstructionsModal'
+import error from './error'
 
 interface LanguageProps {
   [key: string]: {
@@ -52,7 +53,8 @@ export const i18nConfig = () => {
       ...SampleThree.pt,
       ...quotation.pt,
       ...statistics.pt,
-      ...instructionsModal.pt
+      ...instructionsModal.pt,
+      ...error.pt
     },
     'en-US': {
       ...signIn.en,
@@ -75,6 +77,7 @@ export const i18nConfig = () => {
       ...quotation.en,
       ...statistics.en,
       ...instructionsModal.en,
+      ...error.en
     }
   };
   i18n.translations = {
