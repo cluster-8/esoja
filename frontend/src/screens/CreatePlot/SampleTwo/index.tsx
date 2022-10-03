@@ -34,7 +34,7 @@ const sampleTwo = yup.object().shape({
 export const SampleTwo: React.FC<
   SampleOneScreenRouteProps
 > = ({ navigation }) => {
-  const { saveStep, getPersistedData } = useSample();
+  const { saveStep, getPersistedData,getGrainsEstimation } = useSample();
 
   const {
     control,
@@ -45,6 +45,12 @@ export const SampleTwo: React.FC<
     resolver: yupResolver(sampleTwo)
   });
 
+  const handleCallAi = async ()=>{
+    const grains = await getGrainsEstimation();
+    setValue('grainsPlant1', grains.sampleOne.plant1.toString());
+    setValue('grainsPlant2', grains.sampleOne.plant2.toString());
+  }
+
   useEffect(() => {
     getPersistedData().then(data => {
       if (data) {
@@ -53,6 +59,7 @@ export const SampleTwo: React.FC<
         setValue('description', data?.plantB?.description || '');
       }
     });
+    handleCallAi()
   }, [getPersistedData, setValue]);
 
   const handleSampleTwo = (data: FieldValues) => {
