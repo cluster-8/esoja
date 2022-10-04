@@ -113,14 +113,12 @@ export const PlotIdentification: React.FC<PlotIdentificationScreenRouteProps> = 
             control={control}
             errorMessage={errors?.description?.message}
           />
-          <DateInput
-            name="plantingDate"
-            control={control}
+          <TextInput name="plantingDate"
             icon="calendar"
             label="PlotIdentification.fieldDate"
             errorMessage={errors?.plantingDate?.message}
             placeholder={translate('PlotIdentification.fieldDatePlaceholder')}
-          />
+            control={control}  />
           <TextInputMask
             mask="9999-9999"
             label="PlotIdentification.fieldCropYear"
