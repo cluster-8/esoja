@@ -8,7 +8,7 @@ import React, {
   useState
 } from 'react';
 import { FieldValues } from 'react-hook-form';
-import { api } from '../data/services/api';
+import { api, api2 } from '../data/services/api';
 import { useUpload } from './useUpload';
 
 interface Sample {
@@ -37,6 +37,7 @@ interface SampleContextData {
   saveStep: (data: FieldValues) => Promise<void>;
   getPersistedData: () => Promise<Sample | null>;
   createSample: (photoUri: string) => Promise<any>;
+  getGrainsEstimation:()=>Promise<any>;
 }
 
 type SampleContextProps = {
@@ -104,13 +105,22 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     [getPersistedData, pictureUpload]
   );
 
+  const getGrainsEstimation = useCallback(
+    async ()=>{
+        const fullData: Sample = await getPersistedData();
+        const grains = await api2.get(`/getGrains/${fullData?.cultiveId}`)
+        return grains.data;
+    },[]
+  )
+
   const providerValue = useMemo(
     () => ({
       saveStep,
       getPersistedData,
-      createSample
+      createSample,
+      getGrainsEstimation
     }),
-    [saveStep, getPersistedData, createSample]
+    [saveStep, getPersistedData, createSample,getGrainsEstimation]
   );
   return (
     <SampleContext.Provider value={providerValue}>
