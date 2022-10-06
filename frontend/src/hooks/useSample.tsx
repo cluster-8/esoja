@@ -123,7 +123,6 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
             { ...fullData?.plantC, name: 'Amostra 3' }
           ]
         };
-        console.log(newSample);
         
         try {
           await api.post('/sample', newSample);
