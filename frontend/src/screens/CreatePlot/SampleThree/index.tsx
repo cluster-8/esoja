@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { ScrollView } from 'react-native';
 import * as yup from 'yup';
@@ -35,6 +35,7 @@ export const SampleThree: React.FC<
   SampleTwoScreenRouteProps
 > = ({ navigation }) => {
   const { saveStep, getPersistedData,getGrainsEstimation } = useSample();
+  const { createSample } = useSample();
 
   const {
     control,
@@ -53,16 +54,17 @@ export const SampleThree: React.FC<
 
   useEffect(() => {
     getPersistedData().then(data => {
-      if (data) {
+      if (data?.plantC) {
         setValue('grainsPlant1', data?.plantC?.grainsPlant1?.toString() || '');
         setValue('grainsPlant2', data?.plantC?.grainsPlant2?.toString() || '');
         setValue('description', data?.plantC?.description || '');
+      }else{
+        handleCallAi();
       }
     });
-    handleCallAi();
   }, [getPersistedData, setValue]);
 
-  const handleSampleThree = (data: FieldValues) => {
+  const handleSampleThree = async (data: FieldValues) => {
     const sample: any = {
       plantC: {
         grainsPlant1: data.grainsPlant1,
@@ -72,9 +74,10 @@ export const SampleThree: React.FC<
     if (data?.description) {
       sample.plantC.description = data.description;
     }
-    saveStep(sample);
-    navigation.navigate('Plots');
 
+    saveStep(sample);
+    await createSample();
+    navigation.navigate('Plots');
   };
 
   return (

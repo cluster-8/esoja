@@ -27,9 +27,10 @@ export const PicturePhotos: React.FC<
   const { isConnected } = useAuth();
   const [image, setImage] = useState('');
   const [loading, setLoading] = useState(false);
-    const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const { saveImage } = useSample();
 
-  const { createSample } = useSample();
+
   const { selectImage } = useUpload();
 
   const handleSelectImage = async () => {
@@ -51,7 +52,7 @@ export const PicturePhotos: React.FC<
   const handlePicturePhotos = async () => {
     setLoading(true);
     try {
-      await createSample(image);
+      await saveImage(image);
       navigation.navigate('SampleOne');
     } catch (err) {
       setLoading(false);

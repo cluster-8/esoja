@@ -36,8 +36,9 @@ interface Sample {
 interface SampleContextData {
   saveStep: (data: FieldValues) => Promise<void>;
   getPersistedData: () => Promise<Sample | null>;
-  createSample: (photoUri: string) => Promise<any>;
+  createSample: () => Promise<any>;
   getGrainsEstimation:()=>Promise<any>;
+  saveImage:(photoUri:string) => Promise<void>;
 }
 
 type SampleContextProps = {
@@ -78,29 +79,59 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     [sample]
   );
 
-  const createSample = useCallback(
+    const saveImage = useCallback(
     async (photoUri: string) => {
-      const fullData: Sample = await getPersistedData();
-      fullData.photo = await pictureUpload(photoUri, 'sample');
-      const updatePlot = {
-        plantsPerMeter: fullData?.plantsPerMeter,
-        metersBetweenPlants: (Number(fullData?.metersBetweenPlants) || 0) / 100,
-        photo: fullData?.photo
-      };
-      await api.put(
-        `/cultive/sample-information/${fullData?.cultiveId}`,
-        updatePlot
-      );
-      const newSample = {
-        cultiveId: fullData?.cultiveId,
-        samples: [
-          { ...fullData?.plantA, name: 'Amostra 1' },
-          { ...fullData?.plantB, name: 'Amostra 2' },
-          { ...fullData?.plantC, name: 'Amostra 3' }
-        ]
-      };
-      await api.post('/sample', newSample);
-      removeData();
+      const sample2= {...sample,photo:photoUri}
+      setSample(prev => ({ ...prev, ...sample2 }));
+      await persistData({ ...sample, ...sample2 });
+    },
+    [sample]
+  );
+
+  const createSample = useCallback(
+    async () => {
+      
+        const fullData: Sample = await getPersistedData();
+        //arrumar
+        let photo = "https://imgs.search.brave.com/8ZTBfvXb71OwITJ6U3PIWblIynONHr6ddNwpNjZmS9Y/rs:fit:256:256:1/g:ce/aHR0cHM6Ly9zdHls/ZXMucmVkZGl0bWVk/aWEuY29tL3Q1XzJ5/NW91aC9zdHlsZXMv/Y29tbXVuaXR5SWNv/bl93eXdyb3k4bGp6/ZTUxLnBuZz93aWR0/aD0yNTYmcz04YzZk/YWM3MDEwYjc5NDhm/OGE2NzRkZWFmMmZj/NWU5MmY3ZTQ0ZTBm"
+        try {          
+          photo = await pictureUpload(fullData.photo+"", 'sample')+"";
+        } catch (error) {
+          console.log(error.message);
+        }
+
+        const updatePlot = {
+          plantsPerMeter: fullData?.plantsPerMeter,
+          metersBetweenPlants: (Number(fullData?.metersBetweenPlants) || 0) / 100,
+          photo: photo
+        };
+        try {
+  
+          await api.put(
+          `/cultive/sample-information/${fullData?.cultiveId}`,
+          updatePlot
+          );
+        } catch (error) {
+          console.log(error.message);
+        }
+
+        const newSample = {
+          cultiveId: fullData?.cultiveId,
+          samples: [
+            { ...fullData?.plantA, name: 'Amostra 1' },
+            { ...fullData?.plantB, name: 'Amostra 2' },
+            { ...fullData?.plantC, name: 'Amostra 3' }
+          ]
+        };
+        console.log(newSample);
+        
+        try {
+          await api.post('/sample', newSample);
+          removeData();
+        } catch (error) {
+          console.log(error.message);
+          
+        }
     },
     [getPersistedData, pictureUpload]
   );
@@ -118,9 +149,10 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
       saveStep,
       getPersistedData,
       createSample,
-      getGrainsEstimation
+      getGrainsEstimation,
+      saveImage
     }),
-    [saveStep, getPersistedData, createSample,getGrainsEstimation]
+    [saveStep, getPersistedData, createSample,getGrainsEstimation,saveImage]
   );
   return (
     <SampleContext.Provider value={providerValue}>
