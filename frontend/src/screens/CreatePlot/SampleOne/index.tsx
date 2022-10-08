@@ -53,16 +53,17 @@ export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
 
   useEffect(() => {
     getPersistedData().then(data => {
-      if (data) {
+      if (data?.plantA) {
         setValue('grainsPlant1', data?.plantA?.grainsPlant1?.toString() || '');
         setValue('grainsPlant2', data?.plantA?.grainsPlant2?.toString() || '');
         setValue('description', data?.plantA?.description || '');
+      }else{
+        handleCallAi();
       }
     });
-    handleCallAi();
   }, [getPersistedData, setValue]);
 
-  const handlePicturePhotos = (data: FieldValues) => {
+  const handleSampleOne = (data: FieldValues) => {
     const sample: any = {
       plantA: {
         grainsPlant1: data.grainsPlant1,
@@ -73,7 +74,7 @@ export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
       sample.plantA.description = data.description;
     }
     saveStep(sample);
-    navigation.navigate('SampleOne');
+    navigation.navigate('SampleTwo');
   };
 
   return (
@@ -116,7 +117,7 @@ export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
           <NextStepButton>
             <Button
               title="Continuar"
-              onPress={handleSubmit(handlePicturePhotos)}
+              onPress={handleSubmit(handleSampleOne)}
             />
           </NextStepButton>
         </FormContainer>

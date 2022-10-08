@@ -53,13 +53,14 @@ export const SampleTwo: React.FC<
 
   useEffect(() => {
     getPersistedData().then(data => {
-      if (data) {
+      if (data?.plantB) {
         setValue('grainsPlant1', data?.plantB?.grainsPlant1?.toString() || '');
         setValue('grainsPlant2', data?.plantB?.grainsPlant2?.toString() || '');
         setValue('description', data?.plantB?.description || '');
+      }else{
+        handleCallAi()
       }
     });
-    handleCallAi()
   }, [getPersistedData, setValue]);
 
   const handleSampleTwo = (data: FieldValues) => {
@@ -73,7 +74,7 @@ export const SampleTwo: React.FC<
       sample.plantB.description = data.description;
     }
     saveStep(sample);
-    navigation.navigate('SampleTwo');
+    navigation.navigate('SampleThree');
   };
 
   return (
