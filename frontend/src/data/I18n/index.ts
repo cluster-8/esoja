@@ -20,6 +20,7 @@ import signUp from './signUp';
 import validators from './validators';
 import weather from './weather';
 import statistics from './statistics';
+import sample from './sample'
 import instructionsModal from './InstructionsModal'
 import error from './error'
 
@@ -54,7 +55,8 @@ export const i18nConfig = () => {
       ...quotation.pt,
       ...statistics.pt,
       ...instructionsModal.pt,
-      ...error.pt
+      ...error.pt,
+      ...sample.pt,
     },
     'en-US': {
       ...signIn.en,
@@ -77,7 +79,8 @@ export const i18nConfig = () => {
       ...quotation.en,
       ...statistics.en,
       ...instructionsModal.en,
-      ...error.en
+      ...error.en,
+      ...sample.en,
     }
   };
   i18n.translations = {

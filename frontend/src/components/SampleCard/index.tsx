@@ -20,8 +20,8 @@ export const SampleCard: React.FC<SampleCardProps> = ({ sample,updateScreenFunct
       updateScreenFunction();
     } catch (error) {
       Alert.alert(
-            'Erro',
-            'Não foi possível deletar amostra'
+            translate('sample.errorAlertTitle'),
+            translate('sample.deletingError')
           );
     }
     },[sample])
