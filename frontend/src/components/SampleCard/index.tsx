@@ -3,7 +3,7 @@ import { Sample } from '../../data/Model/Sample';
 import { SampleData, SampleInformationContainer, SampleName } from './styles';
 import { translate } from '../../data/I18n';
 import { DeleteButton } from '../../components/DeleteButton';
-import { Alert, } from 'react-native';
+import { Alert, View, } from 'react-native';
 import { useSample } from '../../hooks/useSample';
 
 interface SampleCardProps {
@@ -28,7 +28,7 @@ export const SampleCard: React.FC<SampleCardProps> = ({ sample,updateScreenFunct
 
   return (
     <SampleInformationContainer>
-      <>
+      <View >
         <SampleName>{sample?.name}</SampleName>
         <SampleData>
           {translate('plots.PlotCardPlants.plant1')}: {sample?.grainsPlant1}{' '}
@@ -43,8 +43,8 @@ export const SampleCard: React.FC<SampleCardProps> = ({ sample,updateScreenFunct
             {translate('plots.PlotCardPlants.description')}: {sample?.description}
           </SampleData>
         )}
-      </>
-      <DeleteButton title='Deletar' onPress={()=>{removeSample()}} />
+        </View>
+      <DeleteButton style={{width:75}} title='Deletar' onPress={()=>{removeSample()}} />
     </SampleInformationContainer>
   );
 };
