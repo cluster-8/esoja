@@ -3,6 +3,10 @@ import { RFHeight, RFWidth } from '../../utils/getResponsiveSizes';
 
 export const SampleInformationContainer = styled.View`
   flex: 1;
+  flexDirection: row;
+  flexWrap: wrap;
+  alignItems: center;
+  justify-content: space-between;
   width: 100%;
   padding: ${RFWidth(16)}px;
   background-color: ${({ theme }) => theme.colors.background};
