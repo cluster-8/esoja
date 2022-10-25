@@ -39,6 +39,7 @@ interface SampleContextData {
   createSample: () => Promise<any>;
   getGrainsEstimation:()=>Promise<any>;
   saveImage:(photoUri:string) => Promise<void>;
+  deleteSample:(id:string) => Promise<void>;
 }
 
 type SampleContextProps = {
@@ -135,6 +136,11 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     [getPersistedData, pictureUpload]
   );
 
+  const deleteSample = async (id:string)=>{
+      const res = await api.delete('/sample/'+id);
+      return res;
+  }
+
   const getGrainsEstimation = useCallback(
     async ()=>{
         const fullData: Sample = await getPersistedData();
@@ -149,9 +155,10 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
       getPersistedData,
       createSample,
       getGrainsEstimation,
-      saveImage
+      saveImage,
+      deleteSample
     }),
-    [saveStep, getPersistedData, createSample,getGrainsEstimation,saveImage]
+    [saveStep, getPersistedData, createSample,getGrainsEstimation,saveImage,deleteSample]
   );
   return (
     <SampleContext.Provider value={providerValue}>
