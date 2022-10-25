@@ -133,7 +133,7 @@ export const PlotDetail: React.FC<PlotDetailScreenRouteProps> = ({
                 </>
               )}
               {plot?.samples?.map((sample, index) => (
-                <SampleCard sample={sample} key={index} teste={getData} />
+                <SampleCard sample={sample} key={index} updateScreenFunction={getData} />
               ))}
             </PlotDetailPlotCardContainer>
           </>

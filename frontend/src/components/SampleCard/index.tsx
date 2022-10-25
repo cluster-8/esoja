@@ -7,16 +7,16 @@ import { useSample } from '../../hooks/useSample';
 
 interface SampleCardProps {
   sample: Sample;
-  teste:any;
+  updateScreenFunction:any;
 }
 
-export const SampleCard: React.FC<SampleCardProps> = ({ sample,teste }) => {
+export const SampleCard: React.FC<SampleCardProps> = ({ sample,updateScreenFunction }) => {
   const {deleteSample} = useSample();
 
     const removeSample = useCallback(async ()=>{
     try {
       await deleteSample(sample.id);
-      teste();
+      updateScreenFunction();
     } catch (error) {
       Alert.alert(
             'Erro',
