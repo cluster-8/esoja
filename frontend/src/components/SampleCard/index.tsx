@@ -2,7 +2,8 @@ import React, { useCallback } from 'react';
 import { Sample } from '../../data/Model/Sample';
 import { SampleData, SampleInformationContainer, SampleName } from './styles';
 import { translate } from '../../data/I18n';
-import { Alert, Button } from 'react-native';
+import { DeleteButton } from '../../components/DeleteButton';
+import { Alert, } from 'react-native';
 import { useSample } from '../../hooks/useSample';
 
 interface SampleCardProps {
@@ -43,7 +44,7 @@ export const SampleCard: React.FC<SampleCardProps> = ({ sample,updateScreenFunct
           </SampleData>
         )}
       </>
-      <Button title='Deletar' onPress={()=>{removeSample()}} />
+      <DeleteButton title='Deletar' onPress={()=>{removeSample()}} />
     </SampleInformationContainer>
   );
 };
