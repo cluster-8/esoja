@@ -43,6 +43,15 @@ export const Icon = styled(Feather)<IconProps>`
   }};
 `;
 
+interface IconProps {
+  error?: string;
+  selectedValue: boolean;
+}
+export const TrashIcon = styled(Feather)<IconProps>`
+  font-size: ${RFFontSize(20)}px;
+  color: ${({ theme }) => theme.colors.background_over};
+`;
+
 export const ErrorContainer = styled.View`
   width: 100%;
   flex-direction: row;

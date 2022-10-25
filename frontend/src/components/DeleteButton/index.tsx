@@ -1,6 +1,7 @@
 import React from 'react';
 import { ActivityIndicator } from 'react-native';
-import { ButtonText, RectButton } from './styles';
+import { TrashIcon } from '../Select/styles';
+import { RectButton } from './styles';
 
 interface ButtonProps {
   title: string;
@@ -11,7 +12,6 @@ interface ButtonProps {
 }
 
 export const DeleteButton: React.FC<ButtonProps> = ({
-  title,
   showLoadingIndicator,
   onPress,
   style = {}
@@ -21,7 +21,7 @@ export const DeleteButton: React.FC<ButtonProps> = ({
         {showLoadingIndicator ? (
           <ActivityIndicator size="small" color="red" />
         ) : (
-          <ButtonText type={'primary'}>{title}</ButtonText>
+          <TrashIcon name="trash-2"/>
         )}
       </RectButton>
     );

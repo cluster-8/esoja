@@ -8,10 +8,10 @@ interface TypeProps {
 }
 
 export const RectButton = styled(RectButtonRNGH)`
-  height: ${RFHeight(35)}px;
+  height: ${RFHeight(40)}px;
+  width: ${RFWidth(40)}px;
   border-radius: ${RFHeight(8)}px;
   background: #D03737;
-  margin:5px;
   justify-content: center;
   align-items: center;
 `;
@@ -28,22 +28,5 @@ export const TouchableOpacity = styled.TouchableOpacity<TypeProps>`
     css`
       border-width: ${RFWidth(2)}px;
       border-color: ${({ theme }) => theme.colors.primary};
-    `}
-`;
-
-export const ButtonText = styled.Text<TypeProps>`
-  font-family: ${({ theme }) => theme.fonts.bold};
-  font-size: ${RFFontSize(18)}px;
-
-  ${props =>
-    props.type === 'primary' &&
-    css`
-      color: #ffffff;
-    `}
-
-  ${props =>
-    (props.type === 'secondary' || props.type === 'tertiary') &&
-    css`
-      color: ${({ theme }) => theme.colors.primary};
     `}
 `;
