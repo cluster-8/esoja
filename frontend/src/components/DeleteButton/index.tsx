@@ -4,8 +4,6 @@ import { TrashIcon } from '../Select/styles';
 import { RectButton } from './styles';
 
 interface ButtonProps {
-  title: string;
-  type?: 'primary' | 'secondary' | 'tertiary';
   showLoadingIndicator?: boolean;
   onPress: () => void;
   style?: Record<string, unknown>;

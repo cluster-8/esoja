@@ -44,7 +44,7 @@ export const SampleCard: React.FC<SampleCardProps> = ({ sample,updateScreenFunct
           </SampleData>
         )}
         </View>
-      <DeleteButton style={{width:75}} title='Deletar' onPress={()=>{removeSample()}} />
+      <DeleteButton style={{width:75}} onPress={()=>{removeSample()}} />
     </SampleInformationContainer>
   );
 };
