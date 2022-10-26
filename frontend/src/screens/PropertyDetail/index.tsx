@@ -40,7 +40,7 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
       await deleteProperty(propertyId);
       navigation.navigate('Properties')
     } catch (error) {
-        Alert.alert('Error','deu merda bixo')
+        Alert.alert(translate('properties.error'),translate('properties.thereWasAnErrorDeletingProperty'))
     }
   }
 
