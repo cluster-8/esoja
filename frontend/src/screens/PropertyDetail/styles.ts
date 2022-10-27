@@ -49,3 +49,10 @@ export const PropertyDetailPlotCardContainer = styled.View`
   align-items: center;
   justify-content: flex-start;
 `;
+
+export const ViewBottom = styled.View`
+    flex: 1;
+    justifyContent: flex-end;
+    marginBottom: 36;
+    width:100%;
+`

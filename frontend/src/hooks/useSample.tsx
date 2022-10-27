@@ -39,7 +39,7 @@ interface SampleContextData {
   createSample: () => Promise<any>;
   getGrainsEstimation:()=>Promise<any>;
   saveImage:(photoUri:string) => Promise<void>;
-  deleteSample:(id:string) => Promise<void>;
+  deleteSample:(id:string) => Promise<any>;
 }
 
 type SampleContextProps = {

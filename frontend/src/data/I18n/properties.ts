@@ -10,7 +10,9 @@ export default {
         'Nenhum talhão encontrado para esta propriedade',
       PropertyDetailLoadingProperty: 'Carregando propriedade...',
       PropertyCardFields: 'Talhões cadastrados',
-      PropertyCardNoFields: 'Nenhum talhão cadastrado'
+      PropertyCardNoFields: 'Nenhum talhão cadastrado',
+      thereWasAnErrorDeletingProperty:'Houve um erro ao tentar deletar a propriedade.',
+      error:'Erro'
     }
   },
   en: {
@@ -23,7 +25,9 @@ export default {
       PropertyDetailFieldsNotFound: 'No fields found for this property',
       PropertyDetailLoadingProperty: 'Loading property...',
       PropertyCardFields: 'Registered fields',
-      PropertyCardNoFields: 'No fields registered'
+      PropertyCardNoFields: 'No fields registered',
+      thereWasAnErrorDeletingProperty:'There was an error when attempting to delete property.',
+      error:'Error'
     }
   }
 };

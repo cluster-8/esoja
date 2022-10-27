@@ -15,6 +15,7 @@ interface PropertyContextData {
   createPorperty: (data: FieldValues) => Promise<void>;
   getProperties: (query: Query) => Promise<Property[]>;
   getProperty: (propertyId: string, query: Query) => Promise<Property>;
+  deleteProperty:(id:string) => Promise<any>;
 }
 
 type PropertyContextProps = {
@@ -49,11 +50,17 @@ const PropertyProvider: React.FC<PropertyContextProps> = ({ children }) => {
     return data;
   }, []);
 
+  const deleteProperty = async (id:string)=>{
+    const res = await api.delete('/property/'+id)
+    return res;
+  }
+
   const providerValue = useMemo(
     () => ({
       createPorperty,
       getProperties,
-      getProperty
+      getProperty,
+      deleteProperty
     }),
     [createPorperty, getProperties, getProperty]
   );

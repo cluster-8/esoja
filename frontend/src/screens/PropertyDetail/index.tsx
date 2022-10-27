@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Query } from 'nestjs-prisma-querybuilder-interface';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, View } from 'react-native';
 import { EmptyData } from '../../components/EmptyData';
 import { LoadingIndicator } from '../../components/LoadingIndicator';
 import { PlotCard } from '../../components/PlotCard';
@@ -11,6 +11,7 @@ import { Property } from '../../data/Model/Property';
 import { PropertyDetailScreenRouteProps } from '../../data/routes/app';
 import { useAuth } from '../../hooks/useAuth';
 import { useProperty } from '../../hooks/useProperty';
+import { DeleteButtonLarge } from '../../components//DeleteButtonLarge';
 import { defaultImage } from '../../utils/default';
 import {
   PropertyDetailCardTitle,
@@ -19,7 +20,8 @@ import {
   PropertyDetailHeaderContainer,
   PropertyDetailImage,
   PropertyDetailPlotCardContainer,
-  PropertyDetailTitleContainer
+  PropertyDetailTitleContainer,
+  ViewBottom
 } from './styles';
 
 export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
@@ -31,7 +33,16 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
   const { propertyId } = route.params;
 
   const { isConnected } = useAuth();
-  const { getProperties } = useProperty();
+  const { getProperties,deleteProperty } = useProperty();
+
+  const removeProperty = async ()=>{
+    try {
+      await deleteProperty(propertyId);
+      navigation.navigate('Properties')
+    } catch (error) {
+        Alert.alert(translate('properties.error'),translate('properties.thereWasAnErrorDeletingProperty'))
+    }
+  }
 
   const handleSelectPlot = (plotId: string) => {
     navigation.navigate('PlotDetail', { plotId });
@@ -76,41 +87,45 @@ export const PropertyDetail: React.FC<PropertyDetailScreenRouteProps> = ({
       {property ? (
         <>
           <PropertyDetailHeaderContainer>
-            <PropertyDetailImage
-              source={{ uri: property?.picture || defaultImage }}
-              resizeMode="cover"
-            />
-          </PropertyDetailHeaderContainer>
-          <PropertyDetailTitleContainer>
-            <Title
-              title={
-                property?.name ||
-                translate('properties.PropertyDetailDefaultName')
-              }
-            />
-            <PropertyDetailCity>
-              {property?.city} - {property?.state}
-            </PropertyDetailCity>
-          </PropertyDetailTitleContainer>
-          <PropertyDetailPlotCardContainer>
-            <PropertyDetailCardTitle>
-              {translate('properties.PropertyDetailFields')} {property?.name}
-            </PropertyDetailCardTitle>
-            {property?.cultives?.length === 0 && (
-              <EmptyData
-                message={translate('properties.PropertyDetailFieldsNotFound')}
+              <PropertyDetailImage
+                source={{ uri: property?.picture || defaultImage }}
+                resizeMode="cover"
               />
-            )}
-            {property?.cultives?.map(plot => (
-              <PlotCard plot={plot} key={plot.id} onPress={handleSelectPlot} />
-            ))}
+            </PropertyDetailHeaderContainer>
+            <PropertyDetailTitleContainer>
+              <Title
+                title={
+                  property?.name ||
+                  translate('properties.PropertyDetailDefaultName')
+                }
+              />
+              <PropertyDetailCity>
+                {property?.city} - {property?.state}
+              </PropertyDetailCity>
+            </PropertyDetailTitleContainer>
+            <PropertyDetailPlotCardContainer>
+              <PropertyDetailCardTitle>
+                {translate('properties.PropertyDetailFields')} {property?.name}
+              </PropertyDetailCardTitle>
+              {property?.cultives?.length === 0 && (
+                <EmptyData
+                message={translate('properties.PropertyDetailFieldsNotFound')}
+                />
+                )}
+              {property?.cultives?.map(plot => (
+                <PlotCard plot={plot} key={plot.id} onPress={handleSelectPlot} />
+                ))}
+
+            <ViewBottom>
+              <DeleteButtonLarge onPress={()=>{removeProperty()}}  />
+            </ViewBottom>
           </PropertyDetailPlotCardContainer>
         </>
       ) : (
         <LoadingIndicator
-          message={translate('properties.PropertyDetailLoadingProperty')}
+        message={translate('properties.PropertyDetailLoadingProperty')}
         />
-      )}
+        )}
     </PropertyDetailContainer>
   );
 };
