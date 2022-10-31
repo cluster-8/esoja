@@ -1,4 +1,3 @@
-import storage from '@react-native-firebase/storage';
 import * as ImagePicker from 'expo-image-picker';
 import React, {
   createContext,
@@ -7,6 +6,8 @@ import React, {
   useContext,
   useMemo
 } from 'react';
+import {  api2 } from '../data/services/api';
+
 
 interface UploadContextData {
   pictureUpload: (
@@ -39,13 +40,13 @@ const UploadProvider: React.FC<UploadContextProps> = ({ children }) => {
 
   const pictureUpload = useCallback(
     async (file: string, folderPath: string) => {
-      const extension = file.split('.').pop();
-      const fileName = `${new Date().getTime()}.${extension}`;
-      const reference = storage().ref(`${folderPath}/${fileName}`);
-
       try {
-        await reference.putFile(file);
-        return reference.getDownloadURL();
+        const form:FormData = new FormData();
+        form.append("file", file);
+        form.append("folderPath", folderPath);
+
+        await api2.post(`/upload`,form)
+
       } catch (err) {
         return '';
       }
