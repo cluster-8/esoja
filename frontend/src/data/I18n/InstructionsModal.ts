@@ -14,7 +14,7 @@ export default {
       title:'Instructions',
       frameWholePlant:'Be sure to frame the whole plant in the photo.',
       tidyUpPlant:"Tidy up plant in a way that all pods are visible.",
-      doNotUseGreenBackground:"Put the plant on top of a surface that isn't green",
+      doNotUseGreenBackground:"Put the plant on top of a surface that isn't green.",
       understood:"Understood"
 
     }
