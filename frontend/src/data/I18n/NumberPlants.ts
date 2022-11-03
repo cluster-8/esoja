@@ -11,7 +11,9 @@ export default {
           required: 'Quantidade é obrigatória',
           min: 'Quantidade deve ser maior que "ZERO"'
         }
-      }
+      },
+      required: 'Quantidade é obrigatória',
+      min: 'Quantidade deve ser maior que "ZERO"'
     }
   },
   en: {
@@ -26,7 +28,9 @@ export default {
           required: 'Quantity is required',
           min: 'Quantity must be greater than "ZERO"'
         }
-      }
+      },
+      required: 'Quantity is required',
+      min: 'Quantity must be greater than "ZERO"'
     }
   }
 };

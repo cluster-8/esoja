@@ -101,12 +101,12 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
       datasets: [
         {
           data: balancoHidrico,
-          title: 'Balanco Hidrico',
+          title: translate('statistics.balancHid'),
           color: () => `rgb(6, 15, 139)`
         },
         {
           data: deficienciaHidrica,
-          title: 'Deficiencia Hidrica',
+          title: translate('statistics.deficienciaHid'),
           color: () => `rgb(171, 193, 5)`
         }
       ],
@@ -182,7 +182,7 @@ export const Statistics: React.FC<StatisticsScreenRouteProps> = () => {
     } else {
       Alert.alert(
         translate('statistics.incompleteAlertTitle'),
-        'Registro Nacional do Cultivar é obrigatório!'
+        translate('statistics.register')
       );
     }
   };

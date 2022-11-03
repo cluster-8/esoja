@@ -22,12 +22,12 @@ import {
 const sampleOne = yup.object().shape({
   grainsPlant1: yup
     .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade de grãos não pode ser "ZERO"'),
+    .required(translate('SampleOne.required'))
+    .min(1, translate('SampleOne.min')),
   grainsPlant2: yup
     .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade de grãos não pode ser "ZERO"')
+    .required(translate('SampleOne.required'))
+    .min(1, translate('SampleOne.min'))
 });
 
 //Passo 7 ou 5B

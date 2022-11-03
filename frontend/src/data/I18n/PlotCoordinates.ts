@@ -13,7 +13,12 @@ export default {
       markPointButton: 'Marcar ponto único',
       markPointButtonMsg:
         'Marque o ponto central do tralhao e informe a area manualmente',
-      modeText: 'Alterar modo'
+      modeText: 'Alterar modo',
+      amount:'Quantidade é obrigatória',
+      plot:'Talhão inválido',
+      point:'Marque no minimo 3 pontos ou escolha o modo ponto unico',
+      location:'Localização inválida',
+      plotMap:'Marque o talhão no mapa',
     }
   },
   en: {
@@ -30,7 +35,12 @@ export default {
       markPointButton: 'Mark single point',
       markPointButtonMsg:
         'Mark the center point of the work and enter the area manually',
-      modeText: 'Change mode'
+      modeText: 'Change mode',
+      amount:'Amount is required',
+      plot:'Invalid Plot',
+      point:'Choose at least 3 stitch or single stitch mode',
+      location:'Invalid location',
+      plotMap:'Mark the plot on the map',
     }
   }
 };

@@ -24,7 +24,10 @@ export default {
         productionExpectation: 'Expectativa de Produção',
         rainPreciptation: 'Precipitação',
         water: 'Balanço e Deficiência Hídrica'
-      }
+      },
+      balancoHid:'Balanco Hidrico',
+      deficienciaHid:'Deficiencia Hidrica',
+      register:'Registro Nacional do Cultivar é obrigatório!'
     }
   },
   en: {
@@ -52,7 +55,10 @@ export default {
         productionExpectation: 'Production Expectation',
         rainPreciptation: 'Preciptation',
         water: 'Balance and Water Deficiency'
-      }
+      },
+      balancoHid:'Hydric balance',
+      deficienciaHid:'Water Deficiency',
+      register:'National Cultivar Registration is mandatory!'
     }
   }
 };

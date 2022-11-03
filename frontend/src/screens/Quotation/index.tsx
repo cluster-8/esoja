@@ -3,6 +3,7 @@ import { Alert } from 'react-native';
 import { QuotationScreenRouteProps } from '../../data/routes/app';
 import { Quotation, useHome } from '../../hooks/useHome';
 import { BagQuotation } from './BagQuotation';
+import { translate } from '../../data/I18n';
 import { SeedQuotation } from './SeedQuotation';
 
 export const QuotationPage: React.FC<QuotationScreenRouteProps> = ({
@@ -27,7 +28,7 @@ export const QuotationPage: React.FC<QuotationScreenRouteProps> = ({
         );
         setBagQuotation(bags);
       } catch (err) {
-        Alert.alert('Não foi possivel atualizar os dados ');
+        Alert.alert(translate('quotation.alert'));
       }
     };
     getData();

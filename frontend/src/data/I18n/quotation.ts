@@ -10,7 +10,10 @@ export default {
       bagPrice: 'Preço sc 60kg',
       seedPrice: 'Preço sementes',
       variation: 'Variação',
-      chartTitle: 'Variação do preço da soja R$ (sc 60kg)'
+      chartTitle: 'Variação do preço da soja R$ (sc 60kg)',
+      subtitle: 'Valores baseados no preço da soja disponivel do estado do Mato Grosso do Sul',
+      alert: 'Não foi possivel atualizar os dados'
+      
     }
   },
   en: {
@@ -24,7 +27,9 @@ export default {
       bagPrice: 'Price Bag 60kg',
       seedPrice: 'Price seeds',
       variation: 'Variation',
-      chartTitle: 'Soybean (bag 60kg) price variation'
+      chartTitle: 'Soybean (bag 60kg) price variation',
+      subtitle: 'Values ​​based on the price of available soybeans in the state of Mato Grosso do Sul',
+      alert: 'Unable to update data'
     }
   }
 };

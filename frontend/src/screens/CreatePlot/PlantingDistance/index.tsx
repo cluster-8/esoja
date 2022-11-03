@@ -22,8 +22,8 @@ import {
 const plantingDistance = yup.object().shape({
   metersBetweenPlants: yup
     .number()
-    .required('Distancia é obrigatória')
-    .min(1, 'Distancia deve ser maior que "ZERO"')
+    .required('PlantingDistance.required')
+    .min(1, 'PlantingDistance.min')
 });
 
 //Passo 3 ou 1 B
