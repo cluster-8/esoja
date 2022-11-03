@@ -47,8 +47,10 @@ export const SampleOne: React.FC<PicturePhotosScreenRouteProps> = ({
 
   const handleCallAi = async ()=>{
     const grains = await getGrainsEstimation();
-    setValue('grainsPlant1', grains.sampleOne.plant1.toString());
-    setValue('grainsPlant2', grains.sampleOne.plant2.toString());
+    console.log(grains);
+
+    setValue('grainsPlant1', grains.sample.grains.toString());
+    setValue('grainsPlant2', grains.sample.pods.toString());
   }
 
   useEffect(() => {

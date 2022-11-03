@@ -47,8 +47,9 @@ export const SampleTwo: React.FC<
 
   const handleCallAi = async ()=>{
     const grains = await getGrainsEstimation();
-    setValue('grainsPlant1', grains.sampleTwo.plant1.toString());
-    setValue('grainsPlant2', grains.sampleTwo.plant2.toString());
+    
+    setValue('grainsPlant1', grains.sample.grains.toString());
+    setValue('grainsPlant2', grains.sample.pods.toString());
   }
 
   useEffect(() => {
