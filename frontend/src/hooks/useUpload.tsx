@@ -41,11 +41,11 @@ const UploadProvider: React.FC<UploadContextProps> = ({ children }) => {
   const pictureUpload = useCallback(
     async (file: string, folderPath: string) => {
       try {
-        const form:FormData = new FormData();
-        form.append("file", file);
-        form.append("folderPath", folderPath);
 
-        await api2.post(`/upload`,form)
+        await api2.post(`/upload`,{
+          "file":file,
+          "folderPath":folderPath
+        })
 
       } catch (err) {
         return '';
