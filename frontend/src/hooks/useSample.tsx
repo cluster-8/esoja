@@ -93,8 +93,8 @@ const SampleProvider: React.FC<SampleContextProps> = ({ children }) => {
     async () => {
       
         const fullData: Sample = await getPersistedData();
-        //arrumar
-        let photo = "https://imgs.search.brave.com/8ZTBfvXb71OwITJ6U3PIWblIynONHr6ddNwpNjZmS9Y/rs:fit:256:256:1/g:ce/aHR0cHM6Ly9zdHls/ZXMucmVkZGl0bWVk/aWEuY29tL3Q1XzJ5/NW91aC9zdHlsZXMv/Y29tbXVuaXR5SWNv/bl93eXdyb3k4bGp6/ZTUxLnBuZz93aWR0/aD0yNTYmcz04YzZk/YWM3MDEwYjc5NDhm/OGE2NzRkZWFmMmZj/NWU5MmY3ZTQ0ZTBm"
+        //colocar um link para uma imagem padrão depois
+        let photo="";
         try {          
           photo = await pictureUpload(fullData.photo+"", 'sample')+"";
         } catch (error) {
