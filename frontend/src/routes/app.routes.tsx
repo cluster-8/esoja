@@ -171,7 +171,6 @@ export const AppRoutes: React.FC<NavigatorProps> = ({ screenOptions }) => {
         component={Weather}
         options={{
           ...options,
-          headerStyle: { backgroundColor: 'transparent' },
           headerShadowVisible: true,
           headerTransparent: true
         }}
