@@ -11,7 +11,9 @@ export default {
           required: 'Distancia é obrigatória',
           min: 'Distancia deve ser maior que "ZERO"'
         }
-      }
+      },
+      required: 'Distancia é obrigatória',
+      min: 'Distancia deve ser maior que "ZERO"'
     }
   },
   en: {
@@ -26,7 +28,9 @@ export default {
           required: 'Distance is required',
           min: 'Distance must be greater than "ZERO"'
         }
-      }
+      },
+      required: 'Distance is required',
+      min: 'Distance must be greater than "ZERO"'
     }
   }
 };

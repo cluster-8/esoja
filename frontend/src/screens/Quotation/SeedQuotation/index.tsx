@@ -74,7 +74,7 @@ export const SeedQuotation: React.FC<SeedQuotationProps> = ({
         <Header>
           <Title
             title={translate('quotation.seedPageTitle')}
-            subtitle="Valores baseados no preço da semente convencional do estado do Mato Grosso do Sul"
+            subtitle={translate('quotation.subtitle')}
           />
         </Header>
         <ListHeaderContainer>

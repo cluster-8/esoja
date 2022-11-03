@@ -46,7 +46,7 @@ const initialRegion = {
 };
 
 const plotCoordinates = yup.object().shape({
-  areaTotal: yup.number().required('Quantidade é obrigatória').min(0.1)
+  areaTotal: yup.number().required('PlotCoordinates.amount').min(0.1)
 });
 
 //Passo 1
@@ -79,12 +79,12 @@ export const PlotCoordinates: React.FC<PlotCoordinatesScreenRouteProps> = ({
 
   const handleSubmitStepOne = (data: FieldValues) => {
     if (!polygon.length) {
-      return Alert.alert('Localização invalida', 'Marque o talhão no mapa ');
+      return Alert.alert(translate('PlotCoordinates.location'),translate('PlotCoordinates.plotMap'));
     }
     if (mode === 'POLYGON' && polygon.length < 3) {
       return Alert.alert(
-        'Talhão invalido',
-        'Marque no minimo 3 pontos ou escolha o modo ponto unico'
+        translate('PlotCoordinates.plot'),
+        translate('PlotCoordinates.point')
       );
     }
     localeStep(polygon, data.areaTotal);

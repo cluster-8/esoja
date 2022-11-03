@@ -22,8 +22,8 @@ import {
 const numberPlants = yup.object().shape({
   plantsPerMeter: yup
     .number()
-    .required('Quantidade é obrigatória')
-    .min(1, 'Quantidade deve ser maior que "ZERO"')
+    .required(translate('Numberplants.required'))
+    .min(1, 'Numberplants.min')
 });
 
 //Passo 4 ou 2B

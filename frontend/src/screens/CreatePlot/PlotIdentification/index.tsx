@@ -21,12 +21,12 @@ import { useProperty } from '../../../hooks/useProperty';
 import { Container, FormContainer, NextStepButton } from './styles';
 
 const plotIdentification = yup.object().shape({
-  description: yup.string().required('Nome é obrigatório'),
-  plantingDate: yup.date().required('Data de plantio é obrigatória'),
+  description: yup.string().required(translate('PlotIdentification.nameRequired')),
+  plantingDate: yup.date().required(translate('PlotIdentification.date')),
   cropYear: yup
     .string()
-    .required('Ano Safra é obrigatório')
-    .min(9, 'Formato invalido ex: 2019/2020)')
+    .required(translate('PlotIdentification.date'))
+    .min(9, translate('PlotIdentification.format'))
 });
 
 //Passo 2
@@ -50,14 +50,14 @@ export const PlotIdentification: React.FC<PlotIdentificationScreenRouteProps> = 
 
   const handlePlotIdentification = async (data: FieldValues) => {
     if (propertyId === 'default') {
-      return setError('Propriedade é obrigatória');
+      return setError(translate('PlotIdentification.property'));
     }
     data.plantingDate = format(new Date(data.plantingDate), 'yyyy-MM-dd');
     try {
       await createPlot({ ...data, propertyId });
       return navigation.navigate('Plots');
     } catch (err) {
-      return Alert.alert('Não foi possível criar o talhão');
+      return Alert.alert(translate('PlotIdentification.createPlot'));
     }
   };
 
@@ -132,7 +132,7 @@ export const PlotIdentification: React.FC<PlotIdentificationScreenRouteProps> = 
           />
           <NextStepButton>
             <Button
-              title="Finalizar"
+              title={translate('PlotIdentifcation.finishButton')}
               onPress={handleSubmit(handlePlotIdentification)}
             />
           </NextStepButton>

@@ -120,7 +120,7 @@ export const Weather: React.FC<WeatherScreenRouteProps> = () => {
       if (res) {
         setPropertyList(res);
       } else {
-        Alert.alert('Não possivel buscar as propriedades');
+        Alert.alert(translate('weather.alertProperties'));
       }
     }
     setModalVisible(true);

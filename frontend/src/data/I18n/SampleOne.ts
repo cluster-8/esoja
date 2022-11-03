@@ -15,7 +15,9 @@ export default {
           required: 'Quantidade é obrigatória',
           min: 'Quantidade de grãos não pode ser "ZERO"'
         }
-      }
+      },
+      required: 'Quantidade é obrigatória',
+      min: 'Quantidade de grãos não pode ser "ZERO"'
     }
   },
   en: {
@@ -34,7 +36,9 @@ export default {
           required: 'Quantity is required',
           min: 'Grain quantity cannot be "ZERO"'
         }
-      }
+      },
+      required: 'Quantity is required',
+      min: 'Grain quantity cannot be "ZERO"'
     }
   }
 };

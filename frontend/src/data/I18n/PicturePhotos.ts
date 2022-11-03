@@ -5,7 +5,8 @@ export default {
       subtitle: 'Tire uma foto de todas as plantas usadas nas amostras',
       imagePlaceholder: 'Adicionar imagem',
       imageUpdatePictureLabel: 'Alterar imagem',
-      finishButton: 'Finalizar'
+      finishButton: 'Finalizar',
+      alert:'Não foi possivel cadastrar as amostras'
     }
   },
   en: {
@@ -15,7 +16,8 @@ export default {
       imagePlaceholder: 'Add image',
       imageUpdatePictureLabel: 'Change image',
       finishButton: 'Finish',
-      menuPrincipal:'Go to Menu'
+      menuPrincipal:'Go to Menu',
+      alert:'could not get as an example'
     }
   }
 };

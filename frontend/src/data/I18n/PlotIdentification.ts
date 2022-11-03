@@ -24,7 +24,13 @@ export default {
         stepTwoName: {
           required: 'Nome é obrigatório'
         }
-      }
+      },
+      nameRequired:'Nome é obrigatório',
+      date:'Data de plantio é obrigatória',
+      format:'Formato invalido ex: 2019/2020)',
+      finishButton:'Finalizar',
+      property:'Propriedade é obrigatória',
+      createPlot:('Não foi possível criar o talhão')
     }
   },
   en: {
@@ -51,7 +57,13 @@ export default {
         stepTwoName: {
           required: 'Name is required'
         }
-      }
+      },
+      nameRequired:'Required name',
+      date:'Planting date is required',
+      format:'Invalid format ex: 2019/2020',
+      finishButton:'Finish',
+      property:'Properties required',
+      createPlot:('Not possible create plot')
     }
   }
 };

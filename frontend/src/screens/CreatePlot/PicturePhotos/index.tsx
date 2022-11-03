@@ -56,9 +56,7 @@ export const PicturePhotos: React.FC<
       navigation.navigate('SampleOne');
     } catch (err) {
       setLoading(false);
-      Alert.alert(
-        'Error when registering',
-        'Não foi possivel cadastrar as amostras'
+      Alert.alert('Numberplants.alert'
       );
     }
   };

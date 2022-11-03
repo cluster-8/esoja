@@ -9,7 +9,8 @@ export default {
       afternoon: 'Tarde',
       evening: 'Noite',
       sunrise: 'Nascer do Sol',
-      sunset: 'Pôr do Sol'
+      sunset: 'Pôr do Sol',
+      alertProprierties:'Não possivel buscar as propriedades'
     }
   },
   en: {
@@ -22,7 +23,8 @@ export default {
       afternoon: 'Afternoon',
       evening: 'Evening',
       sunrise: 'Sunrise',
-      sunset: 'Sunset'
+      sunset: 'Sunset',
+      alertProprierties:'Unable to fetch properties'
     }
   }
 };
