@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "432134962700",
+    "project_id": "esoja-345711",
+    "storage_bucket": "esoja-345711.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:432134962700:android:6f96490a9db2d29933b829",
+        "android_client_info": {
+          "package_name": "com.esojamobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "432134962700-e7kg6deitptid4kb38kg4thvdd0aqj9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHdkBO5Q7b4nc6CO4ftvJXlPoB5w9r67A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "432134962700-e7kg6deitptid4kb38kg4thvdd0aqj9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

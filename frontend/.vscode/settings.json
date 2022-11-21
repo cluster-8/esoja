@@ -1,0 +1,16 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
